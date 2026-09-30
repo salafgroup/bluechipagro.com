@@ -60,7 +60,10 @@ CREATE TABLE IF NOT EXISTS notification_queue (
   recipient TEXT NOT NULL,
   subject TEXT NOT NULL,
   payload_json TEXT NOT NULL,
-  status TEXT NOT NULL DEFAULT 'pending', -- 'pending', 'sent', 'failed', 'dead_letter'
+  status TEXT NOT NULL DEFAULT 'pending', -- 'pending', 'processing', 'sent', 'failed', 'dead_letter'
+  claim_token TEXT,
+  claim_expires_at TEXT,
+  provider_message_id TEXT,
   attempts INTEGER NOT NULL DEFAULT 0,
   max_attempts INTEGER NOT NULL DEFAULT 5,
   last_error TEXT,

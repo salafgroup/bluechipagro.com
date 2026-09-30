@@ -113,15 +113,17 @@ async function main() {
         process.exit(1);
       }
 
+      if (params.password) {
+        console.error('Security error: Passing passwords via command-line flags (--password) is prohibited to prevent exposure in process tables and shell history. Please omit the flag to enter your password interactively via the masked prompt.');
+        process.exit(1);
+      }
+
       // Secure masked prompt with confirmation
-      let password = params.password;
-      if (!password) {
-        password = await promptPassword(`Enter secure password for ${normEmail}: `);
-        const confirm = await promptPassword(`Confirm password for ${normEmail}: `);
-        if (password !== confirm) {
-          console.error('Error: Passwords do not match.');
-          process.exit(1);
-        }
+      const password = await promptPassword(`Enter secure password for ${normEmail}: `);
+      const confirm = await promptPassword(`Confirm password for ${normEmail}: `);
+      if (password !== confirm) {
+        console.error('Error: Passwords do not match.');
+        process.exit(1);
       }
       if (!password || password.length < 8) {
         console.error('Error: Password must be at least 8 characters long.');
@@ -202,14 +204,16 @@ async function main() {
         process.exit(1);
       }
 
-      let password = params.password;
-      if (!password) {
-        password = await promptPassword(`Enter new secure password for ${normEmail}: `);
-        const confirm = await promptPassword(`Confirm new password for ${normEmail}: `);
-        if (password !== confirm) {
-          console.error('Error: Passwords do not match.');
-          process.exit(1);
-        }
+      if (params.password) {
+        console.error('Security error: Passing passwords via command-line flags (--password) is prohibited to prevent exposure in process tables and shell history. Please omit the flag to enter your password interactively via the masked prompt.');
+        process.exit(1);
+      }
+
+      const password = await promptPassword(`Enter new secure password for ${normEmail}: `);
+      const confirm = await promptPassword(`Confirm new password for ${normEmail}: `);
+      if (password !== confirm) {
+        console.error('Error: Passwords do not match.');
+        process.exit(1);
       }
       if (!password || password.length < 8) {
         console.error('Error: Password must be at least 8 characters long.');

@@ -284,7 +284,88 @@ async function runPostgresVerification(connectionString) {
     }
     console.log('PASS: Valid CRON_SECRET accepted with HTTP 200.');
 
-    console.log('\n>>> ALL 5 POSTGRESQL VERIFICATION CHECKS PASSED HONESTLY! <<<');
+    // 6. Worker Crash Recovery & Claim Fencing Protection
+    console.log('\n--- 6. Testing Worker Crash Recovery & Expired Claim Fencing ---');
+    const crashTestNotifId = crypto.randomUUID();
+    const crashTestEnquiryId = crypto.randomUUID();
+    const crashRef = 'RVG-CRASH-' + Date.now();
+    cleanupIds.enquiries.push(crashRef);
+
+    await pool.query(
+      `INSERT INTO enquiries (id, reference_id, full_name, email, phone, duplicate_hash)
+       VALUES ($1, $2, 'Crash Test', 'crash@example.com', '9999999998', 'hash-crash')`,
+      [crashTestEnquiryId, crashRef]
+    );
+
+    await pool.query(
+      `INSERT INTO notification_queue (id, enquiry_id, channel, recipient, subject, payload_json, status, attempts)
+       VALUES ($1, $2, 'email', 'crash@example.com', 'Crash Test', '{}', 'pending', 0)`,
+      [crashTestNotifId, crashTestEnquiryId]
+    );
+
+    // Worker 1 claims job with 1 second TTL
+    const claim1 = await db.claimNotificationJobs(10, 1);
+    const claimedJob1 = claim1.find(j => j.id === crashTestNotifId);
+    if (!claimedJob1 || !claimedJob1.claim_token) {
+      throw new Error('Worker 1 failed to claim job with claim_token!');
+    }
+    console.log('Worker 1 acquired claim token:', claimedJob1.claim_token.slice(0, 8) + '...');
+
+    // Simulate Worker 1 crash and wait 1.2s for claim TTL to expire
+    console.log('Simulating worker 1 crash and waiting for claim expiry...');
+    await new Promise(r => setTimeout(r, 1200));
+
+    // Worker 2 runs and recovers the expired processing job
+    const claim2 = await db.claimNotificationJobs(10, 300);
+    const claimedJob2 = claim2.find(j => j.id === crashTestNotifId);
+    if (!claimedJob2 || claimedJob2.claim_token === claimedJob1.claim_token) {
+      throw new Error('Worker 2 failed to recover expired job with a fresh claim token!');
+    }
+    console.log('Worker 2 successfully recovered job with new claim token:', claimedJob2.claim_token.slice(0, 8) + '...');
+
+    // Stale Worker 1 wakes up and tries to finalize with old claim token
+    const staleFinalize = await db.finalizeNotificationJob(crashTestNotifId, claimedJob1.claim_token, true, {
+      attempts: 1,
+      providerMessageId: 'stale-msg-id'
+    });
+    console.log('Stale Worker 1 Finalization Result:', staleFinalize);
+    if (staleFinalize.finalized !== false || staleFinalize.reason !== 'CLAIM_LOST') {
+      throw new Error('Fencing violation: Stale worker was permitted to overwrite active claim!');
+    }
+    console.log('PASS: Stale worker overwrite prevented by claim fencing token.');
+
+    // Worker 2 finalizes with valid claim token
+    const validFinalize = await db.finalizeNotificationJob(crashTestNotifId, claimedJob2.claim_token, true, {
+      attempts: 1,
+      providerMessageId: 'valid-msg-id'
+    });
+    if (!validFinalize.finalized) {
+      throw new Error('Worker 2 failed to finalize validly claimed job!');
+    }
+    console.log('PASS: Worker 2 finalized successfully with provider message ID recorded.');
+
+    // 7. Atomic Concurrent Rate Limiting Test
+    console.log('\n--- 7. Testing Atomic Concurrent Rate Limiting (Single-Statement Upsert) ---');
+    const rateTestKey = `rate:test:concurrent:${Date.now()}`;
+    cleanupIds.rateKeys = cleanupIds.rateKeys || [];
+    cleanupIds.rateKeys.push(rateTestKey);
+
+    // Launch 10 simultaneous concurrent requests with max limit 5
+    const ratePromises = Array.from({ length: 10 }).map(() =>
+      db.checkRateLimit(rateTestKey, 5, 60)
+    );
+    const rateResults = await Promise.all(ratePromises);
+
+    const allowedCount = rateResults.filter(r => r.allowed).length;
+    const blockedCount = rateResults.filter(r => !r.allowed).length;
+    console.log(`Rate limit concurrency results (10 requests, max 5): ${allowedCount} allowed, ${blockedCount} blocked`);
+
+    if (allowedCount !== 5 || blockedCount !== 5) {
+      throw new Error(`Rate limit race condition detected: Expected 5 allowed and 5 blocked, got ${allowedCount} allowed and ${blockedCount} blocked.`);
+    }
+    console.log('PASS: Concurrent rate limiting is completely atomic with zero lost updates.');
+
+    console.log('\n>>> ALL 7 POSTGRESQL VERIFICATION CHECKS PASSED HONESTLY! <<<');
 
   } finally {
     // 6. Complete Cleanup of Test Records
@@ -296,6 +377,10 @@ async function runPostgresVerification(connectionString) {
     if (cleanupIds.staffUsers.length > 0) {
       await pool.query('DELETE FROM staff_users WHERE id = ANY($1)', [cleanupIds.staffUsers]);
       console.log(`Cleaned up test staff users.`);
+    }
+    if (cleanupIds.rateKeys && cleanupIds.rateKeys.length > 0) {
+      await pool.query('DELETE FROM rate_limits WHERE rate_key = ANY($1)', [cleanupIds.rateKeys]);
+      console.log(`Cleaned up test rate limit keys.`);
     }
     await pool.end();
   }
