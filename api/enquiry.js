@@ -177,7 +177,7 @@ module.exports = async function handler(req, res) {
     console.error('[Enquiry API Error]', error);
     return res.status(500).json({
       success: false,
-      error: 'An internal error occurred while processing your request. Please try again or contact sales@bluechipagro.com directly.'
+      error: error.message || 'An internal error occurred while processing your request. Please try again or contact sales@bluechipagro.com directly.'
     });
   }
 };
