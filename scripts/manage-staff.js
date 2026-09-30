@@ -19,14 +19,58 @@ const auth = require('../lib/auth');
 
 function promptPassword(promptText = 'Enter password: ') {
   return new Promise((resolve) => {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout
-    });
-    rl.question(promptText, (answer) => {
-      rl.close();
-      resolve(answer.trim());
-    });
+    process.stdout.write(promptText);
+    const stdin = process.stdin;
+
+    // Fallback for non-interactive / piped input
+    if (!stdin.isTTY) {
+      const rl = readline.createInterface({ input: stdin, output: null });
+      rl.question('', (answer) => {
+        rl.close();
+        process.stdout.write('\n');
+        resolve(answer.trim());
+      });
+      return;
+    }
+
+    const wasRaw = stdin.isRaw;
+    stdin.setRawMode(true);
+    stdin.resume();
+    stdin.setEncoding('utf8');
+
+    let password = '';
+
+    const onData = (chunk) => {
+      for (const char of chunk) {
+        if (char === '\n' || char === '\r' || char === '\u0004') {
+          // Enter or EOF
+          stdin.setRawMode(wasRaw || false);
+          stdin.pause();
+          stdin.removeListener('data', onData);
+          process.stdout.write('\n');
+          resolve(password.trim());
+          return;
+        } else if (char === '\u0003') {
+          // Ctrl+C
+          stdin.setRawMode(wasRaw || false);
+          stdin.pause();
+          stdin.removeListener('data', onData);
+          process.stdout.write('\n');
+          process.exit(130);
+        } else if (char === '\u0008' || char === '\x7f') {
+          // Backspace
+          if (password.length > 0) {
+            password = password.slice(0, -1);
+            process.stdout.write('\b \b');
+          }
+        } else {
+          password += char;
+          process.stdout.write('*'); // Masked echo
+        }
+      }
+    };
+
+    stdin.on('data', onData);
   });
 }
 
@@ -69,10 +113,15 @@ async function main() {
         process.exit(1);
       }
 
-      // Secure prompt if password not supplied via CLI flag
+      // Secure masked prompt with confirmation
       let password = params.password;
       if (!password) {
         password = await promptPassword(`Enter secure password for ${normEmail}: `);
+        const confirm = await promptPassword(`Confirm password for ${normEmail}: `);
+        if (password !== confirm) {
+          console.error('Error: Passwords do not match.');
+          process.exit(1);
+        }
       }
       if (!password || password.length < 8) {
         console.error('Error: Password must be at least 8 characters long.');
@@ -156,6 +205,11 @@ async function main() {
       let password = params.password;
       if (!password) {
         password = await promptPassword(`Enter new secure password for ${normEmail}: `);
+        const confirm = await promptPassword(`Confirm new password for ${normEmail}: `);
+        if (password !== confirm) {
+          console.error('Error: Passwords do not match.');
+          process.exit(1);
+        }
       }
       if (!password || password.length < 8) {
         console.error('Error: Password must be at least 8 characters long.');

@@ -102,27 +102,8 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ success: false, error: 'Please provide a valid phone number with country/area code.' });
     }
 
-    // 4. Atomic Deduplication Check (Window: 15 minutes)
+    // 4. Concurrency-Safe Deduplication & Single-Transaction Storage
     const duplicateHash = db.computeDuplicateHash(email, phone, estateModel);
-    const fifteenMinutesAgo = new Date(Date.now() - 15 * 60 * 1000).toISOString();
-
-    const existingEnquiry = await db.get(
-      `SELECT reference_id, created_at FROM enquiries
-       WHERE duplicate_hash = ? AND created_at > ?
-       ORDER BY created_at DESC LIMIT 1`,
-      [duplicateHash, fifteenMinutesAgo]
-    );
-
-    if (existingEnquiry) {
-      return res.status(200).json({
-        success: true,
-        referenceId: existingEnquiry.reference_id,
-        isDuplicate: true,
-        message: `Your enquiry (${existingEnquiry.reference_id}) is already registered with our advisory team. An estate director will contact you directly.`
-      });
-    }
-
-    // 5. Durable Database Save
     const enquiryId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex');
     const referenceId = db.generateReferenceId();
     const nowIso = new Date().toISOString();
@@ -133,21 +114,8 @@ module.exports = async function handler(req, res) {
       submittedAt: nowIso
     });
 
-    await db.run(
-      `INSERT INTO enquiries (
-        id, reference_id, full_name, email, phone, buyer_type,
-        estate_model, budget_range, city_country, message,
-        status, duplicate_hash, source, metadata_json, created_at, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new', ?, 'website_contact_form', ?, ?, ?)`,
-      [
-        enquiryId, referenceId, fullName, email, phone, buyerType,
-        estateModel, budgetRange, cityCountry, message,
-        duplicateHash, metadata, nowIso, nowIso
-      ]
-    );
-
-    // 6. Decoupled Notification Queue
     const notificationId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex');
+    const notificationRecipient = process.env.NOTIFICATION_EMAIL_TO || 'sales@bluechipagro.com';
     const notificationPayload = JSON.stringify({
       referenceId,
       enquiryId,
@@ -161,29 +129,44 @@ module.exports = async function handler(req, res) {
       submittedAt: nowIso
     });
 
-    await db.run(
-      `INSERT INTO notification_queue (
-        id, enquiry_id, channel, recipient, subject, payload_json, status, created_at
-      ) VALUES (?, ?, 'email', 'sales@bluechipagro.com', ?, ?, 'pending', ?)`,
-      [notificationId, enquiryId, `New Private Estate Enquiry: ${referenceId} - ${fullName}`, notificationPayload, nowIso]
+    const saveResult = await db.saveEnquiryAtomic(
+      {
+        enquiryId,
+        referenceId,
+        fullName,
+        email,
+        phone,
+        buyerType,
+        estateModel,
+        budgetRange,
+        cityCountry,
+        message,
+        duplicateHash,
+        metadata,
+        nowIso
+      },
+      {
+        notificationId,
+        channel: 'email',
+        recipient: notificationRecipient,
+        subject: `New Private Estate Enquiry: ${referenceId} - ${fullName}`,
+        payloadJson: notificationPayload
+      },
+      15 // 15-minute deduplication window
     );
 
-    // Synchronous dispatch attempt (catch and preserve failure without blocking confirmation)
-    try {
-      if (process.env.RESEND_API_KEY || process.env.SMTP_HOST) {
-        // Dispatched via provider
-      } else {
-        console.log(`[Enquiry Queued] Ref: ${referenceId} from ${fullName} <${email}>. Stored in DB.`);
-      }
-    } catch (notifErr) {
-      console.error('[Notification Dispatch Error]', notifErr.message);
-      await db.run(
-        `UPDATE notification_queue SET status = 'failed', last_error = ?, attempts = attempts + 1 WHERE id = ?`,
-        [notifErr.message, notificationId]
-      );
+    if (saveResult.isDuplicate) {
+      return res.status(200).json({
+        success: true,
+        referenceId: saveResult.referenceId,
+        isDuplicate: true,
+        message: `Your enquiry (${saveResult.referenceId}) is already registered with our advisory team. An estate director will contact you directly.`
+      });
     }
 
-    // 7. Confirmed Success Response
+    console.log(`[Enquiry Queued] Ref: ${referenceId} from ${fullName} <${email}>. Stored in DB with notification queue.`);
+
+    // 5. Confirmed Success Response
     return res.status(200).json({
       success: true,
       referenceId,

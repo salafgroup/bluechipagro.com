@@ -76,6 +76,14 @@ CREATE TABLE IF NOT EXISTS rate_limits (
   expires_at TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS enquiry_dedup_locks (
+  duplicate_hash TEXT PRIMARY KEY,
+  reference_id TEXT NOT NULL,
+  enquiry_id TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+  expires_at TEXT NOT NULL
+);
+
 -- Indices for rapid querying and constraint checks
 CREATE INDEX IF NOT EXISTS idx_staff_email ON staff_users(email);
 CREATE INDEX IF NOT EXISTS idx_sessions_token_hash ON staff_sessions(session_token_hash);
@@ -85,3 +93,4 @@ CREATE INDEX IF NOT EXISTS idx_enquiries_created_at ON enquiries(created_at);
 CREATE INDEX IF NOT EXISTS idx_enquiries_duplicate_hash ON enquiries(duplicate_hash);
 CREATE INDEX IF NOT EXISTS idx_enquiry_notes_enquiry ON enquiry_notes(enquiry_id);
 CREATE INDEX IF NOT EXISTS idx_notification_queue_status ON notification_queue(status, next_retry_at);
+CREATE INDEX IF NOT EXISTS idx_dedup_locks_expires ON enquiry_dedup_locks(expires_at);

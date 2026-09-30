@@ -7,13 +7,18 @@
 const db = require('../../lib/db');
 
 // Helper to send email via Resend if key exists
-async function sendViaResend(apiKey, { from, to, subject, html, text }) {
+async function sendViaResend(apiKey, { from, to, subject, html, text, idempotencyKey }) {
+  const headers = {
+    'Authorization': `Bearer ${apiKey}`,
+    'Content-Type': 'application/json'
+  };
+  if (idempotencyKey) {
+    headers['Idempotency-Key'] = idempotencyKey;
+  }
+
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
-    },
+    headers,
     body: JSON.stringify({ from, to, subject, html, text })
   });
 
@@ -38,15 +43,15 @@ async function sendViaWebhook(webhookUrl, payload) {
 }
 
 module.exports = async function handler(req, res) {
-  // 1. Authorization Gate: Protected against unauthorized invocation
+  // 1. Strict Authorization Gate: Reject whenever CRON_SECRET is missing or invalid
   const authHeader = req.headers['authorization'] || '';
   const cronSecret = process.env.CRON_SECRET;
 
-  // In production, CRON_SECRET is strictly required
-  if (process.env.NODE_ENV === 'production' && cronSecret) {
-    if (authHeader !== `Bearer ${cronSecret}`) {
-      return res.status(401).json({ success: false, error: 'Unauthorized: Invalid CRON_SECRET.' });
-    }
+  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
+    return res.status(401).json({
+      success: false,
+      error: 'Unauthorized: Missing or invalid CRON_SECRET.'
+    });
   }
 
   if (!db.isConfigured()) {
@@ -54,19 +59,8 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const nowIso = new Date().toISOString();
-
-    // 2. Fetch pending or retryable failed notifications
-    const pendingItems = await db.query(
-      `SELECT id, enquiry_id, channel, recipient, subject, payload_json, attempts, max_attempts
-       FROM notification_queue
-       WHERE status IN ('pending', 'failed')
-         AND attempts < max_attempts
-         AND next_retry_at <= ?
-       ORDER BY created_at ASC
-       LIMIT 20`,
-      [nowIso]
-    );
+    // 2. Atomically claim pending or retryable jobs so overlapping workers never double-process
+    const pendingItems = await db.claimNotificationJobs(20);
 
     if (pendingItems.length === 0) {
       return res.status(200).json({ success: true, processed: 0, message: 'Notification queue is empty.' });
@@ -84,8 +78,11 @@ module.exports = async function handler(req, res) {
 
       try {
         if (process.env.RESEND_API_KEY) {
+          // Explicit configured sender priority, with fallback only when unset
           const fromEmail = process.env.NOTIFICATION_EMAIL_FROM || process.env.NOTIFICATION_FROM_EMAIL || 'Reserva Verde Goa <onboarding@resend.dev>';
-          const targetRecipient = process.env.NOTIFICATION_EMAIL_TO || item.recipient;
+          const targetRecipient = item.recipient || process.env.NOTIFICATION_EMAIL_TO || 'sales@bluechipagro.com';
+          const idempotencyKey = `rvg-notif-${item.id}-attempt-${attemptNum}`;
+
           const htmlContent = `
             <h2>New Private Estate Enquiry</h2>
             <p><strong>Reference:</strong> ${payload.referenceId}</p>
@@ -102,13 +99,15 @@ module.exports = async function handler(req, res) {
             to: targetRecipient,
             subject: item.subject,
             html: htmlContent,
-            text: `New Enquiry ${payload.referenceId} from ${payload.fullName} (${payload.phone}, ${payload.email})`
+            text: `New Enquiry ${payload.referenceId} from ${payload.fullName} (${payload.phone}, ${payload.email})`,
+            idempotencyKey
           });
           isSuccess = true;
         } else if (process.env.NOTIFICATION_WEBHOOK_URL) {
           await sendViaWebhook(process.env.NOTIFICATION_WEBHOOK_URL, {
             event: 'new_enquiry',
             enquiryId: item.enquiry_id,
+            idempotencyKey: `rvg-notif-${item.id}-attempt-${attemptNum}`,
             ...payload
           });
           isSuccess = true;
