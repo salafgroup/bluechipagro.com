@@ -4,7 +4,6 @@
   "description": "Reserva Verde Goa \u2014 premium eco forest villa project website",
   "scripts": {
     "type-check": "tsc --noEmit",
-    "build": "echo 'No build command required for static deployment'",
     "dev": "node scripts/dev-server.js",
     "test": "node scripts/test-api.js",
     "manage-staff": "node scripts/manage-staff.js"
