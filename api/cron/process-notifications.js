@@ -84,7 +84,8 @@ module.exports = async function handler(req, res) {
 
       try {
         if (process.env.RESEND_API_KEY) {
-          const fromEmail = process.env.NOTIFICATION_FROM_EMAIL || 'Reserva Varde <notifications@bluechipagro.com>';
+          const fromEmail = process.env.NOTIFICATION_EMAIL_FROM || process.env.NOTIFICATION_FROM_EMAIL || 'Reserva Verde Goa <onboarding@resend.dev>';
+          const targetRecipient = process.env.NOTIFICATION_EMAIL_TO || item.recipient;
           const htmlContent = `
             <h2>New Private Estate Enquiry</h2>
             <p><strong>Reference:</strong> ${payload.referenceId}</p>
@@ -98,7 +99,7 @@ module.exports = async function handler(req, res) {
           `;
           await sendViaResend(process.env.RESEND_API_KEY, {
             from: fromEmail,
-            to: item.recipient,
+            to: targetRecipient,
             subject: item.subject,
             html: htmlContent,
             text: `New Enquiry ${payload.referenceId} from ${payload.fullName} (${payload.phone}, ${payload.email})`
