@@ -2,17 +2,33 @@
 
 /**
  * Reserva Varde Goa - Staff User Management CLI
+ * Supports interactive password entry to prevent credentials from being logged in shell history.
+ *
  * Usage:
- *   node scripts/manage-staff.js create --email=<email> --name="<Name>" --password="<password>" [--role=admin|sales_agent]
+ *   node scripts/manage-staff.js create --email=<email> --name="<Name>" [--role=admin|sales_agent]
  *   node scripts/manage-staff.js list
  *   node scripts/manage-staff.js revoke --email=<email>
  *   node scripts/manage-staff.js reactivate --email=<email>
- *   node scripts/manage-staff.js reset-password --email=<email> --password="<new-password>"
+ *   node scripts/manage-staff.js reset-password --email=<email>
  */
 
+const readline = require('readline');
 const crypto = require('crypto');
 const db = require('../lib/db');
 const auth = require('../lib/auth');
+
+function promptPassword(promptText = 'Enter password: ') {
+  return new Promise((resolve) => {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+    rl.question(promptText, (answer) => {
+      rl.close();
+      resolve(answer.trim());
+    });
+  });
+}
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -41,9 +57,9 @@ async function main() {
 
   switch (command) {
     case 'create': {
-      const { email, name, password, role = 'sales_agent' } = params;
-      if (!email || !name || !password) {
-        console.error('Error: --email, --name, and --password are required.');
+      const { email, name, role = 'sales_agent' } = params;
+      if (!email || !name) {
+        console.error('Error: --email and --name are required.');
         process.exit(1);
       }
       const normEmail = email.trim().toLowerCase();
@@ -52,6 +68,17 @@ async function main() {
         console.error(`Error: User with email "${normEmail}" already exists.`);
         process.exit(1);
       }
+
+      // Secure prompt if password not supplied via CLI flag
+      let password = params.password;
+      if (!password) {
+        password = await promptPassword(`Enter secure password for ${normEmail}: `);
+      }
+      if (!password || password.length < 8) {
+        console.error('Error: Password must be at least 8 characters long.');
+        process.exit(1);
+      }
+
       const { salt, hash } = auth.hashPassword(password);
       const userId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex');
       await db.run(
@@ -69,7 +96,7 @@ async function main() {
          FROM staff_users
          ORDER BY created_at DESC`
       );
-      console.log('\n--- Authorized Staff Accounts ---');
+      console.log('\n--- Authorized Staff Accounts (Passwords Excluded) ---');
       if (users.length === 0) {
         console.log('No staff accounts found. Create one using "create" command.');
       } else {
@@ -114,9 +141,9 @@ async function main() {
     }
 
     case 'reset-password': {
-      const { email, password } = params;
-      if (!email || !password) {
-        console.error('Error: --email and --password are required.');
+      const { email } = params;
+      if (!email) {
+        console.error('Error: --email is required.');
         process.exit(1);
       }
       const normEmail = email.trim().toLowerCase();
@@ -125,6 +152,16 @@ async function main() {
         console.error(`Error: User "${normEmail}" not found.`);
         process.exit(1);
       }
+
+      let password = params.password;
+      if (!password) {
+        password = await promptPassword(`Enter new secure password for ${normEmail}: `);
+      }
+      if (!password || password.length < 8) {
+        console.error('Error: Password must be at least 8 characters long.');
+        process.exit(1);
+      }
+
       const { salt, hash } = auth.hashPassword(password);
       await db.run(
         'UPDATE staff_users SET password_hash = ?, salt = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?',
@@ -139,11 +176,11 @@ async function main() {
       console.log(`
 Reserva Varde Goa Staff Management CLI
 Commands:
-  create --email=<email> --name="<Name>" --password="<password>" [--role=admin|sales_agent]
+  create --email=<email> --name="<Name>" [--role=admin|sales_agent]
   list
   revoke --email=<email>
   reactivate --email=<email>
-  reset-password --email=<email> --password="<new-password>"
+  reset-password --email=<email>
       `);
       break;
   }

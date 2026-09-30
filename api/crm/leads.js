@@ -57,6 +57,13 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
 
   try {
+  if (!db.isConfigured()) {
+    return res.status(500).json({
+      success: false,
+      error: 'Production database is not configured. A managed PostgreSQL database (DATABASE_URL) is required.'
+    });
+  }
+
     // 1. Authenticate Staff Member
     const token = auth.extractToken(req);
     const staff = await auth.verifySession(token);

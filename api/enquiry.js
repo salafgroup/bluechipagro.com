@@ -51,6 +51,13 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+  if (!db.isConfigured()) {
+    return res.status(500).json({
+      success: false,
+      error: 'Production database is not configured. A managed PostgreSQL database (DATABASE_URL) is required.'
+    });
+  }
+
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
     const clientIp = getClientIp(req);
 

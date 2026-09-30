@@ -21,6 +21,13 @@ module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ success: false, error: 'Method not allowed.' });
 
   try {
+  if (!db.isConfigured()) {
+    return res.status(500).json({
+      success: false,
+      error: 'Production database is not configured. A managed PostgreSQL database (DATABASE_URL) is required.'
+    });
+  }
+
     const clientIp = getClientIp(req);
     // Rate limit: max 5 login attempts per 10 minutes per IP
     const rateCheck = await db.checkRateLimit(`rate:login:${clientIp}`, 5, 600);
