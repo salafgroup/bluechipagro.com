@@ -2,8 +2,13 @@ User-agent: *
 Disallow: /crm
 Disallow: /crm/
 Disallow: /crm/*
+Disallow: /crm.html
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
 Disallow: /visual-assets
 Disallow: /visual-assets/
 Disallow: /visual-assets/*
 
 Allow: /
+Sitemap: https://bluechipagro.com/sitemap.xml

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Reserva Varde Goa | Internal CRM</title>
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <title>Reserva Varde Goa | Secure Staff Command Center</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,13 +14,20 @@
         :root {
             --bg-dark: #0b140f;
             --bg-card: #15241b;
+            --bg-card-subtle: rgba(21, 36, 27, 0.7);
             --text-main: #F8F6F0;
             --text-muted: #A9A59C;
             --accent-gold: #C2A878;
+            --accent-gold-hover: #d4b886;
+            --status-green: #4CAF50;
+            --status-blue: #3b82f6;
+            --status-amber: #f59e0b;
+            --status-purple: #8b5cf6;
+            --status-red: #ef4444;
             --border-color: rgba(194, 168, 120, 0.15);
             --font-serif: 'Cormorant Garamond', serif;
             --font-sans: 'Montserrat', sans-serif;
-            --transition: all 0.3s ease;
+            --transition: all 0.25s ease;
         }
 
         * {
@@ -38,9 +45,116 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Login Overlay Gate */
+        #authGate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, #15291e 0%, #08100c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 1.5rem;
+        }
+
+        .auth-card {
+            background-color: #0f1c16;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 30px rgba(194, 168, 120, 0.08);
+            width: 100%;
+            max-width: 440px;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .auth-brand {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 0.4rem;
+        }
+
+        .auth-tagline {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        .auth-input-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .auth-input-group label {
+            display: block;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .auth-input-group input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(194, 168, 120, 0.25);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            border-radius: 2px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .auth-input-group input:focus {
+            border-color: var(--accent-gold);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 0.95rem;
+            background: var(--accent-gold);
+            color: #0b140f;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-top: 1rem;
+            transition: var(--transition);
+        }
+
+        .auth-btn:hover {
+            background: var(--accent-gold-hover);
+        }
+
+        .auth-error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            padding: 0.75rem;
+            font-size: 0.78rem;
+            border-radius: 2px;
+            margin-bottom: 1.2rem;
+            display: none;
+        }
+
         /* Sidebar */
         .sidebar {
-            width: 250px;
+            width: 260px;
             background-color: var(--bg-card);
             border-right: 1px solid var(--border-color);
             padding: 2rem;
@@ -48,92 +162,129 @@
             flex-direction: column;
             position: fixed;
             height: 100vh;
+            z-index: 100;
         }
 
         .brand {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--accent-gold);
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
+        }
+
+        .brand span {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            font-family: var(--font-sans);
+            margin-top: 0.3rem;
         }
 
         .nav-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.6rem;
         }
 
         .nav-list a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            padding: 0.8rem 1rem;
+            padding: 0.75rem 1rem;
             display: block;
-            border-radius: 4px;
+            border-radius: 3px;
             transition: var(--transition);
         }
 
         .nav-list a:hover, .nav-list a.active {
             color: var(--text-main);
-            background-color: rgba(194, 168, 120, 0.05);
+            background-color: rgba(194, 168, 120, 0.08);
             border-left: 2px solid var(--accent-gold);
         }
 
         .sidebar-footer {
             margin-top: auto;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.2rem;
         }
 
         /* Main Content */
         .main-content {
             flex: 1;
-            margin-left: 250px;
-            padding: 2.5rem 4rem;
+            margin-left: 260px;
+            padding: 2.5rem 3.5rem;
             overflow-y: auto;
+            min-height: 100vh;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--border-color);
         }
 
         .header h1 {
             font-family: var(--font-serif);
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 400;
+            color: var(--text-main);
         }
 
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
-        .avatar {
-            width: 40px;
-            height: 40px;
-            background-color: var(--accent-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-dark);
-            font-weight: 600;
+        .user-meta {
+            text-align: right;
         }
 
-        /* Cards Layout */
+        .user-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .user-role-badge {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-gold);
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.45rem 0.9rem;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .logout-btn:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        /* Section Titles */
         .section-title {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.2em;
             color: var(--accent-gold);
@@ -150,74 +301,117 @@
             background-color: var(--border-color);
         }
 
+        /* Live KPI Grid */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 4rem;
+            gap: 1.2rem;
+            margin-bottom: 3rem;
         }
 
         .card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            transition: transform 0.3s ease;
+            padding: 1.4rem;
+            border-radius: 3px;
+            transition: transform 0.25s ease, border-color 0.25s ease;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(194, 168, 120, 0.4);
+            transform: translateY(-3px);
+            border-color: rgba(194, 168, 120, 0.35);
         }
 
         .kpi-label {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             color: var(--text-muted);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .kpi-value {
             font-family: var(--font-serif);
             font-size: 2.2rem;
             color: var(--text-main);
+            line-height: 1.1;
         }
 
-        .kpi-value.gold {
-            color: var(--accent-gold);
+        .kpi-value.gold { color: var(--accent-gold); }
+        .kpi-value.green { color: var(--status-green); }
+        .kpi-value.blue { color: var(--status-blue); }
+        .kpi-value.amber { color: var(--status-amber); }
+
+        /* Filter & Search Bar */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
         }
 
-        /* Grid Layouts */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 4rem;
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
         }
 
-        /* Progress Bar */
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background-color: rgba(255,255,255,0.1);
-            margin-top: 1rem;
+        .search-input {
+            padding: 0.65rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
             border-radius: 2px;
-            overflow: hidden;
+            min-width: 280px;
+            outline: none;
         }
 
-        .progress-bar {
-            height: 100%;
-            background-color: var(--accent-gold);
-            width: 0%;
-            transition: width 1s ease-in-out;
+        .search-input:focus { border-color: var(--accent-gold); }
+
+        .filter-select {
+            padding: 0.65rem 0.9rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
         }
 
-        /* Table */
+        .export-btn {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 0.65rem 1.2rem;
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .export-btn:hover {
+            background: var(--accent-gold);
+            color: #0b140f;
+        }
+
+        /* Leads Table */
         .table-container {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             overflow-x: auto;
+            border-radius: 3px;
         }
 
         table {
@@ -226,976 +420,912 @@
         }
 
         th, td {
-            padding: 1.2rem 1.5rem;
+            padding: 1rem 1.2rem;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
         }
 
         th {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             color: var(--text-muted);
             font-weight: 500;
+            background: rgba(0,0,0,0.15);
         }
 
         td {
-            font-size: 0.9rem;
+            font-size: 0.84rem;
         }
 
-        .status-badge {
+        tr:hover {
+            background-color: rgba(194, 168, 120, 0.03);
+        }
+
+        /* Status Badges */
+        .badge {
             display: inline-block;
-            padding: 0.3rem 0.8rem;
+            padding: 0.25rem 0.65rem;
             border-radius: 12px;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            border: 1px solid var(--text-muted);
+            font-weight: 500;
         }
 
-        .status-badge.active {
-            border-color: var(--accent-gold);
+        .badge-new { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .badge-contacted { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-site_visit_scheduled { background: rgba(139, 92, 246, 0.15); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.3); }
+        .badge-cost_sheet_sent { background: rgba(194, 168, 120, 0.15); color: var(--accent-gold); border: 1px solid var(--border-color); }
+        .badge-closed_won { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .badge-closed_lost { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge-archived { background: rgba(107, 114, 128, 0.15); color: #9ca3af; border: 1px solid rgba(107, 114, 128, 0.3); }
+
+        .btn-view-lead {
+            background: none;
+            border: 1px solid var(--border-color);
             color: var(--accent-gold);
-        }
-        
-        .status-badge.success {
-            border-color: #4CAF50;
-            color: #4CAF50;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: var(--transition);
         }
 
-        /* Legal Tracker */
-        .tracker-steps {
+        .btn-view-lead:hover {
+            background: var(--accent-gold);
+            color: #0b140f;
+        }
+
+        /* Lead Detail Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 1.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-card {
+            background: #0f1c16;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 760px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            border-radius: 3px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9);
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
-            padding: 2rem 0;
-        }
-        
-        .tracker-steps::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: var(--border-color);
-            z-index: 1;
         }
 
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--bg-dark);
-            border: 2px solid var(--border-color);
-        }
-
-        .step.completed .step-dot {
-            background-color: var(--accent-gold);
-            border-color: var(--accent-gold);
-        }
-        
-        .step.active .step-dot {
-            border-color: var(--accent-gold);
-        }
-
-        .step-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            text-align: center;
-            width: 100px;
-        }
-        
-        .step.completed .step-label {
+        .modal-title {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
             color: var(--text-main);
         }
 
-        /* Responsive */
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .modal-close-btn:hover { color: var(--text-main); }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .detail-item span {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-item strong {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .note-box {
+            background: rgba(255,255,255,0.02);
+            border-left: 2px solid var(--accent-gold);
+            padding: 1rem 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            border-radius: 2px;
+        }
+
+        /* Action Panel inside Modal */
+        .manage-panel {
+            background: rgba(0,0,0,0.25);
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 2px;
+            margin-bottom: 1.8rem;
+        }
+
+        .panel-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .panel-row label {
+            display: block;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .panel-row select, .panel-row input {
+            width: 100%;
+            padding: 0.55rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        /* Timeline / Notes */
+        .timeline {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .timeline-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-entry {
+            border-left: 2px solid rgba(194, 168, 120, 0.3);
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+        }
+
+        .timeline-meta {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline-content {
+            font-size: 0.82rem;
+            color: var(--text-main);
+        }
+
+        .add-note-box {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .add-note-box textarea {
+            flex: 1;
+            padding: 0.75rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            border-radius: 2px;
+            resize: vertical;
+            min-height: 60px;
+            outline: none;
+        }
+
+        .add-note-box button {
+            padding: 0 1.2rem;
+            background: var(--accent-gold);
+            border: none;
+            color: #0b140f;
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .add-note-box button:hover { background: var(--accent-gold-hover); }
+
+        /* Legal Checklist Styles */
+        .checklist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.4rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            margin-bottom: 0.7rem;
+            border-radius: 2px;
+        }
+
+        .checklist-title {
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .checklist-remarks {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
         @media (max-width: 1024px) {
             .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-            .grid-2 { grid-template-columns: 1fr; }
+            .main-content { padding: 2rem; }
         }
 
         @media (max-width: 768px) {
-            .sidebar { transform: translateX(-100%); z-index: 1000; transition: transform 0.3s ease; }
+            .sidebar { display: none; }
             .main-content { margin-left: 0; padding: 1.5rem; }
             .kpi-grid { grid-template-columns: 1fr; }
-            .tracker-steps { flex-direction: column; align-items: flex-start; gap: 2rem; }
-            .tracker-steps::before { width: 1px; height: 100%; top: 0; left: 9px; right: auto; }
-            .step { flex-direction: row; width: 100%; }
-            .step-label { text-align: left; width: auto; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .panel-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar Navigation -->
+    <!-- AUTHENTICATION GATE (Visible if unauthenticated) -->
+    <div id="authGate">
+        <div class="auth-card">
+            <div class="auth-brand">Reserva Varde Goa</div>
+            <div class="auth-tagline">Staff Command Center</div>
+            
+            <div id="authError" class="auth-error"></div>
+
+            <form id="loginForm">
+                <div class="auth-input-group">
+                    <label for="loginEmail">Authorized Email</label>
+                    <input type="email" id="loginEmail" placeholder="e.g. admin@bluechipagro.com" required autocomplete="username">
+                </div>
+                <div class="auth-input-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••••••" required autocomplete="current-password">
+                </div>
+                <button type="submit" id="loginSubmitBtn" class="auth-btn">Sign In to Command Center</button>
+            </form>
+            <p style="margin-top: 1.5rem; font-size: 0.68rem; color: var(--text-muted);">
+                Authorized personnel only. Sessions are monitored and authenticated via secure tokens.
+            </p>
+        </div>
+    </div>
+
+    <!-- SIDEBAR NAVIGATION -->
     <aside class="sidebar">
-        <div class="brand">RVG CRM</div>
+        <div class="brand">
+            Reserva Varde
+            <span>Bluechip Global Agro</span>
+        </div>
         <ul class="nav-list">
-            <li><a href="#" class="active">Executive Dashboard</a></li>
-            <li><a href="#">Lead Pipeline</a></li>
-            <li><a href="#">Site Visits</a></li>
-            <li><a href="#">Unit Inventory</a></li>
-            <li id="reservaVerdeCostingNav" style="display: none;"><a href="/crm/reserva-verde/costing/">Reserva Verde Costing</a></li>
-            <li><a href="#">Legal & Compliance</a></li>
-            <li><a href="#">Finance Tracking</a></li>
-            <li><a href="#">Comms Templates</a></li>
+            <li><a href="#leadsSection" class="active">Leads Pipeline</a></li>
+            <li><a href="#kpiSection">Executive Overview</a></li>
+            <li><a href="#legalSection">Legal Due Diligence</a></li>
+            <li><a href="/downloads/Reserva_Verde_Goa_Schedules.xlsx" download>Specification Schedules</a></li>
+            <li><a href="/" target="_blank">View Live Website ↗</a></li>
         </ul>
         <div class="sidebar-footer">
-            <p>Bluechip Global Agro</p>
-            <p style="margin-top: 0.5rem; opacity: 0.5;">v2.0 Private Beta</p>
+            <p><strong>Database:</strong> Connected</p>
+            <p style="margin-top: 0.4rem; opacity: 0.6;">Production API v2.0</p>
         </div>
     </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="main-content" id="dashboardContent" style="display: none;">
         
         <!-- Header -->
         <header class="header">
             <div>
-                <p class="text-small" style="color: var(--text-muted); margin-bottom: 0.5rem;">Reserva Varde Goa</p>
-                <h1>Command Center</h1>
+                <p style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 0.3rem;">Estate CRM & Due Diligence</p>
+                <h1>Executive Command Center</h1>
             </div>
             <div class="user-profile">
-                <span class="text-small" style="color: var(--text-muted);">Welcome, Director</span>
-                <div class="avatar">D</div>
+                <div class="user-meta">
+                    <div class="user-name" id="profileName">Staff Member</div>
+                    <div class="user-role-badge" id="profileRole">Sales Agent</div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Sign Out</button>
             </div>
         </header>
 
-        <!-- KPI Cards -->
-        <div class="section-title">Executive Overview</div>
+        <!-- Live KPI Overview -->
+        <div class="section-title" id="kpiSection">Live Database Intelligence</div>
         <div class="kpi-grid">
             <div class="card">
-                <div class="kpi-label">Total Leads</div>
-                <div class="kpi-value" id="kpiTotalLeads">142</div>
+                <div class="kpi-label">Total Real Enquiries</div>
+                <div class="kpi-value gold" id="kpiTotal">0</div>
             </div>
             <div class="card">
-                <div class="kpi-label">Founder Circle Leads</div>
-                <div class="kpi-value gold">68</div>
+                <div class="kpi-label">New / Uncontacted</div>
+                <div class="kpi-value blue" id="kpiNew">0</div>
             </div>
             <div class="card">
-                <div class="kpi-label">HNI / NRI Split</div>
-                <div class="kpi-value" style="font-size: 1.8rem;">65% / 35%</div>
+                <div class="kpi-label">In Discussion / Contacted</div>
+                <div class="kpi-value amber" id="kpiContacted">0</div>
             </div>
             <div class="card">
                 <div class="kpi-label">Site Visits Scheduled</div>
-                <div class="kpi-value">12</div>
-            </div>
-            <div class="card">
-                <div class="kpi-label">Proposals Sent</div>
-                <div class="kpi-value">34</div>
-            </div>
-            <div class="card">
-                <div class="kpi-label">Booking Stage</div>
-                <div class="kpi-value">8</div>
-            </div>
-            <div class="card">
-                <div class="kpi-label">Pipeline Value (est)</div>
-                <div class="kpi-value">₹240 Cr</div>
-            </div>
-            <div class="card">
-                <div class="kpi-label">Conversion Rate</div>
-                <div class="kpi-value">11%</div>
+                <div class="kpi-value green" id="kpiVisits">0</div>
             </div>
         </div>
 
-        <!-- Two Column Section -->
-        <div class="grid-2">
-            <!-- Founder Circle Progress -->
-            <div>
-                <div class="section-title">Founder Circle Allocation</div>
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                        <span class="kpi-value gold">12<span style="font-size: 1rem; color: var(--text-muted); font-family: var(--font-sans);"> / 50</span></span>
-                        <span class="kpi-label">Allocated</span>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="founderProgress"></div>
-                    </div>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem;">24% of Founder Circle inventory booked. 8 contracts pending signature.</p>
-                </div>
+        <!-- Leads Pipeline Section -->
+        <div class="section-title" id="leadsSection">Prospective Estate Buyers</div>
+        
+        <!-- Toolbar: Search, Filters, CSV Export -->
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search by name, email, phone, or reference ID...">
+                <select id="statusFilter" class="filter-select">
+                    <option value="all">All Stages</option>
+                    <option value="new">New Enquiries</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="site_visit_scheduled">Site Visit Scheduled</option>
+                    <option value="cost_sheet_sent">Cost Sheet Sent</option>
+                    <option value="closed_won">Closed / Won</option>
+                    <option value="closed_lost">Closed / Lost</option>
+                </select>
+                <select id="modelFilter" class="filter-select">
+                    <option value="all">All Models</option>
+                    <option value="2BHK">2BHK 2500 sq.ft</option>
+                    <option value="3BHK">3BHK 3500 sq.ft</option>
+                    <option value="4BHK">4BHK 4500 sq.ft</option>
+                    <option value="Custom">Custom Estate</option>
+                </select>
             </div>
-
-            <!-- Unit Inventory Summary -->
-            <div>
-                <div class="section-title">Unit Inventory (1,000 Acres)</div>
-                <div class="card" style="display: flex; gap: 2rem;">
-                    <div style="flex: 1;">
-                        <div class="kpi-label">Available</div>
-                        <div class="kpi-value">850</div>
-                    </div>
-                    <div style="flex: 1;">
-                        <div class="kpi-label">On Hold</div>
-                        <div class="kpi-value">14</div>
-                    </div>
-                    <div style="flex: 1;">
-                        <div class="kpi-label">Reserved</div>
-                        <div class="kpi-value gold">18</div>
-                    </div>
-                    <div style="flex: 1;">
-                        <div class="kpi-label">Booked</div>
-                        <div class="kpi-value">12</div>
-                    </div>
-                </div>
+            <div class="toolbar-group">
+                <button id="exportCsvBtn" class="export-btn">📥 Export CSV</button>
             </div>
         </div>
 
-        <!-- Lead Pipeline Table -->
-        <div class="section-title">Active Lead Pipeline</div>
+        <!-- Leads Table -->
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Prospect Name</th>
-                        <th>Type</th>
-                        <th>Location</th>
-                        <th>Interest</th>
+                        <th>Reference</th>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Contact</th>
+                        <th>Model Interest</th>
                         <th>Stage</th>
+                        <th>Assigned Staff</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="leadsTableBody">
                     <tr>
-                        <td>Rajeev S.</td>
-                        <td>HNI (Individual)</td>
-                        <td>Mumbai</td>
-                        <td>Founder Circle</td>
-                        <td><span class="status-badge active">Proposal Sent</span></td>
-                        <td><a href="#" style="color: var(--accent-gold); text-decoration: none; font-size: 0.8rem;">View Profile</a></td>
-                    </tr>
-                    <tr>
-                        <td>Priya & Anil M.</td>
-                        <td>NRI (Family Office)</td>
-                        <td>Dubai</td>
-                        <td>Wellness Villa</td>
-                        <td><span class="status-badge">Site Visit Scheduled</span></td>
-                        <td><a href="#" style="color: var(--accent-gold); text-decoration: none; font-size: 0.8rem;">View Profile</a></td>
-                    </tr>
-                    <tr>
-                        <td>Vikram C.</td>
-                        <td>Corporate</td>
-                        <td>Bengaluru</td>
-                        <td>General Inquiry</td>
-                        <td><span class="status-badge">Lead Qualification</span></td>
-                        <td><a href="#" style="color: var(--accent-gold); text-decoration: none; font-size: 0.8rem;">View Profile</a></td>
-                    </tr>
-                    <tr>
-                        <td>Dr. Anita K.</td>
-                        <td>HNI (Individual)</td>
-                        <td>Delhi</td>
-                        <td>Founder Circle</td>
-                        <td><span class="status-badge success">Booking Confirmed</span></td>
-                        <td><a href="#" style="color: var(--accent-gold); text-decoration: none; font-size: 0.8rem;">View Profile</a></td>
+                        <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">Loading registered enquiries...</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Legal Status Tracker -->
-        <div class="section-title">Legal & Compliance Status</div>
-        <div class="card" style="margin-bottom: 4rem;">
-            <div class="tracker-steps">
-                <div class="step completed">
-                    <div class="step-dot"></div>
-                    <div class="step-label">Title<br>Verification</div>
-                </div>
-                <div class="step completed">
-                    <div class="step-dot"></div>
-                    <div class="step-label">Form I & XIV<br>Update</div>
-                </div>
-                <div class="step active">
-                    <div class="step-dot"></div>
-                    <div class="step-label">Zoning<br>Clearance</div>
-                </div>
-                <div class="step">
-                    <div class="step-dot"></div>
-                    <div class="step-label">TCP<br>Approval</div>
-                </div>
-                <div class="step">
-                    <div class="step-dot"></div>
-                    <div class="step-label">Land<br>Conversion</div>
-                </div>
-                <div class="step">
-                    <div class="step-dot"></div>
-                    <div class="step-label">Forest / ESZ<br>NOC</div>
-                </div>
-                <div class="step">
-                    <div class="step-dot"></div>
-                    <div class="step-label">Goa RERA<br>Registration</div>
-                </div>
-                <div class="step">
-                    <div class="step-dot"></div>
-                    <div class="step-label">Final<br>Subdivision</div>
-                </div>
-            </div>
-        </div>
-
         <!-- Land Legal Due Diligence Checklist Section -->
-        <div class="section-title">Land Legal Due Diligence Checklist</div>
-        <div class="card" style="margin-bottom: 4rem; padding: 2rem; background-color: var(--bg-card); border: 1px solid var(--border-color);">
-            <style>
-                .priority-badge {
-                    display: inline-block;
-                    padding: 0.2rem 0.5rem;
-                    border-radius: 4px;
-                    font-size: 0.65rem;
-                    font-weight: 600;
-                    letter-spacing: 0.05em;
-                    text-transform: uppercase;
-                    margin-top: 0.2rem;
-                }
-                .priority-badge.high {
-                    background: rgba(220, 53, 69, 0.15);
-                    color: #ff4d5a;
-                    border: 1px solid rgba(220, 53, 69, 0.3);
-                }
-                .priority-badge.medium {
-                    background: rgba(194, 168, 120, 0.15);
-                    color: var(--accent-gold);
-                    border: 1px solid rgba(194, 168, 120, 0.3);
-                }
-                .priority-badge.low {
-                    background: rgba(255, 255, 255, 0.05);
-                    color: var(--text-muted);
-                    border: 1px solid rgba(255, 255, 255, 0.15);
-                }
-                
-                .checklist-select, .checklist-input, .checklist-date {
-                    background: rgba(0, 0, 0, 0.3) !important;
-                    border: 1px solid var(--border-color) !important;
-                    color: var(--text-main) !important;
-                    padding: 0.4rem 0.6rem !important;
-                    border-radius: 4px !important;
-                    font-size: 0.8rem !important;
-                    outline: none;
-                    transition: var(--transition);
-                    width: 100%;
-                }
-                .checklist-select:focus, .checklist-input:focus, .checklist-date:focus {
-                    border-color: var(--accent-gold) !important;
-                    background: rgba(0, 0, 0, 0.5) !important;
-                }
-                
-                .checklist-checkbox {
-                    width: 18px;
-                    height: 18px;
-                    cursor: pointer;
-                    accent-color: var(--accent-gold);
-                }
-                
-                .upload-btn {
-                    background: rgba(194, 168, 120, 0.1);
-                    border: 1px solid rgba(194, 168, 120, 0.3);
-                    color: var(--accent-gold);
-                    padding: 0.4rem 0.8rem;
-                    border-radius: 4px;
-                    font-size: 0.75rem;
-                    cursor: pointer;
-                    transition: var(--transition);
-                    width: 100%;
-                }
-                .upload-btn:hover {
-                    background: var(--accent-gold);
-                    color: var(--bg-dark);
-                    border-color: var(--accent-gold);
-                }
-                @media (max-width: 992px) {
-                    .check-summary-grid {
-                        grid-template-columns: repeat(4, 1fr) !important;
-                    }
-                }
-                @media (max-width: 768px) {
-                    .check-summary-grid {
-                        grid-template-columns: repeat(2, 1fr) !important;
-                    }
-                }
-            </style>
-
-            <!-- 1. Progress Summary Dashboard KPIs -->
-            <div class="check-summary-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
-                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
-                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Total Items</div>
-                    <div id="checkTotal" style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--text-main); font-weight: 500;">23</div>
-                </div>
-                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
-                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Completed</div>
-                    <div id="checkCompleted" style="font-family: var(--font-serif); font-size: 1.6rem; color: #4CAF50; font-weight: 500;">0</div>
-                </div>
-                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
-                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Pending</div>
-                    <div id="checkPending" style="font-family: var(--font-serif); font-size: 1.6rem; color: #ff4d5a; font-weight: 500;">21</div>
-                </div>
-                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
-                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Applied</div>
-                    <div id="checkApplied" style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--accent-gold); font-weight: 500;">2</div>
-                </div>
-                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
-                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Issues Found</div>
-                    <div id="checkIssues" style="font-family: var(--font-serif); font-size: 1.6rem; color: #ff9800; font-weight: 500;">0</div>
-                </div>
-                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
-                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Legal Opinion</div>
-                    <div id="checkLegalOpinion" style="font-size: 0.85rem; color: var(--text-main); font-weight: 600; margin-top: 0.4rem; text-transform: uppercase;">Pending</div>
-                </div>
-                <div style="text-align: center; padding: 0 0.5rem;">
-                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Valipo Meeting</div>
-                    <div id="checkValipoMeeting" style="font-size: 0.85rem; color: var(--text-main); font-weight: 600; margin-top: 0.4rem; text-transform: uppercase;">Pending</div>
-                </div>
-            </div>
-
-            <!-- 2. Controls and Search -->
-            <div style="display: flex; gap: 1.5rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 250px;">
-                    <input type="text" id="checkSearch" placeholder="Search documents, assigned staff, remarks..." style="width: 100%; padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-main); font-size: 0.85rem; outline: none; transition: var(--transition);" onfocus="this.style.borderColor='var(--accent-gold)'" onblur="this.style.borderColor='var(--border-color)'">
-                </div>
-                <div>
-                    <select id="checkFilterPriority" style="padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-main); font-size: 0.85rem; outline: none;">
-                        <option value="All">All Priorities</option>
-                        <option value="High">High Priority</option>
-                        <option value="Medium">Medium Priority</option>
-                        <option value="Low">Low Priority</option>
-                    </select>
-                </div>
-                <div>
-                    <select id="checkFilterStatus" style="padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-main); font-size: 0.85rem; outline: none;">
-                        <option value="All">All Statuses</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Applied">Applied</option>
-                        <option value="Received">Received</option>
-                        <option value="Under Review">Under Review</option>
-                        <option value="Verified">Verified</option>
-                        <option value="Not Required">Not Required</option>
-                        <option value="Issue Found">Issue Found</option>
-                    </select>
-                </div>
-                <div>
-                    <button id="resetChecklistBtn" style="padding: 0.6rem 1.2rem; background: transparent; border: 1px solid rgba(194, 168, 120, 0.4); color: var(--accent-gold); border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='rgba(194, 168, 120, 0.05)'" onmouseout="this.style.background='transparent'">Reset Checklist</button>
-                </div>
-            </div>
-
-            <!-- 3. Table Container -->
-            <div class="table-container" style="margin-bottom: 0; max-height: 600px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 4px;">
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead style="position: sticky; top: 0; background: var(--bg-card); z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
-                        <tr>
-                            <th style="width: 40px; text-align: center;">Verify</th>
-                            <th style="width: 25%;">Document Name</th>
-                            <th style="width: 15%;">Assigned To</th>
-                            <th style="width: 15%;">Status</th>
-                            <th style="width: 12%;">Due Date</th>
-                            <th style="width: 20%;">Remarks</th>
-                            <th style="width: 13%; text-align: center;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="checklistTableBody">
-                        <!-- dynamic list items will be injected by JS -->
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- Hidden File Input for mock upload -->
-            <input type="file" id="checklistFileInput" style="display: none;">
-        </div>
-
-        <!-- Finance Tracker & Comms Grid -->
-        <div class="grid-2">
-            <div>
-                <div class="section-title">Finance Tracker</div>
-                <div class="table-container" style="margin-bottom: 0;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Metric</th>
-                                <th style="text-align: right;">Amount (₹)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="color: var(--text-muted);">Total Deal Value (Booked)</td>
-                                <td style="text-align: right; font-family: var(--font-serif); font-size: 1.2rem;">64,00,00,000</td>
-                            </tr>
-                            <tr>
-                                <td style="color: var(--text-muted);">Amount Received</td>
-                                <td style="text-align: right; font-family: var(--font-serif); font-size: 1.2rem; color: #4CAF50;">12,50,00,000</td>
-                            </tr>
-                            <tr>
-                                <td style="color: var(--text-muted);">Amount Pending</td>
-                                <td style="text-align: right; font-family: var(--font-serif); font-size: 1.2rem;">51,50,00,000</td>
-                            </tr>
-                            <tr>
-                                <td style="color: var(--text-muted);">Next Tranche Due</td>
-                                <td style="text-align: right; font-family: var(--font-serif); font-size: 1.2rem; color: var(--accent-gold);">15 Oct 2026</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div>
-                <div class="section-title">Communication Templates</div>
-                <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
-                    <a href="#" style="display: block; padding: 1rem; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; display: flex; justify-content: space-between;">
-                        <span>Founder Circle Invitation</span>
-                        <span style="color: var(--accent-gold);">Copy &rarr;</span>
-                    </a>
-                    <a href="#" style="display: block; padding: 1rem; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; display: flex; justify-content: space-between;">
-                        <span>Site Survey Briefing (NRI)</span>
-                        <span style="color: var(--accent-gold);">Copy &rarr;</span>
-                    </a>
-                    <a href="#" style="display: block; padding: 1rem; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; display: flex; justify-content: space-between;">
-                        <span>Legal Due Diligence Pack</span>
-                        <span style="color: var(--accent-gold);">Copy &rarr;</span>
-                    </a>
-                    <a href="#" style="display: block; padding: 1rem; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; display: flex; justify-content: space-between;">
-                        <span>Payment Milestone Reminder</span>
-                        <span style="color: var(--accent-gold);">Copy &rarr;</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <div class="section-title" id="legalSection">Land Legal Due Diligence & Approval Tracker</div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+            South Goa Forest Valley Estate — Official statutory clearances and title chain progression.
+        </p>
+        <div id="legalChecklistContainer"></div>
 
     </main>
 
-    <!-- CRM Lead Details Modal -->
-    <div id="leadModal" class="crm-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: opacity 0.3s ease;">
-        <div style="background: var(--bg-card); border: 1px solid var(--accent-gold); padding: 2.5rem; width: 100%; max-width: 650px; max-height: 90vh; overflow-y: auto; position: relative; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
-            <button id="closeLeadModal" style="position: absolute; right: 1.5rem; top: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.8rem; cursor: pointer; transition: var(--transition);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">&times;</button>
-            <h2 style="font-family: var(--font-serif); color: var(--accent-gold); margin-bottom: 1.5rem; font-size: 2rem; font-weight: 400; border-bottom: 1px solid var(--border-color); padding-bottom: 0.8rem;">Prospect Dossier</h2>
-            <div id="modalLeadDetails" style="display: flex; flex-direction: column; gap: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
-                <!-- dynamic details will go here -->
+    <!-- LEAD DETAIL & MANAGEMENT MODAL -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <span id="modalRefId" style="font-size: 0.72rem; letter-spacing: 0.12em; color: var(--accent-gold); text-transform: uppercase;">REF</span>
+                    <h3 class="modal-title" id="modalLeadName">Lead Profile</h3>
+                </div>
+                <button class="modal-close-btn" id="closeModalBtn">×</button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- Client Details Grid -->
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span>Email Address</span>
+                        <strong id="modalEmail">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Phone / WhatsApp</span>
+                        <strong id="modalPhone">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Interested Model</span>
+                        <strong id="modalModel" style="color: var(--accent-gold);">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Buyer Profile</span>
+                        <strong id="modalBuyerType">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>City / Country</span>
+                        <strong id="modalLocation">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Budget Range</span>
+                        <strong id="modalBudget">-</strong>
+                    </div>
+                </div>
+
+                <!-- Verbatim Message -->
+                <div style="margin-bottom: 1.2rem;">
+                    <span style="font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted);">Client Message</span>
+                    <div class="note-box" id="modalMessage">No custom message.</div>
+                </div>
+
+                <!-- Management Panel (Status, Assignment, Follow-up) -->
+                <div class="manage-panel">
+                    <div class="panel-row">
+                        <div>
+                            <label for="updateStatus">Pipeline Stage</label>
+                            <select id="updateStatus">
+                                <option value="new">New Enquiry</option>
+                                <option value="contacted">Contacted / In Discussion</option>
+                                <option value="site_visit_scheduled">Site Visit Scheduled</option>
+                                <option value="cost_sheet_sent">Cost Sheet Sent</option>
+                                <option value="closed_won">Closed / Won</option>
+                                <option value="closed_lost">Closed / Lost</option>
+                                <option value="archived">Archived</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="updateAssignee">Assigned Staff</label>
+                            <select id="updateAssignee">
+                                <option value="">Unassigned</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="updateFollowUp">Follow-up Date</label>
+                            <input type="date" id="updateFollowUp">
+                        </div>
+                    </div>
+                    <div style="text-align: right; margin-top: 0.8rem;">
+                        <button id="saveLeadUpdatesBtn" class="export-btn" style="padding: 0.5rem 1rem;">Update Stage & Assignment</button>
+                    </div>
+                </div>
+
+                <!-- Notes & Audit Trail -->
+                <div class="timeline">
+                    <div class="timeline-title">Audit History & Internal Notes</div>
+                    <div id="notesContainer"></div>
+
+                    <!-- Add Note Input -->
+                    <div class="add-note-box">
+                        <textarea id="newNoteInput" placeholder="Add confidential consultation note or visit report..."></textarea>
+                        <button id="addNoteBtn">Log Note</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
+    <!-- SCRIPT LOGIC -->
     <script>
-        // Helper to prevent XSS
+        let currentAuthToken = sessionStorage.getItem('rvg_token') || '';
+        let currentUser = null;
+        let activeLead = null;
+        let staffList = [];
+
+        const authGate = document.getElementById('authGate');
+        const dashboardContent = document.getElementById('dashboardContent');
+        const authError = document.getElementById('authError');
+        const loginForm = document.getElementById('loginForm');
+        const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const leadsTableBody = document.getElementById('leadsTableBody');
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter');
+        const modelFilter = document.getElementById('modelFilter');
+        const exportCsvBtn = document.getElementById('exportCsvBtn');
+
+        // Modal Elements
+        const leadModal = document.getElementById('leadModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const saveLeadUpdatesBtn = document.getElementById('saveLeadUpdatesBtn');
+        const addNoteBtn = document.getElementById('addNoteBtn');
+        const newNoteInput = document.getElementById('newNoteInput');
+
+        // Helper to escape HTML
         function escapeHTML(str) {
             if (!str) return '';
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            return String(str).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            // Simulated CRM User Role checks for Reserva Verde Costing Page visibility
-            const allowedRoles = ["admin", "finance", "management", "founder", "sales_head"];
-            if (!sessionStorage.getItem("rvg_user_role")) {
-                sessionStorage.setItem("rvg_user_role", "management");
-            }
-            const currentRole = sessionStorage.getItem("rvg_user_role");
-            const costingNav = document.getElementById("reservaVerdeCostingNav");
-            if (costingNav && allowedRoles.includes(currentRole)) {
-                costingNav.style.display = "block";
-            }
-
-            // Animate progress bar on load
-            setTimeout(() => {
-                const progBar = document.getElementById('founderProgress');
-                if (progBar) progBar.style.width = '24%';
-            }, 500);
-
-            // Load lead data from localStorage dynamically
-            const leadsTableBody = document.getElementById("leadsTableBody");
-            const kpiTotalLeads = document.getElementById("kpiTotalLeads");
-            let localLeads = [];
-            
+        // Initialize Authentication Check
+        async function checkAuth() {
             try {
-                localLeads = JSON.parse(localStorage.getItem("rvg_leads") || "[]");
-            } catch (e) {
-                console.error("Failed to parse local leads", e);
+                const headers = {};
+                if (currentAuthToken) headers['Authorization'] = 'Bearer ' + currentAuthToken;
+                
+                const res = await fetch('/api/auth/verify', { headers });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.authenticated) {
+                        currentUser = data.user;
+                        onAuthenticated();
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.error('Session verify error:', err);
             }
+            showLoginForm();
+        }
 
-            if (kpiTotalLeads && localLeads.length > 0) {
-                kpiTotalLeads.innerText = 142 + localLeads.length;
-            }
+        function showLoginForm() {
+            authGate.style.display = 'flex';
+            dashboardContent.style.display = 'none';
+        }
 
-            if (leadsTableBody && localLeads.length > 0) {
-                localLeads.forEach(lead => {
-                    const row = document.createElement("tr");
-                    row.style.background = "rgba(194, 168, 120, 0.03)";
-                    
-                    const isPremium = lead.buyer_type.includes("HNI") || lead.buyer_type.includes("NRI");
-                    const badgeClass = isPremium ? "status-badge active" : "status-badge";
-                    
-                    row.innerHTML = `
-                        <td style="font-weight: 500; color: var(--text-main);">${escapeHTML(lead.full_name)}</td>
-                        <td>${escapeHTML(lead.buyer_type)}</td>
-                        <td>${escapeHTML(lead.city_country)}</td>
-                        <td>${escapeHTML(lead.interested_estate_model)}</td>
-                        <td><span class="${badgeClass}">Inquiry Logged</span></td>
-                        <td><button class="view-details-btn" style="background: none; border: none; color: var(--accent-gold); text-decoration: none; font-size: 0.8rem; cursor: pointer;" data-lead='${escapeHTML(JSON.stringify(lead))}'>View Profile</button></td>
-                    `;
-                    leadsTableBody.insertBefore(row, leadsTableBody.firstChild);
-                });
-            }
+        function onAuthenticated() {
+            authGate.style.display = 'none';
+            dashboardContent.style.display = 'block';
+            document.getElementById('profileName').innerText = currentUser.fullName || currentUser.email;
+            document.getElementById('profileRole').innerText = (currentUser.role || 'Staff').toUpperCase();
+            loadLeads();
+            renderLegalChecklist();
+        }
 
+        // Handle Login Submission
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            authError.style.display = 'none';
+            loginSubmitBtn.innerText = 'Verifying Credentials...';
+            loginSubmitBtn.disabled = true;
 
-            // ============================================================
-            // LAND LEGAL DUE DILIGENCE CHECKLIST LOGIC
-            // ============================================================
-            const defaultLegalChecklist = [
-              { id: 1, name: "Panjim Forest Office NOC & Enquiry", priority: "High", assignedTo: "Field Team / Forest Office Follow-up", status: "Pending", dueDate: "2026-06-15", remarks: "Confirm forest status, NOC requirement, and applicable restrictions.", lastUpdated: "2026-05-27" },
-              { id: 2, name: "Village Map — Sanguem", priority: "Medium", assignedTo: "Admin / Field Team", status: "Applied", dueDate: "2026-06-01", remarks: "Obtain official village map.", lastUpdated: "2026-05-27" },
-              { id: 3, name: "Sketch Copy", priority: "Low", assignedTo: "Admin / Survey Team", status: "Pending", dueDate: "2026-06-10", remarks: "Upload latest sketch copy.", lastUpdated: "2026-05-27" },
-              { id: 4, name: "Form 3 — Latest from Margao", priority: "Medium", assignedTo: "Admin", status: "Pending", dueDate: "2026-06-05", remarks: "Collect latest certified copy.", lastUpdated: "2026-05-27" },
-              { id: 5, name: "Form 14", priority: "Medium", assignedTo: "Admin", status: "Pending", dueDate: "2026-06-05", remarks: "Required for land record verification.", lastUpdated: "2026-05-27" },
-              { id: 6, name: "Matriz Colour Copy", priority: "Low", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-10", remarks: "Upload colour copy.", lastUpdated: "2026-05-27" },
-              { id: 7, name: "Matriz Certified Copy", priority: "Medium", assignedTo: "Sanya", status: "Applied", dueDate: "2026-06-20", remarks: "Track certified copy application.", lastUpdated: "2026-05-27" },
-              { id: 8, name: "Matriz Translated Copy", priority: "Low", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-25", remarks: "Required if Portuguese/old record needs translation.", lastUpdated: "2026-05-27" },
-              { id: 9, name: "Sale Deed Colour Copy", priority: "Low", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-10", remarks: "Upload colour copy.", lastUpdated: "2026-05-27" },
-              { id: 10, name: "Sale Deed Certified Copy", priority: "High", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-15", remarks: "Required for legal opinion and title chain verification.", lastUpdated: "2026-05-27" },
-              { id: 11, name: "EC from Grant of Matriz to Till Date", priority: "High", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-20", remarks: "Encumbrance certificate from original grant period to current date.", lastUpdated: "2026-05-27" },
-              { id: 12, name: "GPA from Bapu to Nisar Ahmed", priority: "High", assignedTo: "Sanya / Legal Team", status: "Pending", dueDate: "2026-06-12", remarks: "Verify execution, validity, and linkage.", lastUpdated: "2026-05-27" },
-              { id: 13, name: "Original GPA from Nisar Ahmed to Shaik", priority: "High", assignedTo: "Sanya / Legal Team", status: "Pending", dueDate: "2026-06-12", remarks: "Original to be checked by legal counsel.", lastUpdated: "2026-05-27" },
-              { id: 14, name: "Tax Paid Till Date", priority: "Medium", assignedTo: "Admin", status: "Pending", dueDate: "2026-06-08", remarks: "Collect latest tax paid receipts.", lastUpdated: "2026-05-27" },
-              { id: 15, name: "Gazetted Copy of Government Value", priority: "Medium", assignedTo: "Admin / Legal Team", status: "Pending", dueDate: "2026-06-18", remarks: "Required for valuation and compliance reference.", lastUpdated: "2026-05-27" },
-              { id: 16, name: "Gazetted Copy of Forest", priority: "Medium", assignedTo: "Admin / Forest Office Follow-up", status: "Pending", dueDate: "2026-06-18", remarks: "Verify forest notification status.", lastUpdated: "2026-05-27" },
-              { id: 17, name: "Successor Certificate / Family Tree", priority: "High", assignedTo: "Legal Team", status: "Pending", dueDate: "2026-06-22", remarks: "Required to confirm legal heirs.", lastUpdated: "2026-05-27" },
-              { id: 18, name: "Aadhaar & PAN of All Legal Heirs", priority: "Low", assignedTo: "Admin / Legal Team", status: "Pending", dueDate: "2026-06-25", remarks: "Collect ID proofs of all legal heirs.", lastUpdated: "2026-05-27" },
-              { id: 19, name: "Confirmation Deed with Valipo / Title Owner Confirmation", priority: "High", assignedTo: "Legal Team / Valipo Family Follow-up", status: "Pending", dueDate: "2026-06-30", remarks: "Confirm whether Valipo family are title owners or confirming parties.", lastUpdated: "2026-05-27" },
-              { id: 20, name: "Family Tree of Valipo", priority: "Low", assignedTo: "Valipo Family Follow-up / Legal Team", status: "Pending", dueDate: "2026-06-28", remarks: "Required before confirmation deed.", lastUpdated: "2026-05-27" },
-              { id: 21, name: "Aadhaar & PAN of Valipo Family", priority: "Low", assignedTo: "Valipo Family Follow-up", status: "Pending", dueDate: "2026-06-28", remarks: "Required for deed drafting and verification.", lastUpdated: "2026-05-27" },
-              { id: 22, name: "Legal Opinion", priority: "High", assignedTo: "Tushar", status: "Pending", dueDate: "2026-07-05", remarks: "Legal opinion to be prepared after core documents are received and reviewed.", lastUpdated: "2026-05-27" },
-              { id: 23, name: "Meeting / Enquiry with Valipo Family", priority: "Low", assignedTo: "Valipo Family Follow-up", status: "Pending", dueDate: "2026-06-10", remarks: "Track meeting date, discussion notes, title confirmation, pending documents, and next follow-up.", lastUpdated: "2026-05-27" }
-            ];
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
 
-            let legalChecklist = [];
             try {
-                legalChecklist = JSON.parse(localStorage.getItem("rvg_legal_checklist"));
-            } catch(e) {}
-            
-            if (!legalChecklist || legalChecklist.length === 0) {
-                legalChecklist = JSON.parse(JSON.stringify(defaultLegalChecklist));
-                localStorage.setItem("rvg_legal_checklist", JSON.stringify(legalChecklist));
-            }
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
 
-            const checklistTableBody = document.getElementById("checklistTableBody");
-            const searchInput = document.getElementById("checkSearch");
-            const filterPriority = document.getElementById("checkFilterPriority");
-            const filterStatus = document.getElementById("checkFilterStatus");
-            const resetBtn = document.getElementById("resetChecklistBtn");
-            const fileInput = document.getElementById("checklistFileInput");
-            let activeUploadId = null;
-
-            function updateSummary() {
-                const total = legalChecklist.length;
-                const completed = legalChecklist.filter(item => item.status === "Verified" || item.status === "Received").length;
-                const pending = legalChecklist.filter(item => ["Pending", "Under Review", "Issue Found"].includes(item.status)).length;
-                const applied = legalChecklist.filter(item => item.status === "Applied").length;
-                const issues = legalChecklist.filter(item => item.status === "Issue Found").length;
-                
-                const legalOpinion = legalChecklist.find(item => item.id === 22);
-                const valipoMeeting = legalChecklist.find(item => item.id === 23);
-
-                document.getElementById("checkTotal").innerText = total;
-                document.getElementById("checkCompleted").innerText = completed;
-                document.getElementById("checkPending").innerText = pending;
-                document.getElementById("checkApplied").innerText = applied;
-                document.getElementById("checkIssues").innerText = issues;
-                
-                const legalOpinionEl = document.getElementById("checkLegalOpinion");
-                if (legalOpinionEl) {
-                    legalOpinionEl.innerText = legalOpinion.status;
-                    legalOpinionEl.style.color = legalOpinion.status === "Verified" ? "#4CAF50" : (legalOpinion.status === "Issue Found" ? "#ff9800" : "var(--text-main)");
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    currentAuthToken = data.token;
+                    sessionStorage.setItem('rvg_token', data.token);
+                    currentUser = data.user;
+                    loginForm.reset();
+                    onAuthenticated();
+                } else {
+                    authError.innerText = data.error || 'Authentication failed. Please verify credentials.';
+                    authError.style.display = 'block';
                 }
-
-                const valipoMeetingEl = document.getElementById("checkValipoMeeting");
-                if (valipoMeetingEl) {
-                    valipoMeetingEl.innerText = valipoMeeting.status;
-                    valipoMeetingEl.style.color = valipoMeeting.status === "Verified" ? "#4CAF50" : (valipoMeeting.status === "Issue Found" ? "#ff9800" : "var(--text-main)");
-                }
-            }
-
-            function saveChecklist() {
-                localStorage.setItem("rvg_legal_checklist", JSON.stringify(legalChecklist));
-                updateSummary();
-            }
-
-            function renderChecklist() {
-                if (!checklistTableBody) return;
-                
-                const query = searchInput.value.toLowerCase();
-                const priorityVal = filterPriority.value;
-                const statusVal = filterStatus.value;
-
-                checklistTableBody.innerHTML = "";
-
-                legalChecklist.forEach(item => {
-                    // Filter matching
-                    const matchesSearch = item.name.toLowerCase().includes(query) || 
-                                          item.assignedTo.toLowerCase().includes(query) || 
-                                          item.remarks.toLowerCase().includes(query);
-                    const matchesPriority = priorityVal === "All" || item.priority === priorityVal;
-                    const matchesStatus = statusVal === "All" || item.status === statusVal;
-
-                    if (!matchesSearch || !matchesPriority || !matchesStatus) return;
-
-                    const row = document.createElement("tr");
-                    row.style.borderBottom = "1px solid var(--border-color)";
-                    
-                    const isChecked = item.status === "Verified" ? "checked" : "";
-                    const priorityClass = `priority-badge ${item.priority.toLowerCase()}`;
-                    const formattedDate = item.lastUpdated ? new Date(item.lastUpdated).toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"}) : "27 May 2026";
-
-                    row.innerHTML = `
-                        <td style="text-align: center; vertical-align: middle;">
-                            <input type="checkbox" class="checklist-checkbox" data-id="${item.id}" ${isChecked}>
-                        </td>
-                        <td>
-                            <div style="font-weight: 500; color: var(--text-main);">${escapeHTML(item.name)}</div>
-                            <span class="${priorityClass}">${item.priority}</span>
-                        </td>
-                        <td>
-                            <select class="checklist-select select-assigned" data-id="${item.id}">
-                                <option value="Sanya" ${item.assignedTo === "Sanya" ? "selected" : ""}>Sanya</option>
-                                <option value="Tushar" ${item.assignedTo === "Tushar" ? "selected" : ""}>Tushar</option>
-                                <option value="Admin" ${item.assignedTo === "Admin" ? "selected" : ""}>Admin</option>
-                                <option value="Legal Team" ${item.assignedTo === "Legal Team" ? "selected" : ""}>Legal Team</option>
-                                <option value="Field Team" ${item.assignedTo === "Field Team" ? "selected" : ""}>Field Team</option>
-                                <option value="Survey Team" ${item.assignedTo === "Survey Team" ? "selected" : ""}>Survey Team</option>
-                                <option value="Field Team / Forest Office Follow-up" ${item.assignedTo === "Field Team / Forest Office Follow-up" || item.assignedTo.includes("Forest") ? "selected" : ""}>Forest Office Follow-up</option>
-                                <option value="Admin / Field Team" ${item.assignedTo === "Admin / Field Team" ? "selected" : ""}>Admin / Field Team</option>
-                                <option value="Admin / Survey Team" ${item.assignedTo === "Admin / Survey Team" ? "selected" : ""}>Admin / Survey Team</option>
-                                <option value="Admin / Legal Team" ${item.assignedTo === "Admin / Legal Team" ? "selected" : ""}>Admin / Legal Team</option>
-                                <option value="Admin / Forest Office Follow-up" ${item.assignedTo === "Admin / Forest Office Follow-up" ? "selected" : ""}>Admin / Forest Follow-up</option>
-                                <option value="Sanya / Legal Team" ${item.assignedTo === "Sanya / Legal Team" ? "selected" : ""}>Sanya / Legal Team</option>
-                                <option value="Legal Team / Valipo Family Follow-up" ${item.assignedTo === "Legal Team / Valipo Family Follow-up" || item.assignedTo.includes("Valipo") ? "selected" : ""}>Valipo Family Follow-up</option>
-                                <option value="Valipo Family Follow-up" ${item.assignedTo === "Valipo Family Follow-up" ? "selected" : ""}>Valipo Family Follow-up</option>
-                                <option value="Valipo Family Follow-up / Legal Team" ${item.assignedTo === "Valipo Family Follow-up / Legal Team" ? "selected" : ""}>Valipo / Legal Team</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="checklist-select select-status" data-id="${item.id}" style="font-weight: 500; color: ${item.status === 'Verified' ? '#4CAF50' : (item.status === 'Issue Found' ? '#ff9800' : 'var(--text-main)')} !important;">
-                                <option value="Pending" ${item.status === "Pending" ? "selected" : ""}>Pending</option>
-                                <option value="Applied" ${item.status === "Applied" ? "selected" : ""}>Applied</option>
-                                <option value="Received" ${item.status === "Received" ? "selected" : ""}>Received</option>
-                                <option value="Under Review" ${item.status === "Under Review" ? "selected" : ""}>Under Review</option>
-                                <option value="Verified" ${item.status === "Verified" ? "selected" : ""}>Verified</option>
-                                <option value="Not Required" ${item.status === "Not Required" ? "selected" : ""}>Not Required</option>
-                                <option value="Issue Found" ${item.status === "Issue Found" ? "selected" : ""}>Issue Found</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input type="date" class="checklist-date input-due" data-id="${item.id}" value="${item.dueDate}">
-                        </td>
-                        <td>
-                            <input type="text" class="checklist-input input-remarks" data-id="${item.id}" value="${escapeHTML(item.remarks)}" style="font-size: 0.8rem;">
-                        </td>
-                        <td style="text-align: center; vertical-align: middle;">
-                            <button class="upload-btn start-upload" data-id="${item.id}">Upload</button>
-                            <div style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.3rem;">Updated: ${formattedDate}</div>
-                        </td>
-                    `;
-                    checklistTableBody.appendChild(row);
-                });
-            }
-
-            // Event Listeners for inline changes
-            if (checklistTableBody) {
-                checklistTableBody.addEventListener("change", function(e) {
-                    const target = e.target;
-                    const id = parseInt(target.getAttribute("data-id"));
-                    if (!id) return;
-
-                    const item = legalChecklist.find(x => x.id === id);
-                    if (!item) return;
-
-                    item.lastUpdated = new Date().toISOString().split("T")[0];
-
-                    if (target.classList.contains("checklist-checkbox")) {
-                        item.status = target.checked ? "Verified" : "Pending";
-                    } else if (target.classList.contains("select-assigned")) {
-                        item.assignedTo = target.value;
-                    } else if (target.classList.contains("select-status")) {
-                        item.status = target.value;
-                    } else if (target.classList.contains("input-due")) {
-                        item.dueDate = target.value;
-                    }
-
-                    saveChecklist();
-                    renderChecklist();
-                });
-
-                checklistTableBody.addEventListener("input", function(e) {
-                    const target = e.target;
-                    if (target.classList.contains("input-remarks")) {
-                        const id = parseInt(target.getAttribute("data-id"));
-                        const item = legalChecklist.find(x => x.id === id);
-                        if (item) {
-                            item.remarks = target.value;
-                            item.lastUpdated = new Date().toISOString().split("T")[0];
-                            localStorage.setItem("rvg_legal_checklist", JSON.stringify(legalChecklist));
-                        }
-                    }
-                });
-
-                checklistTableBody.addEventListener("click", function(e) {
-                    const btn = e.target.closest(".start-upload");
-                    if (btn) {
-                        activeUploadId = parseInt(btn.getAttribute("data-id"));
-                        if (fileInput) fileInput.click();
-                    }
-                });
-            }
-
-            // File Upload Simulator
-            if (fileInput) {
-                fileInput.addEventListener("change", function() {
-                    if (fileInput.files.length > 0 && activeUploadId) {
-                        const file = fileInput.files[0];
-                        const item = legalChecklist.find(x => x.id === activeUploadId);
-                        if (item) {
-                            item.status = "Received";
-                            item.remarks = `[Uploaded: ${file.name}] ` + item.remarks;
-                            item.lastUpdated = new Date().toISOString().split("T")[0];
-                            saveChecklist();
-                            renderChecklist();
-                            if (typeof showToast !== "undefined") {
-                                showToast(`File "${file.name}" uploaded successfully!`, "success");
-                            }
-                        }
-                        fileInput.value = ""; // clear selector
-                        activeUploadId = null;
-                    }
-                });
-            }
-
-            // Filters
-            if (searchInput) searchInput.addEventListener("input", renderChecklist);
-            if (filterPriority) filterPriority.addEventListener("change", renderChecklist);
-            if (filterStatus) filterStatus.addEventListener("change", renderChecklist);
-
-            // Reset
-            if (resetBtn) {
-                resetBtn.addEventListener("click", () => {
-                    if (confirm("Are you sure you want to reset all document statuses and remarks to defaults?")) {
-                        legalChecklist = JSON.parse(JSON.stringify(defaultLegalChecklist));
-                        saveChecklist();
-                        renderChecklist();
-                        if (typeof showToast !== "undefined") {
-                            showToast("Checklist reset successfully.", "success");
-                        }
-                    }
-                });
-            }
-
-            // Run initial load
-            updateSummary();
-            renderChecklist();
-
-            // Modal Toggling for Prospect Dossier
-            const leadModal = document.getElementById("leadModal");
-            const closeLeadModal = document.getElementById("closeLeadModal");
-            const modalDetails = document.getElementById("modalLeadDetails");
-
-            if (leadsTableBody) {
-                leadsTableBody.addEventListener("click", function(e) {
-                    const btn = e.target.closest(".view-details-btn");
-                    if (btn) {
-                        try {
-                            const lead = JSON.parse(btn.getAttribute("data-lead"));
-                            renderLeadDetails(lead);
-                            leadModal.style.display = "flex";
-                        } catch (err) {
-                            console.error("Error displaying lead details:", err);
-                        }
-                    }
-                });
-            }
-
-            if (closeLeadModal) {
-                closeLeadModal.addEventListener("click", () => {
-                    leadModal.style.display = "none";
-                });
-            }
-
-            if (leadModal) {
-                leadModal.addEventListener("click", (e) => {
-                    if (e.target === leadModal) {
-                        leadModal.style.display = "none";
-                    }
-                });
-            }
-
-            document.addEventListener("keydown", (e) => {
-                if (e.key === "Escape" && leadModal.style.display === "flex") {
-                    leadModal.style.display = "none";
-                }
-            });
-
-            function renderLeadDetails(lead) {
-                if (!modalDetails) return;
-                
-                const dateStr = new Date(lead.timestamp).toLocaleString();
-                
-                modalDetails.innerHTML = `
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
-                        <div>
-                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Full Name</span>
-                            <div style="font-weight: 500; font-size: 1.1rem; color: var(--text-main); margin-top: 0.2rem;">${escapeHTML(lead.full_name)}</div>
-                        </div>
-                        <div>
-                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Profile Type</span>
-                            <div style="font-weight: 500; font-size: 1.1rem; color: var(--accent-gold); margin-top: 0.2rem;">${escapeHTML(lead.buyer_type)}</div>
-                        </div>
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-                        <div>
-                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Email</span>
-                            <div style="margin-top: 0.2rem;"><a href="mailto:${escapeHTML(lead.email)}" style="color: var(--accent-gold); text-decoration: none;">${escapeHTML(lead.email)}</a></div>
-                        </div>
-                        <div>
-                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Phone / WhatsApp</span>
-                            <div style="margin-top: 0.2rem;"><a href="tel:${escapeHTML(lead.phone_whatsapp)}" style="color: var(--accent-gold); text-decoration: none;">${escapeHTML(lead.phone_whatsapp)}</a></div>
-                        </div>
-                    </div>
-
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
-                        <div>
-                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">City / Country</span>
-                            <div style="margin-top: 0.2rem; color: var(--text-main);">${escapeHTML(lead.city_country)}</div>
-                        </div>
-                        <div>
-                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Budget Bracket</span>
-                            <div style="margin-top: 0.2rem; color: var(--text-main);">${escapeHTML(lead.budget_range)}</div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Interested Model</span>
-                        <div style="font-weight: 500; color: var(--accent-gold); margin-top: 0.2rem;">${escapeHTML(lead.interested_estate_model)}</div>
-                    </div>
-
-                    <div>
-                        <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Personal Message / Requirements</span>
-                        <blockquote style="margin-top: 0.5rem; padding: 0.8rem 1rem; border-left: 2px solid var(--accent-gold); background: rgba(255,255,255,0.02); font-style: italic; color: var(--text-main); font-size: 0.85rem; border-radius: 2px;">
-                            ${escapeHTML(lead.message || "No custom message provided.")}
-                        </blockquote>
-                    </div>
-
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted); display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem;">
-                        <div><strong>Timestamp:</strong> ${dateStr}</div>
-                        <div><strong>Device:</strong> ${escapeHTML(lead.deviceType)}</div>
-                        <div><strong>UTM Source:</strong> ${escapeHTML(lead.utmSource)}</div>
-                        <div><strong>UTM Campaign:</strong> ${escapeHTML(lead.utmCampaign)}</div>
-                        <div><strong>UTM Medium:</strong> ${escapeHTML(lead.utmMedium)}</div>
-                        <div style="grid-column: span 2; word-break: break-all;"><strong>Source URL:</strong> <a href="${escapeHTML(lead.pageUrl)}" target="_blank" style="color: var(--text-muted); text-decoration: underline;">${escapeHTML(lead.pageUrl)}</a></div>
-                    </div>
-                `;
+            } catch (err) {
+                authError.innerText = 'Network error contacting authentication server.';
+                authError.style.display = 'block';
+            } finally {
+                loginSubmitBtn.innerText = 'Sign In to Command Center';
+                loginSubmitBtn.disabled = false;
             }
         });
+
+        // Handle Logout
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                const headers = {};
+                if (currentAuthToken) headers['Authorization'] = 'Bearer ' + currentAuthToken;
+                await fetch('/api/auth/logout', { method: 'POST', headers });
+            } catch (e) {}
+            sessionStorage.removeItem('rvg_token');
+            currentAuthToken = '';
+            currentUser = null;
+            showLoginForm();
+        });
+
+        // Load Real Database Leads & KPIs
+        async function loadLeads() {
+            try {
+                const search = encodeURIComponent(searchInput.value.trim());
+                const status = encodeURIComponent(statusFilter.value);
+                const model = encodeURIComponent(modelFilter.value);
+
+                const headers = {};
+                if (currentAuthToken) headers['Authorization'] = 'Bearer ' + currentAuthToken;
+
+                const url = `/api/crm/leads?search=${search}&status=${status}&model=${model}`;
+                const res = await fetch(url, { headers });
+
+                if (res.status === 401) {
+                    showLoginForm();
+                    return;
+                }
+
+                const data = await res.json();
+                if (data.success) {
+                    // Update KPIs
+                    document.getElementById('kpiTotal').innerText = data.kpi.total || 0;
+                    document.getElementById('kpiNew').innerText = data.kpi.new || 0;
+                    document.getElementById('kpiContacted').innerText = data.kpi.contacted || 0;
+                    document.getElementById('kpiVisits').innerText = data.kpi.site_visit_scheduled || 0;
+
+                    // Update staff assignment dropdown
+                    staffList = data.staffList || [];
+                    const assignSelect = document.getElementById('updateAssignee');
+                    assignSelect.innerHTML = '<option value="">Unassigned</option>' +
+                        staffList.map(s => `<option value="${s.id}">${escapeHTML(s.full_name)} (${s.role})</option>`).join('');
+
+                    // Render Table Rows
+                    renderTable(data.leads || []);
+                }
+            } catch (err) {
+                console.error('Error loading CRM leads:', err);
+            }
+        }
+
+        function renderTable(leads) {
+            if (!leads.length) {
+                leadsTableBody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2.5rem;">No enquiries found matching criteria.</td></tr>';
+                return;
+            }
+
+            leadsTableBody.innerHTML = leads.map(l => {
+                const badgeClass = `badge-${l.status || 'new'}`;
+                const formattedDate = new Date(l.created_at).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+                const assignedName = l.assigned_staff_name ? escapeHTML(l.assigned_staff_name) : '<span style="opacity: 0.4;">Unassigned</span>';
+
+                return `
+                    <tr>
+                        <td style="font-family: monospace; font-size: 0.76rem; color: var(--accent-gold);">${escapeHTML(l.reference_id)}</td>
+                        <td style="font-size: 0.75rem; color: var(--text-muted);">${formattedDate}</td>
+                        <td style="font-weight: 500; color: var(--text-main);">${escapeHTML(l.full_name)}</td>
+                        <td>
+                            <div style="font-size: 0.78rem;"><a href="mailto:${escapeHTML(l.email)}" style="color: var(--accent-gold); text-decoration: none;">${escapeHTML(l.email)}</a></div>
+                            <div style="font-size: 0.74rem; color: var(--text-muted);"><a href="tel:${escapeHTML(l.phone)}" style="color: var(--text-muted); text-decoration: none;">${escapeHTML(l.phone)}</a></div>
+                        </td>
+                        <td style="font-size: 0.8rem; color: var(--accent-gold);">${escapeHTML(l.estate_model || 'Not Selected')}</td>
+                        <td><span class="badge ${badgeClass}">${(l.status || 'new').replace(/_/g, ' ')}</span></td>
+                        <td style="font-size: 0.78rem;">${assignedName}</td>
+                        <td>
+                            <button class="btn-view-lead" onclick="openLeadModal('${l.id}')">Manage</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Open Lead Detail & Management Drawer
+        window.openLeadModal = async function(leadId) {
+            try {
+                const headers = {};
+                if (currentAuthToken) headers['Authorization'] = 'Bearer ' + currentAuthToken;
+
+                const res = await fetch(`/api/crm/leads?leadId=${leadId}`, { headers });
+                const data = await res.json();
+                if (!data.success || !data.lead) return;
+
+                activeLead = data.lead;
+                document.getElementById('modalRefId').innerText = activeLead.reference_id;
+                document.getElementById('modalLeadName').innerText = activeLead.full_name;
+                document.getElementById('modalEmail').innerText = activeLead.email;
+                document.getElementById('modalPhone').innerText = activeLead.phone;
+                document.getElementById('modalModel').innerText = activeLead.estate_model || 'None';
+                document.getElementById('modalBuyerType').innerText = activeLead.buyer_type || 'General';
+                document.getElementById('modalLocation').innerText = activeLead.city_country || 'Not Specified';
+                document.getElementById('modalBudget').innerText = activeLead.budget_range || 'Not Specified';
+                document.getElementById('modalMessage').innerText = activeLead.message || 'No custom message submitted.';
+
+                document.getElementById('updateStatus').value = activeLead.status || 'new';
+                document.getElementById('updateAssignee').value = activeLead.assigned_staff_id || '';
+                document.getElementById('updateFollowUp').value = activeLead.follow_up_date || '';
+
+                renderNotes(data.notes || []);
+                leadModal.style.display = 'flex';
+            } catch (err) {
+                console.error('Error fetching lead details:', err);
+            }
+        };
+
+        function renderNotes(notes) {
+            const container = document.getElementById('notesContainer');
+            if (!notes.length) {
+                container.innerHTML = '<p style="font-size: 0.75rem; color: var(--text-muted); font-style: italic;">No notes logged yet.</p>';
+                return;
+            }
+
+            container.innerHTML = notes.map(n => {
+                const dateStr = new Date(n.created_at).toLocaleString('en-IN');
+                return `
+                    <div class="timeline-entry">
+                        <div class="timeline-meta">${escapeHTML(n.author_name)} (${escapeHTML(n.author_role)}) — ${dateStr}</div>
+                        <div class="timeline-content">${escapeHTML(n.content)}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Save Status / Assignment Update
+        saveLeadUpdatesBtn.addEventListener('click', async () => {
+            if (!activeLead) return;
+            saveLeadUpdatesBtn.innerText = 'Updating...';
+            saveLeadUpdatesBtn.disabled = true;
+
+            try {
+                const headers = { 'Content-Type': 'application/json' };
+                if (currentAuthToken) headers['Authorization'] = 'Bearer ' + currentAuthToken;
+
+                const payload = {
+                    id: activeLead.id,
+                    status: document.getElementById('updateStatus').value,
+                    assignedStaffId: document.getElementById('updateAssignee').value || null,
+                    followUpDate: document.getElementById('updateFollowUp').value || null
+                };
+
+                const res = await fetch('/api/crm/leads', {
+                    method: 'PATCH',
+                    headers,
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    saveLeadUpdatesBtn.innerText = 'Saved!';
+                    setTimeout(() => {
+                        saveLeadUpdatesBtn.innerText = 'Update Stage & Assignment';
+                        saveLeadUpdatesBtn.disabled = false;
+                    }, 1200);
+                    // Reload modal and table
+                    openLeadModal(activeLead.id);
+                    loadLeads();
+                }
+            } catch (err) {
+                console.error('Error saving lead updates:', err);
+                saveLeadUpdatesBtn.disabled = false;
+                saveLeadUpdatesBtn.innerText = 'Update Stage & Assignment';
+            }
+        });
+
+        // Add Custom Note
+        addNoteBtn.addEventListener('click', async () => {
+            if (!activeLead) return;
+            const content = newNoteInput.value.trim();
+            if (!content) return;
+
+            addNoteBtn.disabled = true;
+            addNoteBtn.innerText = 'Logging...';
+
+            try {
+                const headers = { 'Content-Type': 'application/json' };
+                if (currentAuthToken) headers['Authorization'] = 'Bearer ' + currentAuthToken;
+
+                const res = await fetch('/api/crm/leads', {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({
+                        leadId: activeLead.id,
+                        content,
+                        noteType: 'comment'
+                    })
+                });
+
+                if (res.ok) {
+                    newNoteInput.value = '';
+                    openLeadModal(activeLead.id);
+                }
+            } catch (err) {
+                console.error('Error logging note:', err);
+            } finally {
+                addNoteBtn.disabled = false;
+                addNoteBtn.innerText = 'Log Note';
+            }
+        });
+
+        // Close Modal Handlers
+        closeModalBtn.addEventListener('click', () => { leadModal.style.display = 'none'; });
+        leadModal.addEventListener('click', (e) => { if (e.target === leadModal) leadModal.style.display = 'none'; });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') leadModal.style.display = 'none'; });
+
+        // Filter & Search Debouncing
+        let searchTimeout;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(loadLeads, 300);
+        });
+        statusFilter.addEventListener('change', loadLeads);
+        modelFilter.addEventListener('change', loadLeads);
+
+        // CSV Export
+        exportCsvBtn.addEventListener('click', () => {
+            const tokenParam = currentAuthToken ? '&token=' + encodeURIComponent(currentAuthToken) : '';
+            window.location.href = '/api/crm/leads?export=csv' + tokenParam;
+        });
+
+        // Legal Due Diligence Tracker Logic
+        const legalSteps = [
+            { id: 1, title: "Panjim Forest Office NOC & Enquiry", dept: "Forest Dept", status: "In Progress", notes: "ESZ clearance boundary and buffer verification." },
+            { id: 2, title: "Village Map — Sanguem", dept: "Revenue Dept", status: "Verified", notes: "Official cadastral village map retrieved." },
+            { id: 3, title: "Survey Sketch Copy (No. 109)", dept: "Land Records", status: "Verified", notes: "Survey 109 cadastral boundaries confirmed." },
+            { id: 4, title: "Form 3 Certified Copy", dept: "Margao Land Record", status: "In Progress", notes: "Latest certified record verification." },
+            { id: 5, title: "Form 14 Ownership Extract", dept: "Mamlatdar Office", status: "Verified", notes: "Occupancy and mutation verification complete." },
+            { id: 6, title: "Matriz & Portuguese Land Records", dept: "Archives", status: "Verified", notes: "Historical title chain link unbroken." },
+            { id: 7, title: "Encumbrance Certificate (EC)", dept: "Sub-Registrar", status: "In Progress", notes: "30-year non-encumbrance certificate." },
+            { id: 8, title: "General Power of Attorney (GPA) Audit", dept: "Legal Counsel", status: "Verified", notes: "Execution chain verified by independent counsel." }
+        ];
+
+        function renderLegalChecklist() {
+            const container = document.getElementById('legalChecklistContainer');
+            container.innerHTML = legalSteps.map(s => `
+                <div class="checklist-item">
+                    <div>
+                        <div class="checklist-title">${s.title}</div>
+                        <div class="checklist-remarks">${s.dept} — ${s.notes}</div>
+                    </div>
+                    <div>
+                        <span class="badge ${s.status === 'Verified' ? 'badge-closed_won' : 'badge-contacted'}">${s.status}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', checkAuth);
     </script>
 </body>
 </html>

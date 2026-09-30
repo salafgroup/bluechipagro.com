@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva Varde Goa | Premium Eco-Jungle Villa Estate</title>
+    <title>Reserva Varde Goa | Premium 1-Acre Eco Forest Estates — By Bluechip Global Agro</title>
     <meta name="description" content="A private 1,000-acre eco-jungle wellness valley in Goa by Bluechip Global Agro. Own one acre of Goa's living forest.">
+    <link rel="canonical" href="https://bluechipagro.com/">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="/images/favicon.png">
+    
+    <!-- Open Graph / WhatsApp / Social Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bluechipagro.com/">
+    <meta property="og:title" content="Reserva Varde Goa | Premium 1-Acre Eco Forest Estates">
+    <meta property="og:description" content="Envisioned as South Goa's premier private forest living and managed agro plantation estate. Base packages from ₹1.95 Cr to ₹2.99 Cr.">
+    <meta property="og:image" content="https://bluechipagro.com/images/hero.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://bluechipagro.com/">
+    <meta name="twitter:title" content="Reserva Varde Goa | Premium 1-Acre Eco Forest Estates">
+    <meta name="twitter:description" content="Envisioned as South Goa's premier private forest living and managed agro plantation estate. By Bluechip Global Agro.">
+    <meta name="twitter:image" content="https://bluechipagro.com/images/hero.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2874,7 +2891,7 @@
     <section id="hero" class="hero">
         <div class="hero-bg"></div>
         <div class="container hero-content">
-            <div class="text-small hero-marker reveal" style="margin-bottom: 28px;">Reserva Verde Goa — Envisioned as Asia’s Leading Private Jungle Forest Housing Destination</div>
+            <div class="text-small hero-marker reveal" style="margin-bottom: 28px;">Reserva Varde Goa — By Bluechip Global Agro | Premium 1-Acre Managed Agro Forest Estates</div>
             
             <h1 class="reveal reveal-delay-1" style="margin-bottom: 32px;">Envisioned as Asia's Leading<br>Private Jungle Forest Housing Destination</h1>
             
@@ -6147,7 +6164,7 @@
                     <!-- Phone/WhatsApp -->
                     <div class="masterplan-input-group">
                         <label for="phone">Phone / WhatsApp</label>
-                        <input type="tel" id="phone" placeholder="e.g. +91 98765 43210" required>
+                        <input type="tel" id="phone" placeholder="e.g. +91 98200 00000" required>
                     </div>
 
                     <!-- Email -->
@@ -7421,18 +7438,17 @@ Bespoke architectural rendering of a custom-designed eco-luxury ground-level con
                     showToast(`Request started for ${model.bedroomType} Estate. Form pre-filled below!`, 'success');
                 }
               } else if (action === "download") {
-                showToast(`Preparing specification dossier for ${model.bedroomType}...`, 'info');
-                setTimeout(() => {
-                    // Create mock download link
-                    const link = document.createElement("a");
-                    link.href = "#";
-                    link.setAttribute("download", `Reserva_Verde_Goa_${id}_Specs.pdf`);
-                    showToast(`Specification sheet for ${model.bedroomType} downloaded successfully!`, 'success');
-                }, 1500);
+                showToast(`Downloading architectural specification dossier for ${model.bedroomType}...`, 'info');
+                const link = document.createElement("a");
+                link.href = "/downloads/Reserva_Verde_Goa_Schedules.xlsx";
+                link.setAttribute("download", "Reserva_Verde_Goa_Schedules.xlsx");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast(`Specification schedule workbook downloaded!`, 'success');
               }
             });
           }
-
 
             // Tab switching inside architectural modal
             document.querySelectorAll(".rv-m-tab").forEach(tab => {
@@ -7534,49 +7550,47 @@ Bespoke architectural rendering of a custom-designed eco-luxury ground-level con
                         submitBtn.style.color = "#10291F";
                     }
 
-                    // Gather lead details
+                    // Gather lead details for serverless API
                     const leadData = {
-                        full_name: document.getElementById("fullName").value,
-                        phone_whatsapp: document.getElementById("phone").value,
-                        email: document.getElementById("email").value,
-                        city_country: document.getElementById("cityCountry").value,
-                        buyer_type: document.getElementById("buyerType").value,
-                        interested_estate_model: document.getElementById("estateModel").value,
-                        budget_range: document.getElementById("budget").value,
-                        message: document.getElementById("message").value,
-                        ...getLeadMetadata()
+                        fullName: document.getElementById("fullName").value.trim(),
+                        phone: document.getElementById("phone").value.trim(),
+                        email: document.getElementById("email").value.trim().toLowerCase(),
+                        cityCountry: document.getElementById("cityCountry").value.trim(),
+                        buyerType: document.getElementById("buyerType").value,
+                        estateModel: document.getElementById("estateModel").value,
+                        budgetRange: document.getElementById("budget").value,
+                        message: document.getElementById("message").value.trim(),
+                        website_hp: document.getElementById("website_hp") ? document.getElementById("website_hp").value : ""
                     };
 
-                    // 1. Local Storage Lead Capture (Connected CRM fall-back)
-                    let localLeads = [];
-                    try {
-                        localLeads = JSON.parse(localStorage.getItem("rvg_leads") || "[]");
-                    } catch (err) {
-                        console.error("Failed to parse local leads", err);
-                    }
-                    localLeads.unshift(leadData);
-                    localStorage.setItem("rvg_leads", JSON.stringify(localLeads));
-
-                    // 2. Option 2: Google Sheets Webhook Integration
-                    // Customize this URL with your deployed Apps Script web app endpoint
-                    const WEBHOOK_URL = ""; 
-
-                    function showSuccessState() {
+                    function showSuccessState(refId) {
                         if (formGrid) formGrid.style.display = "none";
                         if (submitBtn) submitBtn.style.display = "none";
                         if (disclaimer) disclaimer.style.display = "none";
                         
                         if (successBox) {
+                            successBox.innerHTML = `
+                                <div class="success-icon">✦</div>
+                                <h3 class="success-title">Private Request Confirmed</h3>
+                                <div style="display: inline-block; background: rgba(194, 168, 120, 0.15); border: 1px solid var(--color-muted-gold); color: var(--color-muted-gold); padding: 0.35rem 0.9rem; font-family: monospace; font-size: 0.88rem; border-radius: 2px; margin: 0.8rem 0 1.2rem;">Reference: ${refId || 'RVG-CONFIRMED'}</div>
+                                <p class="success-text" style="margin-bottom: 1.8rem;">
+                                    Thank you. Your consultation request has been preserved in our executive database. Our estate advisory director will contact you directly.
+                                </p>
+                                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+                                    <a href="/downloads/Reserva_Verde_Goa_Schedules.xlsx" download class="btn btn-primary" style="padding: 0.75rem 1.4rem; font-size: 0.72rem; text-decoration: none;">📥 Download Schedules (XLSX)</a>
+                                    <a href="/downloads/Reserva-Varde-Goa-Moodboard.pdf" download class="btn btn-outline" style="padding: 0.75rem 1.4rem; font-size: 0.72rem; text-decoration: none;">📥 Concept Moodboard (PDF)</a>
+                                </div>
+                            `;
                             successBox.style.display = "block";
                             successBox.scrollIntoView({ behavior: "smooth", block: "center" });
                         }
                         
                         if (typeof showToast !== "undefined") {
-                            showToast("Inquiry saved securely!", "success");
+                            showToast("Enquiry logged securely in database!", "success");
                         }
                     }
 
-                    function showErrorState() {
+                    function showErrorState(errMsg) {
                         if (submitBtn) {
                             submitBtn.disabled = false;
                             submitBtn.innerText = "Request Private Masterplan";
@@ -7584,39 +7598,38 @@ Bespoke architectural rendering of a custom-designed eco-luxury ground-level con
                             submitBtn.style.color = "";
                         }
                         if (errorBox) {
+                            const errTextEl = errorBox.querySelector(".success-text");
+                            if (errTextEl) errTextEl.innerText = errMsg || "Something went wrong. Please try again or email sales@bluechipagro.com directly.";
                             errorBox.style.display = "block";
                             errorBox.scrollIntoView({ behavior: "smooth", block: "center" });
                         }
                         if (typeof showToast !== "undefined") {
-                            showToast("Submission failed. Please try again.", "error");
+                            showToast(errMsg || "Submission failed. Please try again.", "error");
                         }
                     }
 
-                    if (WEBHOOK_URL) {
-                        fetch(WEBHOOK_URL, {
-                            method: "POST",
-                            mode: "no-cors", // Crucial for standard Google Apps Script CORS redirects
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify(leadData)
-                        })
-                        .then(() => {
-                            showSuccessState();
-                        })
-                        .catch((err) => {
-                            console.error("Webhook submit failed:", err);
-                            showErrorState();
-                        });
-                    } else {
-                        // Local persistence fallback with 1.2s delay for luxury feedback feel
-                        setTimeout(() => {
-                            showSuccessState();
-                        }, 1200);
-                    }
+                    // Direct Server-Side API Call
+                    fetch("/api/enquiry", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(leadData)
+                    })
+                    .then(async (res) => {
+                        const data = await res.json();
+                        if (res.ok && data.success) {
+                            showSuccessState(data.referenceId);
+                        } else {
+                            showErrorState(data.error || "Server validation error. Please check your details.");
+                        }
+                    })
+                    .catch((err) => {
+                        console.error("Enquiry API error:", err);
+                        showErrorState("Network issue reaching server. Please contact sales@bluechipagro.com directly.");
+                    });
                 });
             }
         })();
+})();
 
     </script>
 
