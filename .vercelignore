@@ -10,8 +10,9 @@ backup-before-location-intelligence-deploy
 *.gz
 node_modules
 Model
-package.json
-package-lock.json
+*.sqlite
+*.sqlite*
+data/*.sqlite*
 build_doc.js
 build_svgs.js
 build_xlsx.py
