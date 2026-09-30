@@ -38,17 +38,19 @@ async function run() {
   const testEnquiryId = 'test-enq-' + Date.now();
   const nowIso = new Date().toISOString();
 
+  const testRef = 'RVG-TEST-' + Date.now();
+
   // Create an enquiry first
   await db.run(
     `INSERT INTO enquiries (id, reference_id, full_name, email, phone, status, duplicate_hash, source, created_at, updated_at)
      VALUES (?, ?, 'Test Buyer', 'test@example.com', '9820000000', 'new', 'hash-123', 'test', ?, ?)`,
-    [testEnquiryId, 'RVG-TEST-001', nowIso, nowIso]
+    [testEnquiryId, testRef, nowIso, nowIso]
   );
 
   await db.run(
     `INSERT INTO notification_queue (id, enquiry_id, channel, recipient, subject, payload_json, status, attempts, next_retry_at, created_at)
-     VALUES (?, ?, 'email', 'sales@bluechipagro.com', 'New Enquiry', '{"referenceId":"RVG-TEST-001","fullName":"Test Buyer"}', 'pending', 0, ?, ?)`,
-    [notifId, testEnquiryId, nowIso, nowIso]
+     VALUES (?, ?, 'email', 'sales@bluechipagro.com', 'New Enquiry', ?, 'pending', 0, ?, ?)`,
+    [notifId, testEnquiryId, JSON.stringify({ referenceId: testRef, fullName: 'Test Buyer' }), nowIso, nowIso]
   );
 
   // Invoke worker with valid secret (no provider configured yet)
