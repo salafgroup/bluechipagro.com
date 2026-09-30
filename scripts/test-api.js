@@ -10,7 +10,7 @@ function createMockReqRes({ method = 'GET', body = {}, headers = {}, url = '/' }
     body,
     headers: { 'user-agent': 'TestRunner/1.0', ...headers },
     url,
-    socket: { remoteAddress: '127.0.0.1' }
+    socket: { remoteAddress: '127.0.0.' + Math.floor(Math.random() * 250 + 1) }
   };
   let statusCode = 200;
   const resHeaders = {};
