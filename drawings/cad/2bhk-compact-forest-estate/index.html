@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2BHK Compact Forest Estate — Conceptual CAD Plan | Reserva Verde Goa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-forest-green: #10291F;
+            --color-forest-dark: #0b140f;
+            --color-ivory: #FBF8F1;
+            --color-muted-gold: #B08A3E;
+            --color-warm-stone: #A9A59C;
+            
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-forest-dark);
+            color: var(--color-ivory);
+            line-height: 1.7;
+            padding: 4rem 2rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(176, 138, 62, 0.2);
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--color-ivory);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .eyebrow {
+            color: var(--color-muted-gold);
+            font-size: 0.72rem;
+            letter-spacing: 0.25em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            color: var(--color-muted-gold);
+            text-decoration: none;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            border: 1px solid rgba(176, 138, 62, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            background: rgba(16, 41, 31, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: var(--color-muted-gold);
+            color: var(--color-forest-dark);
+            border-color: var(--color-muted-gold);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 3rem;
+        }
+
+        @media (max-width: 1100px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        .viewport {
+            width: 100%;
+            background: #0b140f;
+            border: 1px solid rgba(176, 138, 62, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            overflow-x: auto;
+        }
+
+        .viewport svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            min-width: 1000px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(251, 248, 241, 0.03);
+            border: 1px solid rgba(176, 138, 62, 0.2);
+            border-radius: 8px;
+            padding: 1.8rem;
+        }
+
+        .card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--color-muted-gold);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            background: var(--color-muted-gold);
+            color: var(--color-forest-dark);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(176, 138, 62, 0.25);
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn:hover {
+            background: #EFE6D2;
+            box-shadow: 0 8px 20px rgba(176, 138, 62, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .download-outline {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid var(--color-muted-gold);
+            color: var(--color-muted-gold);
+            background: transparent;
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .download-outline:hover {
+            background: rgba(176, 138, 62, 0.1);
+        }
+
+        .specs-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .specs-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            border-bottom: 1px solid rgba(176, 138, 62, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .specs-list li span:first-child {
+            color: var(--color-warm-stone);
+        }
+
+        .specs-list li span:last-child {
+            font-weight: 600;
+        }
+
+        .thumbs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .thumb-item {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(176, 138, 62, 0.2);
+            position: relative;
+        }
+
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .thumb-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .disclaimer-block {
+            margin-top: 4rem;
+            border-top: 1px solid rgba(176, 138, 62, 0.15);
+            padding-top: 2rem;
+            color: rgba(251, 248, 241, 0.5);
+            font-size: 0.74rem;
+            line-height: 1.8;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <span class="eyebrow">[ HNI Technical Presentation ]</span>
+                <h1>2BHK Compact Forest Estate Conceptual CAD Plan</h1>
+                <p style="color: var(--color-warm-stone); font-size: 0.9rem;">Conceptual presentation floor plan and AutoCAD-compatible exchange files for modular biophilic estates.</p>
+            </div>
+            <div>
+                <a href="../../../models/2bhk-compact-forest-estate/index.html" class="btn-back">← Back to Brochure</a>
+            </div>
+        </header>
+
+        <div class="grid">
+            <!-- SVG CAD Viewport -->
+            <div class="viewport">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 1200" width="1700" height="1200" font-family="'Montserrat', 'Arial', sans-serif">
+<defs>
+  <style>
+    .bg { fill: #0b140f; }
+    .border-thick { stroke: #B08A3E; stroke-width: 2.0; fill: none; }
+    .border-thin { stroke: #B08A3E; stroke-width: 0.5; fill: none; }
+    .wall-ext { stroke: #B08A3E; stroke-width: 2.8; fill: #10291F; }
+    .wall-int { stroke: #B08A3E; stroke-width: 1.6; fill: none; }
+    .door { stroke: #B08A3E; stroke-width: 1.0; fill: none; }
+    .window { stroke: #8FBF9F; stroke-width: 1.2; fill: none; }
+    .stilt { stroke: #8B3A33; stroke-width: 1.4; fill: none; }
+    .furn { stroke: rgba(176, 138, 62, 0.4); stroke-width: 0.8; fill: none; }
+    .text-title { fill: #FBF8F1; font-family: 'Cormorant Garamond', 'Georgia', serif; font-size: 24px; font-weight: 400; letter-spacing: 5px; }
+    .text-subtitle { fill: #B08A3E; font-size: 11px; font-weight: 500; letter-spacing: 3px; }
+    .text-room { fill: #FBF8F1; font-size: 11px; font-weight: 600; letter-spacing: 1px; }
+    .text-details { fill: rgba(251, 248, 241, 0.7); font-size: 8px; font-weight: 300; }
+    .text-dim { fill: rgba(176, 138, 62, 0.6); font-size: 8px; font-weight: 500; }
+    .dim-line { stroke: rgba(176, 138, 62, 0.4); stroke-width: 0.5; stroke-dasharray: 2,2; }
+    .deck { fill: #162a20; stroke: #B08A3E; stroke-width: 0.8; }
+    .pool { fill: #12322d; stroke: #B08A3E; stroke-width: 0.8; stroke-dasharray: 4,3; }
+  </style>
+  
+  <!-- hatches -->
+  <pattern id="tileHatch" patternUnits="userSpaceOnUse" width="10" height="10">
+    <path d="M 0 10 L 10 0 M 0 0 L 10 10" stroke="rgba(176, 138, 62, 0.25)" stroke-width="0.4"/>
+  </pattern>
+  <pattern id="deckHatch" patternUnits="userSpaceOnUse" width="16" height="16">
+    <line x1="0" y1="8" x2="16" y2="8" stroke="rgba(176, 138, 62, 0.25)" stroke-width="0.5"/>
+    <line x1="0" y1="16" x2="16" y2="16" stroke="rgba(176, 138, 62, 0.25)" stroke-width="0.5"/>
+  </pattern>
+  <pattern id="waterHatch" patternUnits="userSpaceOnUse" width="12" height="12">
+    <path d="M 0 4 Q 3 2 6 4 T 12 4" stroke="rgba(143, 191, 159, 0.3)" stroke-width="0.4" fill="none"/>
+    <path d="M 0 8 Q 3 6 6 8 T 12 8" stroke="rgba(143, 191, 159, 0.3)" stroke-width="0.4" fill="none"/>
+  </pattern>
+</defs>
+
+<!-- Background -->
+<rect width="1700" height="1200" class="bg"/>
+<rect x="15" y="15" width="1670" height="1170" class="border-thick"/>
+<rect x="22" y="22" width="1656" height="1156" class="border-thin" style="opacity: 0.5;"/>
+
+<!-- Header Titles -->
+<text x="850" y="55" text-anchor="middle" class="text-title">RESERVA VERDE · 2BHK COMPACT FOREST ESTATE</text>
+<text x="850" y="78" text-anchor="middle" class="text-subtitle">CONCEPTUAL 2D PRESENTATION FLOOR PLAN · 2,500 SQ.FT · GROUND-LEVEL · SCALE 1:100</text>
+<line x1="60" y1="92" x2="1640" y2="92" stroke="#B08A3E" stroke-width="0.6" style="opacity: 0.5;"/>
+
+<!-- External Walls -->
+<path d="M 220 130 L 1074 130 L 1074 1325.6 L 732.4 1325.6 L 732.4 471.6 L 561.6 471.6 L 561.6 1325.6 L 220 1325.6 L 220 130 Z" class="wall-ext"/>
+<path d="M 234 144 L 1060 144 L 1060 1311.6 L 746.4 1311.6 L 746.4 457.6 L 547.6 457.6 L 547.6 1311.6 L 234 1311.6 L 234 144 Z" class="wall-ext" style="fill: none; stroke-width: 0.6; opacity: 0.5;"/>
+
+<!-- Central Biophilic Court -->
+<path d="M 561.6 471.6 L 732.4 471.6 L 732.4 1325.6 L 561.6 1325.6 Z" class="deck" style="fill: url(#tileHatch);"/>
+
+<!-- Forest-Facing Deck -->
+<path d="M 185 1353.6 L 1109 1353.6 L 1109 1563.6 L 185 1563.6 Z" class="deck" style="fill: url(#deckHatch);"/>
+
+<!-- Plunge Pool -->
+<path d="M 739.4 1598.6 L 1159.4 1598.6 L 1159.4 1773.6 L 739.4 1773.6 Z" class="pool" style="fill: url(#waterHatch);"/>
+
+<!-- Outdoor Dining -->
+<path d="M 220 1598.6 L 570 1598.6 L 570 1773.6 L 220 1773.6 Z" class="deck" style="fill: url(#deckHatch);"/>
+<line x1="430" y1="130" x2="430" y2="300.8" class="wall-int"/>
+<line x1="430" y1="300.8" x2="1060" y2="300.8" class="wall-int"/>
+<line x1="675" y1="300.8" x2="675" y2="457.6" class="wall-int"/>
+<line x1="390" y1="485.6" x2="390" y2="1311.6" class="wall-int"/>
+<line x1="903.2" y1="485.6" x2="903.2" y2="1311.6" class="wall-int"/>
+<line x1="746.4" y1="727.8" x2="889.2" y2="727.8" class="wall-int"/>
+<line x1="746.4" y1="1112.8" x2="889.2" y2="1112.8" class="wall-int"/>
+<line x1="1179" y1="821.6" x2="1349.8" y2="821.6" class="wall-int"/>
+
+<!-- W-03 -->
+<line x1="1074" y1="356.8" x2="1074" y2="454.8" class="window"/>
+
+<!-- W-04 -->
+<line x1="220" y1="646.6" x2="220" y2="821.6" class="window"/>
+
+<!-- W-05 -->
+<line x1="390.8" y1="716.6" x2="390.8" y2="765.6" class="window"/>
+
+<!-- W-06 -->
+<line x1="220" y1="926.6" x2="220" y2="968.6" class="window"/>
+
+<!-- W-07 -->
+<line x1="1074" y1="646.6" x2="1074" y2="821.6" class="window"/>
+
+<!-- W-09 -->
+<line x1="1074" y1="926.6" x2="1074" y2="996.6" class="window"/>
+
+<!-- SD-01 -->
+<line x1="710" y1="130" x2="878" y2="130" class="door" style="stroke-width: 2.0; stroke-dasharray: 6,4;"/>
+
+<!-- SD-02 -->
+<line x1="500" y1="471.6" x2="668" y2="471.6" class="door" style="stroke-width: 2.0; stroke-dasharray: 6,4;"/>
+
+<!-- SD-04 -->
+<line x1="390.8" y1="996.6" x2="390.8" y2="1136.6" class="door" style="stroke-width: 2.0; stroke-dasharray: 6,4;"/>
+
+<!-- SD-05 -->
+<line x1="903.2" y1="996.6" x2="903.2" y2="1136.6" class="door" style="stroke-width: 2.0; stroke-dasharray: 6,4;"/>
+
+<!-- D-11 -->
+<line x1="241" y1="1325.6" x2="346" y2="1325.6" class="door" style="stroke-width: 2.0; stroke-dasharray: 6,4;"/>
+
+<!-- D-12 -->
+<line x1="917" y1="1325.6" x2="1022" y2="1325.6" class="door" style="stroke-width: 2.0; stroke-dasharray: 6,4;"/>
+
+<!-- D-01 -->
+<line x1="378.76" y1="241.02" x2="430" y2="241.02" class="door"/>
+<path d="M 430 241.02 A 51.2 51.2 0 0 1 430 292.26" class="door" style="opacity: 0.55; stroke-dasharray: 2,2; fill: none;"/>
+
+<!-- D-02 -->
+<line x1="327.8" y1="555.6" x2="390.8" y2="555.6" class="door"/>
+<path d="M 390.8 555.6 A 63.0 63.0 0 0 1 390.8 618.6" class="door" style="opacity: 0.55; stroke-dasharray: 2,2; fill: none;"/>
+
+<!-- D-03 -->
+<line x1="523.8" y1="685.1" x2="460.8" y2="685.1" class="door"/>
+<path d="M 460.8 685.1 A 63.0 63.0 0 0 1 460.8 622.1" class="door" style="opacity: 0.55; stroke-dasharray: 2,2; fill: none;"/>
+
+<!-- D-04 -->
+<line x1="523.8" y1="941.3" x2="460.8" y2="941.3" class="door"/>
+<path d="M 460.8 941.3 A 63.0 63.0 0 0 1 460.8 878.3" class="door" style="opacity: 0.55; stroke-dasharray: 2,2; fill: none;"/>
+
+<!-- D-05 -->
+<line x1="840.2" y1="555.6" x2="903.2" y2="555.6" class="door"/>
+<path d="M 903.2 555.6 A 63.0 63.0 0 0 1 903.2 618.6" class="door" style="opacity: 0.55; stroke-dasharray: 2,2; fill: none;"/>
+
+<!-- D-06 -->
+<line x1="865.4" y1="727.8" x2="802.4" y2="727.8" class="door"/>
+<path d="M 802.4 727.8 A 63.0 63.0 0 0 1 802.4 664.8" class="door" style="opacity: 0.55; stroke-dasharray: 2,2; fill: none;"/>
+
+<!-- D-07 -->
+<line x1="865.4" y1="1112.8" x2="802.4" y2="1112.8" class="door"/>
+<path d="M 802.4 1112.8 A 63.0 63.0 0 0 1 802.4 1049.8" class="door" style="opacity: 0.55; stroke-dasharray: 2,2; fill: none;"/>
+
+<!-- D-13 -->
+<line x1="1116" y1="646.6" x2="1179" y2="646.6" class="door"/>
+<path d="M 1179 646.6 A 63.0 63.0 0 0 1 1179 583.6" class="door" style="opacity: 0.55; stroke-dasharray: 2,2; fill: none;"/>
+<path d="M 241 597.6 L 367 597.6 L 367 751.6 L 241 751.6 L 241 597.6 Z" class="furn"/>
+<path d="M 924.2 597.6 L 1036.2 597.6 L 1036.2 744.6 L 924.2 744.6 L 924.2 597.6 Z" class="furn"/>
+<path d="M 388 342.8 L 556 342.8 L 556 412.8 L 388 412.8 L 388 342.8 Z" class="furn"/>
+<path d="M 738 415.6 L 962 415.6 L 962 464.6 Z" class="furn"/>
+<path d="M 696 221.0 L 822 221.0 L 822 270.0 L 696 270.0 L 696 221.0 Z" class="furn"/>
+
+<circle cx="220" cy="130" r="6" class="stilt"/>
+<line x1="210" y1="130" x2="230" y2="130" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="220" y1="120" x2="220" y2="140" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="430" cy="130" r="6" class="stilt"/>
+<line x1="420" y1="130" x2="440" y2="130" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="430" y1="120" x2="430" y2="140" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="732.4" cy="130" r="6" class="stilt"/>
+<line x1="722.4" y1="130" x2="742.4" y2="130" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="732.4" y1="120" x2="732.4" y2="140" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="1074" cy="130" r="6" class="stilt"/>
+<line x1="1064" y1="130" x2="1084" y2="130" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="1074" y1="120" x2="1074" y2="140" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="220" cy="300.8" r="6" class="stilt"/>
+<line x1="210" y1="300.8" x2="230" y2="300.8" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="220" y1="290.8" x2="220" y2="310.8" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="430" cy="300.8" r="6" class="stilt"/>
+<line x1="420" y1="300.8" x2="440" y2="300.8" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="430" y1="290.8" x2="430" y2="310.8" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="732.4" cy="300.8" r="6" class="stilt"/>
+<line x1="722.4" y1="300.8" x2="742.4" y2="300.8" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="732.4" y1="290.8" x2="732.4" y2="310.8" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="1074" cy="300.8" r="6" class="stilt"/>
+<line x1="1064" y1="300.8" x2="1084" y2="300.8" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="1074" y1="290.8" x2="1074" y2="310.8" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="220" cy="471.6" r="6" class="stilt"/>
+<line x1="210" y1="471.6" x2="230" y2="471.6" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="220" y1="461.6" x2="220" y2="481.6" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="561.6" cy="471.6" r="6" class="stilt"/>
+<line x1="551.6" y1="471.6" x2="571.6" y2="471.6" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="561.6" y1="461.6" x2="561.6" y2="481.6" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="732.4" cy="471.6" r="6" class="stilt"/>
+<line x1="722.4" y1="471.6" x2="742.4" y2="471.6" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="732.4" y1="461.6" x2="732.4" y2="481.6" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="1074" cy="471.6" r="6" class="stilt"/>
+<line x1="1064" y1="471.6" x2="1084" y2="471.6" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="1074" y1="461.6" x2="1074" y2="481.6" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="220" cy="903.2" r="6" class="stilt"/>
+<line x1="210" y1="903.2" x2="230" y2="903.2" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="220" y1="893.2" x2="220" y2="913.2" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="561.6" cy="903.2" r="6" class="stilt"/>
+<line x1="551.6" y1="903.2" x2="571.6" y2="903.2" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="561.6" y1="893.2" x2="561.6" y2="913.2" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="732.4" cy="903.2" r="6" class="stilt"/>
+<line x1="722.4" y1="903.2" x2="742.4" y2="903.2" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="732.4" y1="893.2" x2="732.4" y2="913.2" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="1074" cy="903.2" r="6" class="stilt"/>
+<line x1="1064" y1="903.2" x2="1084" y2="903.2" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="1074" y1="893.2" x2="1074" y2="913.2" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="220" cy="1325.6" r="6" class="stilt"/>
+<line x1="210" y1="1325.6" x2="230" y2="1325.6" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="220" y1="1315.6" x2="220" y2="1335.6" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="561.6" cy="1325.6" r="6" class="stilt"/>
+<line x1="551.6" y1="1325.6" x2="571.6" y2="1325.6" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="561.6" y1="1315.6" x2="561.6" y2="1335.6" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="732.4" cy="1325.6" r="6" class="stilt"/>
+<line x1="722.4" y1="1325.6" x2="742.4" y2="1325.6" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="732.4" y1="1315.6" x2="732.4" y2="1335.6" class="stilt" style="stroke-width: 0.5;"/>
+
+<circle cx="1074" cy="1325.6" r="6" class="stilt"/>
+<line x1="1064" y1="1325.6" x2="1084" y2="1325.6" class="stilt" style="stroke-width: 0.5;"/>
+<line x1="1074" y1="1315.6" x2="1074" y2="1335.6" class="stilt" style="stroke-width: 0.5;"/>
+
+<text x="325.0" y="206.86" text-anchor="middle" class="text-room">ENTRY FOYER</text>
+<text x="325.0" y="219.86" text-anchor="middle" class="text-details">100 sq.ft</text>
+
+<text x="766.0" y="206.86" text-anchor="middle" class="text-room">LIVING</text>
+<text x="766.0" y="219.86" text-anchor="middle" class="text-details">280 sq.ft</text>
+
+<text x="465.0" y="377.66" text-anchor="middle" class="text-room">DINING</text>
+<text x="465.0" y="390.66" text-anchor="middle" class="text-details">200 sq.ft</text>
+
+<text x="864.0" y="377.66" text-anchor="middle" class="text-room">OPEN KITCHEN</text>
+<text x="864.0" y="390.66" text-anchor="middle" class="text-details">200 sq.ft</text>
+
+<text x="305.4" y="898.6" text-anchor="middle" class="text-room" transform="rotate(-90 305.4 898.6)">MASTER BEDROOM</text>
+<text x="305.4" y="911.6" text-anchor="middle" class="text-details" transform="rotate(-90 305.4 898.6)">300 sq.ft</text>
+
+<text x="476.2" y="576.6" text-anchor="middle" class="text-room" transform="rotate(-90 476.2 576.6)">M.WR</text>
+<text x="476.2" y="589.6" text-anchor="middle" class="text-details" transform="rotate(-90 476.2 576.6)">70 sq.ft</text>
+
+<text x="476.2" y="821.6" text-anchor="middle" class="text-room" transform="rotate(-90 476.2 821.6)">MASTER BATH</text>
+<text x="476.2" y="834.6" text-anchor="middle" class="text-details" transform="rotate(-90 476.2 821.6)">140 sq.ft</text>
+
+<text x="476.2" y="1122.6" text-anchor="middle" class="text-room" transform="rotate(-90 476.2 1122.6)">MASTER LOUNGE</text>
+<text x="476.2" y="1135.6" text-anchor="middle" class="text-details" transform="rotate(-90 476.2 1122.6)">110 sq.ft</text>
+
+<text x="988.6" y="898.6" text-anchor="middle" class="text-room" transform="rotate(-90 988.6 898.6)">BEDROOM 2</text>
+<text x="988.6" y="911.6" text-anchor="middle" class="text-details" transform="rotate(-90 988.6 898.6)">280 sq.ft</text>
+
+<text x="817.8" y="597.6" text-anchor="middle" class="text-room" transform="rotate(-90 817.8 597.6)">BR2 BATH</text>
+<text x="817.8" y="610.6" text-anchor="middle" class="text-details" transform="rotate(-90 817.8 597.6)">110 sq.ft</text>
+
+<text x="817.8" y="926.6" text-anchor="middle" class="text-room" transform="rotate(-90 817.8 926.6)">STUDY / LOUNGE</text>
+<text x="817.8" y="939.6" text-anchor="middle" class="text-details" transform="rotate(-90 817.8 926.6)">140 sq.ft</text>
+
+<text x="817.8" y="1206.6" text-anchor="middle" class="text-room" transform="rotate(-90 817.8 1206.6)">PWD</text>
+<text x="817.8" y="1219.6" text-anchor="middle" class="text-details" transform="rotate(-90 817.8 1206.6)">50 sq.ft</text>
+
+<text x="1264.4" y="716.6" text-anchor="middle" class="text-room" transform="rotate(-90 1264.4 716.6)">UTILITY</text>
+<text x="1264.4" y="729.6" text-anchor="middle" class="text-details" transform="rotate(-90 1264.4 716.6)">90 sq.ft</text>
+
+<text x="1264.4" y="926.6" text-anchor="middle" class="text-room" transform="rotate(-90 1264.4 926.6)">STORE</text>
+<text x="1264.4" y="939.6" text-anchor="middle" class="text-details" transform="rotate(-90 1264.4 926.6)">70 sq.ft</text>
+
+<!-- CAD Dimensions -->
+<line x1="220" y1="110" x2="1074" y2="110" class="dim-line"/>
+<circle cx="220" cy="110" r="2" fill="#B08A3E"/>
+<circle cx="1074" cy="110" r="2" fill="#B08A3E"/>
+<text x="647" y="103" text-anchor="middle" class="text-dim">12.20 m (40' 0") overall width</text>
+
+<line x1="190" y1="130" x2="190" y2="1325.6" class="dim-line"/>
+<circle cx="190" cy="130" r="2" fill="#B08A3E"/>
+<circle cx="190" cy="1325.6" r="2" fill="#B08A3E"/>
+<text x="180" y="728" text-anchor="middle" class="text-dim" transform="rotate(-90 180 728)">17.08 m (56' 0") overall length</text>
+
+<!-- North Arrow Block -->
+<g transform="translate(100, 180)">
+  <circle cx="0" cy="0" r="32" class="border-thin"/>
+  <polygon points="0,-35 9,-5 0,-10 -9,-5" style="fill: #B08A3E; stroke: #B08A3E; stroke-width: 1.0;"/>
+  <text x="0" y="-40" text-anchor="middle" class="text-room" style="font-size: 14px; font-weight: bold;">N</text>
+  <text x="0" y="45" text-anchor="middle" class="text-details" style="letter-spacing: 1px;">TRUE NORTH</text>
+</g>
+
+<!-- Scale Bar Block -->
+<g transform="translate(80, 1100)">
+  <rect x="0" y="0" width="70" height="8" fill="#B08A3E" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="70" y="0" width="70" height="8" fill="none" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="140" y="0" width="70" height="8" fill="#B08A3E" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="210" y="0" width="70" height="8" fill="none" stroke="#B08A3E" stroke-width="0.5"/>
+  <text x="0" y="24" class="text-details">0</text>
+  <text x="70" y="24" class="text-details">1.0m</text>
+  <text x="140" y="24" class="text-details">2.0m</text>
+  <text x="210" y="24" class="text-details">3.0m</text>
+  <text x="280" y="24" class="text-details">4.0m</text>
+  <text x="140" y="-10" text-anchor="middle" class="text-room" style="font-size: 10px;">SCALE 1:100 @ A3</text>
+</g>
+
+<!-- Title Block (Bottom-Right Border Box) -->
+<g transform="translate(1280, 930)">
+  <rect x="0" y="0" width="390" height="230" style="fill: rgba(16,41,31,0.85); stroke: #B08A3E; stroke-width: 1.5; backdrop-filter: blur(8px);"/>
+  <text x="195" y="32" text-anchor="middle" class="text-title" style="font-size: 16px;">RESERVA VERDE GOA</text>
+  <line x1="20" y1="44" x2="370" y2="44" stroke="#B08A3E" stroke-width="0.6"/>
+  
+  <text x="25" y="70" class="text-details" style="font-weight: bold; fill: #B08A3E;">PROJECT:</text>
+  <text x="130" y="70" class="text-details" style="font-weight: 500; fill: #FBF8F1;">Reserva Verde Goa (South Goa Forest Estate)</text>
+  
+  <text x="25" y="92" class="text-details" style="font-weight: bold; fill: #B08A3E;">DRAWING:</text>
+  <text x="130" y="92" class="text-details" style="font-weight: 500; fill: #FBF8F1;">2BHK Compact Forest Estate Floor Plan</text>
+  
+  <text x="25" y="114" class="text-details" style="font-weight: bold; fill: #B08A3E;">DRAWING TYPE:</text>
+  <text x="130" y="114" class="text-details" style="font-weight: 500; fill: #FBF8F1;">Conceptual 2D CAD Presentation Drawing</text>
+  
+  <text x="25" y="136" class="text-details" style="font-weight: bold; fill: #B08A3E;">INDICATIVE SCALE:</text>
+  <text x="130" y="136" class="text-details" style="font-weight: 500; fill: #FBF8F1;">1:100 (Conceptual - Not for Construction)</text>
+  
+  <text x="25" y="158" class="text-details" style="font-weight: bold; fill: #B08A3E;">REVISION / DATE:</text>
+  <text x="130" y="158" class="text-details" style="font-weight: 500; fill: #FBF8F1;">R0  /  May 30, 2026</text>
+  
+  <text x="25" y="180" class="text-details" style="font-weight: bold; fill: #B08A3E;">STATUS / REQ:</text>
+  <text x="130" y="180" class="text-details" style="font-weight: 500; fill: #FBF8F1;">Conceptual HNI Client Presentation Review</text>
+  
+  <rect x="20" y="196" width="350" height="24" style="fill: rgba(139,58,51,0.2); stroke: #8B3A33; stroke-width: 0.5;"/>
+  <text x="195" y="211" text-anchor="middle" class="text-details" style="fill: #e0908a; font-weight: bold; font-size: 7.2px; letter-spacing: 0.2px;">INDICATIVE PLAN ONLY — SUBJECT TO ARCHITECT AND SITE SURVEY</text>
+</g>
+
+<!-- Container Module Schedule (Top-Right) -->
+<g transform="translate(1280, 110)">
+  <rect x="0" y="0" width="390" height="340" style="fill: rgba(16,41,31,0.7); stroke: #B08A3E; stroke-width: 0.8;"/>
+  <text x="195" y="24" text-anchor="middle" class="text-room" style="font-size: 11px; fill: #B08A3E;">MODULAR MODULE SCHEDULE</text>
+  <line x1="20" y1="34" x2="370" y2="34" stroke="#B08A3E" stroke-width="0.5"/>
+  
+  <text x="25" y="52" class="text-details" style="font-weight: bold; fill: #B08A3E;">MODULE ID</text>
+  <text x="110" y="52" class="text-details" style="font-weight: bold; fill: #B08A3E;">DIMENSIONS</text>
+  <text x="220" y="52" class="text-details" style="font-weight: bold; fill: #B08A3E;">PROGRAMMATIC ALLOCATION</text>
+  <line x1="20" y1="58" x2="370" y2="58" stroke="rgba(176, 138, 62, 0.4)" stroke-width="0.4"/>
+  
+  <text x="25" y="76" class="text-details" style="font-weight: bold;">C-1</text>
+  <text x="110" y="76" class="text-details">40' x 8' HC</text>
+  <text x="220" y="76" class="text-details">Entrance Foyer + Living Pavilion</text>
+  <line x1="20" y1="84" x2="370" y2="84" stroke="rgba(176, 138, 62, 0.2)" stroke-width="0.2"/>
+  
+  <text x="25" y="102" class="text-details" style="font-weight: bold;">C-2</text>
+  <text x="110" y="102" class="text-details">40' x 8' HC</text>
+  <text x="220" y="102" class="text-details">Lounge &amp; Day Snug Pavilion</text>
+  <line x1="20" y1="110" x2="370" y2="110" stroke="rgba(176, 138, 62, 0.2)" stroke-width="0.2"/>
+  
+  <text x="25" y="128" class="text-details" style="font-weight: bold;">C-3</text>
+  <text x="110" y="128" class="text-details">40' x 8' HC</text>
+  <text x="220" y="128" class="text-details">Open Kitchen &amp; Family Dining</text>
+  <line x1="20" y1="136" x2="370" y2="136" stroke="rgba(176, 138, 62, 0.2)" stroke-width="0.2"/>
+  
+  <text x="25" y="154" class="text-details" style="font-weight: bold;">C-4</text>
+  <text x="110" y="154" class="text-details">20' x 8' HC</text>
+  <text x="220" y="154" class="text-details">Utility Center + Powder Toilet</text>
+  <line x1="20" y1="162" x2="370" y2="162" stroke="rgba(176, 138, 62, 0.2)" stroke-width="0.2"/>
+  
+  <text x="25" y="180" class="text-details" style="font-weight: bold;">C-5</text>
+  <text x="110" y="180" class="text-details">40' x 8' HC</text>
+  <text x="220" y="180" class="text-details">Master Bed Chamber &amp; Closet</text>
+  <line x1="20" y1="188" x2="370" y2="188" stroke="rgba(176, 138, 62, 0.2)" stroke-width="0.2"/>
+  
+  <text x="25" y="206" class="text-details" style="font-weight: bold;">C-6</text>
+  <text x="110" y="206" class="text-details">20' x 8' HC</text>
+  <text x="220" y="206" class="text-details">Master Bathroom Wetroom Suite</text>
+  <line x1="20" y1="214" x2="370" y2="214" stroke="rgba(176, 138, 62, 0.2)" stroke-width="0.2"/>
+  
+  <text x="25" y="232" class="text-details" style="font-weight: bold;">C-7</text>
+  <text x="110" y="232" class="text-details">40' x 8' HC</text>
+  <text x="220" y="232" class="text-details">Guest Bed Suite (Bedroom 2)</text>
+  <line x1="20" y1="240" x2="370" y2="240" stroke="rgba(176, 138, 62, 0.2)" stroke-width="0.2"/>
+  
+  <text x="25" y="258" class="text-details" style="font-weight: bold;">C-8</text>
+  <text x="110" y="258" class="text-details">20' x 8' HC</text>
+  <text x="220" y="258" class="text-details">Guest Ensuite Bathroom Suite</text>
+  <line x1="20" y1="266" x2="370" y2="266" stroke="rgba(176, 138, 62, 0.2)" stroke-width="0.2"/>
+  
+  <text x="25" y="284" class="text-details" style="font-weight: bold;">COURT</text>
+  <text x="110" y="284" class="text-details">Open Deck</text>
+  <text x="220" y="284" class="text-details">Central Biophilic Court (Open-to-Sky)</text>
+  <line x1="20" y1="294" x2="370" y2="294" stroke="#B08A3E" stroke-width="0.5"/>
+  
+  <text x="25" y="316" class="text-details" style="font-weight: bold; fill: #B08A3E;">TOTAL ENCLOSED</text>
+  <text x="220" y="316" class="text-details" style="font-weight: bold; fill: #FBF8F1;">2,220 sq.ft Net Interior Built Area</text>
+</g>
+
+<!-- Room Area Schedule Block -->
+<g transform="translate(1280, 470)">
+  <rect x="0" y="0" width="390" height="440" style="fill: rgba(16,41,31,0.7); stroke: #B08A3E; stroke-width: 0.8;"/>
+  <text x="195" y="24" text-anchor="middle" class="text-room" style="font-size: 11px; fill: #B08A3E;">CONCEPTUAL SPACE AREA REGISTER</text>
+  <line x1="20" y1="34" x2="370" y2="34" stroke="#B08A3E" stroke-width="0.5"/>
+  
+  <text x="25" y="56" class="text-details">1. Entrance Foyer (Glass link)</text>
+  <text x="365" y="56" text-anchor="end" class="text-details" style="font-weight: 600;">80 sq.ft</text>
+  
+  <text x="25" y="76" class="text-details">2. Living Pavilion (C-1 Container)</text>
+  <text x="365" y="76" text-anchor="end" class="text-details" style="font-weight: 600;">300 sq.ft</text>
+  
+  <text x="25" y="96" class="text-details">3. Lounge &amp; Day Snug (C-2 Container)</text>
+  <text x="365" y="96" text-anchor="end" class="text-details" style="font-weight: 600;">220 sq.ft</text>
+  
+  <text x="25" y="116" class="text-details">4. Open Kitchen &amp; Dining (C-3 Container)</text>
+  <text x="365" y="116" text-anchor="end" class="text-details" style="font-weight: 600;">360 sq.ft</text>
+  
+  <text x="25" y="136" class="text-details">5. Utility Hub (C-4 Part A Module)</text>
+  <text x="365" y="136" text-anchor="end" class="text-details" style="font-weight: 600;">80 sq.ft</text>
+  
+  <text x="25" y="156" class="text-details">6. Powder Room (C-4 Part B Module)</text>
+  <text x="365" y="156" text-anchor="end" class="text-details" style="font-weight: 600;">40 sq.ft</text>
+  
+  <text x="25" y="176" class="text-details">7. Master Bed Chamber (C-5 Container)</text>
+  <text x="365" y="176" text-anchor="end" class="text-details" style="font-weight: 600;">280 sq.ft</text>
+  
+  <text x="25" y="196" class="text-details">8. Master Bath Wetroom (C-6 Module)</text>
+  <text x="365" y="196" text-anchor="end" class="text-details" style="font-weight: 600;">160 sq.ft</text>
+  
+  <text x="25" y="216" class="text-details">9. Guest Bed Suite BR2 (C-7 Container)</text>
+  <text x="365" y="216" text-anchor="end" class="text-details" style="font-weight: 600;">280 sq.ft</text>
+  
+  <text x="25" y="236" class="text-details">10. Guest Ensuite Bath BR2 (C-8 Module)</text>
+  <text x="365" y="236" text-anchor="end" class="text-details" style="font-weight: 600;">160 sq.ft</text>
+  
+  <text x="25" y="256" class="text-details">11. Central Biophilic Court (Open Deck)</text>
+  <text x="365" y="256" text-anchor="end" class="text-details" style="font-weight: 600;">260 sq.ft</text>
+  
+  <line x1="20" y1="268" x2="370" y2="268" stroke="rgba(176, 138, 62, 0.4)" stroke-width="0.4"/>
+  
+  <text x="25" y="288" class="text-details" style="font-weight: bold; fill: #B08A3E;">TOTAL REGISTERED PLOT AREA FOOTPRINT</text>
+  <text x="365" y="288" text-anchor="end" class="text-details" style="font-weight: bold; fill: #FBF8F1;">2,220 sq.ft</text>
+  
+  <text x="25" y="308" class="text-details" style="fill: rgba(251, 248, 241, 0.55);">12. Composite Timber Verandah Decks</text>
+  <text x="365" y="308" text-anchor="end" class="text-details" style="font-weight: 500; fill: rgba(251, 248, 241, 0.55);">200 sq.ft</text>
+  
+  <text x="25" y="324" class="text-details" style="fill: rgba(251, 248, 241, 0.55);">13. Active Plunge Pool Area</text>
+  <text x="365" y="324" text-anchor="end" class="text-details" style="font-weight: 500; fill: rgba(251, 248, 241, 0.55);">80 sq.ft</text>
+  
+  <line x1="20" y1="334" x2="370" y2="334" stroke="#B08A3E" stroke-width="0.5"/>
+  
+  <text x="25" y="356" class="text-details" style="font-weight: bold; fill: #B08A3E;">ESTIMATE GROSS BUILT FOOTPRINT</text>
+  <text x="365" y="356" text-anchor="end" class="text-details" style="font-weight: bold; fill: #FBF8F1;">2,500 sq.ft</text>
+  
+  <text x="25" y="380" class="text-details" style="font-weight: bold; fill: #B08A3E;">1-ACRE TOTAL ALLOTMENT AREA</text>
+  <text x="365" y="380" text-anchor="end" class="text-details" style="font-weight: bold; fill: #FBF8F1;">43,560 sq.ft</text>
+  
+  <text x="25" y="402" class="text-details" style="fill: rgba(143,191,159,0.9); font-weight: bold;">AGROFORESTRY / BUFFER ZONING (63%)</text>
+  <text x="365" y="402" text-anchor="end" class="text-details" style="font-weight: bold; fill: #8FBFBF;">~ 27,440 sq.ft</text>
+</g>
+
+<!-- Drawing Covenants and Legal Notice -->
+<text x="60" y="1176" class="text-details" style="fill: rgba(176, 138, 62, 0.6); font-size: 7px; letter-spacing: 0.1px;">
+  LEGAL DISCLAIMER: THIS CONSTITUTES A CONCEPTUAL PRESENTATION FILE DESIGNED FOR MASTERPLAN DEMONSTRATION. ALL DESIGN SCHEMATICS, CONTAINER MODULE PROFILES, STILT pile CENTER MARKS, 1-ACRE BOUNDARY INDICATORS, SPATIAL PROFILES, AND DIMENSIONAL DATA ARE PURELY PROPOSED. THE FINAL BUILT DRAWINGS ARE CONTRACTUALLY SUBJECT TO ENGINEERING STAMP, TOPOGRAPHIC SLOPE AND SOIL BEARING CAPACITY CHECKS, Statutory approvals (RERA, TCP, Environmental buffers, forest clearance zones), and site surveys.
+</text>
+</svg>
+
+            </div>
+
+            <!-- Sidebar technical panel -->
+            <div class="sidebar">
+                <!-- Downloads -->
+                <div class="card">
+                    <h3>CAD Exchange Files</h3>
+                    <p style="font-size: 0.8rem; color: var(--color-warm-stone); margin-bottom: 1.5rem;">Download drawing assets for integration into AutoCAD, Twinmotion, Revit, or Lumion pipelines.</p>
+                    <a href="2bhk-compact-forest-estate-plan.dxf" download class="download-btn">Download AutoCAD DXF</a>
+                    <a href="2bhk-compact-forest-estate-plan.svg" download class="download-outline">Download Vector SVG</a>
+                </div>
+
+                <!-- Specs -->
+                <div class="card">
+                    <h3>Drawing Specifications</h3>
+                    <ul class="specs-list">
+                        <li><span>Model</span> <span>2BHK Compact Forest Estate</span></li>
+                        <li><span>Gross Built Footprint</span> <span>2,500 sq.ft</span></li>
+                        <li><span>Enclosed Built Area</span> <span>2,220 sq.ft</span></li>
+                        <li><span>Timber Verandah Decks</span> <span>200 sq.ft</span></li>
+                        <li><span>Optional Plunge Pool</span> <span>80 sq.ft</span></li>
+                        <li><span>CAD Precision Scale</span> <span>1:100 @ A3 Sheet</span></li>
+                        <li><span>Layers Included</span> <span>16 Standard Layers</span></li>
+                        <li><span>Drawing Revision</span> <span>R0 (Conceptual)</span></li>
+                    </ul>
+                </div>
+
+                <!-- Reference Renders -->
+                <div class="card">
+                    <h3>Reference Renders</h3>
+                    <p style="font-size: 0.8rem; color: var(--color-warm-stone); margin-bottom: 0.8rem;">Physical design match reference coordinates from approved 2BHK cinematic renders:</p>
+                    <div class="thumbs-grid">
+                        <div class="thumb-item" title="Exterior Arrival"><img src="../../../images/renders/2bhk/exterior-arrival.jpg" alt="Exterior Arrival"></div>
+                        <div class="thumb-item" title="Deck View"><img src="../../../images/renders/2bhk/deck-view.jpg" alt="Deck View"></div>
+                        <div class="thumb-item" title="Living Room"><img src="../../../images/renders/2bhk/living-room.jpg" alt="Living Room"></div>
+                        <div class="thumb-item" title="Bedroom View"><img src="../../../images/renders/2bhk/bedroom-view.jpg" alt="Bedroom View"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="disclaimer-block">
+            <strong>LEGAL TECHNICAL NOTICE:</strong> All drawings, DXF exchanges, room schedules, boundaries, plantation borders, and specifications contained herein are conceptual biophilic planning support documents. They do not constitute structural, civil, or architectural execution packages and are not fit for statutory TCP, RERA, environmental buffer or local panchayat construction submittals. Final specifications are subject to topographic slope survey, soil mechanical bore tests, structural engineer reviews, and final statutory authority approvals.
+        </div>
+    </div>
+</body>
+</html>

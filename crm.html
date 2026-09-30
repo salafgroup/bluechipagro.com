@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Reserva Varde Goa | Internal CRM</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0b140f;
+            --bg-card: #15241b;
+            --text-main: #F8F6F0;
+            --text-muted: #A9A59C;
+            --accent-gold: #C2A878;
+            --border-color: rgba(194, 168, 120, 0.15);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .brand {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .nav-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 0.8rem 1rem;
+            display: block;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .nav-list a:hover, .nav-list a.active {
+            color: var(--text-main);
+            background-color: rgba(194, 168, 120, 0.05);
+            border-left: 2px solid var(--accent-gold);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 2.5rem 4rem;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-weight: 600;
+        }
+
+        /* Cards Layout */
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(194, 168, 120, 0.4);
+        }
+
+        .kpi-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-value {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--text-main);
+        }
+
+        .kpi-value.gold {
+            color: var(--accent-gold);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255,255,255,0.1);
+            margin-top: 1rem;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--accent-gold);
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Table */
+        .table-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            margin-bottom: 4rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        td {
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid var(--text-muted);
+        }
+
+        .status-badge.active {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+        
+        .status-badge.success {
+            border-color: #4CAF50;
+            color: #4CAF50;
+        }
+
+        /* Legal Tracker */
+        .tracker-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .tracker-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            z-index: 1;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--bg-dark);
+            border: 2px solid var(--border-color);
+        }
+
+        .step.completed .step-dot {
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+        
+        .step.active .step-dot {
+            border-color: var(--accent-gold);
+        }
+
+        .step-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-align: center;
+            width: 100px;
+        }
+        
+        .step.completed .step-label {
+            color: var(--text-main);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); z-index: 1000; transition: transform 0.3s ease; }
+            .main-content { margin-left: 0; padding: 1.5rem; }
+            .kpi-grid { grid-template-columns: 1fr; }
+            .tracker-steps { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            .tracker-steps::before { width: 1px; height: 100%; top: 0; left: 9px; right: auto; }
+            .step { flex-direction: row; width: 100%; }
+            .step-label { text-align: left; width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">RVG CRM</div>
+        <ul class="nav-list">
+            <li><a href="#" class="active">Executive Dashboard</a></li>
+            <li><a href="#">Lead Pipeline</a></li>
+            <li><a href="#">Site Visits</a></li>
+            <li><a href="#">Unit Inventory</a></li>
+            <li id="reservaVerdeCostingNav" style="display: none;"><a href="/crm/reserva-verde/costing/">Reserva Verde Costing</a></li>
+            <li><a href="#">Legal & Compliance</a></li>
+            <li><a href="#">Finance Tracking</a></li>
+            <li><a href="#">Comms Templates</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <p>Bluechip Global Agro</p>
+            <p style="margin-top: 0.5rem; opacity: 0.5;">v2.0 Private Beta</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Header -->
+        <header class="header">
+            <div>
+                <p class="text-small" style="color: var(--text-muted); margin-bottom: 0.5rem;">Reserva Varde Goa</p>
+                <h1>Command Center</h1>
+            </div>
+            <div class="user-profile">
+                <span class="text-small" style="color: var(--text-muted);">Welcome, Director</span>
+                <div class="avatar">D</div>
+            </div>
+        </header>
+
+        <!-- KPI Cards -->
+        <div class="section-title">Executive Overview</div>
+        <div class="kpi-grid">
+            <div class="card">
+                <div class="kpi-label">Total Leads</div>
+                <div class="kpi-value" id="kpiTotalLeads">142</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Founder Circle Leads</div>
+                <div class="kpi-value gold">68</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">HNI / NRI Split</div>
+                <div class="kpi-value" style="font-size: 1.8rem;">65% / 35%</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Site Visits Scheduled</div>
+                <div class="kpi-value">12</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Proposals Sent</div>
+                <div class="kpi-value">34</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Booking Stage</div>
+                <div class="kpi-value">8</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Pipeline Value (est)</div>
+                <div class="kpi-value">₹240 Cr</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Conversion Rate</div>
+                <div class="kpi-value">11%</div>
+            </div>
+        </div>
+
+        <!-- Two Column Section -->
+        <div class="grid-2">
+            <!-- Founder Circle Progress -->
+            <div>
+                <div class="section-title">Founder Circle Allocation</div>
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                        <span class="kpi-value gold">12<span style="font-size: 1rem; color: var(--text-muted); font-family: var(--font-sans);"> / 50</span></span>
+                        <span class="kpi-label">Allocated</span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="founderProgress"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem;">24% of Founder Circle inventory booked. 8 contracts pending signature.</p>
+                </div>
+            </div>
+
+            <!-- Unit Inventory Summary -->
+            <div>
+                <div class="section-title">Unit Inventory (1,000 Acres)</div>
+                <div class="card" style="display: flex; gap: 2rem;">
+                    <div style="flex: 1;">
+                        <div class="kpi-label">Available</div>
+                        <div class="kpi-value">850</div>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="kpi-label">On Hold</div>
+                        <div class="kpi-value">14</div>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="kpi-label">Reserved</div>
+                        <div class="kpi-value gold">18</div>
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="kpi-label">Booked</div>
+                        <div class="kpi-value">12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lead Pipeline Table -->
+        <div class="section-title">Active Lead Pipeline</div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Prospect Name</th>
+                        <th>Type</th>
+                        <th>Location</th>
+                        <th>Interest</th>
+                        <th>Stage</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="leadsTableBody">
+                    <tr>
+                        <td>Rajeev S.</td>
+                        <td>HNI (Individual)</td>
+                        <td>Mumbai</td>
+                        <td>Founder Circle</td>
+                        <td><span class="status-badge active">Proposal Sent</span></td>
+                        <td><a href="#" style="color: var(--accent-gold); text-decoration: none; font-size: 0.8rem;">View Profile</a></td>
+                    </tr>
+                    <tr>
+                        <td>Priya & Anil M.</td>
+                        <td>NRI (Family Office)</td>
+                        <td>Dubai</td>
+                        <td>Wellness Villa</td>
+                        <td><span class="status-badge">Site Visit Scheduled</span></td>
+                        <td><a href="#" style="color: var(--accent-gold); text-decoration: none; font-size: 0.8rem;">View Profile</a></td>
+                    </tr>
+                    <tr>
+                        <td>Vikram C.</td>
+                        <td>Corporate</td>
+                        <td>Bengaluru</td>
+                        <td>General Inquiry</td>
+                        <td><span class="status-badge">Lead Qualification</span></td>
+                        <td><a href="#" style="color: var(--accent-gold); text-decoration: none; font-size: 0.8rem;">View Profile</a></td>
+                    </tr>
+                    <tr>
+                        <td>Dr. Anita K.</td>
+                        <td>HNI (Individual)</td>
+                        <td>Delhi</td>
+                        <td>Founder Circle</td>
+                        <td><span class="status-badge success">Booking Confirmed</span></td>
+                        <td><a href="#" style="color: var(--accent-gold); text-decoration: none; font-size: 0.8rem;">View Profile</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Legal Status Tracker -->
+        <div class="section-title">Legal & Compliance Status</div>
+        <div class="card" style="margin-bottom: 4rem;">
+            <div class="tracker-steps">
+                <div class="step completed">
+                    <div class="step-dot"></div>
+                    <div class="step-label">Title<br>Verification</div>
+                </div>
+                <div class="step completed">
+                    <div class="step-dot"></div>
+                    <div class="step-label">Form I & XIV<br>Update</div>
+                </div>
+                <div class="step active">
+                    <div class="step-dot"></div>
+                    <div class="step-label">Zoning<br>Clearance</div>
+                </div>
+                <div class="step">
+                    <div class="step-dot"></div>
+                    <div class="step-label">TCP<br>Approval</div>
+                </div>
+                <div class="step">
+                    <div class="step-dot"></div>
+                    <div class="step-label">Land<br>Conversion</div>
+                </div>
+                <div class="step">
+                    <div class="step-dot"></div>
+                    <div class="step-label">Forest / ESZ<br>NOC</div>
+                </div>
+                <div class="step">
+                    <div class="step-dot"></div>
+                    <div class="step-label">Goa RERA<br>Registration</div>
+                </div>
+                <div class="step">
+                    <div class="step-dot"></div>
+                    <div class="step-label">Final<br>Subdivision</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Land Legal Due Diligence Checklist Section -->
+        <div class="section-title">Land Legal Due Diligence Checklist</div>
+        <div class="card" style="margin-bottom: 4rem; padding: 2rem; background-color: var(--bg-card); border: 1px solid var(--border-color);">
+            <style>
+                .priority-badge {
+                    display: inline-block;
+                    padding: 0.2rem 0.5rem;
+                    border-radius: 4px;
+                    font-size: 0.65rem;
+                    font-weight: 600;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    margin-top: 0.2rem;
+                }
+                .priority-badge.high {
+                    background: rgba(220, 53, 69, 0.15);
+                    color: #ff4d5a;
+                    border: 1px solid rgba(220, 53, 69, 0.3);
+                }
+                .priority-badge.medium {
+                    background: rgba(194, 168, 120, 0.15);
+                    color: var(--accent-gold);
+                    border: 1px solid rgba(194, 168, 120, 0.3);
+                }
+                .priority-badge.low {
+                    background: rgba(255, 255, 255, 0.05);
+                    color: var(--text-muted);
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                }
+                
+                .checklist-select, .checklist-input, .checklist-date {
+                    background: rgba(0, 0, 0, 0.3) !important;
+                    border: 1px solid var(--border-color) !important;
+                    color: var(--text-main) !important;
+                    padding: 0.4rem 0.6rem !important;
+                    border-radius: 4px !important;
+                    font-size: 0.8rem !important;
+                    outline: none;
+                    transition: var(--transition);
+                    width: 100%;
+                }
+                .checklist-select:focus, .checklist-input:focus, .checklist-date:focus {
+                    border-color: var(--accent-gold) !important;
+                    background: rgba(0, 0, 0, 0.5) !important;
+                }
+                
+                .checklist-checkbox {
+                    width: 18px;
+                    height: 18px;
+                    cursor: pointer;
+                    accent-color: var(--accent-gold);
+                }
+                
+                .upload-btn {
+                    background: rgba(194, 168, 120, 0.1);
+                    border: 1px solid rgba(194, 168, 120, 0.3);
+                    color: var(--accent-gold);
+                    padding: 0.4rem 0.8rem;
+                    border-radius: 4px;
+                    font-size: 0.75rem;
+                    cursor: pointer;
+                    transition: var(--transition);
+                    width: 100%;
+                }
+                .upload-btn:hover {
+                    background: var(--accent-gold);
+                    color: var(--bg-dark);
+                    border-color: var(--accent-gold);
+                }
+                @media (max-width: 992px) {
+                    .check-summary-grid {
+                        grid-template-columns: repeat(4, 1fr) !important;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .check-summary-grid {
+                        grid-template-columns: repeat(2, 1fr) !important;
+                    }
+                }
+            </style>
+
+            <!-- 1. Progress Summary Dashboard KPIs -->
+            <div class="check-summary-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Total Items</div>
+                    <div id="checkTotal" style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--text-main); font-weight: 500;">23</div>
+                </div>
+                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Completed</div>
+                    <div id="checkCompleted" style="font-family: var(--font-serif); font-size: 1.6rem; color: #4CAF50; font-weight: 500;">0</div>
+                </div>
+                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Pending</div>
+                    <div id="checkPending" style="font-family: var(--font-serif); font-size: 1.6rem; color: #ff4d5a; font-weight: 500;">21</div>
+                </div>
+                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Applied</div>
+                    <div id="checkApplied" style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--accent-gold); font-weight: 500;">2</div>
+                </div>
+                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Issues Found</div>
+                    <div id="checkIssues" style="font-family: var(--font-serif); font-size: 1.6rem; color: #ff9800; font-weight: 500;">0</div>
+                </div>
+                <div style="text-align: center; border-right: 1px solid var(--border-color); padding: 0 0.5rem;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Legal Opinion</div>
+                    <div id="checkLegalOpinion" style="font-size: 0.85rem; color: var(--text-main); font-weight: 600; margin-top: 0.4rem; text-transform: uppercase;">Pending</div>
+                </div>
+                <div style="text-align: center; padding: 0 0.5rem;">
+                    <div style="font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 0.3rem;">Valipo Meeting</div>
+                    <div id="checkValipoMeeting" style="font-size: 0.85rem; color: var(--text-main); font-weight: 600; margin-top: 0.4rem; text-transform: uppercase;">Pending</div>
+                </div>
+            </div>
+
+            <!-- 2. Controls and Search -->
+            <div style="display: flex; gap: 1.5rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px;">
+                    <input type="text" id="checkSearch" placeholder="Search documents, assigned staff, remarks..." style="width: 100%; padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-main); font-size: 0.85rem; outline: none; transition: var(--transition);" onfocus="this.style.borderColor='var(--accent-gold)'" onblur="this.style.borderColor='var(--border-color)'">
+                </div>
+                <div>
+                    <select id="checkFilterPriority" style="padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-main); font-size: 0.85rem; outline: none;">
+                        <option value="All">All Priorities</option>
+                        <option value="High">High Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="Low">Low Priority</option>
+                    </select>
+                </div>
+                <div>
+                    <select id="checkFilterStatus" style="padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-main); font-size: 0.85rem; outline: none;">
+                        <option value="All">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Received">Received</option>
+                        <option value="Under Review">Under Review</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Not Required">Not Required</option>
+                        <option value="Issue Found">Issue Found</option>
+                    </select>
+                </div>
+                <div>
+                    <button id="resetChecklistBtn" style="padding: 0.6rem 1.2rem; background: transparent; border: 1px solid rgba(194, 168, 120, 0.4); color: var(--accent-gold); border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: var(--transition);" onmouseover="this.style.background='rgba(194, 168, 120, 0.05)'" onmouseout="this.style.background='transparent'">Reset Checklist</button>
+                </div>
+            </div>
+
+            <!-- 3. Table Container -->
+            <div class="table-container" style="margin-bottom: 0; max-height: 600px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: 4px;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead style="position: sticky; top: 0; background: var(--bg-card); z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                        <tr>
+                            <th style="width: 40px; text-align: center;">Verify</th>
+                            <th style="width: 25%;">Document Name</th>
+                            <th style="width: 15%;">Assigned To</th>
+                            <th style="width: 15%;">Status</th>
+                            <th style="width: 12%;">Due Date</th>
+                            <th style="width: 20%;">Remarks</th>
+                            <th style="width: 13%; text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="checklistTableBody">
+                        <!-- dynamic list items will be injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Hidden File Input for mock upload -->
+            <input type="file" id="checklistFileInput" style="display: none;">
+        </div>
+
+        <!-- Finance Tracker & Comms Grid -->
+        <div class="grid-2">
+            <div>
+                <div class="section-title">Finance Tracker</div>
+                <div class="table-container" style="margin-bottom: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th style="text-align: right;">Amount (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--text-muted);">Total Deal Value (Booked)</td>
+                                <td style="text-align: right; font-family: var(--font-serif); font-size: 1.2rem;">64,00,00,000</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--text-muted);">Amount Received</td>
+                                <td style="text-align: right; font-family: var(--font-serif); font-size: 1.2rem; color: #4CAF50;">12,50,00,000</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--text-muted);">Amount Pending</td>
+                                <td style="text-align: right; font-family: var(--font-serif); font-size: 1.2rem;">51,50,00,000</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--text-muted);">Next Tranche Due</td>
+                                <td style="text-align: right; font-family: var(--font-serif); font-size: 1.2rem; color: var(--accent-gold);">15 Oct 2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-title">Communication Templates</div>
+                <div class="card" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <a href="#" style="display: block; padding: 1rem; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; display: flex; justify-content: space-between;">
+                        <span>Founder Circle Invitation</span>
+                        <span style="color: var(--accent-gold);">Copy &rarr;</span>
+                    </a>
+                    <a href="#" style="display: block; padding: 1rem; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; display: flex; justify-content: space-between;">
+                        <span>Site Survey Briefing (NRI)</span>
+                        <span style="color: var(--accent-gold);">Copy &rarr;</span>
+                    </a>
+                    <a href="#" style="display: block; padding: 1rem; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; display: flex; justify-content: space-between;">
+                        <span>Legal Due Diligence Pack</span>
+                        <span style="color: var(--accent-gold);">Copy &rarr;</span>
+                    </a>
+                    <a href="#" style="display: block; padding: 1rem; border: 1px solid var(--border-color); color: var(--text-main); text-decoration: none; display: flex; justify-content: space-between;">
+                        <span>Payment Milestone Reminder</span>
+                        <span style="color: var(--accent-gold);">Copy &rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- CRM Lead Details Modal -->
+    <div id="leadModal" class="crm-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 10000; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: opacity 0.3s ease;">
+        <div style="background: var(--bg-card); border: 1px solid var(--accent-gold); padding: 2.5rem; width: 100%; max-width: 650px; max-height: 90vh; overflow-y: auto; position: relative; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+            <button id="closeLeadModal" style="position: absolute; right: 1.5rem; top: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.8rem; cursor: pointer; transition: var(--transition);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">&times;</button>
+            <h2 style="font-family: var(--font-serif); color: var(--accent-gold); margin-bottom: 1.5rem; font-size: 2rem; font-weight: 400; border-bottom: 1px solid var(--border-color); padding-bottom: 0.8rem;">Prospect Dossier</h2>
+            <div id="modalLeadDetails" style="display: flex; flex-direction: column; gap: 1.2rem; font-size: 0.9rem; line-height: 1.6;">
+                <!-- dynamic details will go here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Helper to prevent XSS
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Simulated CRM User Role checks for Reserva Verde Costing Page visibility
+            const allowedRoles = ["admin", "finance", "management", "founder", "sales_head"];
+            if (!sessionStorage.getItem("rvg_user_role")) {
+                sessionStorage.setItem("rvg_user_role", "management");
+            }
+            const currentRole = sessionStorage.getItem("rvg_user_role");
+            const costingNav = document.getElementById("reservaVerdeCostingNav");
+            if (costingNav && allowedRoles.includes(currentRole)) {
+                costingNav.style.display = "block";
+            }
+
+            // Animate progress bar on load
+            setTimeout(() => {
+                const progBar = document.getElementById('founderProgress');
+                if (progBar) progBar.style.width = '24%';
+            }, 500);
+
+            // Load lead data from localStorage dynamically
+            const leadsTableBody = document.getElementById("leadsTableBody");
+            const kpiTotalLeads = document.getElementById("kpiTotalLeads");
+            let localLeads = [];
+            
+            try {
+                localLeads = JSON.parse(localStorage.getItem("rvg_leads") || "[]");
+            } catch (e) {
+                console.error("Failed to parse local leads", e);
+            }
+
+            if (kpiTotalLeads && localLeads.length > 0) {
+                kpiTotalLeads.innerText = 142 + localLeads.length;
+            }
+
+            if (leadsTableBody && localLeads.length > 0) {
+                localLeads.forEach(lead => {
+                    const row = document.createElement("tr");
+                    row.style.background = "rgba(194, 168, 120, 0.03)";
+                    
+                    const isPremium = lead.buyer_type.includes("HNI") || lead.buyer_type.includes("NRI");
+                    const badgeClass = isPremium ? "status-badge active" : "status-badge";
+                    
+                    row.innerHTML = `
+                        <td style="font-weight: 500; color: var(--text-main);">${escapeHTML(lead.full_name)}</td>
+                        <td>${escapeHTML(lead.buyer_type)}</td>
+                        <td>${escapeHTML(lead.city_country)}</td>
+                        <td>${escapeHTML(lead.interested_estate_model)}</td>
+                        <td><span class="${badgeClass}">Inquiry Logged</span></td>
+                        <td><button class="view-details-btn" style="background: none; border: none; color: var(--accent-gold); text-decoration: none; font-size: 0.8rem; cursor: pointer;" data-lead='${escapeHTML(JSON.stringify(lead))}'>View Profile</button></td>
+                    `;
+                    leadsTableBody.insertBefore(row, leadsTableBody.firstChild);
+                });
+            }
+
+
+            // ============================================================
+            // LAND LEGAL DUE DILIGENCE CHECKLIST LOGIC
+            // ============================================================
+            const defaultLegalChecklist = [
+              { id: 1, name: "Panjim Forest Office NOC & Enquiry", priority: "High", assignedTo: "Field Team / Forest Office Follow-up", status: "Pending", dueDate: "2026-06-15", remarks: "Confirm forest status, NOC requirement, and applicable restrictions.", lastUpdated: "2026-05-27" },
+              { id: 2, name: "Village Map — Sanguem", priority: "Medium", assignedTo: "Admin / Field Team", status: "Applied", dueDate: "2026-06-01", remarks: "Obtain official village map.", lastUpdated: "2026-05-27" },
+              { id: 3, name: "Sketch Copy", priority: "Low", assignedTo: "Admin / Survey Team", status: "Pending", dueDate: "2026-06-10", remarks: "Upload latest sketch copy.", lastUpdated: "2026-05-27" },
+              { id: 4, name: "Form 3 — Latest from Margao", priority: "Medium", assignedTo: "Admin", status: "Pending", dueDate: "2026-06-05", remarks: "Collect latest certified copy.", lastUpdated: "2026-05-27" },
+              { id: 5, name: "Form 14", priority: "Medium", assignedTo: "Admin", status: "Pending", dueDate: "2026-06-05", remarks: "Required for land record verification.", lastUpdated: "2026-05-27" },
+              { id: 6, name: "Matriz Colour Copy", priority: "Low", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-10", remarks: "Upload colour copy.", lastUpdated: "2026-05-27" },
+              { id: 7, name: "Matriz Certified Copy", priority: "Medium", assignedTo: "Sanya", status: "Applied", dueDate: "2026-06-20", remarks: "Track certified copy application.", lastUpdated: "2026-05-27" },
+              { id: 8, name: "Matriz Translated Copy", priority: "Low", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-25", remarks: "Required if Portuguese/old record needs translation.", lastUpdated: "2026-05-27" },
+              { id: 9, name: "Sale Deed Colour Copy", priority: "Low", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-10", remarks: "Upload colour copy.", lastUpdated: "2026-05-27" },
+              { id: 10, name: "Sale Deed Certified Copy", priority: "High", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-15", remarks: "Required for legal opinion and title chain verification.", lastUpdated: "2026-05-27" },
+              { id: 11, name: "EC from Grant of Matriz to Till Date", priority: "High", assignedTo: "Sanya", status: "Pending", dueDate: "2026-06-20", remarks: "Encumbrance certificate from original grant period to current date.", lastUpdated: "2026-05-27" },
+              { id: 12, name: "GPA from Bapu to Nisar Ahmed", priority: "High", assignedTo: "Sanya / Legal Team", status: "Pending", dueDate: "2026-06-12", remarks: "Verify execution, validity, and linkage.", lastUpdated: "2026-05-27" },
+              { id: 13, name: "Original GPA from Nisar Ahmed to Shaik", priority: "High", assignedTo: "Sanya / Legal Team", status: "Pending", dueDate: "2026-06-12", remarks: "Original to be checked by legal counsel.", lastUpdated: "2026-05-27" },
+              { id: 14, name: "Tax Paid Till Date", priority: "Medium", assignedTo: "Admin", status: "Pending", dueDate: "2026-06-08", remarks: "Collect latest tax paid receipts.", lastUpdated: "2026-05-27" },
+              { id: 15, name: "Gazetted Copy of Government Value", priority: "Medium", assignedTo: "Admin / Legal Team", status: "Pending", dueDate: "2026-06-18", remarks: "Required for valuation and compliance reference.", lastUpdated: "2026-05-27" },
+              { id: 16, name: "Gazetted Copy of Forest", priority: "Medium", assignedTo: "Admin / Forest Office Follow-up", status: "Pending", dueDate: "2026-06-18", remarks: "Verify forest notification status.", lastUpdated: "2026-05-27" },
+              { id: 17, name: "Successor Certificate / Family Tree", priority: "High", assignedTo: "Legal Team", status: "Pending", dueDate: "2026-06-22", remarks: "Required to confirm legal heirs.", lastUpdated: "2026-05-27" },
+              { id: 18, name: "Aadhaar & PAN of All Legal Heirs", priority: "Low", assignedTo: "Admin / Legal Team", status: "Pending", dueDate: "2026-06-25", remarks: "Collect ID proofs of all legal heirs.", lastUpdated: "2026-05-27" },
+              { id: 19, name: "Confirmation Deed with Valipo / Title Owner Confirmation", priority: "High", assignedTo: "Legal Team / Valipo Family Follow-up", status: "Pending", dueDate: "2026-06-30", remarks: "Confirm whether Valipo family are title owners or confirming parties.", lastUpdated: "2026-05-27" },
+              { id: 20, name: "Family Tree of Valipo", priority: "Low", assignedTo: "Valipo Family Follow-up / Legal Team", status: "Pending", dueDate: "2026-06-28", remarks: "Required before confirmation deed.", lastUpdated: "2026-05-27" },
+              { id: 21, name: "Aadhaar & PAN of Valipo Family", priority: "Low", assignedTo: "Valipo Family Follow-up", status: "Pending", dueDate: "2026-06-28", remarks: "Required for deed drafting and verification.", lastUpdated: "2026-05-27" },
+              { id: 22, name: "Legal Opinion", priority: "High", assignedTo: "Tushar", status: "Pending", dueDate: "2026-07-05", remarks: "Legal opinion to be prepared after core documents are received and reviewed.", lastUpdated: "2026-05-27" },
+              { id: 23, name: "Meeting / Enquiry with Valipo Family", priority: "Low", assignedTo: "Valipo Family Follow-up", status: "Pending", dueDate: "2026-06-10", remarks: "Track meeting date, discussion notes, title confirmation, pending documents, and next follow-up.", lastUpdated: "2026-05-27" }
+            ];
+
+            let legalChecklist = [];
+            try {
+                legalChecklist = JSON.parse(localStorage.getItem("rvg_legal_checklist"));
+            } catch(e) {}
+            
+            if (!legalChecklist || legalChecklist.length === 0) {
+                legalChecklist = JSON.parse(JSON.stringify(defaultLegalChecklist));
+                localStorage.setItem("rvg_legal_checklist", JSON.stringify(legalChecklist));
+            }
+
+            const checklistTableBody = document.getElementById("checklistTableBody");
+            const searchInput = document.getElementById("checkSearch");
+            const filterPriority = document.getElementById("checkFilterPriority");
+            const filterStatus = document.getElementById("checkFilterStatus");
+            const resetBtn = document.getElementById("resetChecklistBtn");
+            const fileInput = document.getElementById("checklistFileInput");
+            let activeUploadId = null;
+
+            function updateSummary() {
+                const total = legalChecklist.length;
+                const completed = legalChecklist.filter(item => item.status === "Verified" || item.status === "Received").length;
+                const pending = legalChecklist.filter(item => ["Pending", "Under Review", "Issue Found"].includes(item.status)).length;
+                const applied = legalChecklist.filter(item => item.status === "Applied").length;
+                const issues = legalChecklist.filter(item => item.status === "Issue Found").length;
+                
+                const legalOpinion = legalChecklist.find(item => item.id === 22);
+                const valipoMeeting = legalChecklist.find(item => item.id === 23);
+
+                document.getElementById("checkTotal").innerText = total;
+                document.getElementById("checkCompleted").innerText = completed;
+                document.getElementById("checkPending").innerText = pending;
+                document.getElementById("checkApplied").innerText = applied;
+                document.getElementById("checkIssues").innerText = issues;
+                
+                const legalOpinionEl = document.getElementById("checkLegalOpinion");
+                if (legalOpinionEl) {
+                    legalOpinionEl.innerText = legalOpinion.status;
+                    legalOpinionEl.style.color = legalOpinion.status === "Verified" ? "#4CAF50" : (legalOpinion.status === "Issue Found" ? "#ff9800" : "var(--text-main)");
+                }
+
+                const valipoMeetingEl = document.getElementById("checkValipoMeeting");
+                if (valipoMeetingEl) {
+                    valipoMeetingEl.innerText = valipoMeeting.status;
+                    valipoMeetingEl.style.color = valipoMeeting.status === "Verified" ? "#4CAF50" : (valipoMeeting.status === "Issue Found" ? "#ff9800" : "var(--text-main)");
+                }
+            }
+
+            function saveChecklist() {
+                localStorage.setItem("rvg_legal_checklist", JSON.stringify(legalChecklist));
+                updateSummary();
+            }
+
+            function renderChecklist() {
+                if (!checklistTableBody) return;
+                
+                const query = searchInput.value.toLowerCase();
+                const priorityVal = filterPriority.value;
+                const statusVal = filterStatus.value;
+
+                checklistTableBody.innerHTML = "";
+
+                legalChecklist.forEach(item => {
+                    // Filter matching
+                    const matchesSearch = item.name.toLowerCase().includes(query) || 
+                                          item.assignedTo.toLowerCase().includes(query) || 
+                                          item.remarks.toLowerCase().includes(query);
+                    const matchesPriority = priorityVal === "All" || item.priority === priorityVal;
+                    const matchesStatus = statusVal === "All" || item.status === statusVal;
+
+                    if (!matchesSearch || !matchesPriority || !matchesStatus) return;
+
+                    const row = document.createElement("tr");
+                    row.style.borderBottom = "1px solid var(--border-color)";
+                    
+                    const isChecked = item.status === "Verified" ? "checked" : "";
+                    const priorityClass = `priority-badge ${item.priority.toLowerCase()}`;
+                    const formattedDate = item.lastUpdated ? new Date(item.lastUpdated).toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"}) : "27 May 2026";
+
+                    row.innerHTML = `
+                        <td style="text-align: center; vertical-align: middle;">
+                            <input type="checkbox" class="checklist-checkbox" data-id="${item.id}" ${isChecked}>
+                        </td>
+                        <td>
+                            <div style="font-weight: 500; color: var(--text-main);">${escapeHTML(item.name)}</div>
+                            <span class="${priorityClass}">${item.priority}</span>
+                        </td>
+                        <td>
+                            <select class="checklist-select select-assigned" data-id="${item.id}">
+                                <option value="Sanya" ${item.assignedTo === "Sanya" ? "selected" : ""}>Sanya</option>
+                                <option value="Tushar" ${item.assignedTo === "Tushar" ? "selected" : ""}>Tushar</option>
+                                <option value="Admin" ${item.assignedTo === "Admin" ? "selected" : ""}>Admin</option>
+                                <option value="Legal Team" ${item.assignedTo === "Legal Team" ? "selected" : ""}>Legal Team</option>
+                                <option value="Field Team" ${item.assignedTo === "Field Team" ? "selected" : ""}>Field Team</option>
+                                <option value="Survey Team" ${item.assignedTo === "Survey Team" ? "selected" : ""}>Survey Team</option>
+                                <option value="Field Team / Forest Office Follow-up" ${item.assignedTo === "Field Team / Forest Office Follow-up" || item.assignedTo.includes("Forest") ? "selected" : ""}>Forest Office Follow-up</option>
+                                <option value="Admin / Field Team" ${item.assignedTo === "Admin / Field Team" ? "selected" : ""}>Admin / Field Team</option>
+                                <option value="Admin / Survey Team" ${item.assignedTo === "Admin / Survey Team" ? "selected" : ""}>Admin / Survey Team</option>
+                                <option value="Admin / Legal Team" ${item.assignedTo === "Admin / Legal Team" ? "selected" : ""}>Admin / Legal Team</option>
+                                <option value="Admin / Forest Office Follow-up" ${item.assignedTo === "Admin / Forest Office Follow-up" ? "selected" : ""}>Admin / Forest Follow-up</option>
+                                <option value="Sanya / Legal Team" ${item.assignedTo === "Sanya / Legal Team" ? "selected" : ""}>Sanya / Legal Team</option>
+                                <option value="Legal Team / Valipo Family Follow-up" ${item.assignedTo === "Legal Team / Valipo Family Follow-up" || item.assignedTo.includes("Valipo") ? "selected" : ""}>Valipo Family Follow-up</option>
+                                <option value="Valipo Family Follow-up" ${item.assignedTo === "Valipo Family Follow-up" ? "selected" : ""}>Valipo Family Follow-up</option>
+                                <option value="Valipo Family Follow-up / Legal Team" ${item.assignedTo === "Valipo Family Follow-up / Legal Team" ? "selected" : ""}>Valipo / Legal Team</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select class="checklist-select select-status" data-id="${item.id}" style="font-weight: 500; color: ${item.status === 'Verified' ? '#4CAF50' : (item.status === 'Issue Found' ? '#ff9800' : 'var(--text-main)')} !important;">
+                                <option value="Pending" ${item.status === "Pending" ? "selected" : ""}>Pending</option>
+                                <option value="Applied" ${item.status === "Applied" ? "selected" : ""}>Applied</option>
+                                <option value="Received" ${item.status === "Received" ? "selected" : ""}>Received</option>
+                                <option value="Under Review" ${item.status === "Under Review" ? "selected" : ""}>Under Review</option>
+                                <option value="Verified" ${item.status === "Verified" ? "selected" : ""}>Verified</option>
+                                <option value="Not Required" ${item.status === "Not Required" ? "selected" : ""}>Not Required</option>
+                                <option value="Issue Found" ${item.status === "Issue Found" ? "selected" : ""}>Issue Found</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="date" class="checklist-date input-due" data-id="${item.id}" value="${item.dueDate}">
+                        </td>
+                        <td>
+                            <input type="text" class="checklist-input input-remarks" data-id="${item.id}" value="${escapeHTML(item.remarks)}" style="font-size: 0.8rem;">
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;">
+                            <button class="upload-btn start-upload" data-id="${item.id}">Upload</button>
+                            <div style="font-size: 0.65rem; color: var(--text-muted); margin-top: 0.3rem;">Updated: ${formattedDate}</div>
+                        </td>
+                    `;
+                    checklistTableBody.appendChild(row);
+                });
+            }
+
+            // Event Listeners for inline changes
+            if (checklistTableBody) {
+                checklistTableBody.addEventListener("change", function(e) {
+                    const target = e.target;
+                    const id = parseInt(target.getAttribute("data-id"));
+                    if (!id) return;
+
+                    const item = legalChecklist.find(x => x.id === id);
+                    if (!item) return;
+
+                    item.lastUpdated = new Date().toISOString().split("T")[0];
+
+                    if (target.classList.contains("checklist-checkbox")) {
+                        item.status = target.checked ? "Verified" : "Pending";
+                    } else if (target.classList.contains("select-assigned")) {
+                        item.assignedTo = target.value;
+                    } else if (target.classList.contains("select-status")) {
+                        item.status = target.value;
+                    } else if (target.classList.contains("input-due")) {
+                        item.dueDate = target.value;
+                    }
+
+                    saveChecklist();
+                    renderChecklist();
+                });
+
+                checklistTableBody.addEventListener("input", function(e) {
+                    const target = e.target;
+                    if (target.classList.contains("input-remarks")) {
+                        const id = parseInt(target.getAttribute("data-id"));
+                        const item = legalChecklist.find(x => x.id === id);
+                        if (item) {
+                            item.remarks = target.value;
+                            item.lastUpdated = new Date().toISOString().split("T")[0];
+                            localStorage.setItem("rvg_legal_checklist", JSON.stringify(legalChecklist));
+                        }
+                    }
+                });
+
+                checklistTableBody.addEventListener("click", function(e) {
+                    const btn = e.target.closest(".start-upload");
+                    if (btn) {
+                        activeUploadId = parseInt(btn.getAttribute("data-id"));
+                        if (fileInput) fileInput.click();
+                    }
+                });
+            }
+
+            // File Upload Simulator
+            if (fileInput) {
+                fileInput.addEventListener("change", function() {
+                    if (fileInput.files.length > 0 && activeUploadId) {
+                        const file = fileInput.files[0];
+                        const item = legalChecklist.find(x => x.id === activeUploadId);
+                        if (item) {
+                            item.status = "Received";
+                            item.remarks = `[Uploaded: ${file.name}] ` + item.remarks;
+                            item.lastUpdated = new Date().toISOString().split("T")[0];
+                            saveChecklist();
+                            renderChecklist();
+                            if (typeof showToast !== "undefined") {
+                                showToast(`File "${file.name}" uploaded successfully!`, "success");
+                            }
+                        }
+                        fileInput.value = ""; // clear selector
+                        activeUploadId = null;
+                    }
+                });
+            }
+
+            // Filters
+            if (searchInput) searchInput.addEventListener("input", renderChecklist);
+            if (filterPriority) filterPriority.addEventListener("change", renderChecklist);
+            if (filterStatus) filterStatus.addEventListener("change", renderChecklist);
+
+            // Reset
+            if (resetBtn) {
+                resetBtn.addEventListener("click", () => {
+                    if (confirm("Are you sure you want to reset all document statuses and remarks to defaults?")) {
+                        legalChecklist = JSON.parse(JSON.stringify(defaultLegalChecklist));
+                        saveChecklist();
+                        renderChecklist();
+                        if (typeof showToast !== "undefined") {
+                            showToast("Checklist reset successfully.", "success");
+                        }
+                    }
+                });
+            }
+
+            // Run initial load
+            updateSummary();
+            renderChecklist();
+
+            // Modal Toggling for Prospect Dossier
+            const leadModal = document.getElementById("leadModal");
+            const closeLeadModal = document.getElementById("closeLeadModal");
+            const modalDetails = document.getElementById("modalLeadDetails");
+
+            if (leadsTableBody) {
+                leadsTableBody.addEventListener("click", function(e) {
+                    const btn = e.target.closest(".view-details-btn");
+                    if (btn) {
+                        try {
+                            const lead = JSON.parse(btn.getAttribute("data-lead"));
+                            renderLeadDetails(lead);
+                            leadModal.style.display = "flex";
+                        } catch (err) {
+                            console.error("Error displaying lead details:", err);
+                        }
+                    }
+                });
+            }
+
+            if (closeLeadModal) {
+                closeLeadModal.addEventListener("click", () => {
+                    leadModal.style.display = "none";
+                });
+            }
+
+            if (leadModal) {
+                leadModal.addEventListener("click", (e) => {
+                    if (e.target === leadModal) {
+                        leadModal.style.display = "none";
+                    }
+                });
+            }
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && leadModal.style.display === "flex") {
+                    leadModal.style.display = "none";
+                }
+            });
+
+            function renderLeadDetails(lead) {
+                if (!modalDetails) return;
+                
+                const dateStr = new Date(lead.timestamp).toLocaleString();
+                
+                modalDetails.innerHTML = `
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Full Name</span>
+                            <div style="font-weight: 500; font-size: 1.1rem; color: var(--text-main); margin-top: 0.2rem;">${escapeHTML(lead.full_name)}</div>
+                        </div>
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Profile Type</span>
+                            <div style="font-weight: 500; font-size: 1.1rem; color: var(--accent-gold); margin-top: 0.2rem;">${escapeHTML(lead.buyer_type)}</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Email</span>
+                            <div style="margin-top: 0.2rem;"><a href="mailto:${escapeHTML(lead.email)}" style="color: var(--accent-gold); text-decoration: none;">${escapeHTML(lead.email)}</a></div>
+                        </div>
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Phone / WhatsApp</span>
+                            <div style="margin-top: 0.2rem;"><a href="tel:${escapeHTML(lead.phone_whatsapp)}" style="color: var(--accent-gold); text-decoration: none;">${escapeHTML(lead.phone_whatsapp)}</a></div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">City / Country</span>
+                            <div style="margin-top: 0.2rem; color: var(--text-main);">${escapeHTML(lead.city_country)}</div>
+                        </div>
+                        <div>
+                            <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Budget Bracket</span>
+                            <div style="margin-top: 0.2rem; color: var(--text-main);">${escapeHTML(lead.budget_range)}</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Interested Model</span>
+                        <div style="font-weight: 500; color: var(--accent-gold); margin-top: 0.2rem;">${escapeHTML(lead.interested_estate_model)}</div>
+                    </div>
+
+                    <div>
+                        <span style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase;">Personal Message / Requirements</span>
+                        <blockquote style="margin-top: 0.5rem; padding: 0.8rem 1rem; border-left: 2px solid var(--accent-gold); background: rgba(255,255,255,0.02); font-style: italic; color: var(--text-main); font-size: 0.85rem; border-radius: 2px;">
+                            ${escapeHTML(lead.message || "No custom message provided.")}
+                        </blockquote>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted); display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem;">
+                        <div><strong>Timestamp:</strong> ${dateStr}</div>
+                        <div><strong>Device:</strong> ${escapeHTML(lead.deviceType)}</div>
+                        <div><strong>UTM Source:</strong> ${escapeHTML(lead.utmSource)}</div>
+                        <div><strong>UTM Campaign:</strong> ${escapeHTML(lead.utmCampaign)}</div>
+                        <div><strong>UTM Medium:</strong> ${escapeHTML(lead.utmMedium)}</div>
+                        <div style="grid-column: span 2; word-break: break-all;"><strong>Source URL:</strong> <a href="${escapeHTML(lead.pageUrl)}" target="_blank" style="color: var(--text-muted); text-decoration: underline;">${escapeHTML(lead.pageUrl)}</a></div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6889A5"/><stop offset="0.6" stop-color="#9CB4C8"/><stop offset="1" stop-color="#C9D4DC"/></linearGradient>
+    <linearGradient id="vignette" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.45"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#sky)"/>
+  <path d="M0,640 L80,580 L160,610 L260,540 L380,580 L500,500 L640,560 L780,490 L920,540 L1080,470 L1240,510 L1400,460 L1540,500 L1600,520 L1600,1000 L0,1000 Z" fill="#1F3A2E" opacity="0.95"/><path d="M0,720 L120,680 L280,720 L440,660 L600,710 L780,640 L960,700 L1140,650 L1320,710 L1500,660 L1600,690 L1600,1000 L0,1000 Z" fill="#16291F" opacity="0.95"/>
+  <circle cx="1280" cy="180" r="120" fill="#F4EDDD" opacity="0.35"/>
+  <rect width="1600" height="1000" fill="url(#vignette)" opacity="0.6"/>
+
+  <!-- frame -->
+  <rect x="30" y="30" width="1540" height="940" fill="none" stroke="#B08A3E" stroke-width="2" opacity="0.6"/>
+
+  <!-- corner brand -->
+  <g transform="translate(60,80)">
+    <text font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="6" fill="#B08A3E" font-weight="700">RESERVA VERDE GOA</text>
+    <line x1="0" y1="14" x2="120" y2="14" stroke="#B08A3E" stroke-width="1.5"/>
+  </g>
+
+  <!-- bottom title block -->
+  <g transform="translate(60,830)">
+    <text font-family="'Inter', 'Montserrat', sans-serif" font-size="14" letter-spacing="4" fill="#B08A3E" font-weight="600">LOCATION REFERENCE</text>
+    <text y="42" font-family="Georgia, 'Times New Roman', serif" font-size="38" fill="#FBF8F1" font-weight="500">REGIONAL TERRAIN CONTEXT</text>
+    <text y="74" font-family="'Inter', 'Montserrat', sans-serif" font-size="16" fill="#FBF8F1" opacity="0.85">3D terrain view · Goa–Karnataka border</text>
+    <text y="100" font-family="'Inter', 'Montserrat', sans-serif" font-size="14" fill="#B08A3E" font-style="italic">Khanapur · Londa · Dandeli ridge</text>
+  </g>
+
+  <!-- top-right note -->
+  <text x="1540" y="60" text-anchor="end" font-family="'Inter', 'Montserrat', sans-serif" font-size="11" letter-spacing="3" fill="#FBF8F1" opacity="0.75">MAP REFERENCE ONLY</text>
+</svg>

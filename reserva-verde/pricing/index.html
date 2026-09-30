@@ -1,0 +1,2695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Verde Goa — Pricing, Costing & Installment Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rv-forest: #1F3A2E;
+            --rv-forest-deep: #16291F;
+            --rv-forest-dark: #0b140f;
+            --rv-gold: #B08A3E;
+            --rv-gold-light: #D4B66A;
+            --rv-ivory: #FBF8F1;
+            --rv-beige: #F4EDDD;
+            --rv-beige-warm: #E8DFC4;
+            --rv-charcoal: #1C1C1C;
+            --rv-stone-light: #A8A8A8;
+            --rv-stone-dark: #121212;
+            --rv-border: rgba(194, 168, 120, 0.15);
+            --rv-border-active: rgba(176, 138, 62, 0.6);
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--sans);
+            background-color: var(--rv-forest-dark);
+            color: var(--rv-ivory);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Common Layouts */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .rv-section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--rv-border);
+            scroll-margin-top: 100px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--serif);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        .eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            color: var(--rv-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: var(--rv-gold);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: var(--rv-ivory);
+        }
+
+        .section-subtitle {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            color: var(--rv-stone-light);
+            font-weight: 300;
+            max-w: 700px;
+            margin-bottom: 3.5rem;
+        }
+
+        /* Navigation Style (Matching Homepage) */
+        nav {
+            background-color: rgba(11, 20, 15, 0.95);
+            border-bottom: 1px solid var(--rv-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            color: var(--rv-ivory);
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 600;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--rv-stone-light);
+            text-decoration: none;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            position: relative;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: var(--rv-gold);
+        }
+
+        .nav-cta {
+            background-color: var(--rv-gold);
+            color: #10291F !important;
+            padding: 0.6rem 1.6rem !important;
+            border-radius: 50px !important;
+            font-size: 0.68rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.15em !important;
+            text-transform: uppercase !important;
+            transition: all 0.3s ease !important;
+            opacity: 1 !important;
+            border: 1px solid var(--rv-gold) !important;
+            box-shadow: 0 4px 15px rgba(176, 138, 62, 0.2) !important;
+            text-align: center;
+        }
+
+        .nav-cta:hover {
+            background-color: #EFE6D2 !important;
+            border-color: #EFE6D2 !important;
+            color: #10291F !important;
+            transform: translateY(-1px);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 2.4rem;
+            min-height: 54px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: color 0.4s ease, border-color 0.4s ease;
+            z-index: 1;
+            font-weight: 500;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background-color: var(--rv-gold);
+            z-index: -1;
+            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-primary {
+            background-color: var(--rv-gold);
+            color: var(--rv-charcoal);
+            border-color: var(--rv-gold);
+        }
+
+        .btn-primary:hover {
+            color: var(--rv-charcoal);
+        }
+        
+        .btn-primary:hover::before {
+            width: 100%;
+        }
+
+        .btn-outline {
+            background-color: rgba(15, 28, 22, 0.4);
+            border-color: var(--rv-gold);
+            color: var(--rv-ivory);
+            backdrop-filter: blur(5px);
+        }
+        
+        .btn-outline::before {
+            background-color: var(--rv-gold);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--rv-gold);
+            color: var(--rv-gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-text {
+            color: var(--rv-stone-light);
+            text-decoration: underline;
+            padding: 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        .btn-text:hover {
+            color: var(--rv-gold);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            padding: 140px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(31, 58, 46, 0.25) 0%, rgba(11, 20, 15, 0.9) 80%);
+            border-bottom: 1px solid var(--rv-border);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: gradient-to-b from-transparent to-stone-950;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: var(--rv-ivory);
+        }
+
+        .hero h1 span {
+            color: var(--rv-gold);
+            font-style: italic;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: 0 auto 3rem;
+            color: var(--rv-stone-light);
+            font-weight: 300;
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .hero-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* GRID CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .rv-card {
+            background: linear-gradient(180deg, rgba(31, 58, 46, 0.15) 0%, rgba(11, 20, 15, 0.4) 100%);
+            border: 1px solid var(--rv-border);
+            border-radius: 4px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 450px;
+            scroll-margin-top: 100px;
+        }
+
+        .rv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: gradient-to-r from-amber-500 to-transparent;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .rv-card:hover {
+            border-color: var(--rv-border-active);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: linear-gradient(180deg, rgba(31, 58, 46, 0.25) 0%, rgba(11, 20, 15, 0.5) 100%);
+        }
+
+        .rv-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+            color: var(--rv-ivory);
+            transition: color 0.3s;
+        }
+
+        .rv-card:hover .card-header h3 {
+            color: var(--rv-gold-light);
+        }
+
+        .card-size {
+            font-size: 0.7rem;
+            font-family: monospace;
+            color: var(--rv-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .card-price-box {
+            background-color: rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.03);
+            padding: 1.2rem;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(251, 248, 241, 0.4);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .price-value {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            color: var(--rv-ivory);
+            font-weight: 400;
+        }
+
+        .card-desc {
+            font-size: 0.75rem;
+            color: var(--rv-stone-light);
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 1.8rem;
+        }
+
+        .card-highlights {
+            margin-bottom: 2rem;
+        }
+
+        .highlights-title {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--rv-gold);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .highlights-list {
+            list-style: none;
+        }
+
+        .highlights-list li {
+            font-size: 0.7rem;
+            color: rgba(251, 248, 241, 0.75);
+            margin-bottom: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .highlights-list li span {
+            color: var(--rv-gold);
+            font-family: var(--serif);
+        }
+
+        .card-footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 1.5rem;
+        }
+
+        .footer-label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(251, 248, 241, 0.4);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .footer-value {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: rgba(251, 248, 241, 0.9);
+        }
+
+        .card-btn {
+            width: 100%;
+            background-color: var(--rv-stone-dark);
+            border: 1px solid var(--rv-border);
+            color: var(--rv-stone-light);
+            padding: 0.75rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+
+        .rv-card:hover .card-btn {
+            background-color: var(--rv-forest);
+            border-color: var(--rv-gold-light);
+            color: var(--rv-ivory);
+        }
+
+        /* 3-COLUMN EXPERIENCE SECTION */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .exp-card {
+            background-color: rgba(16, 41, 31, 0.15);
+            border: 1px solid var(--rv-border);
+            padding: 3rem 2.5rem;
+            border-radius: 4px;
+            transition: all 0.4s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .exp-card:hover {
+            border-color: var(--rv-border-active);
+            background-color: rgba(16, 41, 31, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .exp-subtitle {
+            font-size: 0.65rem;
+            font-family: monospace;
+            color: var(--rv-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .exp-card h3 {
+            font-size: 1.8rem;
+            color: var(--rv-ivory);
+            margin-bottom: 1.5rem;
+        }
+
+        .exp-pos {
+            font-size: 0.8rem;
+            color: rgba(251, 248, 241, 0.75);
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .exp-specs {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .exp-specs li {
+            font-size: 0.75rem;
+            color: var(--rv-stone-light);
+            margin-bottom: 0.8rem;
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .exp-specs li span {
+            color: var(--rv-gold);
+            font-size: 0.5rem;
+        }
+
+        .exp-meta {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .meta-box span {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(251, 248, 241, 0.4);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .meta-box p {
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: var(--rv-ivory);
+            line-height: 1.4;
+        }
+
+        /* 4x3 PRICING TABLE MATRIX */
+        .table-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--rv-border);
+            border-radius: 4px;
+            background-color: rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 1.8rem;
+            border-bottom: 1px solid var(--rv-border);
+        }
+
+        th {
+            background-color: rgba(16, 41, 31, 0.35);
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: 1.05rem;
+            color: var(--rv-ivory);
+        }
+
+        th .th-sub {
+            font-size: 0.6rem;
+            font-family: monospace;
+            color: var(--rv-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            display: block;
+            margin-top: 0.2rem;
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td.td-model {
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        .model-name {
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            color: var(--rv-ivory);
+            font-weight: 400;
+        }
+
+        .model-area {
+            font-size: 0.65rem;
+            color: var(--rv-stone-light);
+            font-weight: 300;
+            margin-top: 0.2rem;
+        }
+
+        .td-price-cell {
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .td-price-cell:hover {
+            background-color: rgba(16, 41, 31, 0.15);
+        }
+
+        .cell-price {
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            color: var(--rv-ivory);
+            font-weight: 400;
+            display: block;
+        }
+
+        .td-price-cell.recommended {
+            background-color: rgba(176, 138, 62, 0.05);
+            border-left: 2px solid var(--rv-gold);
+        }
+
+        .badge-recommended, .badge-cap {
+            display: inline-block;
+            font-size: 0.5rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        .badge-recommended {
+            background-color: rgba(176, 138, 62, 0.15);
+            border: 1px solid rgba(176, 138, 62, 0.4);
+            color: var(--rv-gold-light);
+        }
+
+        .badge-cap {
+            background-color: rgba(31, 58, 46, 0.25);
+            border: 1px solid rgba(31, 58, 46, 0.6);
+            color: #4ade80;
+        }
+
+        .table-cell-btn {
+            background: transparent;
+            border: none;
+            color: var(--rv-gold);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 0.6rem;
+            display: block;
+        }
+
+        .table-cell-btn:hover {
+            color: var(--rv-gold-light);
+        }
+
+        /* DYNAMIC CALCULATORS SECTION (Split Layout) */
+        .calculator-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+        }
+
+        @media (min-width: 992px) {
+            .calculator-split {
+                grid-template-columns: 5fr 7fr;
+            }
+        }
+
+        .calc-inputs-panel {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--rv-border);
+            padding: 2.5rem;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+
+        .calc-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--rv-stone-light);
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .form-select, .form-input {
+            width: 100%;
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid var(--rv-border);
+            padding: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--rv-ivory);
+            border-radius: 2px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .form-select:focus, .form-input:focus {
+            border-color: var(--rv-gold);
+        }
+
+        .range-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .range-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: rgba(251, 248, 241, 0.9);
+            margin-bottom: 0.6rem;
+        }
+
+        .range-header span.val-display {
+            font-family: monospace;
+            color: var(--rv-gold-light);
+            font-weight: 600;
+        }
+
+        .range-slider {
+            width: 100%;
+            height: 3px;
+            background-color: rgba(255,255,255,0.08);
+            border-radius: 5px;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: var(--rv-gold);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .range-slider::-webkit-slider-thumb:hover {
+            background-color: var(--rv-gold-light);
+        }
+
+        /* COST BREAKDOWN SHEET PANEL */
+        .cost-sheet-panel {
+            background-color: var(--rv-stone-dark);
+            border: 1px solid var(--rv-border);
+            padding: 3rem 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .sheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-b: 1px solid var(--rv-border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sheet-header h4 {
+            font-size: 1.5rem;
+            color: var(--rv-ivory);
+        }
+
+        .sheet-badge {
+            font-size: 0.55rem;
+            background-color: var(--rv-forest);
+            border: 1px solid var(--rv-border-active);
+            color: var(--rv-gold-light);
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .sheet-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: rgba(251, 248, 241, 0.85);
+        }
+
+        .sheet-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sheet-row.subtotal {
+            border-top: 1px solid var(--rv-border);
+            border-bottom: 1px solid var(--rv-border);
+            padding: 1rem 0;
+            color: var(--rv-ivory);
+            font-weight: 500;
+        }
+
+        .sheet-row.total-cost {
+            background-color: rgba(31, 58, 46, 0.15);
+            border: 1px solid rgba(31, 58, 46, 0.3);
+            padding: 1.2rem 1.5rem;
+            border-radius: 2px;
+            color: var(--rv-ivory);
+            font-weight: 600;
+        }
+
+        .sheet-row.total-cost .cost-label {
+            color: var(--rv-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+        }
+
+        .sheet-row.total-cost .cost-val {
+            color: var(--rv-gold-light);
+            font-size: 1.1rem;
+        }
+
+        .sheet-row.sale-price {
+            padding-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .sheet-row.sale-price .sale-val {
+            font-weight: 500;
+            color: var(--rv-ivory);
+        }
+
+
+        .font-val {
+            font-family: monospace;
+            color: var(--rv-ivory);
+        }
+
+        /* INSTALLMENT CALCULATOR PANEL (Split Layout) */
+        .installment-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+        }
+
+        @media (min-width: 992px) {
+            .installment-split {
+                grid-template-columns: 4fr 8fr;
+            }
+        }
+
+        .inst-preset-box {
+            background-color: rgba(0,0,0,0.2);
+            border: 1px solid var(--rv-border);
+            padding: 2.5rem;
+            border-radius: 4px;
+        }
+
+        .inst-presets {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .preset-btn {
+            width: 100%;
+            background-color: rgba(0,0,0,0.4);
+            border: 1px solid var(--rv-border);
+            color: rgba(251, 248, 241, 0.7);
+            padding: 1rem 1.2rem;
+            font-size: 0.75rem;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preset-btn:hover {
+            border-color: rgba(255,255,255,0.2);
+            color: var(--rv-ivory);
+        }
+
+        .preset-btn.active {
+            background-color: rgba(31, 58, 46, 0.25);
+            border-color: var(--rv-gold);
+            color: var(--rv-ivory);
+            font-weight: 600;
+        }
+
+        .preset-btn span.val {
+            font-family: monospace;
+            color: var(--rv-gold-light);
+        }
+
+        .custom-price-block {
+            border-top: 1px solid var(--rv-border);
+            padding-top: 1.5rem;
+        }
+
+        .custom-toggle-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px dashed var(--rv-border-active);
+            color: var(--rv-stone-light);
+            padding: 0.75rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .custom-toggle-btn:hover, .custom-toggle-btn.active {
+            border-color: var(--rv-gold);
+            color: var(--rv-gold);
+            background-color: rgba(176, 138, 62, 0.05);
+        }
+
+        .custom-input-wrap {
+            margin-top: 1rem;
+            position: relative;
+            display: none;
+        }
+
+        .custom-input-wrap input {
+            padding-right: 3rem;
+        }
+
+        .custom-input-wrap span.unit {
+            position: absolute;
+            right: 1.2rem;
+            top: 0.75rem;
+            font-size: 0.75rem;
+            font-family: monospace;
+            color: var(--rv-stone-light);
+        }
+
+        .inst-breakdown-panel {
+            background-color: var(--rv-stone-dark);
+            border: 1px solid var(--rv-border);
+            padding: 3rem 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .inst-total-box {
+            text-align: right;
+        }
+
+        .inst-total-label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(251, 248, 241, 0.45);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .inst-total-val {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            color: var(--rv-gold);
+        }
+
+        .inst-table-wrap {
+            margin-top: 1.5rem;
+        }
+
+        .inst-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .inst-table th, .inst-table td {
+            padding: 1rem 0.5rem;
+            font-size: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .inst-table th {
+            background-color: transparent;
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(251, 248, 241, 0.4);
+            font-weight: 600;
+        }
+
+        .inst-table td.num {
+            font-family: monospace;
+            color: rgba(251, 248, 241, 0.35);
+        }
+
+        .inst-table td.name {
+            color: var(--rv-ivory);
+            font-weight: 400;
+        }
+
+        .inst-table td.pct {
+            font-family: monospace;
+            text-align: center;
+            color: var(--rv-gold);
+        }
+
+        .inst-table td.amt {
+            font-family: monospace;
+            text-align: right;
+            color: var(--rv-ivory);
+        }
+
+        .inst-table tr.total-row td {
+            border-top: 1px solid var(--rv-border);
+            border-bottom: none;
+            padding: 1.2rem 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .inst-table tr.total-row td.name {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--rv-ivory);
+        }
+
+        .inst-table tr.total-row td.pct {
+            color: var(--rv-gold-light);
+        }
+
+        .inst-table tr.total-row td.amt {
+            color: var(--rv-gold-light);
+        }
+
+        /* BESPOKE OPTIONAL UPGRADES */
+        .addons-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+        }
+
+        @media (min-width: 992px) {
+            .addons-split {
+                grid-template-columns: 8fr 4fr;
+            }
+        }
+
+        .addons-cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        @media (min-width: 576px) {
+            .addons-cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .addon-item-card {
+            background-color: rgba(0,0,0,0.25);
+            border: 1px solid var(--rv-border);
+            padding: 1.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1.2rem;
+        }
+
+        .addon-item-card:hover {
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .addon-item-card.active {
+            background-color: rgba(31, 58, 46, 0.1);
+            border-color: var(--rv-gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .addon-content h4 {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--rv-ivory);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .addon-item-card.active .addon-content h4 {
+            color: var(--rv-gold-light);
+        }
+
+        .addon-desc {
+            font-size: 0.65rem;
+            color: var(--rv-stone-light);
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            font-weight: 300;
+        }
+
+        .addon-price {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--rv-gold);
+            font-weight: 600;
+        }
+
+        .addon-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 1px solid var(--rv-border);
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .addon-item-card.active .addon-checkbox {
+            background-color: var(--rv-gold);
+            border-color: var(--rv-gold);
+        }
+
+        .addon-checkbox svg {
+            width: 12px;
+            height: 12px;
+            fill: var(--rv-charcoal);
+            display: none;
+        }
+
+        .addon-item-card.active .addon-checkbox svg {
+            display: block;
+        }
+
+        .addons-summary-panel {
+            background-color: var(--rv-stone-dark);
+            border: 1px solid var(--rv-border);
+            padding: 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            position: sticky;
+            top: 120px;
+        }
+
+        .summary-selected-items {
+            max-height: 200px;
+            overflow-y: auto;
+            border-bottom: 1px solid var(--rv-border);
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .selected-addon-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: var(--rv-stone-light);
+            font-weight: 300;
+        }
+
+        .selected-addon-row span.val {
+            font-family: monospace;
+            color: rgba(251, 248, 241, 0.9);
+        }
+
+        .summary-range-box {
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.03);
+            padding: 1.5rem;
+            border-radius: 2px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-range-label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(251, 248, 241, 0.4);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .summary-range-val {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            color: var(--rv-ivory);
+            font-weight: 400;
+        }
+
+        .addons-empty-state {
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(251, 248, 241, 0.45);
+            padding: 2.5rem 0;
+            font-weight: 300;
+        }
+
+        /* SALES SUMMARY & DISCLAIMER */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .sum-card {
+            background-color: rgba(0,0,0,0.25);
+            border: 1px solid var(--rv-border);
+            padding: 2rem;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
+        }
+
+        .sum-card.hero-border {
+            border-color: var(--rv-border-active);
+            background-color: rgba(31, 58, 46, 0.1);
+            position: relative;
+        }
+
+        .sum-card-badge {
+            position: absolute;
+            top: 0;
+            right: 1.5rem;
+            transform: translateY(-50%);
+            background-color: var(--rv-gold);
+            color: var(--rv-charcoal);
+            font-size: 0.5rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .sum-badge {
+            font-size: 0.5rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            width: max-content;
+            margin-bottom: 1.2rem;
+        }
+
+        .sum-badge.entry {
+            background-color: rgba(255,255,255,0.06);
+            color: var(--rv-stone-light);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sum-badge.hero {
+            background-color: rgba(176,138,62,0.15);
+            color: var(--rv-gold-light);
+            border: 1px solid rgba(176,138,62,0.3);
+        }
+
+        .sum-badge.premium {
+            background-color: rgba(31,58,46,0.2);
+            color: #a7f3d0;
+            border: 1px solid rgba(31,58,46,0.4);
+        }
+
+        .sum-card h4 {
+            font-size: 1.4rem;
+            color: var(--rv-ivory);
+            margin-bottom: 0.8rem;
+        }
+
+        .sum-card p {
+            font-size: 0.68rem;
+            color: var(--rv-stone-light);
+            line-height: 1.5;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .sum-price-box span {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(251, 248, 241, 0.45);
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .sum-price-box p {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            color: var(--rv-gold);
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .disclaimer-box {
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid var(--rv-border);
+            padding: 2.2rem 2.5rem;
+            border-radius: 4px;
+        }
+
+        .disclaimer-box h5 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--rv-ivory);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .disclaimer-box p {
+            font-size: 0.68rem;
+            color: rgba(251, 248, 241, 0.5);
+            line-height: 1.8;
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--rv-border);
+            background-color: var(--rv-stone-dark);
+            font-size: 0.7rem;
+            color: rgba(251, 248, 241, 0.35);
+            font-weight: 300;
+        }
+
+        /* Responsive Utilities */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-ctas {
+                flex-direction: column;
+            }
+            .hero-ctas .btn {
+                width: 100%;
+            }
+            .calc-form-grid {
+                grid-template-columns: 1fr;
+            }
+            .meta-box p {
+                font-size: 0.65rem;
+            }
+            th, td {
+                padding: 1.2rem;
+            }
+        }
+        /* Lead Capture Form */
+        .form-wrapper {
+            background: rgba(11, 20, 15, 0.8);
+            border: 1px solid var(--rv-gold-light);
+            padding: 3rem;
+            border-radius: 8px;
+            max-width: 900px;
+            margin: 0 auto 3rem auto;
+            text-align: left;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            color: var(--rv-gold);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(199, 185, 122, 0.3);
+            color: var(--rv-ivory);
+            padding: 0.8rem 1rem;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--rv-gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group select option {
+            background: var(--rv-forest);
+            color: var(--rv-ivory);
+        }
+
+        .form-consent {
+            margin-top: 1.5rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            gap: 0.8rem;
+        }
+
+        .checkbox-container input {
+            margin-top: 0.3rem;
+        }
+
+        .consent-text {
+            font-size: 0.8rem;
+            color: var(--rv-stone-light);
+            line-height: 1.5;
+        }
+
+        .form-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .form-message.success {
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            color: #4ade80;
+        }
+
+        .form-message.warning {
+            background: rgba(176, 138, 62, 0.1);
+            border: 1px solid rgba(176, 138, 62, 0.3);
+            color: var(--rv-gold-light);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .form-wrapper {
+                padding: 1.5rem;
+            }
+        }
+        /* Print Cost Sheet PDF */
+        @media print {
+            body { background: white !important; color: black !important; padding: 0 !important; margin: 0 !important; }
+            .navbar, .hero-pricing, #request-cost-sheet, .rv-footer, .cards-grid { display: none !important; }
+            #public-pricing, #installments, #optional-upgrades { display: block !important; page-break-inside: avoid; }
+            .btn, button, .inst-preset-box, .print-btn { display: none !important; }
+            .section-title, .section-subtitle, .eyebrow { color: black !important; }
+            table { border-collapse: collapse; width: 100%; border: 1px solid #ccc; }
+            th, td { border: 1px solid #ccc !important; padding: 12px; color: black !important; }
+            th { background: #f9f9f9 !important; color: black !important; font-weight: bold; }
+            .addon-item-card { break-inside: avoid; border: 1px solid #ccc; }
+            .addon-checkbox { display: none !important; }
+            * { color: black !important; background: transparent !important; }
+            .print-only-header { display: block !important; text-align: center; margin-bottom: 20px; font-weight: bold; font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 10px; }
+            .table-cell-btn { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="/" class="logo">Reserva Varde</a>
+            <div class="nav-links">
+                <a href="/">Vision</a>
+                <a href="/#location-advantage">Location</a>
+                <a href="/#estate-models">Estates</a>
+                <a href="/reserva-verde/pricing/" style="color: var(--rv-gold); font-weight: 600; opacity: 1;">Villa Pricing</a>
+                <a href="/#masterplan">Masterplan</a>
+                <a href="/#wellness">Wellness</a>
+                <a href="/#investment">Investment</a>
+                <a href="/#proposal" class="nav-cta">Request Cost Sheet</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="eyebrow">Villa Collection & Investment Planning</span>
+            <h1>Reserva Verde Goa<br><span>Villa Collection Pricing</span></h1>
+            <p>Premium ground-level eco forest estates from ₹1.95 Cr to ₹2.99 Cr base package. View model-wise pricing, customized milestone installment schedules, and optional upgrades.</p>
+            <div class="hero-ctas">
+                <a href="#public-pricing" class="btn btn-primary">View Pricing Matrix</a>
+                <a href="#installments" class="btn btn-outline">Milestone Installments</a>
+                <a href="/#proposal" class="btn btn-outline">Book Site Visit</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Models Cards -->
+    <section class="rv-section" id="size-models">
+        <div class="container">
+            <div class="text-center">
+                <span class="eyebrow">Acre Canvas Footprints</span>
+                <h2 class="section-title">Villa Size Models</h2>
+                <p class="section-subtitle">Select from four structured ground-level configurations, each designed to balance built-up comfort with the acoustic privacy of a managed 1-acre agro plantation.</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- 2BHK -->
+                <div class="rv-card" id="2bhk">
+                    <div class="card-media" style="width: 100%; height: 200px; background: #0f1c16; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(176, 138, 62, 0.15); overflow: hidden;">
+                        <img src="/images/estates/site-plan-2bhk.svg" alt="2BHK Site Plan" style="width: 100%; height: 100%; object-fit: contain; padding: 1rem; transition: transform 0.5s ease;" />
+                    </div>
+                    <div class="card-header">
+                        <h3>2BHK Forest Villa</h3>
+                        <span class="card-size">2,500 Sq.Ft Built-up · 1 Acre Estate</span>
+                        <div class="card-price-box">
+                            <span class="price-label">Starting Package</span>
+                            <span class="price-value">₹1.95 Cr</span>
+                        </div>
+                        <p class="card-desc">An intimate, low-footprint villa plan framing direct canopy view lines. Ideal for couples, NRIs, and luxury second-home buyers.</p>
+                        
+                        <div class="card-highlights">
+                            <div class="highlights-title">Core Specifications</div>
+                            <ul class="highlights-list">
+                                <li><span>✦</span> Single-level U-shape container plan</li>
+                                <li><span>✦</span> Integrated 260 sq.ft inner courtyard</li>
+                                <li><span>✦</span> Timber clad shou-sugi-ban screens</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-label">Best Suited For</span>
+                        <p class="footer-value">Couples & Eco Investors</p>
+                        <a href="../../models/2bhk-compact-forest-estate/index.html" class="card-btn">View Brochure Page →</a>
+                    </div>
+                </div>
+
+                <!-- 3BHK -->
+                <div class="rv-card" id="3bhk" style="border-color: rgba(176, 138, 62, 0.25);">
+                    <div class="card-media" style="width: 100%; height: 200px; background: #0f1c16; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(176, 138, 62, 0.15); overflow: hidden;">
+                        <img src="/images/estates/site-plan-3bhk.svg" alt="3BHK Site Plan" style="width: 100%; height: 100%; object-fit: contain; padding: 1rem; transition: transform 0.5s ease;" />
+                    </div>
+                    <div class="card-header">
+                        <h3>3BHK Premium Estate</h3>
+                        <span class="card-size">3,500 Sq.Ft Built-up · 1 Acre Estate</span>
+                        <div class="card-price-box">
+                            <span class="price-label">Starting Package</span>
+                            <span class="price-value">₹2.35 Cr</span>
+                        </div>
+                        <p class="card-desc">An expansive L-shaped modular forest pavilion. Balanced ridge-top views, private master wings, and exceptional natural ventilation.</p>
+                        
+                        <div class="card-highlights">
+                            <div class="highlights-title">Core Specifications</div>
+                            <ul class="highlights-list">
+                                <li><span>✦</span> L-shape biophilic canopy view footprint</li>
+                                <li><span>✦</span> Continuous double-glazed glass spine</li>
+                                <li><span>✦</span> Shaded timber observatories & deck</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-label">Best Suited For</span>
+                        <p class="footer-value">HNI Families & NRI Buyers</p>
+                        <a href="../../models/3bhk-premium-forest-estate/index.html" class="card-btn">View Brochure Page →</a>
+                    </div>
+                </div>
+
+                <!-- 4BHK -->
+                <div class="rv-card" id="4bhk">
+                    <div class="card-media" style="width: 100%; height: 200px; background: #0f1c16; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(176, 138, 62, 0.15); overflow: hidden;">
+                        <img src="/images/estates/site-plan-4bhk.svg" alt="4BHK Site Plan" style="width: 100%; height: 100%; object-fit: contain; padding: 1rem; transition: transform 0.5s ease;" />
+                    </div>
+                    <div class="card-header">
+                        <h3>4BHK Signature Retreat</h3>
+                        <span class="card-size">4,500 Sq.Ft Built-up · 1 Acre Estate</span>
+                        <div class="card-price-box">
+                            <span class="price-label">Starting Package</span>
+                            <span class="price-value">₹2.65 Cr</span>
+                        </div>
+                        <p class="card-desc">Flagship three-wing ground-level social retreat pavilion. Grand dining halls, private guest bridge, and expansive forest decks.</p>
+                        
+                        <div class="card-highlights">
+                            <div class="highlights-title">Core Specifications</div>
+                            <ul class="highlights-list">
+                                <li><span>✦</span> Three-wing grand modular pavilion</li>
+                                <li><span>✦</span> Separate back-of-house service bridge</li>
+                                <li><span>✦</span> Ultra-private guest quarters corridor</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-label">Best Suited For</span>
+                        <p class="footer-value">Multi-Generational Living</p>
+                        <a href="../../models/4bhk-signature-forest-estate/index.html" class="card-btn">View Brochure Page →</a>
+                    </div>
+                </div>
+
+                <!-- Customizable -->
+                <div class="rv-card" id="customizable">
+                    <div class="card-media" style="width: 100%; height: 200px; background: #0f1c16; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(176, 138, 62, 0.15); overflow: hidden;">
+                        <img src="/images/estates/site-plan-customisable.svg" alt="Customisable Site Plan" style="width: 100%; height: 100%; object-fit: contain; padding: 1rem; transition: transform 0.5s ease;" />
+                    </div>
+                    <div class="card-header">
+                        <h3>Customizable Estate</h3>
+                        <span class="card-size">Flexible Area · 1 Acre Estate</span>
+                        <div class="card-price-box">
+                            <span class="price-label">Starting Package</span>
+                            <span class="price-value">₹2.50 Cr <span style="font-size: 0.9rem; font-weight: 300;">onwards</span></span>
+                        </div>
+                        <p class="card-desc">Bespoke modular ground-level layout engineered to your physical site preference. Bounded strictly below the regulatory base price cap.</p>
+                        
+                        <div class="card-highlights">
+                            <div class="highlights-title">Core Specifications</div>
+                            <ul class="highlights-list">
+                                <li><span>✦</span> Custom container placement layout</li>
+                                <li><span>✦</span> Tailored agroforestry plantation profiles</li>
+                                <li><span>✦</span> Personalized off-grid utility zoning</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="footer-label">Best Suited For</span>
+                        <p class="footer-value">Bespoke HNI Concept Lovers</p>
+                        <a href="../../models/customisable-founder-estate/index.html" class="card-btn">View Brochure Page →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Categories -->
+    <section class="rv-section" id="experiences">
+        <div class="container">
+            <div class="text-center">
+                <span class="eyebrow">Biophilic Typologies</span>
+                <h2 class="section-title">Villa Experience Categories</h2>
+                <p class="section-subtitle">Each size configuration can be built in three specialized ecological orientations, matching specific terrain coordinates and HNI lifestyle preferences.</p>
+            </div>
+
+            <div class="experience-grid">
+                <!-- Forest Cottage -->
+                <div class="exp-card">
+                    <div>
+                        <span class="exp-subtitle">Intimate · Canopy View</span>
+                        <h3>Forest Cottage Villa</h3>
+                        <p class="exp-pos">Premium eco-cottage orientation, nestled near mature valley cashews and bamboo groves. Focuses on direct canopy shadows, warm natural wood, and an intimate close-to-nature feel.</p>
+                        <ul class="exp-specs">
+                            <li><span>■</span> Bamboo-batten ventilation rainscreens</li>
+                            <li><span>■</span> Floor-to-ceiling double-glazed corridors</li>
+                            <li><span>■</span> Zero-impact steel screw pile plinth</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="meta-box">
+                            <span>Buyer Focus</span>
+                            <p>Nature Purists & Creative HNIs</p>
+                        </div>
+                        <div class="meta-box">
+                            <span>Design Feel</span>
+                            <p>Earthy, raw wood, ambient copper lights</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jungle Valley -->
+                <div class="exp-card" style="border-color: rgba(176, 138, 62, 0.25);">
+                    <div>
+                        <span class="exp-subtitle">Expansive · Ridge Alignment</span>
+                        <h3>Jungle Valley Villa</h3>
+                        <p class="exp-pos">Positioned on elevated ridge slopes for dramatic long-range valley vistas. Engineered for grand open ventilation, large family-friendly entertaining, and high agrotourism appeal.</p>
+                        <ul class="exp-specs">
+                            <li><span>■</span> Cantilevered timber observation deck</li>
+                            <li><span>■</span> Shou Sugi Ban charred wood paneling</li>
+                            <li><span>■</span> Natural stone courtyard breeze channels</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="meta-box">
+                            <span>Buyer Focus</span>
+                            <p>NRI Investors & Active Families</p>
+                        </div>
+                        <div class="meta-box">
+                            <span>Design Feel</span>
+                            <p>Charcoal & gold, high pergolas, flagstone</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Wellness -->
+                <div class="exp-card">
+                    <div>
+                        <span class="exp-subtitle">Sanctuary · Integrated Spa</span>
+                        <h3>Premium Wellness Villa</h3>
+                        <p class="exp-pos">Fully integrated wellness sanctuary layout. Detox, yoga, and meditation structures woven directly into the modular pavilion. Designed as an private high-end retreat.</p>
+                        <ul class="exp-specs">
+                            <li><span>■</span> Detached therapy spa container room</li>
+                            <li><span>■</span> Built-in timber meditation courtyard</li>
+                            <li><span>■</span> Advanced HEPA biophilic fresh air circulation</li>
+                        </ul>
+                    </div>
+                    <div class="exp-meta">
+                        <div class="meta-box">
+                            <span>Buyer Focus</span>
+                            <p>NRIs & High-End Wellness Seekers</p>
+                        </div>
+                        <div class="meta-box">
+                            <span>Design Feel</span>
+                            <p>Ivory plaster, warm sand, glass walls</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Public Pricing Table Matrix -->
+    <section class="rv-section" id="public-pricing">
+        <div class="container">
+            <div class="text-center">
+                <span class="eyebrow">Regulatory Integrity</span>
+                <h2 class="section-title">Public Pricing Matrix</h2>
+                <p class="section-subtitle">All base villa packages are guaranteed under the ₹3.00 Cr boundary. Compare sizing footprints across our three experience typologies.</p>
+                <div style="margin-top: 2rem;">
+                    <button class="btn btn-primary print-btn" onclick="printCostSheet()">Print / Save Cost Sheet as PDF</button>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Villa Size Model</th>
+                            <th>
+                                Forest Cottage Villa
+                                <span class="th-sub">Intimate · Canopy View</span>
+                            </th>
+                            <th>
+                                Jungle Valley Villa
+                                <span class="th-sub">Expansive · Ridge Alignment</span>
+                            </th>
+                            <th>
+                                Premium Wellness Villa
+                                <span class="th-sub">Sanctuary · Integrated Spa</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 2BHK -->
+                        <tr>
+                            <td class="td-model">
+                                <div class="model-name">2BHK Forest Villa</div>
+                                <div class="model-area">2,500 Sq.Ft Built-up Area</div>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹1.95 Cr</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(1.95)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.25 Cr</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.25)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.55 Cr</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.55)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                        </tr>
+
+                        <!-- 3BHK -->
+                        <tr>
+                            <td class="td-model">
+                                <div class="model-name">3BHK Premium Estate</div>
+                                <div class="model-area">3,500 Sq.Ft Built-up Area</div>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.35 Cr</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.35)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                            <td class="td-price-cell recommended">
+                                <span class="cell-price">₹2.65 Cr</span>
+                                <span class="badge-recommended">★ Recommended Hero</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.65)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.90 Cr</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.90)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                        </tr>
+
+                        <!-- 4BHK -->
+                        <tr>
+                            <td class="td-model">
+                                <div class="model-name">4BHK Signature Retreat</div>
+                                <div class="model-area">4,500 Sq.Ft Built-up Area</div>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.65 Cr</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.65)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.90 Cr</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.90)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.99 Cr</span>
+                                <span class="badge-cap">🛡 Premium Cap</span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.99)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                        </tr>
+
+                        <!-- Customizable -->
+                        <tr>
+                            <td class="td-model">
+                                <div class="model-name">Customizable Estate</div>
+                                <div class="model-area">Flexible Footprint (1-Acre)</div>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.50 Cr <span style="font-size:0.75rem; font-weight:300;">onwards</span></span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.50)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.75 Cr <span style="font-size:0.75rem; font-weight:300;">onwards</span></span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.75)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                            <td class="td-price-cell">
+                                <span class="cell-price">₹2.99 Cr <span style="font-size:0.75rem; font-weight:300;">base cap</span></span>
+                                <button class="table-cell-btn" onclick="selectForInstallments(2.99)">Model in Installments</button>
+                                <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Request Cost Sheet Section -->
+    <section class="rv-section" id="request-cost-sheet" style="background: radial-gradient(circle at center, rgba(31, 58, 46, 0.15) 0%, rgba(11, 20, 15, 0.7) 80%);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="eyebrow">Private Brochure Enquiry</span>
+                <h2 class="section-title">Request Detailed Cost Sheet & Private Consultation</h2>
+                <p class="section-subtitle" style="margin-left: auto; margin-right: auto; max-width: 800px;">Share your preferred villa model and our project advisor will send you the detailed cost sheet, installment options, and private site visit availability.</p>
+            </div>
+
+            <div class="form-wrapper">
+                <form id="leadCaptureForm" onsubmit="handleLeadSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="leadName" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile Number *</label>
+                            <input type="tel" id="leadMobile" required placeholder="Enter your mobile number">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>WhatsApp Number</label>
+                            <input type="tel" id="leadWhatsapp" placeholder="If different from mobile">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="leadEmail" required placeholder="Enter your email">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City *</label>
+                            <input type="text" id="leadCity" required placeholder="Enter your city">
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <input type="text" id="leadCountry" placeholder="Enter your country">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Buyer Type</label>
+                            <select id="leadBuyerType">
+                                <option value="">Select buyer type</option>
+                                <option value="HNI Buyer">HNI Buyer</option>
+                                <option value="NRI Buyer">NRI Buyer</option>
+                                <option value="Investor">Investor</option>
+                                <option value="Family Weekend Home Buyer">Family Weekend Home Buyer</option>
+                                <option value="Channel Partner">Channel Partner</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Interested Villa Model</label>
+                            <select id="leadModel">
+                                <option value="">Select model</option>
+                                <option value="2BHK — 2,500 sq.ft">2BHK — 2,500 sq.ft</option>
+                                <option value="3BHK — 3,500 sq.ft">3BHK — 3,500 sq.ft</option>
+                                <option value="4BHK — 4,500 sq.ft">4BHK — 4,500 sq.ft</option>
+                                <option value="Customisable Villa">Customisable Villa</option>
+                                <option value="Not Sure Yet">Not Sure Yet</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Preferred Experience</label>
+                            <select id="leadExperience">
+                                <option value="">Select experience</option>
+                                <option value="Forest Cottage Villa">Forest Cottage Villa</option>
+                                <option value="Jungle Valley Villa">Jungle Valley Villa</option>
+                                <option value="Premium Wellness Villa">Premium Wellness Villa</option>
+                                <option value="Need Advisor Recommendation">Need Advisor Recommendation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Budget Range</label>
+                            <select id="leadBudget">
+                                <option value="">Select budget range</option>
+                                <option value="₹1.95 Cr – ₹2.25 Cr">₹1.95 Cr – ₹2.25 Cr</option>
+                                <option value="₹2.25 Cr – ₹2.65 Cr">₹2.25 Cr – ₹2.65 Cr</option>
+                                <option value="₹2.65 Cr – ₹2.99 Cr">₹2.65 Cr – ₹2.99 Cr</option>
+                                <option value="₹3 Cr+ including upgrades">₹3 Cr+ including upgrades</option>
+                                <option value="Need Guidance">Need Guidance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Interest Type</label>
+                            <select id="leadInterestType">
+                                <option value="">Select interest type</option>
+                                <option value="Personal Use">Personal Use</option>
+                                <option value="Investment">Investment</option>
+                                <option value="Vacation Home">Vacation Home</option>
+                                <option value="Wellness Retreat">Wellness Retreat</option>
+                                <option value="Family Estate">Family Estate</option>
+                                <option value="Not Sure Yet">Not Sure Yet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Contact Method</label>
+                            <select id="leadContactMethod">
+                                <option value="">Select contact method</option>
+                                <option value="Call">Call</option>
+                                <option value="WhatsApp">WhatsApp</option>
+                                <option value="Email">Email</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 100%;">
+                        <label>Message / Requirement</label>
+                        <textarea id="leadMessage" rows="4" placeholder="Any specific requirements or questions?"></textarea>
+                    </div>
+                    
+                    <div class="form-consent">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="leadConsent" required>
+                            <span class="consent-text">I agree to be contacted by Reserva Verde Goa / project advisors regarding villa pricing, site visit, and project consultation.</span>
+                        </label>
+                    </div>
+                    
+                    <div id="formMessage" class="form-message" style="display: none;"></div>
+
+                    <div class="form-actions" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">Request My Cost Sheet</button>
+                        <button type="button" class="btn btn-outline" id="waCtaBtn" onclick="handleWhatsAppCta()" style="flex: 1; border-color: #25D366; color: #25D366;">WhatsApp Project Advisor</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+
+            <div class="text-center" style="max-width: 600px; margin: 0 auto;">
+                <p style="font-size: 0.75rem; color: var(--rv-stone-light); font-style: italic; opacity: 0.8; letter-spacing: 0.05em;">
+                    Note: Detailed cost sheet and final quote are shared after enquiry verification and project consultation.
+                </p>
+        </div>
+    </section>
+
+    <!-- Installment Planner -->
+    <section class="rv-section" id="installments">
+        <div class="container">
+            <div class="text-center">
+                <span class="eyebrow">Cashflow Milestones</span>
+                <h2 class="section-title">Installment Payment Planner</h2>
+                <p class="section-subtitle">Review the progress-linked 8-stage contract payment schedule calculated automatically for any contract value.</p>
+            </div>
+
+            <div class="installment-split">
+                <!-- Presets (Left Column) -->
+                <div class="inst-preset-box">
+                    <span class="eyebrow" style="margin-bottom:1rem; font-size:0.6rem;">Select Package Presets</span>
+                    <div class="inst-presets">
+                        <button class="preset-btn" onclick="setInstPrice(1.95)">
+                            <span>₹1.95 Cr (Entry Model)</span>
+                            <span class="val">1.95 Cr</span>
+                        </button>
+                        <button class="preset-btn" onclick="setInstPrice(2.25)">
+                            <span>₹2.25 Cr (2BHK Valley)</span>
+                            <span class="val">2.25 Cr</span>
+                        </button>
+                        <button class="preset-btn" onclick="setInstPrice(2.35)">
+                            <span>₹2.35 Cr (3BHK Cottage)</span>
+                            <span class="val">2.35 Cr</span>
+                        </button>
+                        <button class="preset-btn" onclick="setInstPrice(2.55)">
+                            <span>₹2.55 Cr (2BHK Wellness)</span>
+                            <span class="val">2.55 Cr</span>
+                        </button>
+                        <button class="preset-btn active" onclick="setInstPrice(2.65)">
+                            <span>₹2.65 Cr (Hero Product)</span>
+                            <span class="val">2.65 Cr</span>
+                        </button>
+                        <button class="preset-btn" onclick="setInstPrice(2.90)">
+                            <span>₹2.90 Cr (4BHK Valley)</span>
+                            <span class="val">2.90 Cr</span>
+                        </button>
+                        <button class="preset-btn" onclick="setInstPrice(2.99)">
+                            <span>₹2.99 Cr (Luxury Cap)</span>
+                            <span class="val">2.99 Cr</span>
+                        </button>
+                    </div>
+
+                    <div class="custom-price-block">
+                        <button class="custom-toggle-btn" id="customToggle" onclick="toggleCustomInst()">Custom Valuation Value</button>
+                        <div class="custom-input-wrap" id="customWrap">
+                            <input type="number" id="customInstVal" min="1.0" max="2.99" step="0.01" value="2.65" class="form-input font-val" oninput="onCustomInstInput()">
+                            <span class="unit">Cr</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule (Right Column) -->
+                <div class="inst-breakdown-panel">
+                    <div class="sheet-header">
+                        <div>
+                          <h4>Milestone Payment Schedule</h4>
+                          <span style="font-size:0.55rem; color:var(--rv-stone-light); letter-spacing:0.1em; text-transform:uppercase;">Milestone Allocation Sheet</span>
+                        </div>
+                        <div class="inst-total-box">
+                            <span class="inst-total-label">Total Contract Value</span>
+                            <span class="inst-total-val" id="lblInstTotal">₹2.65 Cr</span>
+                        </div>
+                    </div>
+
+                    <div class="inst-table-wrap">
+                        <table class="inst-table">
+                          <thead>
+                            <tr>
+                              <th style="width:10%; text-align:left;">Stage</th>
+                              <th style="width:50%; text-align:left;">Milestone Event</th>
+                              <th style="width:15%; text-align:center;">Ratio %</th>
+                              <th style="width:25%; text-align:right;">Milestone Invoice Amount</th>
+                            </tr>
+                          </thead>
+                          <tbody id="instTableBody">
+                              <!-- stages dynamically injected -->
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional Upgrades -->
+    <section class="rv-section" id="optional-upgrades">
+        <div class="container">
+            <div class="text-center">
+                <span class="eyebrow">Luxury Customization</span>
+                <h2 class="section-title">Optional Upgrade Portfolio</h2>
+                <p class="section-subtitle">Enhance your ground-level estate with private pools, wellness modules, and off-grid utility infrastructure. <strong>Optional upgrades are billed separately and are not part of the base villa package.</strong></p>
+            </div>
+
+            <div class="addons-split">
+                <!-- Grid of items (Left) -->
+                <div class="addons-cards-grid">
+                    <div class="addon-item-card" data-id="plunge" onclick="toggleAddon('plunge', 18, 30)">
+                        <div class="addon-content">
+                            <h4>Private Plunge Pool</h4>
+                            <p class="addon-desc">Compact timber skimmer pool integrated directly within your observation deck footprint.</p>
+                            <span class="addon-price">₹18 Lakhs – ₹30 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="fullpool" onclick="toggleAddon('fullpool', 35, 55)">
+                        <div class="addon-content">
+                            <h4>Full Private Pool</h4>
+                            <p class="addon-desc">Infinity edge stone pool surveyed to integrate with the natural topography.</p>
+                            <span class="addon-price">₹35 Lakhs – ₹55 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="jacuzzi" onclick="toggleAddon('jacuzzi', 8, 18)">
+                        <div class="addon-content">
+                            <h4>Outdoor Jacuzzi</h4>
+                            <p class="addon-desc">Heated multi-jet hot tub placed on the timber deck facing Cashew canopy view lines.</p>
+                            <span class="addon-price">₹8 Lakhs – ₹18 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="spa" onclick="toggleAddon('spa', 15, 35)">
+                        <div class="addon-content">
+                            <h4>Full Spa Room Upgrade</h4>
+                            <p class="addon-desc">A detached container room customized for steam, massage, and cold plunge.</p>
+                            <span class="addon-price">₹15 Lakhs – ₹35 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="yoga" onclick="toggleAddon('yoga', 8, 20)">
+                        <div class="addon-content">
+                            <h4>Yoga / Meditation Deck</h4>
+                            <p class="addon-desc">Bespoke timber-slat deck cantilevered over the estate agrotourism zone.</p>
+                            <span class="addon-price">₹8 Lakhs – ₹20 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="furniture" onclick="toggleAddon('furniture', 15, 50)">
+                        <div class="addon-content">
+                            <h4>Premium Imported Furniture</h4>
+                            <p class="addon-desc">Curated tropical minimalist interior pack with sustainable teak furniture.</p>
+                            <span class="addon-price">₹15 Lakhs – ₹50 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="smart" onclick="toggleAddon('smart', 7, 25)">
+                        <div class="addon-content">
+                            <h4>Smart Home Automation</h4>
+                            <p class="addon-desc">Advanced surveillance, solar battery monitors, climate, and water system control.</p>
+                            <span class="addon-price">₹7 Lakhs – ₹25 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="solar" onclick="toggleAddon('solar', 8, 18)">
+                        <div class="addon-content">
+                            <h4>Solar Independence Package</h4>
+                            <p class="addon-desc">Upgraded off-grid battery bank (10kWp PV array + storage) for full autonomy.</p>
+                            <span class="addon-price">₹8 Lakhs – ₹18 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="staff" onclick="toggleAddon('staff', 12, 25)">
+                        <div class="addon-content">
+                            <h4>Staff Room Module</h4>
+                            <p class="addon-desc">Detached ground-level helper capsule with basic bathroom utilities.</p>
+                            <span class="addon-price">₹12 Lakhs – ₹25 Lakhs</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="addon-item-card" data-id="extraarea" onclick="toggleAddon('extraarea', 5.5, 7.5)">
+                        <div class="addon-content">
+                            <h4>Extra Built-Up Area</h4>
+                            <p class="addon-desc">Add modular sections (per 100 sq.ft) built at specific customized rates.</p>
+                            <span class="addon-price">₹5,500 – ₹7,500/sq.ft</span>
+                        </div>
+                        <div class="addon-checkbox">
+                            <svg viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estimator Summary (Right) -->
+                <div class="addons-summary-panel">
+                    <span class="eyebrow" style="margin-bottom:1rem; font-size:0.6rem;">Enhancement Modeler</span>
+                    <h4 style="font-size:1.3rem; margin-bottom:1.5rem;">Selected Addons Estimator</h4>
+                    
+                    <div class="summary-selected-items" id="selectedAddonsMount">
+                        <div class="addons-empty-state">Select optional items on the left to aggregate estimated budgets in real-time.</div>
+                    </div>
+
+                    <div class="summary-range-box">
+                        <span class="summary-range-label">Estimated Addon Total</span>
+                        <span class="summary-range-val" id="lblAddonTotal">₹0 Lakhs</span>
+                    </div>
+
+                    <button class="card-btn" style="width:100%; border-color:var(--rv-border-active); background-color:transparent;" onclick="clearAllAddons()">Clear All Addons</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sales Reference Summary -->
+    <section class="rv-section" id="sales-summary">
+        <div class="container">
+            <div class="text-center">
+                <span class="eyebrow">Portfolio Summary</span>
+                <h2 class="section-title">Investor Sales Quick-Guide</h2>
+                <p class="section-subtitle">Quick reference guide outlining core portfolio pricing categories.</p>
+            </div>
+
+            <div class="summary-cards">
+                <!-- entry -->
+                <div class="sum-card">
+                    <div>
+                        <span class="sum-badge entry">Entry Product</span>
+                        <h4>2BHK Forest Cottage</h4>
+                        <p>Intimate forest-facing eco-cottage planned on a 1-acre private estate. Low-maintenance second home profile.</p>
+                    </div>
+                    <div class="sum-price-box">
+                        <span>Base Package</span>
+                        <p>₹1.95 Cr</p>
+                    </div>
+                </div>
+
+                <!-- hero -->
+                <div class="sum-card hero-border">
+                    <span class="sum-card-badge">Best Value Choice</span>
+                    <div>
+                        <span class="sum-badge hero">Recommended Hero</span>
+                        <h4>3BHK Jungle Valley</h4>
+                        <p>Expansive L-shape pavilion residence on a 1-acre private estate. High elevation ridge alignment, premium family-friendly lifestyle profile.</p>
+                    </div>
+                    <div class="sum-price-box">
+                        <span>Base Package</span>
+                        <p>₹2.65 Cr</p>
+                    </div>
+                </div>
+
+                <!-- premium -->
+                <div class="sum-card">
+                    <div>
+                        <span class="sum-badge premium">Signature Premium</span>
+                        <h4>4BHK Jungle Valley</h4>
+                        <p>Flagship spacious 4,500 sq.ft three-wing container layout centered around an open biophilic courtyard. Large family configuration.</p>
+                    </div>
+                    <div class="sum-price-box">
+                        <span>Base Package</span>
+                        <p>₹2.90 Cr</p>
+                    </div>
+                </div>
+
+                <!-- custom -->
+                <div class="sum-card">
+                    <div>
+                        <span class="sum-badge entry">Bespoke Option</span>
+                        <h4>Customizable / Wellness</h4>
+                        <p>Premium NRI sanctuary villa or fully bespoke layouts. Bounded strictly below the regulatory base price cap.</p>
+                    </div>
+                    <div class="sum-price-box">
+                        <span>Base Price Cap</span>
+                        <p>₹2.99 Cr</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Compliance Disclaimer -->
+    <section class="rv-section" id="compliance">
+        <div class="container">
+            <div class="disclaimer-box">
+                <h5>Important Regulatory & Planning Disclaimer</h5>
+                <p>
+                    Reserva Varde Goa is a conceptual eco-estate model. All development, villa construction, land subdivision, sale, resort operation and eco-tourism activity is subject to title verification, zoning, TCP approval, land conversion, environmental / forest / ESZ verification, Goa RERA applicability and legal due diligence. Nothing on this page constitutes an offer, approval assurance, or guaranteed return. Prices are indicative working figures for buyer presentation. Final pricing, taxes, stamp duty, registration charges, legal documentation, approvals, specifications, and optional upgrades will be confirmed at the time of agreement. Rental income, plantation income, appreciation, or resale value are not guaranteed and are subject to market conditions, legal approvals, operations, and actual usage.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Reserva Verde Goa by Bluechip Global Agro. All rights reserved. Preliminary investor-only presentation documents.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripting -->
+    <script>
+        const RESERVA_VERDE_CONTACT = {
+            whatsappNumber: "", 
+            email: "md.salafinternational@gmail.com",
+            leadSource: "Reserva Verde Pricing Page"
+        };
+        const INSTALLMENT_STAGES = [
+            { stageNumber: 1, name: "Booking Amount", percentage: 5 },
+            { stageNumber: 2, name: "Agreement Signing", percentage: 15 },
+            { stageNumber: 3, name: "Land / Estate Allocation", percentage: 20 },
+            { stageNumber: 4, name: "Infrastructure Start", percentage: 15 },
+            { stageNumber: 5, name: "Foundation / Plinth", percentage: 15 },
+            { stageNumber: 6, name: "Structure Completion", percentage: 10 },
+            { stageNumber: 7, name: "Interior / Finishing Stage", percentage: 15 },
+            { stageNumber: 8, name: "Handover", percentage: 5 }
+        ];
+
+        // Currency utility
+        function formatINR(valRaw, outputUnit = "auto") {
+            const crores = valRaw / 10000000;
+            const lakhs = valRaw / 100000;
+
+            if (outputUnit === "Cr" || (outputUnit === "auto" && valRaw >= 10000000)) {
+                const formatted = crores % 1 === 0 ? crores.toFixed(0) : crores.toFixed(2);
+                return "₹" + formatted + " Cr";
+            } else {
+                const formatted = lakhs % 1 === 0 ? lakhs.toFixed(0) : lakhs.toFixed(2);
+                return "₹" + formatted + " L";
+            }
+        }
+
+        // Interactive States
+        let currentInstPrice = 2.65; // Crores
+        let isCustomInst = false;
+        const selectedAddons = new Map();
+
+        function selectForInstallments(priceCr) {
+            setInstPrice(priceCr);
+            document.getElementById("installments").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Installments planner logic
+        function setInstPrice(priceCr) {
+            currentInstPrice = priceCr;
+            isCustomInst = false;
+            
+            // Update preset active classes
+            const btns = document.querySelectorAll(".preset-btn");
+            btns.forEach(btn => {
+                const valAttr = parseFloat(btn.querySelector(".val").innerText);
+                if (Math.abs(valAttr - priceCr) < 0.001) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+
+            document.getElementById("customToggle").classList.remove("active");
+            document.getElementById("customWrap").style.display = "none";
+
+            renderInstallments();
+        }
+
+        function toggleCustomInst() {
+            isCustomInst = true;
+            
+            // deactivate preset buttons
+            const btns = document.querySelectorAll(".preset-btn");
+            btns.forEach(btn => btn.classList.remove("active"));
+
+            document.getElementById("customToggle").classList.add("active");
+            document.getElementById("customWrap").style.display = "block";
+
+            onCustomInstInput();
+        }
+
+        function onCustomInstInput() {
+            const inputVal = parseFloat(document.getElementById("customInstVal").value);
+            if (inputVal > 2.99) {
+                document.getElementById("customInstVal").value = 2.99;
+                currentInstPrice = 2.99;
+            } else if (inputVal > 0) {
+                currentInstPrice = inputVal;
+            } else {
+                currentInstPrice = 0;
+            }
+            renderInstallments();
+        }
+
+        function renderInstallments() {
+            document.getElementById("lblInstTotal").innerText = formatINR(currentInstPrice * 10000000, "raw");
+            
+            const tbody = document.getElementById("instTableBody");
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            const rawPrice = currentInstPrice * 10000000;
+
+            INSTALLMENT_STAGES.forEach((stage, idx) => {
+                const amountRaw = (rawPrice * stage.percentage) / 100;
+                const formattedAmt = formatINR(amountRaw, "raw");
+
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td class="num">${(idx + 1).toString().padStart(2, "0")}</td>
+                    <td class="name">${stage.name}</td>
+                    <td class="pct">${stage.percentage}%</td>
+                    <td class="amt font-val">${formattedAmt}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // append total row
+            const totalTr = document.createElement("tr");
+            totalTr.className = "total-row";
+            totalTr.innerHTML = `
+                <td></td>
+                <td class="name">Total Milestone Cashflow</td>
+                <td class="pct">100%</td>
+                <td class="amt font-val">${formatINR(rawPrice, "raw")}</td>
+            `;
+            tbody.appendChild(totalTr);
+        }
+
+        // Addon portfolio logic
+        function toggleAddon(id, minVal, maxVal) {
+            const element = document.querySelector(`.addon-item-card[data-id="${id}"]`);
+            if (selectedAddons.has(id)) {
+                selectedAddons.delete(id);
+                element.classList.remove("active");
+            } else {
+                selectedAddons.set(id, { name: element.querySelector("h4").innerText, min: minVal, max: maxVal });
+                element.classList.add("active");
+            }
+            renderAddonsSummary();
+        }
+
+        function clearAllAddons() {
+            selectedAddons.clear();
+            document.querySelectorAll(".addon-item-card").forEach(card => card.classList.remove("active"));
+            renderAddonsSummary();
+        }
+
+        function renderAddonsSummary() {
+            const mount = document.getElementById("selectedAddonsMount");
+            if (!mount) return;
+            
+            if (selectedAddons.size === 0) {
+                mount.innerHTML = `<div class="addons-empty-state">Select optional items on the left to aggregate estimated budgets in real-time.</div>`;
+                document.getElementById("lblAddonTotal").innerText = "₹0 Lakhs";
+                return;
+            }
+
+            mount.innerHTML = "";
+            let totalMin = 0;
+            let totalMax = 0;
+            let hasExtraArea = false;
+
+            selectedAddons.forEach((item, id) => {
+                totalMin += item.min;
+                totalMax += item.max;
+                if (id === "extraarea") {
+                    hasExtraArea = true;
+                }
+
+                const row = document.createElement("div");
+                row.className = "selected-addon-row";
+                const displayVal = id === "extraarea" ? "₹5,500 – ₹7,500/sq.ft" : `₹${item.min}L – ₹${item.max}L`;
+                row.innerHTML = `
+                    <span>${item.name}</span>
+                    <span class="val font-val">${displayVal}</span>
+                `;
+                mount.appendChild(row);
+            });
+            let displayTotal = "₹" + totalMin + " Lakhs – ₹" + totalMax + " Lakhs";
+            if (hasExtraArea) {
+                const subMin = totalMin - 5.5;
+                const subMax = totalMax - 7.5;
+                displayTotal = "₹" + subMin + "L – ₹" + subMax + "L (+ area rate)";
+            }
+
+            document.getElementById("lblAddonTotal").innerText = displayTotal;
+        }
+
+        // Initialize on page load
+        // --- Lead Capture Logic ---
+        function handleLeadSubmit(event) {
+            event.preventDefault();
+            const msgEl = document.getElementById("formMessage");
+            msgEl.style.display = "none";
+            msgEl.className = "form-message";
+
+            // Required fields
+            const name = document.getElementById("leadName").value.trim();
+            const mobile = document.getElementById("leadMobile").value.trim();
+            const email = document.getElementById("leadEmail").value.trim();
+            const city = document.getElementById("leadCity").value.trim();
+            const consent = document.getElementById("leadConsent").checked;
+            
+            if (!name || !mobile || !email || !city || !consent) {
+                msgEl.innerText = "Please fill all required fields and accept the consent terms.";
+                msgEl.classList.add("warning");
+                msgEl.style.display = "block";
+                return;
+            }
+
+            // Optional fields
+            const whatsapp = document.getElementById("leadWhatsapp").value.trim() || mobile;
+            const country = document.getElementById("leadCountry").value.trim();
+            const buyerType = document.getElementById("leadBuyerType").value;
+            const model = document.getElementById("leadModel").value;
+            const experience = document.getElementById("leadExperience").value;
+            const budget = document.getElementById("leadBudget").value;
+            const interestType = document.getElementById("leadInterestType").value;
+            const contactMethod = document.getElementById("leadContactMethod").value;
+            const message = document.getElementById("leadMessage").value.trim();
+
+            // Determine trigger URL & Message Instruction based on WhatsApp number config
+            let successMsg = "";
+            let triggerUrl = "";
+            let openMethod = "email";
+            let fallbackType = "none";
+
+            if (RESERVA_VERDE_CONTACT.whatsappNumber) {
+                const waText = `Hello, I am interested in Reserva Verde Goa.
+
+Please send me the detailed villa cost sheet and installment options.
+
+Project: Reserva Verde Goa
+Lead Type: Cost Sheet Request
+Name: ${name}
+Mobile: ${mobile}
+WhatsApp: ${whatsapp}
+Email: ${email}
+City: ${city}
+Country: ${country || ""}
+Buyer Type: ${buyerType || ""}
+Interested Villa Model: ${model || ""}
+Preferred Experience: ${experience || ""}
+Budget Range: ${budget || ""}
+Interest Type: ${interestType || ""}
+Preferred Contact Method: ${contactMethod || ""}
+Message: ${message || ""}
+Page URL: ${window.location.href}`;
+
+                triggerUrl = `https://wa.me/${RESERVA_VERDE_CONTACT.whatsappNumber}?text=${encodeURIComponent(waText)}`;
+                successMsg = "Your cost sheet request is ready. Please send the WhatsApp message now so our project advisor can share the detailed villa cost sheet and site visit options.";
+                openMethod = "whatsapp";
+                fallbackType = "whatsapp";
+            } else if (RESERVA_VERDE_CONTACT.email) {
+                const mailText = `Project: Reserva Verde Goa
+Lead Type: Cost Sheet Request
+Source: Reserva Verde Pricing Page
+Full Name: ${name}
+Mobile: ${mobile}
+WhatsApp: ${whatsapp}
+Email: ${email}
+City: ${city}
+Country: ${country || ""}
+Buyer Type: ${buyerType || ""}
+Interested Villa Model: ${model || ""}
+Preferred Experience: ${experience || ""}
+Budget Range: ${budget || ""}
+Interest Type: ${interestType || ""}
+Preferred Contact Method: ${contactMethod || ""}
+Message: ${message || ""}
+Page URL: ${window.location.href}
+Selected Anchor: ${window.location.hash || ""}
+Created At: ${new Date().toISOString()}`;
+
+                triggerUrl = `mailto:${RESERVA_VERDE_CONTACT.email}?subject=${encodeURIComponent("Reserva Verde Goa — Cost Sheet Request")}&body=${encodeURIComponent(mailText)}`;
+                successMsg = "Your cost sheet request is ready. Please send the email now so our project advisor can share the detailed villa cost sheet and site visit options.";
+                openMethod = "email";
+                fallbackType = "email";
+            }
+
+            if (fallbackType === "whatsapp" || fallbackType === "email") {
+                if (openMethod === "whatsapp") {
+                    window.open(triggerUrl, '_blank');
+                } else {
+                    window.location.href = triggerUrl;
+                }
+                msgEl.innerText = successMsg;
+                msgEl.className = "form-message success";
+                msgEl.style.display = "block";
+                document.getElementById("leadCaptureForm").reset();
+            } else {
+                console.warn("CRM setup pending: Advisor contact is being configured.");
+                msgEl.innerText = "Advisor contact is being configured. Please use the direct enquiry button or try again shortly.";
+                msgEl.className = "form-message warning";
+                msgEl.style.display = "block";
+            }
+        }
+
+        function handleWhatsAppCta() {
+            const waNum = RESERVA_VERDE_CONTACT.whatsappNumber;
+            if (!waNum) {
+                const msgEl = document.getElementById("formMessage");
+                msgEl.innerText = "WhatsApp communication is currently offline. Please use the 'Request My Cost Sheet' form above or email us at md.salafinternational@gmail.com.";
+                msgEl.className = "form-message warning";
+                msgEl.style.display = "block";
+                return;
+            }
+
+            const name = document.getElementById("leadName").value.trim() || "";
+            const model = document.getElementById("leadModel").value || "";
+            const budget = document.getElementById("leadBudget").value || "";
+            const city = document.getElementById("leadCity").value.trim() || "";
+
+            const text = `Hello, I am interested in Reserva Verde Goa. Please send me the detailed villa cost sheet and installment options.
+
+Preferred model: ${model}
+Preferred budget: ${budget}
+Name: ${name}
+City: ${city}`;
+
+            const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(text)}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // --- Print Cost Sheet Feature ---
+        function printCostSheet() {
+            window.print();
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            renderInstallments();
+            const waCta = document.getElementById("waCtaBtn");
+            if (waCta && !RESERVA_VERDE_CONTACT.whatsappNumber) {
+                waCta.style.opacity = "0.6";
+                waCta.style.cursor = "not-allowed";
+                waCta.title = "WhatsApp advisor is currently offline. Please use the Cost Sheet form.";
+            }
+        });
+    </script>
+</body>
+</html>

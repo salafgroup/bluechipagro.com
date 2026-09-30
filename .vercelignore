@@ -1,0 +1,23 @@
+# Vercel Deployment Exclude Rules
+backup-before-location-intelligence-deploy
+.tempmediaStorage
+*.dae
+*.skp
+*.skb
+*.log
+*.zip
+*.tar
+*.gz
+node_modules
+Model
+package.json
+package-lock.json
+build_doc.js
+build_svgs.js
+build_xlsx.py
+.env.local
+.git
+.gitignore
+deploy.bat
+deploy.ps1
+preview/

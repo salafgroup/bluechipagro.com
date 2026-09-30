@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Reserva Varde — Internal Villa Costing | CRM</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0b140f;
+            --bg-card: #15241b;
+            --bg-ivory: #F8F6F0;
+            --text-main: #F8F6F0;
+            --text-muted: #A9A59C;
+            --accent-gold: #C2A878;
+            --accent-gold-light: #E0CFA6;
+            --border-color: rgba(194, 168, 120, 0.15);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.3s ease;
+            --rv-forest: #1F3A2E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 10;
+        }
+
+        .brand {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .nav-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 0.8rem 1rem;
+            display: block;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .nav-list a:hover, .nav-list a.active {
+            color: var(--text-main);
+            background-color: rgba(194, 168, 120, 0.05);
+            border-left: 2px solid var(--accent-gold);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 2.5rem 4rem;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-weight: 600;
+        }
+
+        /* Section Styling */
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* Split layout */
+        .costing-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 1200px) {
+            .costing-split {
+                grid-template-columns: 5fr 7fr;
+            }
+        }
+
+        .calc-panel {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 4px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .form-select, .form-input {
+            width: 100%;
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-main);
+            border-radius: 2px;
+            outline: none;
+            transition: border 0.3s;
+            font-family: var(--font-sans);
+        }
+
+        .form-select:focus, .form-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .range-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .range-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-main);
+            margin-bottom: 0.6rem;
+        }
+
+        .range-header span.val-display {
+            font-family: monospace;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .range-slider {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255,255,255,0.08);
+            border-radius: 5px;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: var(--accent-gold);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .range-slider::-webkit-slider-thumb:hover {
+            background-color: var(--accent-gold-light);
+        }
+
+        /* Pro-Forma Cost Sheet Card */
+        .sheet-panel {
+            background-color: #ffffff;
+            color: #1c1c1c;
+            border: 1px solid var(--border-color);
+            padding: 3rem 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .sheet-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e5e5e5;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sheet-header h4 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #121212;
+        }
+
+        .sheet-badge {
+            font-size: 0.55rem;
+            background-color: #0b140f;
+            border: 1px solid rgba(194, 168, 120, 0.4);
+            color: var(--accent-gold);
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .sheet-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #333333;
+        }
+
+        .sheet-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sheet-row.subtotal {
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem 0;
+            color: #121212;
+            font-weight: 600;
+        }
+
+        .sheet-row.total-cost {
+            background-color: #f5f4f0;
+            border: 1px solid #e2dfd7;
+            padding: 1.2rem 1.5rem;
+            border-radius: 2px;
+            color: #121212;
+            font-weight: 600;
+        }
+
+        .sheet-row.total-cost .cost-label {
+            color: #0b140f;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+        }
+
+        .sheet-row.total-cost .cost-val {
+            color: #8c6d31;
+            font-size: 1.2rem;
+        }
+
+        .sheet-row.sale-price {
+            padding-top: 1rem;
+            font-size: 0.9rem;
+            color: #121212;
+            font-weight: 600;
+        }
+
+        .sheet-row.sale-price .sale-val {
+            font-weight: 600;
+            color: #121212;
+        }
+
+        .sheet-row.margin-profit {
+            border-top: 2px dashed #e5e5e5;
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .sheet-row.margin-profit .profit-val {
+            font-size: 1.4rem;
+            color: #121212;
+            font-weight: 600;
+        }
+
+        .sheet-row.margin-percent {
+            padding-bottom: 1rem;
+        }
+
+        .percent-badge {
+            font-family: monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 0.4rem 1.2rem;
+            border-radius: 2px;
+            background-color: #15241b;
+            border: 1px solid #4ade80;
+            color: #4ade80;
+        }
+
+        .percent-badge.amber {
+            background-color: #292416;
+            border-color: #fbbf24;
+            color: #fbbf24;
+        }
+
+        .percent-badge.red {
+            background-color: #2c1618;
+            border-color: #f87171;
+            color: #f87171;
+        }
+
+        .percent-badge.blue {
+            background-color: #16242c;
+            border-color: #60a5fa;
+            color: #60a5fa;
+        }
+
+        .font-val {
+            font-family: monospace;
+            color: inherit;
+            font-weight: 600;
+        }
+
+        /* Buttons & Actions */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            border-radius: 2px;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-sans);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-gold-light);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(194, 168, 120, 0.05);
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .actions-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Pricing Reference Matrix */
+        .matrix-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 4px;
+            margin-bottom: 4rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1.2rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        td {
+            font-size: 0.85rem;
+        }
+
+        /* Auth Guard Testing Overlay */
+        .auth-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(11, 20, 15, 0.98);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .auth-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            border-radius: 4px;
+        }
+
+        .auth-card h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .auth-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .role-btn {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem;
+            background-color: rgba(194, 168, 120, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .role-btn:hover {
+            border-color: var(--accent-gold);
+            background-color: rgba(194, 168, 120, 0.1);
+            color: var(--accent-gold);
+        }
+
+        .role-btn.restricted {
+            opacity: 0.6;
+        }
+
+        .role-btn.restricted:hover {
+            border-color: #ff4d5a;
+            background-color: rgba(255, 77, 90, 0.05);
+            color: #ff4d5a;
+        }
+
+        .role-badge {
+            font-size: 0.6rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .role-badge.allowed {
+            background-color: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .role-badge.restricted {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--accent-gold);
+            color: var(--text-main);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10001;
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Auth Guard Testing Overlay -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="auth-card">
+            <h2>CRM Security Boundary</h2>
+            <p>This is a protected developer pro-forma costing resource. Please choose your role to simulate the authentication check.</p>
+            
+            <button class="role-btn" onclick="authenticateRole('admin')">
+                <span>1. System Administrator</span>
+                <span class="role-badge allowed">Allowed</span>
+            </button>
+            <button class="role-btn" onclick="authenticateRole('finance')">
+                <span>2. Finance Director</span>
+                <span class="role-badge allowed">Allowed</span>
+            </button>
+            <button class="role-btn" onclick="authenticateRole('management')">
+                <span>3. Executive Management</span>
+                <span class="role-badge allowed">Allowed</span>
+            </button>
+            <button class="role-btn" onclick="authenticateRole('founder')">
+                <span>4. Founder Circle Head</span>
+                <span class="role-badge allowed">Allowed</span>
+            </button>
+            <button class="role-btn" onclick="authenticateRole('sales_head')">
+                <span>5. VP of Sales</span>
+                <span class="role-badge allowed">Allowed</span>
+            </button>
+            
+            <div style="margin: 1.5rem 0 1rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;"></div>
+            
+            <button class="role-btn restricted" onclick="authenticateRole('candidate')">
+                <span>6. Job Candidate</span>
+                <span class="role-badge restricted">Restricted</span>
+            </button>
+            <button class="role-btn restricted" onclick="authenticateRole('public_user')">
+                <span>7. Public Visitor</span>
+                <span class="role-badge restricted">Restricted</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">RVG CRM</div>
+        <ul class="nav-list">
+            <li><a href="/crm.html">Executive Dashboard</a></li>
+            <li><a href="/crm.html#pipeline">Lead Pipeline</a></li>
+            <li><a href="/crm.html#site-visits">Site Visits</a></li>
+            <li><a href="/crm.html#inventory">Unit Inventory</a></li>
+            <li><a href="/crm/reserva-verde/costing/" class="active">Reserva Verde Costing</a></li>
+            <li><a href="/crm.html#legal">Legal & Compliance</a></li>
+            <li><a href="/crm.html#finance">Finance Tracking</a></li>
+        </ul>
+        
+        <div style="margin-top: 2rem;">
+            <button class="btn btn-outline" style="width:100%; padding: 0.5rem; font-size: 0.6rem;" onclick="logoutSim()">Switch Role</button>
+        </div>
+
+        <div class="sidebar-footer">
+            <p>Bluechip Global Agro</p>
+            <p style="margin-top: 0.5rem; opacity: 0.5;">v2.0 Protected Costing</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Header -->
+        <header class="header">
+            <div>
+                <p style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em;">Reserva Varde Goa — Developer Portal</p>
+                <h1>Internal Villa Costing</h1>
+            </div>
+            <div class="user-profile">
+                <span id="roleLabel" class="text-small" style="color: var(--text-muted); font-size: 0.8rem;">Role: admin</span>
+                <div class="avatar" id="avatarLetter">A</div>
+            </div>
+        </header>
+
+        <!-- Warning Disclaimer -->
+        <div style="background-color: rgba(194, 168, 120, 0.05); border: 1px solid rgba(194, 168, 120, 0.3); padding: 1.5rem 2rem; border-radius: 4px; margin-bottom: 3rem; font-size: 0.75rem; line-height: 1.6; color: var(--accent-gold-light);">
+            <strong>[SECURITY NOTE]</strong> This is an internal developer appraisal resource. Real-time adjustments below calculate structural hard costs, land capitalization metrics, and projected margins. Do not share raw screenshots or CSV exports with external candidates, public enquirers, or marketing agencies. <em>Static auth-guard simulation enabled for testing. Production builds must integrate server-side session guards.</em>
+        </div>
+
+        <!-- 2 Column Calculator & Sheet -->
+        <div class="section-title">Strategic Pro-Forma Modeler</div>
+        
+        <div class="costing-split">
+            <!-- Inputs Panel (Left) -->
+            <div class="calc-panel">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Villa Size Model</label>
+                        <select id="calcModel" class="form-select" onchange="onModelChange()">
+                            <option value="2bhk" selected>2BHK (2,500 sq.ft)</option>
+                            <option value="3bhk">3BHK (3,500 sq.ft)</option>
+                            <option value="4bhk">4BHK (4,500 sq.ft)</option>
+                            <option value="custom">Customizable (flexible)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Experience Typology</label>
+                        <select id="calcCategory" class="form-select" onchange="onCategoryChange()">
+                            <option value="cottage">Forest Cottage</option>
+                            <option value="valley" selected>Jungle Valley</option>
+                            <option value="wellness">Premium Wellness</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Sliders -->
+                <div class="range-group">
+                    <div class="range-header">
+                        <span>Built-up Area</span>
+                        <span class="val-display" id="dispArea">2,500 Sq.Ft</span>
+                    </div>
+                    <input type="range" id="slideArea" min="2000" max="6000" step="100" value="2500" class="range-slider" oninput="updateCalculations()">
+                </div>
+
+                <div class="range-group">
+                    <div class="range-header">
+                        <span>Construction Rate</span>
+                        <span class="val-display" id="dispRate">₹3,250 / sq.ft</span>
+                    </div>
+                    <input type="range" id="slideRate" min="2000" max="5000" step="50" value="3250" class="range-slider" oninput="updateCalculations()">
+                </div>
+
+                <div class="range-group">
+                    <div class="range-header">
+                        <span>Land Allocation Cost</span>
+                        <span class="val-display" id="dispLand">₹25 Lakhs</span>
+                    </div>
+                    <input type="range" id="slideLand" min="10" max="60" step="1" value="25" class="range-slider" oninput="updateCalculations()">
+                </div>
+
+                <div class="range-group">
+                    <div class="range-header">
+                        <span>External Villa Works</span>
+                        <span class="val-display" id="dispExt">₹32 Lakhs</span>
+                    </div>
+                    <input type="range" id="slideExt" min="10" max="70" step="1" value="32" class="range-slider" oninput="updateCalculations()">
+                </div>
+
+                <div class="range-group">
+                    <div class="range-header">
+                        <span>Common Infrastructure</span>
+                        <span class="val-display" id="dispInfra">₹20 Lakhs</span>
+                    </div>
+                    <input type="range" id="slideInfra" min="5" max="40" step="1" value="20" class="range-slider" oninput="updateCalculations()">
+                </div>
+
+                <div class="range-group">
+                    <div class="range-header">
+                        <span>Soft Cost / Contingency %</span>
+                        <span class="val-display" id="dispSoft">12%</span>
+                    </div>
+                    <input type="range" id="slideSoft" min="5" max="20" step="1" value="12" class="range-slider" oninput="updateCalculations()">
+                </div>
+
+                <div class="range-group" style="border-top:1px solid var(--border-color); padding-top:1.5rem;">
+                    <div class="range-header">
+                        <span>Contract Sale Price</span>
+                        <span class="val-display" id="dispSale">₹2.25 Cr</span>
+                    </div>
+                    <input type="range" id="slideSale" min="1.50" max="2.99" step="0.05" value="2.25" class="range-slider" oninput="updateCalculations()">
+                    <span style="font-size:0.6rem; color:var(--text-muted); display:block; margin-top:0.4rem;">
+                        Strict packaging requirement: Villa base packages must remain under ₹2.99 Cr cap.
+                    </span>
+                </div>
+            </div>
+
+            <!-- Cost Sheet (Right) -->
+            <div>
+                <div class="sheet-panel" id="costSheetContainer">
+                    <div class="sheet-header">
+                        <div>
+                          <h4>Pro-Forma Cost Sheet</h4>
+                          <span style="font-size:0.55rem; color:#888888; letter-spacing:0.1em; text-transform:uppercase;">Appraisal Document</span>
+                        </div>
+                        <span class="sheet-badge">Developer View</span>
+                    </div>
+
+                    <div class="sheet-rows">
+                        <div class="sheet-row">
+                            <span>Construction Budget (<span id="lblArea">2,500</span> sq.ft × ₹<span id="lblRate">3,250</span>)</span>
+                            <span class="font-val" id="valConst">₹81,25,000</span>
+                        </div>
+                        <div class="sheet-row">
+                            <span>External Villa Works (Pool, Observatories)</span>
+                            <span class="font-val" id="valExt">₹3,200,000</span>
+                        </div>
+                        <div class="sheet-row">
+                            <span>Land Allocation (1-Acre Private Buffer)</span>
+                            <span class="font-val" id="valLand">₹2,500,000</span>
+                        </div>
+                        <div class="sheet-row">
+                            <span>Infrastructure Allocation (Managed Access)</span>
+                            <span class="font-val" id="valInfra">₹2,000,000</span>
+                        </div>
+
+                        <div class="sheet-row subtotal">
+                            <span>Subtotal Hard Cost</span>
+                            <span class="font-val" id="valSubtotal">₹1,58,25,000</span>
+                        </div>
+
+                        <div class="sheet-row">
+                            <span>Soft Costs & Contingency (<span id="lblSoft">12</span>% of Hard cost + Ext. Works)</span>
+                            <span class="font-val" id="valSoft">₹13,59,000</span>
+                        </div>
+
+                        <div class="sheet-row total-cost">
+                            <span class="cost-label">Estimated Total Internal Cost</span>
+                            <span class="font-val cost-val" id="valInternalCost">₹1,71,84,000</span>
+                        </div>
+
+                        <div class="sheet-row sale-price">
+                            <span>Base Villa Contract Sale Price</span>
+                            <span class="font-val sale-val" id="valSalePrice">₹2,25,00,000</span>
+                        </div>
+
+                        <div class="sheet-row margin-profit">
+                            <div>
+                                <span style="font-size:0.8rem; font-weight:600; color:#121212; display:block;">Estimated Gross Margin</span>
+                                <span style="font-size:0.55rem; color:#888888; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-top:0.2rem;">Sale Price - Total Internal Cost</span>
+                            </div>
+                            <span class="font-val profit-val" id="valMargin">₹53,16,000</span>
+                        </div>
+
+                        <div class="sheet-row margin-percent">
+                            <span style="font-size:0.8rem; font-weight:600; color:#121212;">Gross Profit Percentage</span>
+                            <span class="percent-badge" id="valMarginPercent">23.63%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions-bar">
+                    <button class="btn btn-primary" onclick="window.print()">Print Cost Sheet</button>
+                    <button class="btn btn-outline" onclick="simulatePDFDownload()">Download Costing PDF</button>
+                    <button class="btn btn-outline" onclick="copySummaryText()">Copy Summary</button>
+                    <button class="btn btn-outline" onclick="resetAssumptions()">Reset Assumptions</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Public Reference Matrix -->
+        <div class="section-title">Public Price Reference Matrix</div>
+        <div class="matrix-container">
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem; font-weight: 300;">
+                For strategic positioning, the standard public pricing matrix is maintained below. These values match standard marketing flyers.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Villa Model Sizing</th>
+                        <th>Forest Cottage</th>
+                        <th>Jungle Valley</th>
+                        <th>Premium Wellness</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 600;">2BHK Forest Villa (2,500 sq.ft)</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹1.95 Cr</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.25 Cr</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.55 Cr</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">3BHK Premium Estate (3,500 sq.ft)</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.35 Cr</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.65 Cr</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.90 Cr</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">4BHK Signature Retreat (4,500 sq.ft)</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.65 Cr</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.90 Cr</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.99 Cr</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 600;">Customizable (flexible cap)</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.50 Cr onwards</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.75 Cr onwards</td>
+                        <td style="font-family: monospace; color: var(--accent-gold);">₹2.99 Cr base cap</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Action logged successfully.</div>
+
+    <!-- Scripting -->
+    <script>
+        const COSTING_ASSUMPTIONS = {
+            cottage: { constructionRate: 2900, landAllocation: 25, commonInfraAllocation: 20, externalWorks: 22, softCostPct: 12 },
+            valley: { constructionRate: 3250, landAllocation: 25, commonInfraAllocation: 20, externalWorks: 32, softCostPct: 12 },
+            wellness: { constructionRate: 3650, landAllocation: 25, commonInfraAllocation: 20, externalWorks: 42, softCostPct: 12 }
+        };
+
+        const VILLA_MODELS = {
+            "2bhk": { builtUpArea: 2500 },
+            "3bhk": { builtUpArea: 3500 },
+            "4bhk": { builtUpArea: 4500 },
+            "custom": { builtUpArea: 3500 }
+        };
+
+        const PRICING_MATRIX = {
+            "2bhk": { cottage: 1.95, valley: 2.25, wellness: 2.55 },
+            "3bhk": { cottage: 2.35, valley: 2.65, wellness: 2.90 },
+            "4bhk": { cottage: 2.65, valley: 2.90, wellness: 2.99 },
+            "custom": { cottage: 2.50, valley: 2.75, wellness: 2.99 }
+        };
+
+        // Format raw currency with commas
+        function formatINRWithCommas(x) {
+            return "₹" + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Authentication guard check
+        const allowedRoles = ["admin", "finance", "management", "founder", "sales_head"];
+        
+        // Static-site role guard is for preview/testing only. Production must use server-side authentication, Supabase RLS, middleware, or backend authorization before exposing real internal costing data.
+        function checkAuth() {
+            const role = sessionStorage.getItem("rvg_user_role");
+            if (!role || !allowedRoles.includes(role)) {
+                document.getElementById("authOverlay").style.display = "flex";
+                document.body.style.overflow = "hidden";
+            } else {
+                document.getElementById("authOverlay").style.display = "none";
+                document.body.style.overflow = "auto";
+                
+                // Update profile display
+                document.getElementById("roleLabel").innerText = "Role: " + role;
+                document.getElementById("avatarLetter").innerText = role.charAt(0).toUpperCase();
+            }
+        }
+
+        function authenticateRole(role) {
+            if (allowedRoles.includes(role)) {
+                sessionStorage.setItem("rvg_user_role", role);
+                showToast("Simulating " + role + " access...", "success");
+                setTimeout(() => {
+                    checkAuth();
+                    onModelChange(); // reset layout for new role
+                }, 500);
+            } else {
+                alert("Unauthorized Access!\nRole '" + role + "' does not have permission to view sensitive costing sheets.");
+                window.location.href = "/crm.html";
+            }
+        }
+
+        function logoutSim() {
+            sessionStorage.removeItem("rvg_user_role");
+            showToast("Logging out...", "info");
+            setTimeout(() => {
+                checkAuth();
+            }, 500);
+        }
+
+        // Calculator Logic
+        function onModelChange() {
+            const modelId = document.getElementById("calcModel").value;
+            const model = VILLA_MODELS[modelId];
+            document.getElementById("slideArea").value = model.builtUpArea;
+            syncSalePrice();
+            updateCalculations();
+        }
+
+        function onCategoryChange() {
+            const catId = document.getElementById("calcCategory").value;
+            const cat = COSTING_ASSUMPTIONS[catId];
+            document.getElementById("slideRate").value = cat.constructionRate;
+            document.getElementById("slideLand").value = cat.landAllocation;
+            document.getElementById("slideExt").value = cat.externalWorks;
+            document.getElementById("slideInfra").value = cat.commonInfraAllocation;
+            document.getElementById("slideSoft").value = cat.softCostPct;
+            syncSalePrice();
+            updateCalculations();
+        }
+
+        function syncSalePrice() {
+            const modelId = document.getElementById("calcModel").value;
+            const catId = document.getElementById("calcCategory").value;
+            const price = PRICING_MATRIX[modelId][catId];
+            document.getElementById("slideSale").value = price;
+        }
+
+        function updateCalculations() {
+            const builtUpArea = parseInt(document.getElementById("slideArea").value);
+            const constructionRate = parseInt(document.getElementById("slideRate").value);
+            const landAllocationLakhs = parseInt(document.getElementById("slideLand").value);
+            const externalWorksLakhs = parseInt(document.getElementById("slideExt").value);
+            const infraAllocationLakhs = parseInt(document.getElementById("slideInfra").value);
+            const softCostPct = parseInt(document.getElementById("slideSoft").value);
+            const salePriceCr = parseFloat(document.getElementById("slideSale").value);
+
+            // Display UI labels
+            document.getElementById("dispArea").innerText = builtUpArea.toLocaleString() + " Sq.Ft";
+            document.getElementById("dispRate").innerText = "₹" + constructionRate.toLocaleString() + " / sq.ft";
+            document.getElementById("dispLand").innerText = "₹" + landAllocationLakhs + " Lakhs";
+            document.getElementById("dispExt").innerText = "₹" + externalWorksLakhs + " Lakhs";
+            document.getElementById("dispInfra").innerText = "₹" + infraAllocationLakhs + " Lakhs";
+            document.getElementById("dispSoft").innerText = softCostPct + "%";
+            document.getElementById("dispSale").innerText = "₹" + salePriceCr.toFixed(2) + " Cr";
+
+            document.getElementById("lblArea").innerText = builtUpArea.toLocaleString();
+            document.getElementById("lblRate").innerText = constructionRate.toLocaleString();
+            document.getElementById("lblSoft").innerText = softCostPct;
+
+            // Raw Calculation
+            const constructionCostRaw = builtUpArea * constructionRate;
+            const externalWorksRaw = externalWorksLakhs * 100000;
+            const landAllocationRaw = landAllocationLakhs * 100000;
+            const infrastructureAllocationRaw = infraAllocationLakhs * 100000;
+            const salePriceRaw = salePriceCr * 10000000;
+
+            const subtotalRaw = constructionCostRaw + externalWorksRaw + landAllocationRaw + infrastructureAllocationRaw;
+            const softCostRaw = (constructionCostRaw + externalWorksRaw) * (softCostPct / 100);
+            const estimatedInternalCostRaw = subtotalRaw + softCostRaw;
+
+            const grossMarginRaw = salePriceRaw - estimatedInternalCostRaw;
+            const grossMarginPercent = (grossMarginRaw / salePriceRaw) * 100;
+
+            // Render Output fields
+            document.getElementById("valConst").innerText = formatINRWithCommas(constructionCostRaw);
+            document.getElementById("valExt").innerText = formatINRWithCommas(externalWorksRaw);
+            document.getElementById("valLand").innerText = formatINRWithCommas(landAllocationRaw);
+            document.getElementById("valInfra").innerText = formatINRWithCommas(infrastructureAllocationRaw);
+            document.getElementById("valSubtotal").innerText = formatINRWithCommas(subtotalRaw);
+            document.getElementById("valSoft").innerText = formatINRWithCommas(Math.round(softCostRaw));
+            document.getElementById("valInternalCost").innerText = formatINRWithCommas(Math.round(estimatedInternalCostRaw));
+            document.getElementById("valSalePrice").innerText = formatINRWithCommas(salePriceRaw);
+            document.getElementById("valMargin").innerText = formatINRWithCommas(Math.round(grossMarginRaw));
+
+            // Margin health classes
+            const pctBadge = document.getElementById("valMarginPercent");
+            pctBadge.innerText = grossMarginPercent.toFixed(2) + "%";
+            
+            if (grossMarginPercent < 15) {
+                pctBadge.className = "percent-badge red";
+                pctBadge.title = "Below 15%: Red — Margin Risk";
+            } else if (grossMarginPercent >= 15 && grossMarginPercent < 20) {
+                pctBadge.className = "percent-badge amber";
+                pctBadge.title = "15% to 20%: Amber — Tight Margin";
+            } else if (grossMarginPercent >= 20 && grossMarginPercent <= 30) {
+                pctBadge.className = "percent-badge";
+                pctBadge.title = "20% to 30%: Green — Healthy Margin";
+            } else {
+                pctBadge.className = "percent-badge blue";
+                pctBadge.title = "Above 30%: Premium Margin";
+            }
+        }
+
+        // Actions
+        function showToast(msg, type = "info") {
+            const toast = document.getElementById("toast");
+            toast.innerText = msg;
+            toast.style.display = "block";
+            toast.style.borderColor = type === "success" ? "#4CAF50" : (type === "warning" ? "#ff9800" : "var(--accent-gold)");
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3000);
+        }
+
+        function simulatePDFDownload() {
+            showToast("Generating pro-forma PDF report...", "info");
+            setTimeout(() => {
+                showToast("Download started successfully!", "success");
+            }, 1500);
+        }
+
+        function copySummaryText() {
+            const model = document.getElementById("calcModel").value.toUpperCase();
+            const cat = document.getElementById("calcCategory").value.toUpperCase();
+            const area = document.getElementById("slideArea").value;
+            const cost = document.getElementById("valInternalCost").innerText;
+            const sale = document.getElementById("valSalePrice").innerText;
+            const margin = document.getElementById("valMarginPercent").innerText;
+            
+            const summary = `RESERVA VARDE COSTING PRO-FORMA SUMMARY:\nModel: ${model} (${area} sqft)\nTypology: ${cat}\nEstimated Cost: ${cost}\nContract Price: ${sale}\nProfit Margin: ${margin}`;
+            
+            navigator.clipboard.writeText(summary).then(() => {
+                showToast("Summary copied to clipboard!", "success");
+            }).catch(() => {
+                alert("Summary:\n\n" + summary);
+            });
+        }
+
+        function resetAssumptions() {
+            document.getElementById("calcModel").value = "2bhk";
+            document.getElementById("calcCategory").value = "valley";
+            onCategoryChange();
+            showToast("Assumptions reset to default.", "success");
+        }
+
+        // Page Init
+        window.addEventListener("DOMContentLoaded", () => {
+            checkAuth();
+            onCategoryChange();
+        });
+    </script>
+</body>
+</html>

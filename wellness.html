@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herbal Wellness Valley · Reserva Verde Goa</title>
+<meta name="description" content="The Herbal Wellness Valley at Reserva Verde Goa — Ayurveda Village, Yoga Decks, Herbal Trails, Forest Bathing and Organic Cafe, set inside a 1,000-acre private jungle forest estate in South Goa.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --forest:        #10291F;
+    --forest-deep:   #0A1B14;
+    --leaf:          #1F4D38;
+    --gold:          #B08A3E;
+    --gold-light:    #D4B66A;
+    --ivory:         #FBF8F1;
+    --beige:         #EFE6D2;
+    --mist:          #DDE8D8;
+    --charcoal:      #242424;
+    --warm-stone:    #A9A59C;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Montserrat', -apple-system, sans-serif;
+    --container: 1400px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--ivory);
+    color: var(--charcoal);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ===== top bar ===== */
+  .top-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 5%;
+    background: rgba(16, 41, 31, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(176, 138, 62, 0.18);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .top-bar a.brand {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--ivory);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .top-bar .back-link {
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 1px solid rgba(176,138,62,0.4);
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+  }
+  .top-bar .back-link:hover {
+    background: var(--gold);
+    color: var(--forest);
+  }
+
+  /* ===== hero ===== */
+  .w-hero {
+    min-height: 92vh;
+    background:
+      linear-gradient(180deg, rgba(10,27,20,0.5), rgba(10,27,20,0.85)),
+      url('images/wellness.png') center/cover no-repeat;
+    color: var(--ivory);
+    display: flex; align-items: center;
+    padding: 8rem 5% 6rem;
+    position: relative;
+  }
+  .w-hero::after {
+    content: '';
+    position: absolute; left: 0; right: 0; bottom: 0; height: 30vh;
+    background: linear-gradient(to top, var(--ivory) 0%, transparent 100%);
+  }
+  .w-hero-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+  .w-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 0.7rem; letter-spacing: 0.32em; font-weight: 600;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .w-eyebrow::before, .w-eyebrow::after {
+    content: ''; height: 1px; width: 36px; background: var(--gold);
+  }
+  .w-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 6rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    max-width: 1100px;
+    margin-bottom: 1.8rem;
+  }
+  .w-hero h1 em {
+    font-style: italic; color: var(--gold-light); font-weight: 400;
+  }
+  .w-hero p.w-lede {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: rgba(251,248,241,0.85);
+    max-width: 680px;
+    font-weight: 300;
+    margin-bottom: 2.4rem;
+  }
+  .w-hero-badges {
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+  }
+  .w-hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(16,41,31,0.5);
+    border: 1px solid rgba(176,138,62,0.5);
+    backdrop-filter: blur(8px);
+    color: var(--ivory);
+    font-size: 0.6rem; font-weight: 500; letter-spacing: 0.22em;
+    padding: 0.65rem 1.2rem; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  .w-hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--gold); border-radius: 50%;
+  }
+
+  /* ===== generic section ===== */
+  .w-section {
+    padding: 140px 5%;
+    position: relative;
+  }
+  .w-container {
+    max-width: var(--container);
+    margin: 0 auto;
+  }
+  .w-section-head {
+    max-width: 880px;
+    margin-bottom: 5rem;
+  }
+  .w-section-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+  .w-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--forest);
+    margin-bottom: 1.4rem;
+  }
+  .w-section h2 em {
+    font-style: italic; color: var(--gold); font-weight: 400;
+  }
+  .w-section .w-sub {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: rgba(36,36,36,0.78);
+    font-weight: 300;
+    max-width: 720px;
+  }
+
+  /* ===== philosophy block (intro) ===== */
+  .w-philosophy {
+    background: var(--ivory);
+    padding-top: 0;
+  }
+  .w-philosophy .w-container {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .w-philo-img {
+    aspect-ratio: 4/5;
+    background: url('images/wellness.png') center/cover no-repeat;
+    border-radius: 4px;
+    position: relative;
+  }
+  .w-philo-img::before {
+    content: '';
+    position: absolute;
+    inset: 1.4rem;
+    border: 1px solid rgba(251,248,241,0.4);
+    pointer-events: none;
+  }
+  .w-philo-text h2 { margin-bottom: 1.8rem; }
+  .w-philo-text p {
+    font-size: 1.02rem;
+    line-height: 1.95;
+    color: rgba(36,36,36,0.78);
+    font-weight: 300;
+    margin-bottom: 1.4rem;
+  }
+  .w-philo-quote {
+    margin-top: 2.4rem;
+    padding-left: 2rem;
+    border-left: 2px solid var(--gold);
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--forest);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* ===== five pillars grid ===== */
+  .w-pillars {
+    background: var(--beige);
+  }
+  .w-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .w-pillar {
+    background: var(--ivory);
+    padding: 2.6rem 1.8rem;
+    border: 1px solid rgba(176,138,62,0.2);
+    border-radius: 6px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .w-pillar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .w-pillar:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -30px rgba(15,28,22,0.2);
+  }
+  .w-pillar-num {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 1.4rem;
+    letter-spacing: 0.06em;
+  }
+  .w-pillar h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--forest);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .w-pillar p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(36,36,36,0.72);
+    font-weight: 300;
+  }
+  .w-pillar-tag {
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(176,138,62,0.2);
+    width: 100%;
+  }
+
+  /* ===== retreat formats ===== */
+  .w-retreats {
+    background: var(--forest);
+    color: var(--ivory);
+    position: relative;
+    overflow: hidden;
+  }
+  .w-retreats::before {
+    content: '';
+    position: absolute;
+    top: -10%; right: -10%; width: 60%; height: 80%;
+    background: radial-gradient(circle, rgba(176,138,62,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .w-retreats h2 { color: var(--ivory); }
+  .w-retreats .w-sub { color: rgba(251,248,241,0.78); }
+  .w-retreats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .w-retreat-card {
+    background: rgba(251,248,241,0.04);
+    border: 1px solid rgba(176,138,62,0.3);
+    border-radius: 8px;
+    padding: 2.8rem 2rem;
+    transition: transform 0.5s ease, background 0.4s ease;
+  }
+  .w-retreat-card:hover {
+    transform: translateY(-6px);
+    background: rgba(251,248,241,0.07);
+  }
+  .w-retreat-card .w-duration {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+  }
+  .w-retreat-card h3 {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    color: var(--ivory);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .w-retreat-card p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: rgba(251,248,241,0.78);
+    font-weight: 300;
+    margin-bottom: 1.6rem;
+  }
+  .w-retreat-meta {
+    padding-top: 1.4rem;
+    border-top: 1px solid rgba(176,138,62,0.2);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(251,248,241,0.6);
+  }
+  .w-retreat-meta strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ===== programs detailed ===== */
+  .w-programs { background: var(--ivory); }
+  .w-program-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+  .w-program-block:nth-child(even) {
+    grid-template-columns: 1fr 1fr;
+  }
+  .w-program-block:nth-child(even) .w-program-img { order: 2; }
+  .w-program-block:last-child { margin-bottom: 0; }
+  .w-program-img {
+    aspect-ratio: 4/3;
+    background: url('images/wellness.png') center/cover no-repeat;
+    border-radius: 4px;
+    position: relative;
+    border: 1px solid rgba(176,138,62,0.2);
+  }
+  .w-program-img::after {
+    content: '';
+    position: absolute;
+    inset: 1rem;
+    border: 1px solid rgba(251,248,241,0.3);
+    pointer-events: none;
+  }
+  .w-program-text h3 {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    color: var(--forest);
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+  }
+  .w-program-text .w-prog-tag {
+    font-size: 0.66rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid rgba(176,138,62,0.25);
+  }
+  .w-program-text p {
+    font-size: 1.02rem;
+    line-height: 1.9;
+    color: rgba(36,36,36,0.78);
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+  }
+  .w-program-text ul {
+    list-style: none;
+    margin-top: 1.6rem;
+  }
+  .w-program-text ul li {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba(36,36,36,0.78);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 0.6rem;
+    font-weight: 300;
+  }
+  .w-program-text ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.7rem;
+    width: 10px; height: 1px;
+    background: var(--gold);
+  }
+
+  /* ===== day-in-the-life timeline ===== */
+  .w-day { background: var(--mist); }
+  .w-day-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 2rem;
+    position: relative;
+  }
+  .w-day-grid::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 130px;
+    width: 1px;
+    background: rgba(176,138,62,0.3);
+  }
+  .w-day-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 3rem;
+    padding: 1.8rem 0;
+    position: relative;
+  }
+  .w-day-item::before {
+    content: '';
+    position: absolute;
+    left: 124px; top: 2.2rem;
+    width: 13px; height: 13px;
+    background: var(--gold);
+    border: 3px solid var(--mist);
+    border-radius: 50%;
+    z-index: 2;
+  }
+  .w-day-time {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 400;
+    text-align: right;
+    padding-right: 1rem;
+  }
+  .w-day-content h4 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--forest);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .w-day-content p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(36,36,36,0.75);
+    font-weight: 300;
+  }
+
+  /* ===== plantation tie-in ===== */
+  .w-plantation {
+    background: var(--beige);
+  }
+  .w-plant-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+  .w-plant-card {
+    background: var(--ivory);
+    padding: 2.2rem 1.6rem;
+    border: 1px solid rgba(176,138,62,0.2);
+    border-radius: 6px;
+    text-align: center;
+    transition: transform 0.4s ease;
+  }
+  .w-plant-card:hover { transform: translateY(-4px); }
+  .w-plant-icon {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .w-plant-card h4 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--forest);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .w-plant-card p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(36,36,36,0.7);
+    font-weight: 300;
+  }
+
+  /* ===== CTA ===== */
+  .w-cta {
+    background: var(--forest);
+    padding: 130px 5%;
+    text-align: center;
+    color: var(--ivory);
+    position: relative;
+    overflow: hidden;
+  }
+  .w-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(176,138,62,0.12), transparent 60%),
+      radial-gradient(circle at 100% 100%, rgba(31,77,56,0.5), transparent 60%);
+    pointer-events: none;
+  }
+  .w-cta-inner {
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .w-cta-inner::before {
+    content: '';
+    display: block;
+    width: 60px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+  }
+  .w-cta h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    color: var(--ivory);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.4rem;
+  }
+  .w-cta p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(251,248,241,0.78);
+    font-weight: 300;
+    max-width: 620px;
+    margin: 0 auto 2.6rem;
+  }
+  .w-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .w-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 1.1rem 2.4rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border: 1px solid;
+    transition: all 0.4s ease;
+  }
+  .w-cta-btn-primary {
+    background: var(--gold);
+    color: var(--forest);
+    border-color: var(--gold);
+  }
+  .w-cta-btn-primary:hover {
+    background: var(--ivory);
+    border-color: var(--ivory);
+  }
+  .w-cta-btn-outline {
+    background: transparent;
+    color: var(--ivory);
+    border-color: rgba(251,248,241,0.4);
+  }
+  .w-cta-btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ===== footer ===== */
+  .w-footer {
+    background: var(--forest-deep);
+    padding: 4rem 5% 2rem;
+    color: rgba(251,248,241,0.7);
+    text-align: center;
+  }
+  .w-footer-brand {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--ivory);
+    letter-spacing: 0.3em;
+    margin-bottom: 0.6rem;
+  }
+  .w-footer-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  .w-footer-nav {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .w-footer-nav a {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: rgba(251,248,241,0.6);
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  .w-footer-nav a:hover { color: var(--gold); }
+  .w-footer-disclaimer {
+    font-size: 0.7rem;
+    line-height: 1.7;
+    max-width: 760px;
+    margin: 2rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(176,138,62,0.2);
+    color: rgba(251,248,241,0.5);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* ===== responsive ===== */
+  @media (max-width: 992px) {
+    .w-section { padding: 90px 5%; }
+    .w-philosophy .w-container { grid-template-columns: 1fr; gap: 3rem; }
+    .w-pillars-grid { grid-template-columns: repeat(2, 1fr); }
+    .w-retreats-grid { grid-template-columns: 1fr; }
+    .w-program-block { grid-template-columns: 1fr; gap: 2.4rem; margin-bottom: 4rem; }
+    .w-program-block:nth-child(even) .w-program-img { order: 0; }
+    .w-program-text h3 { font-size: 1.9rem; }
+    .w-day-grid::before { left: 80px; }
+    .w-day-item { grid-template-columns: 80px 1fr; gap: 1.6rem; }
+    .w-day-item::before { left: 74px; }
+    .w-day-time { font-size: 1.1rem; }
+    .w-plant-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .w-pillars-grid { grid-template-columns: 1fr; }
+    .w-plant-grid { grid-template-columns: 1fr; }
+    .w-cta-buttons { flex-direction: column; align-items: stretch; max-width: 320px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== top bar ===== -->
+<div class="top-bar">
+  <a href="index.html" class="brand">Reserva Verde</a>
+  <a href="index.html" class="back-link">← Back to Estate</a>
+</div>
+
+<!-- ===== hero ===== -->
+<section class="w-hero">
+  <div class="w-hero-inner">
+    <div class="w-eyebrow">The Sanctuary · Reserva Verde Goa</div>
+    <h1>Herbal Wellness <em>Valley</em><br>An Architecture of Healing</h1>
+    <p class="w-lede">A dedicated wellness sanctuary inside the 1,000-acre forest masterplan — designed for holistic rejuvenation, built around ancient Ayurvedic principles and shaped by contemporary architectural discipline. The valley is integrated seamlessly into the forest floor, drawing residents and curated retreat guests into the rhythm of slow living.</p>
+    <div class="w-hero-badges">
+      <span class="w-hero-badge">Ayurveda Village</span>
+      <span class="w-hero-badge">Yoga &amp; Movement Decks</span>
+      <span class="w-hero-badge">Herbal Trails</span>
+      <span class="w-hero-badge">Forest Bathing</span>
+      <span class="w-hero-badge">Organic Cafe</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== philosophy ===== -->
+<section class="w-section w-philosophy">
+  <div class="w-container">
+    <div class="w-philo-img reveal"></div>
+    <div class="w-philo-text">
+      <div class="w-section-eyebrow">Philosophy</div>
+      <h2>Healing is a <em>landscape</em>, not a treatment.</h2>
+      <p>The Herbal Wellness Valley is conceived as a residential-scale sanctuary, not a hotel spa. It uses Ayurvedic principles as a planning framework: orientation toward the rising sun, water bodies that cool air-flow, herb gardens placed for daily harvest, and pathway widths that slow movement.</p>
+      <p>The site reads as a series of low pavilions on a stepped forest floor — interior thresholds barely separated from the outdoors. Material discipline matters: laterite stone base, lime-plastered walls, recycled teak joinery, copper plumbing, natural fibre soft furnishings, low-VOC finishes throughout.</p>
+      <div class="w-philo-quote">"The valley is intended to feel quietly inevitable — as if it had always been here, between the trees."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== five pillars ===== -->
+<section class="w-section w-pillars">
+  <div class="w-container">
+    <div class="w-section-head">
+      <div class="w-section-eyebrow">The Five Pillars</div>
+      <h2>Five disciplines, one sanctuary.</h2>
+      <p class="w-sub">Each pillar is a designed space with its own architecture, materiality, programming team, and seasonal rhythm. Together they form an integrated wellness ecosystem unique to South Goa's forest geography.</p>
+    </div>
+    <div class="w-pillars-grid">
+      <div class="w-pillar reveal">
+        <div class="w-pillar-num">i.</div>
+        <h3>Ayurveda Village</h3>
+        <p>Six clay-tile cottages clustered around a central stepwell — Panchakarma treatment rooms, two-bed shared cottages, doctor consultation pavilion, and a sun-warmed herbal pharmacy.</p>
+        <span class="w-pillar-tag">Treatment · Consultation · Pharmacy</span>
+      </div>
+      <div class="w-pillar reveal">
+        <div class="w-pillar-num">ii.</div>
+        <h3>Yoga &amp; Movement Decks</h3>
+        <p>Three timber decks at different forest levels — sunrise deck for asana, canopy-level deck for pranayama, and a shaded floor deck for meditation. Outdoor sound system tuned for ambient guidance.</p>
+        <span class="w-pillar-tag">Asana · Pranayama · Meditation</span>
+      </div>
+      <div class="w-pillar reveal">
+        <div class="w-pillar-num">iii.</div>
+        <h3>Herbal Trails</h3>
+        <p>1.8 km of curated walking trails through plantation belts — turmeric, tulsi, ashwagandha, lemongrass, vetiver — with signage tracing each plant's traditional use and harvest season.</p>
+        <span class="w-pillar-tag">Trails · Identification · Harvest</span>
+      </div>
+      <div class="w-pillar reveal">
+        <div class="w-pillar-num">iv.</div>
+        <h3>Forest Bathing</h3>
+        <p>Quiet shinrin-yoku grove with stepped seating, a small reflecting pond, hammock alcoves, and a guided session schedule. The grove sits in the deepest acoustic shadow of the masterplan.</p>
+        <span class="w-pillar-tag">Stillness · Listening · Restoration</span>
+      </div>
+      <div class="w-pillar reveal">
+        <div class="w-pillar-num">v.</div>
+        <h3>Organic Cafe</h3>
+        <p>Plantation-to-plate menu drawing from the estate's spice, herb, and fruit gardens. Open daytime kitchen with sattvic, vegan and seasonal Goan offerings. Outdoor seating on the verandah.</p>
+        <span class="w-pillar-tag">Sattvic · Seasonal · Plantation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== retreat formats ===== -->
+<section class="w-section w-retreats">
+  <div class="w-container">
+    <div class="w-section-head">
+      <div class="w-section-eyebrow">Retreat Formats</div>
+      <h2>Three ways to <em>experience</em> the valley.</h2>
+      <p class="w-sub">Designed for estate owners, invited guests, and curated retreat participants. All formats subject to availability and final operations launch.</p>
+    </div>
+    <div class="w-retreats-grid">
+      <div class="w-retreat-card">
+        <div class="w-duration">3 Nights · Intro</div>
+        <h3>Reset Retreat</h3>
+        <p>A short immersion into the daily rhythm — Ayurvedic consultation, two treatment sessions, morning yoga, herbal trail walks, and three sattvic meals per day at the organic cafe.</p>
+        <div class="w-retreat-meta">
+          <span>Capacity · <strong>12 guests</strong></span>
+          <span>Seasonal</span>
+        </div>
+      </div>
+      <div class="w-retreat-card">
+        <div class="w-duration">7 Nights · Signature</div>
+        <h3>Panchakarma Journey</h3>
+        <p>A structured seven-day Panchakarma protocol — daily treatments tailored to constitution, dietary discipline, dedicated yoga therapy, and supervised herbal preparations from the on-site pharmacy.</p>
+        <div class="w-retreat-meta">
+          <span>Capacity · <strong>8 guests</strong></span>
+          <span>By application</span>
+        </div>
+      </div>
+      <div class="w-retreat-card">
+        <div class="w-duration">14 Nights · Flagship</div>
+        <h3>Forest Sanctuary</h3>
+        <p>A deep two-week residency combining Panchakarma, forest bathing, meditation discipline, herbal trail study, and private plantation walks. Custom programme designed with the resident teacher.</p>
+        <div class="w-retreat-meta">
+          <span>Capacity · <strong>6 guests</strong></span>
+          <span>Invitation only</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== programs detail (alternating image-text) ===== -->
+<section class="w-section w-programs">
+  <div class="w-container">
+    <div class="w-section-head">
+      <div class="w-section-eyebrow">Programs in Detail</div>
+      <h2>Inside each pillar.</h2>
+      <p class="w-sub">The wellness valley operates year-round for estate residents, and seasonally for curated retreat programmes. Final operational schedule subject to launch announcements.</p>
+    </div>
+
+    <div class="w-program-block">
+      <div class="w-program-img"></div>
+      <div class="w-program-text">
+        <div class="w-prog-tag">Pillar I · Architecture &amp; Treatment</div>
+        <h3>Ayurveda Village</h3>
+        <p>Six discrete cottages with thick lime-plaster walls and clay-tile roofs, clustered around a central stepwell. Each cottage holds a single treatment room with copper-fittings rain shower, a shaded outdoor recovery courtyard, and direct access to the herbal pharmacy garden.</p>
+        <ul>
+          <li>Six treatment cottages · Panchakarma-ready</li>
+          <li>Central stepwell + reflective courtyard</li>
+          <li>Doctor consultation pavilion (separate)</li>
+          <li>Herbal pharmacy with on-site preparation</li>
+          <li>Two recovery cottages for multi-day protocols</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="w-program-block">
+      <div class="w-program-img"></div>
+      <div class="w-program-text">
+        <div class="w-prog-tag">Pillar II · Discipline &amp; Stillness</div>
+        <h3>Yoga &amp; Movement Decks</h3>
+        <p>Three teakwood decks positioned at varied levels of the forest section. Sunrise deck faces east through a clearing — designed for morning asana. Canopy deck is suspended in the middle storey of the forest — designed for pranayama. Floor deck sits in the shaded understory — designed for evening meditation.</p>
+        <ul>
+          <li>Sunrise deck · asana practice · capacity 24</li>
+          <li>Canopy deck · pranayama · capacity 16</li>
+          <li>Floor deck · meditation · capacity 12</li>
+          <li>Resident teacher in residence (seasonal)</li>
+          <li>Equipment library — mats, bolsters, props</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="w-program-block">
+      <div class="w-program-img"></div>
+      <div class="w-program-text">
+        <div class="w-prog-tag">Pillar III · Trail &amp; Knowledge</div>
+        <h3>Herbal Trails</h3>
+        <p>1.8 km of curated forest paths threading through medicinal plant beds, traditional herb plantations, and old-growth pockets. Trail signage carries Sanskrit name, common name, traditional use, and harvest window. Guided walks twice weekly with a resident plant specialist.</p>
+        <ul>
+          <li>Turmeric · Tulsi · Ashwagandha · Brahmi</li>
+          <li>Lemongrass · Vetiver · Neem · Curry leaf</li>
+          <li>Pepper vines · Cardamom · Cinnamon (microclimate)</li>
+          <li>Guided walks twice per week (seasonal)</li>
+          <li>Harvest participation programme</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="w-program-block">
+      <div class="w-program-img"></div>
+      <div class="w-program-text">
+        <div class="w-prog-tag">Pillar IV · Restoration</div>
+        <h3>Forest Bathing Grove</h3>
+        <p>The valley's deepest acoustic shelter — a curated grove in the densest forest section, with stepped seating around a small reflecting pond, hammock alcoves between trees, and a sound-tuned environment that protects the practice of shinrin-yoku.</p>
+        <ul>
+          <li>Stepped seating amphitheatre</li>
+          <li>Reflecting pond with native water plants</li>
+          <li>Hammock alcoves at five quiet points</li>
+          <li>Guided sessions on request</li>
+          <li>Silent zone protocol respected by all guests</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="w-program-block">
+      <div class="w-program-img"></div>
+      <div class="w-program-text">
+        <div class="w-prog-tag">Pillar V · Nourishment</div>
+        <h3>Organic Cafe</h3>
+        <p>Open daytime kitchen sourcing 70%+ of its produce from the estate's spice, herb, and fruit gardens — supplemented by partnerships with neighbouring South Goa organic farms. Menu reflects sattvic principles with Goan and pan-Indian seasonal cooking.</p>
+        <ul>
+          <li>Plantation-to-plate sourcing</li>
+          <li>Sattvic · vegan · seasonal Goan</li>
+          <li>Open daytime kitchen (visible cooking)</li>
+          <li>Outdoor verandah dining</li>
+          <li>Workshops in fermentation, pickling, herbal teas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== day-in-the-life ===== -->
+<section class="w-section w-day">
+  <div class="w-container">
+    <div class="w-section-head">
+      <div class="w-section-eyebrow">A Day in the Valley</div>
+      <h2>A sample rhythm.</h2>
+      <p class="w-sub">Typical seven-night Panchakarma Journey schedule. Adjusted per constitution and treatment plan.</p>
+    </div>
+    <div class="w-day-grid">
+      <div class="w-day-item">
+        <div class="w-day-time">6:00</div>
+        <div class="w-day-content">
+          <h4>Morning Awakening</h4>
+          <p>Warm copper-cup water with lemon. Brief breathing practice on the canopy deck.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">6:45</div>
+        <div class="w-day-content">
+          <h4>Sunrise Yoga</h4>
+          <p>Asana practice on the sunrise deck — 75-minute session with resident teacher.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">8:30</div>
+        <div class="w-day-content">
+          <h4>Breakfast at the Cafe</h4>
+          <p>Light seasonal breakfast — millet porridge, fruit, herbal tea — at the verandah.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">10:00</div>
+        <div class="w-day-content">
+          <h4>Ayurvedic Treatment</h4>
+          <p>Daily Panchakarma session at your assigned treatment cottage. Duration: 90–120 minutes.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">12:30</div>
+        <div class="w-day-content">
+          <h4>Plant-Forward Lunch</h4>
+          <p>Constitution-matched main meal at the organic cafe. Doctor reviews dietary alignment.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">14:00</div>
+        <div class="w-day-content">
+          <h4>Rest &amp; Recovery</h4>
+          <p>Quiet time in your estate cottage or recovery courtyard. Reading. Hammock. Reflection.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">16:00</div>
+        <div class="w-day-content">
+          <h4>Herbal Trail Walk</h4>
+          <p>Guided forest walk along the herbal trail — identifying plants and discussing traditional use.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">17:30</div>
+        <div class="w-day-content">
+          <h4>Forest Bathing</h4>
+          <p>Silent practice in the bathing grove — 60 minutes with optional guided opening.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">19:00</div>
+        <div class="w-day-content">
+          <h4>Evening Meditation</h4>
+          <p>Floor deck meditation — 30-minute guided session, candle-lit closing.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">19:45</div>
+        <div class="w-day-content">
+          <h4>Light Supper</h4>
+          <p>Simple sattvic supper — broth, steamed vegetables, herbal tea. Early evening conclusion.</p>
+        </div>
+      </div>
+      <div class="w-day-item">
+        <div class="w-day-time">21:00</div>
+        <div class="w-day-content">
+          <h4>Rest</h4>
+          <p>Early sleep. Tomorrow begins again with the sun.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== plantation tie-in ===== -->
+<section class="w-section w-plantation">
+  <div class="w-container">
+    <div class="w-section-head">
+      <div class="w-section-eyebrow">From Estate Plantation to Sanctuary</div>
+      <h2>The valley is fed by the land.</h2>
+      <p class="w-sub">Every estate owner's chosen plantation profile can directly contribute to the wellness valley's operations — through herbal supply, fruit harvest, or seasonal exchange.</p>
+    </div>
+    <div class="w-plant-grid">
+      <div class="w-plant-card">
+        <div class="w-plant-icon">i.</div>
+        <h4>Herbal Garden</h4>
+        <p>Tulsi · Ashwagandha · Brahmi · Vetiver — direct supply to the Ayurvedic pharmacy.</p>
+      </div>
+      <div class="w-plant-card">
+        <div class="w-plant-icon">ii.</div>
+        <h4>Spice Garden</h4>
+        <p>Pepper · Turmeric · Cardamom · Cinnamon — used by the organic cafe kitchen.</p>
+      </div>
+      <div class="w-plant-card">
+        <div class="w-plant-icon">iii.</div>
+        <h4>Fruit Orchard</h4>
+        <p>Mango · Coconut · Cashew · Citrus — fresh seasonal supply to the cafe.</p>
+      </div>
+      <div class="w-plant-card">
+        <div class="w-plant-icon">iv.</div>
+        <h4>Food Forest</h4>
+        <p>Multi-layer perennial system — produces year-round for retreat catering.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="w-cta">
+  <div class="w-cta-inner">
+    <h2>Reserve a place in the Wellness Valley.</h2>
+    <p>The Herbal Wellness Valley opens to estate owners and a small invited group of retreat participants in the project's first operational phase. Register interest for retreat dates, request the wellness operations brief, or schedule a private valley walk-through.</p>
+    <div class="w-cta-buttons">
+      <a href="index.html#proposal" class="w-cta-btn w-cta-btn-primary">Register Retreat Interest</a>
+      <a href="index.html#proposal" class="w-cta-btn w-cta-btn-outline">Request Wellness Brief</a>
+      <a href="index.html#estate-models" class="w-cta-btn w-cta-btn-outline">View Estate Models</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== footer ===== -->
+<footer class="w-footer">
+  <div class="w-footer-brand">RESERVA VERDE</div>
+  <div class="w-footer-tag">A Bluechip Global Agro Vision</div>
+  <nav class="w-footer-nav">
+    <a href="index.html">Home</a>
+    <a href="index.html#estate-models">Estate Models</a>
+    <a href="index.html#location-advantage">Location</a>
+    <a href="index.html#jungle-benefits">Jungle Benefits</a>
+    <a href="index.html#proposal">Contact</a>
+  </nav>
+  <p class="w-footer-disclaimer">
+    The Herbal Wellness Valley is presented as a proposed amenity within the Reserva Verde Goa eco-sensitive masterplan. Programs, capacities, operational schedules, treatment protocols, retreat formats, and pricing are indicative and subject to final operational launch, statutory permissions, environmental compliance, and qualified professional review. Ayurvedic and traditional therapies are not substitutes for medical care. All wording is for presentation purposes only. © Reserva Verde Goa · All rights reserved.
+  </p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Dependencies & environment
+node_modules/
+.env*
+!.env.example
+.vercel/
+*.log
+.DS_Store
+
+# Large media & 3D assets (matches .vercelignore)
+backup-before-location-intelligence-deploy/
+dispatch/
+videos/
+*.mp4
+*.zip
+*.tar
+*.gz
+*.dae
+*.skp
+*.skb
+Model/

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4BHK Signature Forest Estate — Conceptual CAD Plan | Reserva Verde Goa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-forest-green: #10291F;
+            --color-forest-dark: #0b140f;
+            --color-ivory: #FBF8F1;
+            --color-muted-gold: #B08A3E;
+            --color-warm-stone: #A9A59C;
+            
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-forest-dark);
+            color: var(--color-ivory);
+            line-height: 1.7;
+            padding: 4rem 2rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(176, 138, 62, 0.2);
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--color-ivory);
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }
+
+        .eyebrow {
+            color: var(--color-muted-gold);
+            font-size: 0.72rem;
+            letter-spacing: 0.25em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            color: var(--color-muted-gold);
+            text-decoration: none;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            border: 1px solid rgba(176, 138, 62, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            background: rgba(16, 41, 31, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: var(--color-muted-gold);
+            color: var(--color-forest-dark);
+            border-color: var(--color-muted-gold);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 3rem;
+        }
+
+        @media (max-width: 1100px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        .viewport {
+            width: 100%;
+            background: #0b140f;
+            border: 1px solid rgba(176, 138, 62, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            overflow-x: auto;
+        }
+
+        .viewport svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            min-width: 1000px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(251, 248, 241, 0.03);
+            border: 1px solid rgba(176, 138, 62, 0.2);
+            border-radius: 8px;
+            padding: 1.8rem;
+        }
+
+        .card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--color-muted-gold);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            background: var(--color-muted-gold);
+            color: var(--color-forest-dark);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(176, 138, 62, 0.25);
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn:hover {
+            background: #EFE6D2;
+            box-shadow: 0 8px 20px rgba(176, 138, 62, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .download-outline {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            border: 1px solid var(--color-muted-gold);
+            color: var(--color-muted-gold);
+            background: transparent;
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .download-outline:hover {
+            background: rgba(176, 138, 62, 0.1);
+        }
+
+        .specs-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .specs-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            border-bottom: 1px solid rgba(176, 138, 62, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .specs-list li span:first-child {
+            color: var(--color-warm-stone);
+        }
+
+        .specs-list li span:last-child {
+            font-weight: 600;
+        }
+
+        .thumbs-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .thumb-item {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(176, 138, 62, 0.2);
+            position: relative;
+        }
+
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .thumb-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .disclaimer-block {
+            margin-top: 4rem;
+            border-top: 1px solid rgba(176, 138, 62, 0.15);
+            padding-top: 2rem;
+            color: rgba(251, 248, 241, 0.5);
+            font-size: 0.74rem;
+            line-height: 1.8;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <span class="eyebrow">[ HNI Technical Presentation ]</span>
+                <h1>4BHK Signature Forest Estate Conceptual CAD Plan</h1>
+                <p style="color: var(--color-warm-stone); font-size: 0.9rem;">Conceptual floor plan and AutoCAD-compatible exchange files for flagship modular canopy estates.</p>
+            </div>
+            <div>
+                <a href="../../models/4bhk-signature-forest-estate/index.html" class="btn-back">← Back to Brochure</a>
+            </div>
+        </header>
+
+        <div class="grid">
+            <!-- SVG CAD Viewport -->
+            <div class="viewport">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 1200" width="1700" height="1200" font-family="'Montserrat', 'Arial', sans-serif">
+<defs>
+  <!-- bathroom floor tile hatch - gold on dark forest green -->
+  <pattern id="tileHatchGold" patternUnits="userSpaceOnUse" width="8" height="8">
+    <rect width="8" height="8" fill="#0b140f"/>
+    <path d="M 0 8 L 8 0" stroke="rgba(176, 138, 62, 0.4)" stroke-width="0.5"/>
+    <path d="M 0 0 L 8 8" stroke="rgba(176, 138, 62, 0.4)" stroke-width="0.5"/>
+  </pattern>
+  
+  <!-- bedroom rug hatch - gold on dark forest green -->
+  <pattern id="bedHatchGold" patternUnits="userSpaceOnUse" width="5" height="5">
+    <rect width="5" height="5" fill="#0b140f"/>
+    <line x1="0" y1="5" x2="5" y2="0" stroke="rgba(212, 182, 106, 0.3)" stroke-width="0.4"/>
+  </pattern>
+  
+  <!-- deck timber planks - warm timber gold -->
+  <pattern id="deckHatchGold" patternUnits="userSpaceOnUse" width="16" height="16">
+    <rect width="16" height="16" fill="#153629"/>
+    <line x1="0" y1="8" x2="16" y2="8" stroke="rgba(176, 138, 62, 0.5)" stroke-width="0.6"/>
+    <line x1="0" y1="16" x2="16" y2="16" stroke="rgba(176, 138, 62, 0.5)" stroke-width="0.6"/>
+  </pattern>
+  
+  <!-- pool water ripple - gold ripples -->
+  <pattern id="waterHatchGold" patternUnits="userSpaceOnUse" width="12" height="12">
+    <rect width="12" height="12" fill="#143c2d"/>
+    <path d="M 0 4 Q 3 2 6 4 T 12 4" stroke="rgba(212, 182, 106, 0.5)" stroke-width="0.5" fill="none"/>
+    <path d="M 0 8 Q 3 6 6 8 T 12 8" stroke="rgba(212, 182, 106, 0.5)" stroke-width="0.5" fill="none"/>
+  </pattern>
+
+  <!-- courtyard paver -->
+  <pattern id="courtHatchGold" patternUnits="userSpaceOnUse" width="24" height="24">
+    <rect width="24" height="24" fill="#0b140f"/>
+    <rect x="0" y="0" width="24" height="24" fill="none" stroke="rgba(176, 138, 62, 0.3)" stroke-width="0.4"/>
+    <rect x="12" y="0" width="0.4" height="12" fill="rgba(176, 138, 62, 0.3)"/>
+    <rect x="0" y="12" width="12" height="0.4" fill="rgba(176, 138, 62, 0.3)"/>
+  </pattern>
+
+  <!-- wellness garden plant hatch -->
+  <pattern id="gardenHatchGold" patternUnits="userSpaceOnUse" width="10" height="10">
+    <rect width="10" height="10" fill="#123024"/>
+    <circle cx="5" cy="5" r="2" fill="rgba(176, 138, 62, 0.4)"/>
+  </pattern>
+</defs>
+
+<!-- Outer green and gold layout structure -->
+<rect width="1700" height="1200" fill="#0b140f"/>
+<rect x="15" y="15" width="1670" height="1170" fill="none" stroke="#B08A3E" stroke-width="1.8"/>
+<rect x="22" y="22" width="1656" height="1156" fill="none" stroke="rgba(176, 138, 62, 0.3)" stroke-width="0.5"/>
+
+<!-- Grid overlay (20% opacity gold) -->
+<g stroke="rgba(176, 138, 62, 0.12)" stroke-width="0.3">
+  <!-- Verticals -->
+  <line x1="100" y1="90" x2="100" y2="1160"/>
+  <line x1="200" y1="90" x2="200" y2="1160"/>
+  <line x1="300" y1="90" x2="300" y2="1160"/>
+  <line x1="400" y1="90" x2="400" y2="1160"/>
+  <line x1="500" y1="90" x2="500" y2="1160"/>
+  <line x1="600" y1="90" x2="600" y2="1160"/>
+  <line x1="700" y1="90" x2="700" y2="1160"/>
+  <line x1="800" y1="90" x2="800" y2="1160"/>
+  <line x1="900" y1="90" x2="900" y2="1160"/>
+  <line x1="1000" y1="90" x2="1000" y2="1160"/>
+  <line x1="1100" y1="90" x2="1100" y2="1160"/>
+  <line x1="1200" y1="90" x2="1200" y2="1160"/>
+  
+  <!-- Horizontals -->
+  <line x1="60" y1="200" x2="1260" y2="200"/>
+  <line x1="60" y1="300" x2="1260" y2="300"/>
+  <line x1="60" y1="400" x2="1260" y2="400"/>
+  <line x1="60" y1="500" x2="1260" y2="500"/>
+  <line x1="60" y1="600" x2="1260" y2="600"/>
+  <line x1="60" y1="700" x2="1260" y2="700"/>
+  <line x1="60" y1="800" x2="1260" y2="800"/>
+  <line x1="60" y1="900" x2="1260" y2="900"/>
+  <line x1="60" y1="1000" x2="1260" y2="1000"/>
+  <line x1="60" y1="1100" x2="1260" y2="1100"/>
+</g>
+
+<!-- Title & Header Block -->
+<text x="850" y="55" text-anchor="middle" fill="#FBF8F1" font-size="20" font-weight="700" letter-spacing="4">RESERVA VERDE GOA · 4BHK SIGNATURE FOREST ESTATE</text>
+<text x="850" y="78" text-anchor="middle" fill="#D4B66A" font-size="11" letter-spacing="3">FLAGSHIP THREE-WING BIOPHILIC PAVILION · 4,500 SQ.FT · 1-ACRE MANAGED AGROESTATE</text>
+<line x1="60" y1="92" x2="1640" y2="92" stroke="#B08A3E" stroke-width="0.8"/>
+
+<!-- Structural Outer Modular Container Walls (Gold 3.2pt stroke) -->
+<!-- Flagship Three-Wing arrangement enclosing a wellness courtyard garden -->
+<path d="M 120 140 L 1180 140 L 1180 480 L 840 480 L 840 1020 L 120 1020 Z" fill="#0b140f" stroke="#B08A3E" stroke-width="3.4"/>
+<!-- Outer shadow -->
+<path d="M 130 150 L 1170 150 L 1170 470 L 850 470 L 850 1010 L 130 1010 Z" fill="none" stroke="rgba(212, 182, 106, 0.4)" stroke-width="0.6"/>
+
+<!-- Container Module Outline Overlays -->
+<!-- Wing A: Social Zone (C-1 to C-4) -->
+<rect x="120" y="140" width="260" height="170" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="125" y="145" width="30" height="15" fill="#B08A3E"/>
+<text x="140" y="156" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-1</text>
+
+<rect x="380" y="140" width="260" height="170" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="385" y="145" width="30" height="15" fill="#B08A3E"/>
+<text x="400" y="156" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-2</text>
+
+<rect x="640" y="140" width="270" height="170" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="645" y="145" width="30" height="15" fill="#B08A3E"/>
+<text x="660" y="156" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-3</text>
+
+<rect x="910" y="140" width="270" height="170" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="915" y="145" width="30" height="15" fill="#B08A3E"/>
+<text x="930" y="156" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-4</text>
+
+<!-- Wing B: Master & Utility Zone (C-5 to C-8) -->
+<rect x="910" y="310" width="270" height="170" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="915" y="315" width="30" height="15" fill="#B08A3E"/>
+<text x="930" y="326" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-5</text>
+
+<rect x="620" y="480" width="220" height="180" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="625" y="485" width="30" height="15" fill="#B08A3E"/>
+<text x="640" y="496" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-6</text>
+
+<rect x="620" y="660" width="220" height="180" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="625" y="665" width="30" height="15" fill="#B08A3E"/>
+<text x="640" y="676" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-7</text>
+
+<!-- Wing C: Guest Suites (C-8 to C-11) -->
+<rect x="120" y="480" width="500" height="270" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="125" y="485" width="30" height="15" fill="#B08A3E"/>
+<text x="140" y="496" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-8</text>
+
+<rect x="120" y="750" width="500" height="270" fill="none" stroke="rgba(176,138,62,0.4)" stroke-width="0.6" stroke-dasharray="5,4"/>
+<rect x="125" y="755" width="30" height="15" fill="#B08A3E"/>
+<text x="140" y="766" fill="#0b140f" font-size="9" font-weight="700" text-anchor="middle">C-9</text>
+
+<!-- Decks & Courtyards (Hatched patterns) -->
+<!-- Signature timber deck wraps around stilted wings -->
+<path d="M 60 1020 L 840 1020 L 840 480 L 1180 480 L 1180 140 L 1280 140 L 1280 600 L 960 600 L 960 1140 L 60 1140 Z" fill="url(#deckHatchGold)" stroke="#B08A3E" stroke-width="1.2"/>
+<text x="500" y="1080" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">SIGNATURE TIMBER DECK &amp; POOL WRAPS</text>
+<text x="500" y="1098" fill="#D4B66A" font-size="8" text-anchor="middle">Premium stilted composite timber framework · 1,150 sq.ft</text>
+
+<!-- Grand stilted plunge pool built into deck -->
+<rect x="1010" y="650" width="230" height="180" fill="url(#waterHatchGold)" stroke="#D4B66A" stroke-width="1.0" rx="3"/>
+<text x="1125" y="735" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">STILTED PLUNGE POOL</text>
+<text x="1125" y="750" fill="#D4B66A" font-size="8" text-anchor="middle">7.5m x 4.0m architectural stilted pool</text>
+
+<!-- Wellness Courtyard Garden in inner angle -->
+<rect x="120" y="310" width="500" height="170" fill="url(#gardenHatchGold)" stroke="rgba(176,138,62,0.6)" stroke-width="1.0"/>
+<rect x="220" y="330" width="300" height="130" fill="url(#courtHatchGold)" stroke="rgba(176,138,62,0.4)" stroke-width="0.8"/>
+<text x="370" y="390" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">WELLNESS COURTYARD GARDEN</text>
+<text x="370" y="405" fill="#D4B66A" font-size="8" text-anchor="middle">biophilic healing sanctuary · stilted timber paths · Netravali ferns</text>
+
+<!-- Room schedules, labels, dimensions -->
+<!-- 1. Entrance Foyer link -->
+<rect x="135" y="170" width="230" height="110" fill="#0b140f" stroke="rgba(176, 138, 62, 0.4)" rx="4"/>
+<text x="250" y="220" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle">ENTRANCE FOYER</text>
+<text x="250" y="238" fill="#D4B66A" font-size="8" text-anchor="middle">pivot teak door link</text>
+<text x="250" y="252" fill="#D4B66A" font-size="8" text-anchor="middle">160 sq.ft</text>
+
+<!-- 2. Grand Living Room pavilion hall (spine modules C-2 & C-3) -->
+<rect x="400" y="170" width="490" height="110" fill="#0b140f" stroke="rgba(176, 138, 62, 0.4)" rx="4"/>
+<text x="645" y="215" fill="#FBF8F1" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1">GRAND FAMILY LIVING PAVILION</text>
+<text x="645" y="235" fill="#D4B66A" font-size="8" text-anchor="middle">double-glazed glass spine observatory · high cedar wood ceilings</text>
+<text x="645" y="250" fill="#D4B66A" font-size="8" text-anchor="middle">580 sq.ft</text>
+
+<!-- 3. Open Chef Kitchen & Dining (C-4) -->
+<rect x="930" y="170" width="230" height="110" fill="#0b140f" stroke="rgba(176, 138, 62, 0.4)" rx="4"/>
+<text x="1045" y="215" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">CHEF KITCHEN &amp; DINING</text>
+<text x="1045" y="232" fill="#D4B66A" font-size="8" text-anchor="middle">granite breakfast island counter</text>
+<text x="1045" y="246" fill="#D4B66A" font-size="8" text-anchor="middle">420 sq.ft</text>
+
+<!-- 4. UtilitySolar stations buffer C-5 -->
+<rect x="930" y="330" width="230" height="120" fill="#0b140f" stroke="rgba(176, 138, 62, 0.4)" rx="4"/>
+<text x="1045" y="380" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">OFF-GRID SOLAR &amp; UTILITY</text>
+<text x="1045" y="398" fill="#D4B66A" font-size="8" text-anchor="middle">10 kWp PV solar ready inverter stack</text>
+<text x="1045" y="412" fill="#D4B66A" font-size="8" text-anchor="middle">180 sq.ft</text>
+
+<!-- 5. Flagship Master Bedroom chamber C-6 -->
+<rect x="635" y="500" width="190" height="140" fill="url(#bedHatchGold)" stroke="rgba(176, 138, 62, 0.5)" rx="4"/>
+<text x="730" y="560" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">FLAGSHIP MASTER SUITE</text>
+<text x="730" y="578" fill="#D4B66A" font-size="8" text-anchor="middle">sliding plantation screen overlays</text>
+<text x="730" y="592" fill="#D4B66A" font-size="8" text-anchor="middle">380 sq.ft</text>
+
+<!-- 6. Signature Master Ensuite Bathroom wetroom C-7 -->
+<rect x="635" y="680" width="190" height="140" fill="url(#tileHatchGold)" stroke="rgba(176, 138, 62, 0.5)" rx="4"/>
+<text x="730" y="740" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">SIGNATURE ENSUITE</text>
+<text x="730" y="758" fill="#D4B66A" font-size="8" text-anchor="middle">freestanding copper tub wetroom</text>
+<text x="730" y="772" fill="#D4B66A" font-size="8" text-anchor="middle">220 sq.ft</text>
+
+<!-- 7. Guest Bedroom Suite 2 (C-8) -->
+<rect x="140" y="500" width="460" height="230" fill="url(#bedHatchGold)" stroke="rgba(176, 138, 62, 0.5)" rx="4"/>
+<text x="370" y="595" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle">BEDROOM 2 (GUEST SUITE)</text>
+<text x="370" y="615" fill="#D4B66A" font-size="8" text-anchor="middle">cashew agroforestry aspects · ensuite shower</text>
+<text x="370" y="630" fill="#D4B66A" font-size="8" text-anchor="middle">380 sq.ft</text>
+
+<!-- 8. Guest Bedroom Suite 3 (C-9) -->
+<rect x="140" y="770" width="220" height="230" fill="url(#bedHatchGold)" stroke="rgba(176, 138, 62, 0.5)" rx="4"/>
+<text x="250" y="865" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">BEDROOM 3</text>
+<text x="250" y="882" fill="#D4B66A" font-size="8" text-anchor="middle">ensuite bath</text>
+<text x="250" y="896" fill="#D4B66A" font-size="8" text-anchor="middle">240 sq.ft</text>
+
+<!-- 9. Guest Bedroom Suite 4 (C-10) -->
+<rect x="380" y="770" width="220" height="230" fill="url(#bedHatchGold)" stroke="rgba(176, 138, 62, 0.5)" rx="4"/>
+<text x="490" y="865" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">BEDROOM 4</text>
+<text x="490" y="882" fill="#D4B66A" font-size="8" text-anchor="middle">ensuite bath</text>
+<text x="490" y="896" fill="#D4B66A" font-size="8" text-anchor="middle">240 sq.ft</text>
+
+<!-- CAD annotations & schedules (Right side panels in gold) -->
+<g transform="translate(1250, 140)">
+  <rect x="0" y="0" width="400" height="380" fill="#0b140f" stroke="#B08A3E" stroke-width="1.2"/>
+  <rect x="6" y="6" width="388" height="368" fill="none" stroke="rgba(176,138,62,0.3)" stroke-width="0.5"/>
+  <text x="200" y="32" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">CONTAINER MODULE SCHEDULE</text>
+  <line x1="20" y1="45" x2="380" y2="45" stroke="#B08A3E" stroke-width="0.6"/>
+  <text x="25" y="65" fill="#D4B66A" font-size="9" font-weight="700">ID</text>
+  <text x="85" y="65" fill="#D4B66A" font-size="9" font-weight="700">SIZE</text>
+  <text x="175" y="65" fill="#D4B66A" font-size="9" font-weight="700">SPATIAL MODULE PROGRAM</text>
+  <line x1="20" y1="72" x2="380" y2="72" stroke="rgba(176,138,62,0.4)" stroke-width="0.4"/>
+  <text x="25" y="90" fill="#FBF8F1" font-size="9" font-weight="700">C-1</text><text x="85" y="90" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="90" fill="#FBF8F1" font-size="9">Entrance Foyer Link</text>
+  <line x1="20" y1="98" x2="380" y2="98" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="115" fill="#FBF8F1" font-size="9" font-weight="700">C-2</text><text x="85" y="115" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="115" fill="#FBF8F1" font-size="9">Grand Living Pavilion A</text>
+  <line x1="20" y1="123" x2="380" y2="123" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="140" fill="#FBF8F1" font-size="9" font-weight="700">C-3</text><text x="85" y="140" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="140" fill="#FBF8F1" font-size="9">Grand Living Pavilion B</text>
+  <line x1="20" y1="148" x2="380" y2="148" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="165" fill="#FBF8F1" font-size="9" font-weight="700">C-4</text><text x="85" y="165" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="165" fill="#FBF8F1" font-size="9">Chef Open Modular Kitchen</text>
+  <line x1="20" y1="173" x2="380" y2="173" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="190" fill="#FBF8F1" font-size="9" font-weight="700">C-5</text><text x="85" y="190" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="190" fill="#FBF8F1" font-size="9">Utility Station + Battery Buffer</text>
+  <line x1="20" y1="198" x2="380" y2="198" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="215" fill="#FBF8F1" font-size="9" font-weight="700">C-6</text><text x="85" y="215" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="215" fill="#FBF8F1" font-size="9">Master Bedroom Chamber</text>
+  <line x1="20" y1="223" x2="380" y2="223" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="240" fill="#FBF8F1" font-size="9" font-weight="700">C-7</text><text x="85" y="240" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="240" fill="#FBF8F1" font-size="9">Master Ensuite Copper Wetroom</text>
+  <line x1="20" y1="248" x2="380" y2="248" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="265" fill="#FBF8F1" font-size="9" font-weight="700">C-8</text><text x="85" y="265" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="265" fill="#FBF8F1" font-size="9">Guest Suite Bedroom 2</text>
+  <line x1="20" y1="273" x2="380" y2="273" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="290" fill="#FBF8F1" font-size="9" font-weight="700">C-9</text><text x="85" y="290" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="290" fill="#FBF8F1" font-size="9">Guest Suite Bedroom 3</text>
+  <line x1="20" y1="298" x2="380" y2="298" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="315" fill="#FBF8F1" font-size="9" font-weight="700">C-10</text><text x="85" y="315" fill="#FBF8F1" font-size="9">40ft HC</text><text x="175" y="315" fill="#FBF8F1" font-size="9">Guest Suite Bedroom 4</text>
+</g>
+
+<!-- Spatial zoning area breakdown (Right side panel B) -->
+<g transform="translate(1250, 550)">
+  <rect x="0" y="0" width="400" height="420" fill="#0b140f" stroke="#B08A3E" stroke-width="1.2"/>
+  <rect x="6" y="6" width="388" height="408" fill="none" stroke="rgba(176,138,62,0.3)" stroke-width="0.5"/>
+  <text x="200" y="32" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">SPATIAL ZONING SCHEDULE</text>
+  <line x1="20" y1="45" x2="380" y2="45" stroke="#B08A3E" stroke-width="0.6"/>
+  <text x="25" y="70" fill="#D4B66A" font-size="9">ENTRANCE FOYER</text><text x="375" y="70" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">160 sq.ft</text>
+  <text x="25" y="90" fill="#D4B66A" font-size="9">GRAND FAMILY LIVING PAVILION</text><text x="375" y="90" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">580 sq.ft</text>
+  <text x="25" y="110" fill="#D4B66A" font-size="9">DINING &amp; Chef KITCHEN</text><text x="375" y="110" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">420 sq.ft</text>
+  <text x="25" y="130" fill="#D4B66A" font-size="9">FLAGSHIP MASTER SUITE</text><text x="375" y="130" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">380 sq.ft</text>
+  <text x="25" y="150" fill="#D4B66A" font-size="9">MASTER BATHROOM WETROOM</text><text x="375" y="150" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">220 sq.ft</text>
+  <text x="25" y="170" fill="#D4B66A" font-size="9">BEDROOM 2 (GUEST SUITE)</text><text x="375" y="170" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">380 sq.ft</text>
+  <text x="25" y="190" fill="#D4B66A" font-size="9">BEDROOM 3 (GUEST SUITE)</text><text x="375" y="190" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">240 sq.ft</text>
+  <text x="25" y="210" fill="#D4B66A" font-size="9">BEDROOM 4 (GUEST SUITE)</text><text x="375" y="210" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">240 sq.ft</text>
+  <text x="25" y="230" fill="#D4B66A" font-size="9">OFF-GRID SOLAR &amp; UTILITY Buffers</text><text x="375" y="230" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">330 sq.ft</text>
+  <text x="25" y="250" fill="#D4B66A" font-size="9">WELLNESS COURTYARD GARDEN</text><text x="375" y="250" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">420 sq.ft</text>
+  <text x="25" y="270" fill="#D4B66A" font-size="9">WRAP-AROUND Timber DECK</text><text x="375" y="270" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">1,150 sq.ft</text>
+  <line x1="20" y1="290" x2="380" y2="290" stroke="rgba(176,138,62,0.4)" stroke-width="0.4"/>
+  <text x="25" y="320" fill="#D4B66A" font-size="11" font-weight="700">TOTAL BUILT-UP AREA</text><text x="375" y="320" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="end">~ 4,500 sq.ft</text>
+  <text x="25" y="340" fill="#D4B66A" font-size="9">Managed Agroforestry Allotment</text><text x="375" y="340" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">1.00 Acre (43,560 sf)</text>
+</g>
+
+<!-- Compass / Scale (Left side bottom in gold) -->
+<g transform="translate(80, 140)">
+  <circle cx="0" cy="0" r="36" fill="none" stroke="#B08A3E" stroke-width="1.0"/>
+  <polygon points="0,-42 12,0 0,-6 -12,0" fill="#B08A3E"/>
+  <polygon points="0,42 12,0 0,6 -12,0" fill="rgba(176,138,62,0.4)"/>
+  <text x="0" y="-48" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle">N</text>
+  <text x="0" y="58" fill="#D4B66A" font-size="7" text-anchor="middle">TRUE NORTH</text>
+</g>
+
+<!-- Technical dimensions Scale bar -->
+<g transform="translate(60, 950)">
+  <rect x="0" y="0" width="80" height="8" fill="#B08A3E" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="80" y="0" width="80" height="8" fill="#0b140f" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="160" y="0" width="80" height="8" fill="#B08A3E" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="240" y="0" width="80" height="8" fill="#0b140f" stroke="#B08A3E" stroke-width="0.5"/>
+  <text x="0" y="24" fill="#D4B66A" font-size="8">0</text>
+  <text x="80" y="24" fill="#D4B66A" font-size="8">2m</text>
+  <text x="160" y="24" fill="#D4B66A" font-size="8">4m</text>
+  <text x="240" y="24" fill="#D4B66A" font-size="8">6m</text>
+  <text x="320" y="24" fill="#D4B66A" font-size="8">8m</text>
+  <text x="160" y="-8" fill="#FBF8F1" font-size="8" font-weight="700" text-anchor="middle">SCALE 1:100</text>
+</g>
+
+<!-- Compliance Vector stamp -->
+<g transform="translate(1250, 990)">
+  <rect x="0" y="0" width="400" height="140" fill="#0b140f" stroke="#B08A3E" stroke-width="1.2"/>
+  <rect x="6" y="6" width="388" height="128" fill="none" stroke="rgba(176,138,62,0.3)" stroke-width="0.5"/>
+  <text x="200" y="26" fill="#FBF8F1" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="1">QA VECTOR COMPLIANCE NOTICE</text>
+  <line x1="20" y1="36" x2="380" y2="36" stroke="#B08A3E" stroke-width="0.5"/>
+  <text x="20" y="55" fill="#D4B66A" font-size="7.5" font-weight="300">All layouts, built-up areas, stilt pilings, and specifications</text>
+  <text x="20" y="70" fill="#D4B66A" font-size="7.5" font-weight="300">are indicative drafts designed for spatial zoning only.</text>
+  <text x="20" y="85" fill="#D4B66A" font-size="7.5" font-weight="300">Subject to physical site survey verification and statutory TCP,</text>
+  <text x="20" y="100" fill="#D4B66A" font-size="7.5" font-weight="300">environmental, local authority, and statutory RERA approvals.</text>
+  <text x="20" y="118" fill="#FBF8F1" font-size="8" font-weight="700" letter-spacing="0.5">BLUECHIP GLOBAL AGRO · ENGINEERING DIVISION</text>
+</g>
+
+</svg>
+
+            </div>
+
+            <!-- Sidebar technical panel -->
+            <div class="sidebar">
+                <!-- Downloads -->
+                <div class="card">
+                    <h3>CAD Exchange Files</h3>
+                    <p style="font-size: 0.8rem; color: var(--color-warm-stone); margin-bottom: 1.5rem;">Download drawing assets for integration into AutoCAD, Twinmotion, Revit, or Lumion pipelines.</p>
+                    <a href="4bhk-signature-forest-estate-plan.dxf" download class="download-btn">Download AutoCAD DXF</a>
+                    <a href="4bhk-signature-forest-estate-plan.svg" download class="download-outline">Download Vector SVG</a>
+                </div>
+
+                <!-- Specs -->
+                <div class="card">
+                    <h3>Drawing Specifications</h3>
+                    <ul class="specs-list">
+                        <li><span>Model</span> <span>4BHK Signature Forest Estate</span></li>
+                        <li><span>Gross Built Footprint</span> <span>4,500 sq.ft</span></li>
+                        <li><span>Timber Verandah Decks</span> <span>Over 1,100 sq.ft</span></li>
+                        <li><span>Optional Plunge Pool</span> <span>220 sq.ft</span></li>
+                        <li><span>CAD Precision Scale</span> <span>1:100 @ A3 Sheet</span></li>
+                        <li><span>Layers Included</span> <span>16 Standard Layers</span></li>
+                        <li><span>Drawing Revision</span> <span>R0 (Conceptual)</span></li>
+                    </ul>
+                </div>
+
+                <!-- Reference Renders -->
+                <div class="card">
+                    <h3>Reference Renders</h3>
+                    <p style="font-size: 0.8rem; color: var(--color-warm-stone); margin-bottom: 0.8rem;">Physical design match reference coordinates from approved 4BHK cinematic renders:</p>
+                    <div class="thumbs-grid">
+                        <div class="thumb-item" title="Exterior Arrival"><img src="../../../images/renders/4bhk/exterior-arrival.jpg" alt="Exterior Arrival"></div>
+                        <div class="thumb-item" title="Deck View"><img src="../../../images/renders/4bhk/deck-view.jpg" alt="Deck View"></div>
+                        <div class="thumb-item" title="Living Room"><img src="../../../images/renders/4bhk/living-room.jpg" alt="Living Room"></div>
+                        <div class="thumb-item" title="Bedroom View"><img src="../../../images/renders/4bhk/bedroom-view.jpg" alt="Bedroom View"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="disclaimer-block">
+            <strong>INDICATIVE CONCEPT ONLY — NOT FOR CONSTRUCTION — SUBJECT TO FINAL SURVEY, SOIL TESTS, ARCHITECT REVIEW, STRUCTURAL DESIGN, TCP, RERA, ENVIRONMENTAL, AND LOCAL AUTHORITY APPROVALS.</strong>
+            <br><br>
+            All drawings, DXF exchanges, room schedules, boundaries, plantation borders, and specifications contained herein are conceptual biophilic planning support documents. They do not constitute structural, civil, or architectural execution packages and are not fit for statutory TCP, RERA, environmental buffer or local panchayat construction submittals. Final specifications are subject to topographic survey, soil bearing bore tests, structural engineer reviews, and final statutory authority approvals.
+        </div>
+    </div>
+</body>
+</html>

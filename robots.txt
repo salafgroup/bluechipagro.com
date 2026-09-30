@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /crm
+Disallow: /crm/
+Disallow: /crm/*
+Disallow: /visual-assets
+Disallow: /visual-assets/
+Disallow: /visual-assets/*
+
+Allow: /

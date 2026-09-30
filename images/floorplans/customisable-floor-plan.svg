@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 1200" width="1700" height="1200" font-family="'Inter', Arial, Helvetica, sans-serif">
+<defs>
+  <!-- bathroom tile hatch - gold on dark forest green -->
+  <pattern id="tileHatchGold" patternUnits="userSpaceOnUse" width="8" height="8">
+    <rect width="8" height="8" fill="#10291F"/>
+    <path d="M 0 8 L 8 0" stroke="rgba(176, 138, 62, 0.45)" stroke-width="0.5"/>
+    <path d="M 0 0 L 8 8" stroke="rgba(176, 138, 62, 0.45)" stroke-width="0.5"/>
+  </pattern>
+  
+  <!-- bedroom rug hatch -->
+  <pattern id="bedHatchGold" patternUnits="userSpaceOnUse" width="6" height="6">
+    <rect width="6" height="6" fill="#10291F"/>
+    <line x1="0" y1="6" x2="6" y2="0" stroke="rgba(212, 182, 106, 0.35)" stroke-width="0.4"/>
+  </pattern>
+  
+  <!-- deck timber planks -->
+  <pattern id="deckHatchGold" patternUnits="userSpaceOnUse" width="18" height="18">
+    <rect width="18" height="18" fill="#153629"/>
+    <line x1="0" y1="9" x2="18" y2="9" stroke="rgba(176, 138, 62, 0.55)" stroke-width="0.6"/>
+    <line x1="0" y1="18" x2="18" y2="18" stroke="rgba(176, 138, 62, 0.55)" stroke-width="0.6"/>
+  </pattern>
+  
+  <!-- pool water ripple -->
+  <pattern id="waterHatchGold" patternUnits="userSpaceOnUse" width="14" height="14">
+    <rect width="14" height="14" fill="#143c2d"/>
+    <path d="M 0 4 Q 3.5 2 7 4 T 14 4" stroke="rgba(212, 182, 106, 0.55)" stroke-width="0.5" fill="none"/>
+    <path d="M 0 9 Q 3.5 7 7 9 T 14 9" stroke="rgba(212, 182, 106, 0.55)" stroke-width="0.5" fill="none"/>
+  </pattern>
+
+  <!-- wellness garden plant hatch -->
+  <pattern id="gardenHatchGold" patternUnits="userSpaceOnUse" width="12" height="12">
+    <rect width="12" height="12" fill="#113225"/>
+    <circle cx="6" cy="6" r="2.5" fill="rgba(176, 138, 62, 0.45)"/>
+  </pattern>
+
+  <!-- bespoke optional expansion hatch (dotted spacing) -->
+  <pattern id="expansionHatchGold" patternUnits="userSpaceOnUse" width="10" height="10">
+    <rect width="10" height="10" fill="none"/>
+    <circle cx="5" cy="5" r="1.2" fill="rgba(212, 182, 106, 0.3)"/>
+  </pattern>
+</defs>
+
+<!-- Outer green and gold presentation box -->
+<rect width="1700" height="1200" fill="#10291F"/>
+<rect x="15" y="15" width="1670" height="1170" fill="none" stroke="#B08A3E" stroke-width="2.0"/>
+<rect x="22" y="22" width="1656" height="1156" fill="none" stroke="rgba(176, 138, 62, 0.3)" stroke-width="0.5"/>
+
+<!-- Hairline CAD grid (10% opacity gold) -->
+<g stroke="rgba(176, 138, 62, 0.1)" stroke-width="0.3">
+  <!-- Verticals -->
+  <line x1="100" y1="90" x2="100" y2="1160"/>
+  <line x1="200" y1="90" x2="200" y2="1160"/>
+  <line x1="300" y1="90" x2="300" y2="1160"/>
+  <line x1="400" y1="90" x2="400" y2="1160"/>
+  <line x1="500" y1="90" x2="500" y2="1160"/>
+  <line x1="600" y1="90" x2="600" y2="1160"/>
+  <line x1="700" y1="90" x2="700" y2="1160"/>
+  <line x1="800" y1="90" x2="800" y2="1160"/>
+  <line x1="900" y1="90" x2="900" y2="1160"/>
+  <line x1="1000" y1="90" x2="1000" y2="1160"/>
+  <line x1="1100" y1="90" x2="1100" y2="1160"/>
+  <line x1="1200" y1="90" x2="1200" y2="1160"/>
+  
+  <!-- Horizontals -->
+  <line x1="60" y1="200" x2="1260" y2="200"/>
+  <line x1="60" y1="300" x2="1260" y2="300"/>
+  <line x1="60" y1="400" x2="1260" y2="400"/>
+  <line x1="60" y1="500" x2="1260" y2="500"/>
+  <line x1="60" y1="600" x2="1260" y2="600"/>
+  <line x1="60" y1="700" x2="1260" y2="700"/>
+  <line x1="60" y1="800" x2="1260" y2="800"/>
+  <line x1="60" y1="900" x2="1260" y2="900"/>
+  <line x1="60" y1="1000" x2="1260" y2="1000"/>
+  <line x1="60" y1="1100" x2="1260" y2="1100"/>
+</g>
+
+<!-- Title block & Header -->
+<text x="850" y="55" text-anchor="middle" fill="#FBF8F1" font-size="20" font-weight="700" letter-spacing="4">RESERVA VERDE GOA · CUSTOMISABLE FOUNDER ESTATE</text>
+<text x="850" y="78" text-anchor="middle" fill="#D4B66A" font-size="11" letter-spacing="3">BESPOKE MODULAR ECO-ARCHITECTURAL BLANK CANVAS · 1-ACRE FOUNDER PRIVATE ESTUARY</text>
+<line x1="60" y1="92" x2="1640" y2="92" stroke="#B08A3E" stroke-width="0.8"/>
+
+<!-- Structural Outer Modular Container Walls (Gold 3.4pt stroke) -->
+<!-- Flexible Founder arrangement with separate modules stilted on pilings -->
+<path d="M 120 140 L 1180 140 L 1180 480 L 840 480 L 840 1020 L 120 1020 Z" fill="#10291F" stroke="#B08A3E" stroke-width="3.4"/>
+<!-- Outer shadow -->
+<path d="M 130 150 L 1170 150 L 1170 470 L 850 470 L 850 1010 L 130 1010 Z" fill="none" stroke="rgba(212, 182, 106, 0.35)" stroke-width="0.6"/>
+
+<!-- Stilted timber deck wrapping flexible chassis wings -->
+<path d="M 60 1020 L 840 1020 L 840 480 L 1180 480 L 1180 140 L 1280 140 L 1280 600 L 960 600 L 960 1140 L 60 1140 Z" fill="url(#deckHatchGold)" stroke="#B08A3E" stroke-width="1.2"/>
+<text x="500" y="1080" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">SIGNATURE STILTED TIMBER DECK OBSERVATORY</text>
+<text x="500" y="1098" fill="#D4B66A" font-size="8" text-anchor="middle">Composite wood foundation stilted on helical screw piles · Curated layouts up to 2,000 sq.ft outdoor space</text>
+
+<!-- Grand stilted plunge pool (Bespoke configuration) -->
+<rect x="1010" y="650" width="230" height="180" fill="url(#waterHatchGold)" stroke="#D4B66A" stroke-width="1.0" rx="3"/>
+<text x="1125" y="735" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">OPTIONAL PLUNGE POOL</text>
+<text x="1125" y="750" fill="#D4B66A" font-size="8" text-anchor="middle">Modular stilted pool · Custom lengths &amp; orientations</text>
+
+<!-- Central wellness courtyard paver garden sanctuary -->
+<rect x="120" y="310" width="500" height="170" fill="url(#gardenHatchGold)" stroke="rgba(176,138,62,0.6)" stroke-width="1.0"/>
+<rect x="220" y="330" width="300" height="130" fill="#10291F" stroke="rgba(176,138,62,0.4)" stroke-width="0.8"/>
+<text x="370" y="390" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">CENTRAL WELLNESS COURTYARD &amp; ECO-POND</text>
+<text x="370" y="405" fill="#D4B66A" font-size="8" text-anchor="middle">Biophilic open air sanctuary · Shaded walkways · Custom water stream routes</text>
+
+<!-- Flexible Foyer and Entrance Corridor C-1 -->
+<rect x="135" y="170" width="230" height="110" fill="#10291F" stroke="rgba(176, 138, 62, 0.4)" rx="4"/>
+<text x="250" y="220" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle">BESPOKE ENTRY GALLERY</text>
+<text x="250" y="238" fill="#D4B66A" font-size="8" text-anchor="middle">Custom timber pivot or glazed link</text>
+<text x="250" y="252" fill="#D4B66A" font-size="8" text-anchor="middle">100 - 250 sq.ft customizable</text>
+
+<!-- Grand Living Pavilion observatories (C-2 & C-3) -->
+<rect x="400" y="170" width="490" height="110" fill="#10291F" stroke="rgba(176, 138, 62, 0.4)" rx="4"/>
+<text x="645" y="215" fill="#FBF8F1" font-size="13" font-weight="700" text-anchor="middle" letter-spacing="1">CUSTOMISABLE FAMILY LIVINGObservatory</text>
+<text x="645" y="235" fill="#D4B66A" font-size="8" text-anchor="middle">Expanded rafter ceiling volumes · Retractable glazing to forest</text>
+<text x="645" y="250" fill="#D4B66A" font-size="8" text-anchor="middle">Up to 650 sq.ft customizable spans</text>
+
+<!-- Island Chef Dining & Kitchen (C-4) -->
+<rect x="930" y="170" width="230" height="110" fill="#10291F" stroke="rgba(176, 138, 62, 0.4)" rx="4"/>
+<text x="1045" y="215" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">BESPOKE island KITCHEN</text>
+<text x="1045" y="232" fill="#D4B66A" font-size="8" text-anchor="middle">Quartz counter &amp; grand dinette</text>
+<text x="1045" y="246" fill="#D4B66A" font-size="8" text-anchor="middle">300 - 450 sq.ft customizable</text>
+
+<!-- Off-grid PV Solar and Batteries station (C-5) -->
+<rect x="930" y="330" width="230" height="120" fill="#10291F" stroke="rgba(176, 138, 62, 0.4)" rx="4"/>
+<text x="1045" y="380" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">UTILITY SOLAR &amp; WATER HUB</text>
+<text x="1045" y="398" fill="#D4B66A" font-size="8" text-anchor="middle">Custom 15-20 kWp arrays &amp; sumps</text>
+<text x="1045" y="412" fill="#D4B66A" font-size="8" text-anchor="middle">Anaerobic bio-septic and rain screens</text>
+
+<!-- Founder Master Suite Retreat Wing (C-6) -->
+<rect x="635" y="500" width="190" height="140" fill="url(#bedHatchGold)" stroke="rgba(176, 138, 62, 0.5)" rx="4"/>
+<text x="730" y="560" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">FOUNDER MASTER SUITE</text>
+<text x="730" y="578" fill="#D4B66A" font-size="8" text-anchor="middle">Bespoke study, dressing, and views</text>
+<text x="730" y="592" fill="#D4B66A" font-size="8" text-anchor="middle">350 - 500 sq.ft customizable</text>
+
+<!-- Master Ensuite Wetroom Bathroom (C-7) -->
+<rect x="635" y="680" width="190" height="140" fill="url(#tileHatchGold)" stroke="rgba(176, 138, 62, 0.5)" rx="4"/>
+<text x="730" y="740" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="middle">FOUNDER ENSUITE WETROOM</text>
+<text x="730" y="758" fill="#D4B66A" font-size="8" text-anchor="middle">Custom copper tub or outdoor light well</text>
+<text x="730" y="772" fill="#D4B66A" font-size="8" text-anchor="middle">Resort-level slate &amp; teak finishes</text>
+
+<!-- Guest Suite Module 2 (C-8) -->
+<rect x="140" y="500" width="460" height="230" fill="url(#bedHatchGold)" stroke="rgba(176, 138, 62, 0.5)" rx="4"/>
+<text x="370" y="595" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle">GUEST SUITE / BEDROOM 2</text>
+<text x="370" y="615" fill="#D4B66A" font-size="8" text-anchor="middle">Custom layouts facing plantation · ensuite shower</text>
+<text x="370" y="630" fill="#D4B66A" font-size="8" text-anchor="middle">300 - 400 sq.ft customizable</text>
+
+<!-- Bespoke Optional Expansion Chassis Zone (C-9 & C-10) -->
+<rect x="140" y="770" width="220" height="230" fill="url(#expansionHatchGold)" stroke="rgba(212, 182, 106, 0.6)" stroke-dasharray="6,4" rx="4"/>
+<text x="250" y="865" fill="#D4B66A" font-size="11" font-weight="700" text-anchor="middle">EXPANSION CHASSIS 3</text>
+<text x="250" y="882" fill="#FBF8F1" font-size="8" text-anchor="middle">Dotted line area: Optional</text>
+<text x="250" y="896" fill="#FBF8F1" font-size="8" text-anchor="middle">3BHK or 4BHK expansion wings</text>
+
+<rect x="380" y="770" width="220" height="230" fill="url(#expansionHatchGold)" stroke="rgba(212, 182, 106, 0.6)" stroke-dasharray="6,4" rx="4"/>
+<text x="490" y="865" fill="#D4B66A" font-size="11" font-weight="700" text-anchor="middle">EXPANSION CHASSIS 4</text>
+<text x="490" y="882" fill="#FBF8F1" font-size="8" text-anchor="middle">Dotted line area: Optional</text>
+<text x="490" y="896" fill="#FBF8F1" font-size="8" text-anchor="middle">Additional guest or office spans</text>
+
+<!-- AutoCAD tables on the right side -->
+<g transform="translate(1250, 140)">
+  <rect x="0" y="0" width="400" height="380" fill="#10291F" stroke="#B08A3E" stroke-width="1.2"/>
+  <rect x="6" y="6" width="388" height="368" fill="none" stroke="rgba(176,138,62,0.3)" stroke-width="0.5"/>
+  <text x="200" y="32" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">BESPOKE CHASSIS SCHEDULE</text>
+  <line x1="20" y1="45" x2="380" y2="45" stroke="#B08A3E" stroke-width="0.6"/>
+  <text x="25" y="65" fill="#D4B66A" font-size="9" font-weight="700">CHASSIS</text>
+  <text x="95" y="65" fill="#D4B66A" font-size="9" font-weight="700">CONFIG</text>
+  <text x="175" y="65" fill="#D4B66A" font-size="9" font-weight="700">BESPOKE FUNCTION SCOPE</text>
+  <line x1="20" y1="72" x2="380" y2="72" stroke="rgba(176,138,62,0.4)" stroke-width="0.4"/>
+  <text x="25" y="90" fill="#FBF8F1" font-size="9" font-weight="700">C-1</text><text x="95" y="90" fill="#FBF8F1" font-size="9">Flex HC</text><text x="175" y="90" fill="#FBF8F1" font-size="9">Bespoke Entry/Foyer Gallery</text>
+  <line x1="20" y1="98" x2="380" y2="98" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="115" fill="#FBF8F1" font-size="9" font-weight="700">C-2</text><text x="95" y="115" fill="#FBF8F1" font-size="9">Double HC</text><text x="175" y="115" fill="#FBF8F1" font-size="9">Custom social observatory span A</text>
+  <line x1="20" y1="123" x2="380" y2="123" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="140" fill="#FBF8F1" font-size="9" font-weight="700">C-3</text><text x="95" y="140" fill="#FBF8F1" font-size="9">Double HC</text><text x="175" y="140" fill="#FBF8F1" font-size="9">Custom social observatory span B</text>
+  <line x1="20" y1="148" x2="380" y2="148" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="165" fill="#FBF8F1" font-size="9" font-weight="700">C-4</text><text x="95" y="165" fill="#FBF8F1" font-size="9">Flex HC</text><text x="175" y="165" fill="#FBF8F1" font-size="9">Custom Chef Kitchen &amp; dinette</text>
+  <line x1="20" y1="173" x2="380" y2="173" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="190" fill="#FBF8F1" font-size="9" font-weight="700">C-5</text><text x="95" y="190" fill="#FBF8F1" font-size="9">Service HC</text><text x="175" y="190" fill="#FBF8F1" font-size="9">Solar &amp; Utility anaerobic station</text>
+  <line x1="20" y1="198" x2="380" y2="198" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="215" fill="#FBF8F1" font-size="9" font-weight="700">C-6</text><text x="95" y="215" fill="#FBF8F1" font-size="9">Flex HC</text><text x="175" y="215" fill="#FBF8F1" font-size="9">Bespoke Master bedroom wing</text>
+  <line x1="20" y1="223" x2="380" y2="223" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="240" fill="#FBF8F1" font-size="9" font-weight="700">C-7</text><text x="95" y="240" fill="#FBF8F1" font-size="9">Flex HC</text><text x="175" y="240" fill="#FBF8F1" font-size="9">Bespoke copper ensuite wetroom</text>
+  <line x1="20" y1="248" x2="380" y2="248" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="265" fill="#FBF8F1" font-size="9" font-weight="700">C-8</text><text x="95" y="265" fill="#FBF8F1" font-size="9">Double HC</text><text x="175" y="265" fill="#FBF8F1" font-size="9">Flexible guest suite Bedroom 2</text>
+  <line x1="20" y1="273" x2="380" y2="273" stroke="rgba(176,138,62,0.2)" stroke-width="0.3"/>
+  <text x="25" y="290" fill="#FBF8F1" font-size="9" font-weight="700">C-9/10</text><text x="95" y="290" fill="#FBF8F1" font-size="9">Expansion</text><text x="175" y="290" fill="#FBF8F1" font-size="9">Future 3BHK/4BHK expansion wings</text>
+</g>
+
+<!-- Spatial scheduling on the right B -->
+<g transform="translate(1250, 550)">
+  <rect x="0" y="0" width="400" height="420" fill="#10291F" stroke="#B08A3E" stroke-width="1.2"/>
+  <rect x="6" y="6" width="388" height="408" fill="none" stroke="rgba(176,138,62,0.3)" stroke-width="0.5"/>
+  <text x="200" y="32" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1.5">BESPOKE ZONING SCHEDULE</text>
+  <line x1="20" y1="45" x2="380" y2="45" stroke="#B08A3E" stroke-width="0.6"/>
+  <text x="25" y="70" fill="#D4B66A" font-size="9">BESPOKE ENTRY GALLERY</text><text x="375" y="70" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">100 - 250 sq.ft</text>
+  <text x="25" y="90" fill="#D4B66A" font-size="9">CUSTOMISABLE FAMILY LIVING</text><text x="375" y="90" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">Up to 650 sq.ft</text>
+  <text x="25" y="110" fill="#D4B66A" font-size="9">DINING &amp; BESPOKE ISLAND KITCHEN</text><text x="375" y="110" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">300 - 450 sq.ft</text>
+  <text x="25" y="130" fill="#D4B66A" font-size="9">FOUNDER MASTER SUITE WING</text><text x="375" y="130" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">350 - 500 sq.ft</text>
+  <text x="25" y="150" fill="#D4B66A" font-size="9">FOUNDER ENSUITE COPPER BATHROOM</text><text x="375" y="150" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">180 - 250 sq.ft</text>
+  <text x="25" y="170" fill="#D4B66A" font-size="9">GUEST SUITE BEDROOM 2</text><text x="375" y="170" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">300 - 400 sq.ft</text>
+  <text x="25" y="190" fill="#D4B66A" font-size="9">OPTIONAL EXPANSION WING 3</text><text x="375" y="190" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">200 - 300 sq.ft</text>
+  <text x="25" y="210" fill="#D4B66A" font-size="9">OPTIONAL EXPANSION WING 4</text><text x="375" y="210" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">200 - 300 sq.ft</text>
+  <text x="25" y="230" fill="#D4B66A" font-size="9">UTILITY SOLAR &amp; WATER STATION</text><text x="375" y="230" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">180 - 330 sq.ft</text>
+  <text x="25" y="250" fill="#D4B66A" font-size="9">WRAP-AROUND Timber FOUNDATION DECK</text><text x="375" y="250" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">Up to 2,000 sq.ft</text>
+  <line x1="20" y1="270" x2="380" y2="270" stroke="rgba(176,138,62,0.4)" stroke-width="0.4"/>
+  <text x="25" y="320" fill="#D4B66A" font-size="11" font-weight="700">FLEXIBLE BUILT-UP AREA</text><text x="375" y="320" fill="#FBF8F1" font-size="11" font-weight="700" text-anchor="end">2,500 - 5,000 sq.ft</text>
+  <text x="25" y="340" fill="#D4B66A" font-size="9">Managed Cashew Agroforestry bounds</text><text x="375" y="340" fill="#FBF8F1" font-size="9" font-weight="700" text-anchor="end">1.00 Acre (43,560 sf)</text>
+</g>
+
+<!-- Compass / Scale (Left side bottom in gold) -->
+<g transform="translate(80, 140)">
+  <circle cx="0" cy="0" r="36" fill="none" stroke="#B08A3E" stroke-width="1.0"/>
+  <polygon points="0,-42 12,0 0,-6 -12,0" fill="#B08A3E"/>
+  <polygon points="0,42 12,0 0,6 -12,0" fill="rgba(176,138,62,0.4)"/>
+  <text x="0" y="-48" fill="#FBF8F1" font-size="12" font-weight="700" text-anchor="middle">N</text>
+  <text x="0" y="58" fill="#D4B66A" font-size="7" text-anchor="middle">TRUE NORTH</text>
+</g>
+
+<!-- Technical dimensions Scale bar -->
+<g transform="translate(60, 950)">
+  <rect x="0" y="0" width="80" height="8" fill="#B08A3E" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="80" y="0" width="80" height="8" fill="#10291F" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="160" y="0" width="80" height="8" fill="#B08A3E" stroke="#B08A3E" stroke-width="0.5"/>
+  <rect x="240" y="0" width="80" height="8" fill="#10291F" stroke="#B08A3E" stroke-width="0.5"/>
+  <text x="0" y="24" fill="#D4B66A" font-size="8">0</text>
+  <text x="80" y="24" fill="#D4B66A" font-size="8">2m</text>
+  <text x="160" y="24" fill="#D4B66A" font-size="8">4m</text>
+  <text x="240" y="24" fill="#D4B66A" font-size="8">6m</text>
+  <text x="320" y="24" fill="#D4B66A" font-size="8">8m</text>
+  <text x="160" y="-8" fill="#FBF8F1" font-size="8" font-weight="700" text-anchor="middle">SCALE 1:100</text>
+</g>
+
+<!-- Compliance stamp -->
+<g transform="translate(1250, 990)">
+  <rect x="0" y="0" width="400" height="140" fill="#10291F" stroke="#B08A3E" stroke-width="1.2"/>
+  <rect x="6" y="6" width="388" height="128" fill="none" stroke="rgba(176,138,62,0.3)" stroke-width="0.5"/>
+  <text x="200" y="26" fill="#FBF8F1" font-size="10" font-weight="700" text-anchor="middle" letter-spacing="1">FOUNDER BESPOKE COMPLIANCE NOTICE</text>
+  <line x1="20" y1="36" x2="380" y2="36" stroke="#B08A3E" stroke-width="0.5"/>
+  <text x="20" y="55" fill="#D4B66A" font-size="7.5" font-weight="300">All spatial modules, optional expansion chassis zones,</text>
+  <text x="20" y="70" fill="#D4B66A" font-size="7.5" font-weight="300">and built-up allotments are conceptual customizable indicator drafts.</text>
+  <text x="20" y="85" fill="#D4B66A" font-size="7.5" font-weight="300">Subject to site topographic verification and final environmental,</text>
+  <text x="20" y="100" fill="#D4B66A" font-size="7.5" font-weight="300">TCP, statutory RERA, and local planning clearances.</text>
+  <text x="20" y="118" fill="#FBF8F1" font-size="8" font-weight="700" letter-spacing="0.5">BLUECHIP GLOBAL AGRO · ARCHITECTURAL PARTNERS</text>
+</g>
+</svg>

@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Visual Asset Pipeline Dashboard · Reserva Verde Goa</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-forest: #1A2F25;
+            --color-forest-deep: #10291F;
+            --color-ivory: #FBF8F1;
+            --color-beige: #F4EDDD;
+            --color-beige-warm: #E8DFC4;
+            --color-gold: #B08A3E;
+            --color-gold-light: #D4B66A;
+            --color-charcoal: #2A2A2A;
+            --color-line: rgba(176, 138, 62, 0.25);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--color-ivory);
+            color: var(--color-charcoal);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4%;
+        }
+
+        /* Header Navigation */
+        .rv-header {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(176, 138, 62, 0.15);
+            background: rgba(251, 248, 241, 0.9);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--color-forest-deep);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        .logo span { color: var(--color-gold); }
+
+        .rv-eyebrow {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .rv-eyebrow::before {
+            content: ''; width: 20px; height: 1px; background: var(--color-gold);
+        }
+
+        .rv-title {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--color-forest-deep);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        /* Hero */
+        .hero-section {
+            padding: 5rem 0 3rem;
+            background: linear-gradient(180deg, var(--color-beige) 0%, var(--color-ivory) 100%);
+            border-bottom: 1px solid var(--color-line);
+        }
+        .hero-desc {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: rgba(42, 42, 42, 0.8);
+            max-width: 900px;
+            margin-bottom: 2rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .stat-card {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: 6px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(26,47,37,0.03);
+        }
+        .stat-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .stat-value {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--color-forest-deep);
+            margin: 0.4rem 0;
+            font-weight: 500;
+        }
+        .stat-note {
+            font-size: 0.75rem;
+            color: rgba(42,42,42,0.6);
+        }
+
+        /* Main Workspace & Tabs */
+        .dashboard-body {
+            padding: 5rem 0;
+        }
+        .tabs-container {
+            display: flex;
+            gap: 0.8rem;
+            border-bottom: 1px solid var(--color-line);
+            padding-bottom: 1px;
+            margin-bottom: 3rem;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 1rem 1.8rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(42,42,42,0.6);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+        }
+        .tab-btn:hover {
+            color: var(--color-forest-deep);
+        }
+        .tab-btn.active {
+            color: var(--color-forest-deep);
+            border-color: var(--color-gold);
+        }
+
+        /* Asset Section */
+        .asset-group {
+            display: none;
+        }
+        .asset-group.active {
+            display: block;
+        }
+
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.2rem;
+        }
+
+        /* Card Design */
+        .asset-card {
+            background: #fff;
+            border: 1px solid rgba(169,165,156,0.25);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+        .asset-card:hover {
+            border-color: var(--color-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 25px 45px rgba(176,138,62,0.08);
+        }
+        .asset-preview {
+            width: 100%;
+            height: 180px;
+            background: var(--color-forest-deep);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(169,165,156,0.25);
+            cursor: pointer;
+        }
+        .asset-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition-smooth);
+        }
+        .asset-preview:hover img {
+            transform: scale(1.05);
+        }
+        .asset-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.8rem;
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .badge-real {
+            background: #2A7B4C;
+            color: #fff;
+            border: 1px solid #3ca568;
+        }
+        .badge-placeholder {
+            background: var(--color-gold);
+            color: #fff;
+            border: 1px solid var(--color-gold-light);
+        }
+        .badge-missing {
+            background: #7a2b2b;
+            color: #fff;
+            border: 1px solid #ab4343;
+        }
+
+        .asset-info {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .asset-name {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--color-forest-deep);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .asset-path {
+            font-family: monospace;
+            font-size: 0.72rem;
+            background: var(--color-ivory);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            color: #555;
+            word-break: break-all;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(169,165,156,0.18);
+        }
+        .asset-details {
+            border-top: 1px solid rgba(169,165,156,0.18);
+            padding-top: 1.2rem;
+            font-size: 0.78rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .asset-detail-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .asset-detail-label {
+            color: rgba(42,42,42,0.6);
+            font-weight: 500;
+        }
+        .asset-detail-value {
+            color: var(--color-forest-deep);
+            font-weight: 600;
+        }
+        .asset-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-gold);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            transition: var(--transition-smooth);
+        }
+        .asset-link:hover {
+            color: var(--color-forest-deep);
+            transform: translateX(3px);
+        }
+
+        /* Modal Lightbox */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(16, 41, 31, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 85%;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+            border: 2px solid var(--color-gold);
+            border-radius: 6px;
+            overflow: hidden;
+            background: #000;
+        }
+        .modal-content img, .modal-content video {
+            display: block;
+            max-width: 100%;
+            max-height: 80vh;
+        }
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--color-ivory);
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-family: var(--font-sans);
+        }
+        .modal-close:hover {
+            color: var(--color-gold);
+            transform: rotate(90deg);
+        }
+
+        /* CTA Return Button */
+        .rv-btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 1.4rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            background-color: transparent;
+            color: var(--color-forest-deep);
+            border: 1px solid var(--color-gold);
+            cursor: pointer;
+        }
+        .rv-btn-secondary:hover {
+            background-color: rgba(176, 138, 62, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Bottom Nav Links */
+        .bottom-links {
+            margin-top: 5rem;
+            border-top: 1px solid var(--color-line);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .bottom-links-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .bottom-link {
+            color: var(--color-forest-deep);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-bottom: 1px solid var(--color-gold);
+            padding-bottom: 3px;
+            transition: var(--transition-smooth);
+        }
+        .bottom-link:hover {
+            color: var(--color-gold);
+            border-color: transparent;
+        }
+
+        /* Responsiveness */
+        @media(max-width: 768px) {
+            .rv-title { font-size: 2.2rem; }
+            .hero-section { padding: 4rem 0 2rem; }
+            .dashboard-body { padding: 3rem 0; }
+            .bottom-links-wrap { flex-direction: column; gap: 1.2rem; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="rv-header">
+        <div class="container header-wrap">
+            <a href="../index.html" class="logo">Reserva<span>Verde</span></a>
+            <a href="../index.html" class="rv-btn-secondary">Back to Homepage</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="rv-eyebrow">Production Dashboard</div>
+            <h1 class="rv-title">Visual Asset Pipeline (Phase 2C)</h1>
+            <p class="hero-desc">
+                Internal manager portal designed to track rendering progress, file specifications, and asset contract integration. AutoCAD schemas, SketchUp layouts, Lumion exterior/interior shots, and Google Earth terrain files are mapped to their relative pipeline slots.
+            </p>
+
+            <!-- Stats Tracker -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Asset Slots</div>
+                    <div class="stat-value">46</div>
+                    <div class="stat-note">Mapped relative paths</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Real Renders Synced</div>
+                    <div class="stat-value">37</div>
+                    <div class="stat-note">2BHK, 3BHK, 4BHK, Custom & Terrain</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Active Placeholders</div>
+                    <div class="stat-value">9</div>
+                    <div class="stat-note">SVG/JPG branded cards</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Sync Pipeline</div>
+                    <div class="stat-value">100%</div>
+                    <div class="stat-note">Zero broken asset links</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard Workspace -->
+    <main class="dashboard-body">
+        <div class="container">
+
+            <!-- Production Alert & Guidance -->
+            <div style="background: linear-gradient(135deg, var(--color-forest-deep) 0%, #173B2E 100%); border: 1px solid var(--color-gold); border-radius: 8px; padding: 2rem; color: var(--color-ivory); margin-bottom: 3rem; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 2rem; align-items: center; box-shadow: 0 15px 30px rgba(16,41,31,0.15);">
+                <div>
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(42, 123, 76, 0.2); border: 1px solid #2A7B4C; color: #6fc98f; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.35rem 0.8rem; border-radius: 4px; margin-bottom: 1rem;">
+                        ✓ Production Priority 1 Completed: 2BHK Compact Forest Estate Synced
+                    </div>
+                    <h2 style="font-family: var(--font-serif); font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; font-weight: 500;">2BHK Visual Assets Fully Produced</h2>
+                    <p style="font-size: 0.88rem; opacity: 0.85; line-height: 1.6; margin-bottom: 0.5rem;">
+                        All AutoCAD presentation designs, SketchUp massings, D5 photorealistic renders, and Google Earth static context maps for the 2BHK Compact Forest Estate have been successfully generated, verified, and mapped!
+                    </p>
+                    <p style="font-size: 0.82rem; color: #6fc98f; font-weight: 500; line-height: 1.6; margin-bottom: 0.5rem; border-top: 1px solid rgba(176,138,62,0.25); padding-top: 0.5rem;">
+                        <strong>Current backlog status:</strong> All 2BHK slots are 100% active with real files. Backlog priority moves to 3BHK, 4BHK, and Customisable models in upcoming cycles.
+                    </p>
+                    <p style="font-size: 0.82rem; color: var(--color-gold-light); font-style: italic; font-weight: 300;">
+                        “2BHK visual style approved. Ready to extend the same premium biophilic vocabulary to 3BHK, 4BHK, and Customisable collections.”
+                    </p>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(176,138,62,0.3); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <div style="font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gold-light); border-bottom: 1px solid rgba(176,138,62,0.2); padding-bottom: 0.5rem; margin-bottom: 0.2rem;">
+                        Visual Pipeline Color Contract
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem;">
+                        <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #2A7B4C;"></span> Real asset active</span>
+                        <span style="opacity: 0.7; font-size: 0.7rem; font-family: monospace;">(Verified File)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem;">
+                        <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-gold);"></span> Placeholder active</span>
+                        <span style="opacity: 0.7; font-size: 0.7rem; font-family: monospace;">(Fallback Card)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem;">
+                        <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #D4B66A;"></span> Pending export</span>
+                        <span style="opacity: 0.7; font-size: 0.7rem; font-family: monospace;">(In-Queue)</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.78rem;">
+                        <span style="display: inline-flex; align-items: center; gap: 8px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-beige-warm);"></span> Ready to replace</span>
+                        <span style="opacity: 0.7; font-size: 0.7rem; font-family: monospace;">(Slot Ready)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="tabs-container">
+                <button class="tab-btn active" onclick="switchTab(event, 'tab-2bhk')">2BHK Estate</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-3bhk')">3BHK Estate</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-4bhk')">4BHK Estate</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-custom')">Customisable</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-terrain')">Terrain & Masterplan</button>
+                <button class="tab-btn" onclick="switchTab(event, 'tab-videos')">Walkthrough Videos</button>
+            </div>
+
+            <!-- Tab 2BHK -->
+             <section id="tab-2bhk" class="asset-group active">
+                  <!-- Quality Note Banner -->
+                  <div style="background: rgba(176, 138, 62, 0.08); border-left: 4px solid var(--color-gold); border-radius: 6px; padding: 1.5rem 2rem; margin-bottom: 2.2rem; font-size: 0.88rem; line-height: 1.6; color: var(--color-forest-deep); box-shadow: 0 4px 15px rgba(26,47,37,0.02);">
+                      <strong>💡 QA Quality Benchmark Notification:</strong> Pipeline active. Final visual benchmark should follow bedroom, bathroom, kitchen/dining, aerial, and terrain visuals. Exterior, deck, living, and night views are usable as temporary mapped assets but recommended for later photorealistic upgrade.
+                  </div>
+                 <div class="asset-grid">
+                     <!-- Exterior Arrival -->
+                     <div class="asset-card">
+                         <div class="asset-preview" onclick="openLightbox(this)">
+                             <span class="status-badge badge-real">Real asset active</span>
+                             <img src="../images/renders/2bhk/exterior-arrival.jpg" alt="2BHK Exterior Arrival" />
+                         </div>
+                         <div class="asset-info">
+                             <div>
+                                 <h3 class="asset-name">1. Exterior Arrival & Foyer Link</h3>
+                                 <div class="asset-path">/images/renders/2bhk/exterior-arrival.jpg</div>
+                             </div>
+                             <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Dawn light)</span></div>
+                             </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                         </div>
+                     </div>
+                     <!-- Deck View -->
+                     <div class="asset-card">
+                         <div class="asset-preview" onclick="openLightbox(this)">
+                             <span class="status-badge badge-real">Real asset active</span>
+                             <img src="../images/renders/2bhk/deck-view.jpg" alt="2BHK Pool Deck View" />
+                         </div>
+                         <div class="asset-info">
+                             <div>
+                                 <h3 class="asset-name">2. Verandah & Courtyard Pool</h3>
+                                 <div class="asset-path">/images/renders/2bhk/deck-view.jpg</div>
+                             </div>
+                             <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Day Snug)</span></div>
+                             </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                         </div>
+                     </div>
+                     <!-- Living Room -->
+                     <div class="asset-card">
+                         <div class="asset-preview" onclick="openLightbox(this)">
+                             <span class="status-badge badge-real">Real asset active</span>
+                             <img src="../images/renders/2bhk/living-room.jpg" alt="2BHK Living Room" />
+                         </div>
+                         <div class="asset-info">
+                             <div>
+                                 <h3 class="asset-name">3. Double-Glazed Living Lounge</h3>
+                                 <div class="asset-path">/images/renders/2bhk/living-room.jpg</div>
+                             </div>
+                             <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion / D5 Render</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (High-Contrast)</span></div>
+                             </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                         </div>
+                     </div>
+                     <!-- Bedroom View -->
+                     <div class="asset-card">
+                         <div class="asset-preview" onclick="openLightbox(this)">
+                             <span class="status-badge badge-real">Real asset active</span>
+                             <img src="../images/renders/2bhk/bedroom-view.jpg" alt="2BHK Bedroom View" />
+                         </div>
+                         <div class="asset-info">
+                             <div>
+                                 <h3 class="asset-name">4. Master Bedroom Suite</h3>
+                                 <div class="asset-path">/images/renders/2bhk/bedroom-view.jpg</div>
+                             </div>
+                             <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Interior Comfort)</span></div>
+                             </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                         </div>
+                     </div>
+                     <!-- Bathroom View -->
+                     <div class="asset-card">
+                         <div class="asset-preview" onclick="openLightbox(this)">
+                             <span class="status-badge badge-real">Real asset active</span>
+                             <img src="../images/renders/2bhk/bathroom-view.jpg" alt="2BHK Bathroom View" />
+                         </div>
+                         <div class="asset-info">
+                             <div>
+                                 <h3 class="asset-name">5. Stilted Bathroom Wetroom</h3>
+                                 <div class="asset-path">/images/renders/2bhk/bathroom-view.jpg</div>
+                             </div>
+                             <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion / D5</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Soft diffusion)</span></div>
+                             </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                         </div>
+                     </div>
+                     <!-- Kitchen & Dining -->
+                     <div class="asset-card">
+                         <div class="asset-preview" onclick="openLightbox(this)">
+                             <span class="status-badge badge-real">Real asset active</span>
+                             <img src="../images/renders/2bhk/kitchen-dining.jpg" alt="2BHK Kitchen & Dining" />
+                         </div>
+                         <div class="asset-info">
+                             <div>
+                                 <h3 class="asset-name">6. Island Kitchen & Dinette</h3>
+                                 <div class="asset-path">/images/renders/2bhk/kitchen-dining.jpg</div>
+                             </div>
+                             <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Daylight stack)</span></div>
+                             </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                         </div>
+                     </div>
+                     <!-- Night View -->
+                     <div class="asset-card">
+                         <div class="asset-preview" onclick="openLightbox(this)">
+                             <span class="status-badge badge-real">Real asset active</span>
+                             <img src="../images/renders/2bhk/night-view.jpg" alt="2BHK Night View" />
+                         </div>
+                         <div class="asset-info">
+                             <div>
+                                 <h3 class="asset-name">7. Night Atmospheric Profile</h3>
+                                 <div class="asset-path">/images/renders/2bhk/night-view.jpg</div>
+                             </div>
+                             <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Warm LED downlights)</span></div>
+                             </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                         </div>
+                     </div>
+                     <!-- Aerial Estate -->
+                     <div class="asset-card">
+                         <div class="asset-preview" onclick="openLightbox(this)">
+                             <span class="status-badge badge-real">Real asset active</span>
+                             <img src="../images/renders/2bhk/aerial-estate.jpg" alt="2BHK Aerial plot view" />
+                         </div>
+                         <div class="asset-info">
+                             <div>
+                                 <h3 class="asset-name">8. High-Angle Axonometric Plot</h3>
+                                 <div class="asset-path">/images/renders/2bhk/aerial-estate.jpg</div>
+                             </div>
+                             <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">SketchUp / D5 Render</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (45-degree angle)</span></div>
+                             </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                         </div>
+                     </div>
+                 </div>
+             </section>
+
+            <!-- Tab 3BHK -->
+            <section id="tab-3bhk" class="asset-group">
+                <!-- 3BHK Production Priority Banner -->
+                <div style="background: rgba(176, 138, 62, 0.08); border-left: 4px solid var(--color-gold); border-radius: 6px; padding: 1.5rem 2rem; margin-bottom: 2.2rem; font-size: 0.88rem; line-height: 1.6; color: var(--color-forest-deep); box-shadow: 0 4px 15px rgba(26,47,37,0.02);">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(176, 138, 62, 0.15); border: 1px solid var(--color-gold); color: var(--color-forest-deep); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 4px; margin-bottom: 0.8rem;">
+                        ⚡ Production Priority 2: 3BHK Visual Integration Staged
+                    </div>
+                    <p style="margin: 0 0 0.8rem 0; font-weight: 300;">
+                        <strong>💡 QA visual update:</strong> 3BHK render set now completed. Pending only walkthrough video if MP4 is not available.
+                    </p>
+                    <p style="margin: 0; font-weight: 300; font-size: 0.82rem; opacity: 0.85;">
+                        <strong>⚠️ Quality Mandate Notice:</strong> Use the 2BHK bedroom, bathroom, kitchen/dining, aerial, and terrain visuals as the quality benchmark. Do not replicate low-fidelity SketchUp preview style.
+                    </p>
+                </div>
+                <div class="asset-grid">
+                    <!-- Loop for 3BHK slots -->
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/3bhk/exterior-arrival.jpg" alt="3BHK Exterior Arrival" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">1. Exterior Ridge-Aligned Arrival</h3>
+                                <div class="asset-path">/images/renders/3bhk/exterior-arrival.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Dawn glow)</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/3bhk/deck-view.jpg" alt="3BHK Deck View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">2. Verandah & Plunge Pool Deck</h3>
+                                <div class="asset-path">/images/renders/3bhk/deck-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Mist profile)</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/3bhk/living-room.jpg" alt="3BHK Living Room" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">3. Double-Glazed Glass Spine Lounge</h3>
+                                <div class="asset-path">/images/renders/3bhk/living-room.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion / D5</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Wood rafters)</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/3bhk/bedroom-view.jpg" alt="3BHK Bedroom View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">4. Master Bed Chamber</h3>
+                                <div class="asset-path">/images/renders/3bhk/bedroom-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Dual aspect window)</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/3bhk/bathroom-view.jpg" alt="3BHK Bathroom View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">5. Master Ensuite Bathroom</h3>
+                                <div class="asset-path">/images/renders/3bhk/bathroom-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion / D5</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Teak details)</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/3bhk/kitchen-dining.jpg" alt="3BHK Kitchen & Dining" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">6. Island Kitchen & Dinette</h3>
+                                <div class="asset-path">/images/renders/3bhk/kitchen-dining.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (High efficiency)</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/3bhk/night-view.jpg" alt="3BHK Night View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">7. Night Atmospheric Profile</h3>
+                                <div class="asset-path">/images/renders/3bhk/night-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Amber downlight)</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/3bhk/aerial-estate.jpg" alt="3BHK Aerial View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">8. Axonometric Valley Layout</h3>
+                                <div class="asset-path">/images/renders/3bhk/aerial-estate.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">SketchUp / Lumion</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Coffee grid matrix)</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Tab 4BHK -->
+            <section id="tab-4bhk" class="asset-group">
+                <!-- 4BHK Production Priority Banner -->
+                <div style="background: rgba(176, 138, 62, 0.08); border-left: 4px solid var(--color-gold); border-radius: 6px; padding: 1.5rem 2rem; margin-bottom: 2.2rem; font-size: 0.88rem; line-height: 1.6; color: var(--color-forest-deep); box-shadow: 0 4px 15px rgba(26,47,37,0.02);">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(176, 138, 62, 0.15); border: 1px solid var(--color-gold); color: var(--color-forest-deep); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 4px; margin-bottom: 0.8rem;">
+                        ⚡ Production Priority 3: Pending 4BHK final visual exports
+                    </div>
+                    <p style="margin: 0 0 0.8rem 0; font-weight: 300;">
+                        <strong>💡 QA visual guideline:</strong> Use the completed 3BHK render set and high-end 2BHK bedroom/bathroom/kitchen/aerial visuals as the quality benchmark. Do not replicate low-fidelity SketchUp preview style.
+                    </p>
+                    <p style="margin: 0; font-weight: 300; font-size: 0.82rem; opacity: 0.85;">
+                        <strong>⚠️ Mapped 4BHK target slots:</strong> floor-plan.svg, exterior-arrival.jpg, deck-view.jpg, living-room.jpg, bedroom-view.jpg, bathroom-view.jpg, kitchen-dining.jpg, night-view.jpg, aerial-estate.jpg, and 4bhk-walkthrough.mp4.
+                    </p>
+                    <p style="margin: 0.8rem 0 0 0; font-weight: 400; font-size: 0.82rem; color: var(--color-forest-deep); border-top: 1px solid rgba(176,138,62,0.2); padding-top: 0.8rem;">
+                        <strong>📝 Status Note:</strong> 4BHK render set now completed. Pending only walkthrough video if MP4 is not available.
+                    </p>
+                </div>
+                <div class="asset-grid">
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/4bhk/exterior-arrival.jpg" alt="4BHK Exterior Arrival" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">1. Grand Arrival Bridge</h3>
+                                <div class="asset-path">/images/renders/4bhk/exterior-arrival.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Sunset ray-trace)</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/4bhk/deck-view.jpg" alt="4BHK Deck View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">2. Courtyard Pool & Wellness Lounge</h3>
+                                <div class="asset-path">/images/renders/4bhk/deck-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Daylight water reflections)</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/4bhk/living-room.jpg" alt="4BHK Living Room" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">3. Vaulted Multi-Aspect Living</h3>
+                                <div class="asset-path">/images/renders/4bhk/living-room.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion / D5</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (High contrast shade)</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/4bhk/bedroom-view.jpg" alt="4BHK Bedroom View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">4. Flagship Master Bed Chamber</h3>
+                                <div class="asset-path">/images/renders/4bhk/bedroom-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Direct garden views)</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/4bhk/bathroom-view.jpg" alt="4BHK Bathroom View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">5. Premium Outdoor Bath Oasis</h3>
+                                <div class="asset-path">/images/renders/4bhk/bathroom-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-row"><span class="asset-detail-value">Lumion / Twinmotion</span></span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Slate & Teak)</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/4bhk/kitchen-dining.jpg" alt="4BHK Kitchen & Dining" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">6. Double-Island Show Kitchen</h3>
+                                <div class="asset-path">/images/renders/4bhk/kitchen-dining.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Professional equipment)</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/4bhk/night-view.jpg" alt="4BHK Night View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">7. Night Uplighting Showcase</h3>
+                                <div class="asset-path">/images/renders/4bhk/night-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">1920x1080 (Amber landscape flood)</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/4bhk/aerial-estate.jpg" alt="4BHK Aerial View" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">8. Grand Axonometric Multi-Wing Plot</h3>
+                                <div class="asset-path">/images/renders/4bhk/aerial-estate.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">SketchUp / D5 Render</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Jungle layout canopy overlay)</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Customisable -->
+            <section id="tab-custom" class="asset-group">
+                <!-- Customisable Production Priority Banner -->
+                <div style="background: rgba(176, 138, 62, 0.08); border-left: 4px solid var(--color-gold); border-radius: 6px; padding: 1.5rem 2rem; margin-bottom: 2.2rem; font-size: 0.88rem; line-height: 1.6; color: var(--color-forest-deep); box-shadow: 0 4px 15px rgba(26,47,37,0.02);">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(176, 138, 62, 0.15); border: 1px solid var(--color-gold); color: var(--color-forest-deep); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.6rem; border-radius: 4px; margin-bottom: 0.8rem;">
+                        ⚡ Production Priority 4: Customisable Founder Estate Produced
+                    </div>
+                    <p style="margin: 0 0 0.8rem 0; font-weight: 300;">
+                        <strong>💡 QA visual guideline:</strong> Use the completed 4BHK and 3BHK render sets as the quality benchmark. The Customisable Founder Estate must feel bespoke, flexible, HNI-focused, and more exclusive than a standard model. Do not replicate low-fidelity SketchUp preview style.
+                    </p>
+                    <p style="margin: 0 0 0.8rem 0; font-weight: 300; font-size: 0.82rem; opacity: 0.85;">
+                        <strong>⚠️ Mapped Customisable target slots:</strong> customisable-floor-plan.svg, exterior-arrival.jpg, deck-view.jpg, living-room.jpg, bedroom-view.jpg, bathroom-view.jpg, kitchen-dining.jpg, night-view.jpg, and aerial-estate.jpg.
+                    </p>
+                    <p style="margin: 0.8rem 0 0 0; font-weight: 400; font-size: 0.82rem; color: var(--color-forest-deep); border-top: 1px solid rgba(176,138,62,0.2); padding-top: 0.8rem;">
+                        <strong>📝 Pipeline status:</strong> Customisable Founder Estate render set now completed. Pending only final walkthrough/masterplan video if MP4 is not available.
+                    </p>
+                </div>
+                <div class="asset-grid">
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/customisable/exterior-arrival.jpg" alt="Customisable Foyer" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">1. Custom Foyer Arrival</h3>
+                                <div class="asset-path">/images/renders/customisable/exterior-arrival.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Bespoke Foyer Entrance)</span></div>
+                            </div>
+                            <a href="../models/customisable-founder-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/customisable/deck-view.jpg" alt="Customisable Deck" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">2. Custom Deck & Infinite Courtyard</h3>
+                                <div class="asset-path">/images/renders/customisable/deck-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Wellness Deck & Plunge Pool)</span></div>
+                            </div>
+                            <a href="../models/customisable-founder-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/customisable/living-room.jpg" alt="Customisable Living" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">3. Bespoke Living Lounge Space</h3>
+                                <div class="asset-path">/images/renders/customisable/living-room.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion / D5</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Grand Social Living Hall)</span></div>
+                            </div>
+                            <a href="../models/customisable-founder-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/customisable/bedroom-view.jpg" alt="Customisable Bed" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">4. Bespoke Bedroom Configurator</h3>
+                                <div class="asset-path">/images/renders/customisable/bedroom-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Bespoke Master Suite)</span></div>
+                            </div>
+                            <a href="../models/customisable-founder-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/customisable/bathroom-view.jpg" alt="Customisable Bathroom" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">5. Signature Eco-Wetroom</h3>
+                                <div class="asset-path">/images/renders/customisable/bathroom-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion / Twinmotion</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Eco-Wetroom)</span></div>
+                            </div>
+                            <a href="../models/customisable-founder-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/customisable/kitchen-dining.jpg" alt="Customisable Kitchen" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">6. Bespoke Chef's Kitchen</h3>
+                                <div class="asset-path">/images/renders/customisable/kitchen-dining.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Bespoke Entertaining)</span></div>
+                            </div>
+                            <a href="../models/customisable-founder-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/customisable/night-view.jpg" alt="Customisable Night" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">7. Founder Night Ambience</h3>
+                                <div class="asset-path">/images/renders/customisable/night-view.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion 3D</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Atmospheric Forest Night Facade)</span></div>
+                            </div>
+                            <a href="../models/customisable-founder-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/renders/customisable/aerial-estate.jpg" alt="Customisable Aerial" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">8. Bespoke Aerial Plot Plan</h3>
+                                <div class="asset-path">/images/renders/customisable/aerial-estate.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">SketchUp / D5 Render</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Export Spec:</span><span class="asset-detail-value">4K UHD (Bespoke 1-Acre Layout Options)</span></div>
+                            </div>
+                            <a href="../models/customisable-founder-estate/index.html#mainGalleryImage" class="asset-link">View in Brochure Page →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="tab-terrain" class="asset-group">
+                <div class="asset-grid">
+                    <!-- Google Earth Site Context -->
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/terrain/google-earth-site-context.jpg" alt="Google Earth Site Context" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                 <h3 class="asset-name">Google Earth Site Context</h3>
+                                 <div class="asset-path">/images/terrain/google-earth-site-context.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Google Earth Studio</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Linked Pages:</span><span class="asset-detail-value">All Brochure Pages</span></div>
+                            </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html" class="asset-link">View in 2BHK Page →</a>
+                        </div>
+                    </div>
+                    <!-- Google Earth Access Road -->
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/terrain/google-earth-access-road.jpg" alt="Google Earth Access Road" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                 <h3 class="asset-name">Google Earth Access Road</h3>
+                                 <div class="asset-path">/images/terrain/google-earth-access-road.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Google Earth Pro</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Linked Pages:</span><span class="asset-detail-value">All Brochure Pages</span></div>
+                            </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html" class="asset-link">View in 2BHK Page →</a>
+                        </div>
+                    </div>
+                    <!-- Survey Boundary Overlay -->
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real asset active</span>
+                            <img src="../images/terrain/survey-boundary-overlay.jpg" alt="Survey Boundary Overlay" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                 <h3 class="asset-name">Survey Boundary Overlay</h3>
+                                 <div class="asset-path">/images/terrain/survey-boundary-overlay.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Export Synced</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">AutoCAD & Google Earth</span></div>
+                                 <div class="asset-detail-row"><span class="asset-detail-label">Linked Pages:</span><span class="asset-detail-value">All Brochure Pages</span></div>
+                            </div>
+                             <a href="../models/2bhk-compact-forest-estate/index.html" class="asset-link">View in 2BHK Page →</a>
+                        </div>
+                    </div>
+                    <!-- Full 100-Acre Masterplan -->
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-placeholder">Placeholder Active</span>
+                            <img src="../images/masterplan/full-100-acre-masterplan.jpg" alt="Full 100-Acre Masterplan" />
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">Full 100-Acre Masterplan Overlay</h3>
+                                <div class="asset-path">/images/masterplan/full-100-acre-masterplan.jpg</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Pending Final AutoCAD layout</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">AutoCAD + Photoshop</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Target Spec:</span><span class="asset-detail-value">Print Ready RGB layout</span></div>
+                            </div>
+                            <a href="../index.html" class="asset-link">View in Homepage →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab Videos -->
+            <section id="tab-videos" class="asset-group">
+                <div class="asset-grid">
+                    <!-- Google Earth Flythrough -->
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real Video Mapped</span>
+                            <video muted loop autoplay style="pointer-events: none;">
+                                <source src="../videos/reserva-verde-google-earth-flythrough.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">Google Earth Cinematic Flythrough</h3>
+                                <div class="asset-path">/videos/reserva-verde-google-earth-flythrough.mp4</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">File Loaded & Playing</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Google Earth Studio</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Target Spec:</span><span class="asset-detail-value">1920x1080 @ 30fps</span></div>
+                            </div>
+                            <a href="../index.html#location" class="asset-link">View in Location Section →</a>
+                        </div>
+                    </div>
+                    <!-- 2BHK Walkthrough -->
+                    <div class="asset-card">
+                        <div class="asset-preview" onclick="openLightbox(this)">
+                            <span class="status-badge badge-real">Real Video Mapped</span>
+                            <video muted loop autoplay style="pointer-events: none;">
+                                <source src="../videos/2bhk-walkthrough.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">2BHK Virtual Walkthrough Video</h3>
+                                <div class="asset-path">/videos/2bhk-walkthrough.mp4</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">File Loaded & Playing</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion Video / D5</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Target Spec:</span><span class="asset-detail-value">1920x1080 @ 60fps</span></div>
+                            </div>
+                            <a href="../models/2bhk-compact-forest-estate/index.html#walkthroughVideo" class="asset-link">View in 2BHK Page →</a>
+                        </div>
+                    </div>
+                    <!-- 3BHK Walkthrough -->
+                    <div class="asset-card">
+                        <div class="asset-preview" style="background: #000; height: 180px; display: flex; justify-content: center; align-items: center;">
+                            <span class="status-badge badge-placeholder">Slot Active</span>
+                            <span style="color: var(--color-gold-light); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;">MP4 Video Slot Ready</span>
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">3BHK Virtual Walkthrough Video</h3>
+                                <div class="asset-path">/videos/3bhk-walkthrough.mp4</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Pending Video Export</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion Video / Twinmotion</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Target Spec:</span><span class="asset-detail-value">1080p 60fps walkthrough</span></div>
+                            </div>
+                            <a href="../models/3bhk-premium-forest-estate/index.html#walkthroughVideo" class="asset-link">View in 3BHK Page →</a>
+                        </div>
+                    </div>
+                    <!-- 4BHK Walkthrough -->
+                    <div class="asset-card">
+                        <div class="asset-preview" style="background: #000; height: 180px; display: flex; justify-content: center; align-items: center;">
+                            <span class="status-badge badge-placeholder">Slot Active</span>
+                            <span style="color: var(--color-gold-light); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;">MP4 Video Slot Ready</span>
+                        </div>
+                        <div class="asset-info">
+                            <div>
+                                <h3 class="asset-name">4BHK Virtual Walkthrough Video</h3>
+                                <div class="asset-path">/videos/4bhk-walkthrough.mp4</div>
+                            </div>
+                            <div class="asset-details">
+                                <div class="asset-detail-row"><span class="asset-detail-label">Pipeline Status:</span><span class="asset-detail-value">Pending Video Export</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Recommended Tool:</span><span class="asset-detail-value">Lumion Video / D5</span></div>
+                                <div class="asset-detail-row"><span class="asset-detail-label">Target Spec:</span><span class="asset-detail-value">1080p 60fps walkthrough</span></div>
+                            </div>
+                            <a href="../models/4bhk-signature-forest-estate/index.html#walkthroughVideo" class="asset-link">View in 4BHK Page →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal Lightbox Component -->
+    <div id="lightboxModal" class="modal" onclick="closeLightbox()">
+        <span class="modal-close" onclick="closeLightbox()">&times;</span>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <img id="lightboxImage" src="" alt="Enlarged Preview" style="display: none;" />
+            <video id="lightboxVideo" src="" controls autoplay style="display: none; width: 100%; aspect-ratio: 16/9; background: #000;"></video>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Links -->
+    <footer class="bottom-links container">
+        <div class="bottom-links-wrap">
+            <a href="../index.html" class="bottom-link">Homepage Portal</a>
+            <a href="../reserva-verde/pricing/index.html" class="bottom-link">Pricing & Installments</a>
+            <a href="../wellness.html" class="bottom-link">Wellness Valley Page</a>
+            <a href="../models/2bhk-compact-forest-estate/index.html" class="bottom-link">2BHK brochure</a>
+            <a href="../models/3bhk-premium-forest-estate/index.html" class="bottom-link">3BHK brochure</a>
+            <a href="../models/4bhk-signature-forest-estate/index.html" class="bottom-link">4BHK brochure</a>
+            <a href="../models/customisable-founder-estate/index.html" class="bottom-link">Customisable brochure</a>
+            <a href="../docs/visual-asset-requirements-phase-2c.md" class="bottom-link" target="_blank">Asset Specification MD</a>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Tab switching logic
+        function switchTab(evt, tabId) {
+            // Remove active classes
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+
+            const assetGroups = document.querySelectorAll('.asset-group');
+            assetGroups.forEach(group => group.classList.remove('active'));
+
+            // Add active classes
+            evt.currentTarget.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Lightbox overlay logic
+        function openLightbox(previewEl) {
+            const modal = document.getElementById('lightboxModal');
+            const modalImg = document.getElementById('lightboxImage');
+            const modalVid = document.getElementById('lightboxVideo');
+
+            // Reset contents
+            modalImg.style.display = 'none';
+            modalVid.style.display = 'none';
+            modalVid.pause();
+            modalVid.src = '';
+
+            const imgEl = previewEl.querySelector('img');
+            const vidEl = previewEl.querySelector('video');
+
+            if (imgEl) {
+                modalImg.src = imgEl.src;
+                modalImg.style.display = 'block';
+            } else if (vidEl) {
+                const srcEl = vidEl.querySelector('source');
+                modalVid.src = srcEl ? srcEl.src : vidEl.src;
+                modalVid.style.display = 'block';
+                modalVid.load();
+                modalVid.play();
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            const modalVid = document.getElementById('lightboxVideo');
+            
+            modal.classList.remove('active');
+            modalVid.pause();
+            modalVid.src = '';
+        }
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

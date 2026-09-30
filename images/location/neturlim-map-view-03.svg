@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <defs>
+    
+    <linearGradient id="vignette" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.45"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="#2E5944"/>
+  <rect x="0" y="0" width="1600" height="500" fill="#9CB4C8"/><rect x="0" y="500" width="1600" height="280" fill="#2E5944"/><path d="M0,500 L100,490 L260,510 L420,480 L600,520 L780,490 L960,510 L1140,485 L1320,505 L1500,490 L1600,500 L1600,1000 L0,1000 Z" fill="#1F3A2E" opacity="0.9"/><path d="M0,780 L1600,780 L1600,1000 L0,1000 Z" fill="#5478A2" opacity="0.9"/><path d="M0,800 Q400,790 800,800 T1600,820" stroke="#FBF8F1" stroke-width="2" fill="none" opacity="0.5"/>
+  <circle cx="200" cy="120" r="80" fill="#F4EDDD" opacity="0.5"/>
+  <rect width="1600" height="1000" fill="url(#vignette)" opacity="0.6"/>
+
+  <!-- frame -->
+  <rect x="30" y="30" width="1540" height="940" fill="none" stroke="#B08A3E" stroke-width="2" opacity="0.6"/>
+
+  <!-- corner brand -->
+  <g transform="translate(60,80)">
+    <text font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="6" fill="#B08A3E" font-weight="700">RESERVA VERDE GOA</text>
+    <line x1="0" y1="14" x2="120" y2="14" stroke="#B08A3E" stroke-width="1.5"/>
+  </g>
+
+  <!-- bottom title block -->
+  <g transform="translate(60,830)">
+    <text font-family="'Inter', 'Montserrat', sans-serif" font-size="14" letter-spacing="4" fill="#B08A3E" font-weight="600">LOCATION REFERENCE</text>
+    <text y="42" font-family="Georgia, 'Times New Roman', serif" font-size="38" fill="#FBF8F1" font-weight="500">WIDER SOUTH GOA CONTEXT</text>
+    <text y="74" font-family="'Inter', 'Montserrat', sans-serif" font-size="16" fill="#FBF8F1" opacity="0.85">Towards coast — Canacona · Agonda · Cola</text>
+    <text y="100" font-family="'Inter', 'Montserrat', sans-serif" font-size="14" fill="#B08A3E" font-style="italic">Sanguem · Salaulim Dam region</text>
+  </g>
+
+  <!-- top-right note -->
+  <text x="1540" y="60" text-anchor="end" font-family="'Inter', 'Montserrat', sans-serif" font-size="11" letter-spacing="3" fill="#FBF8F1" opacity="0.75">MAP REFERENCE ONLY</text>
+</svg>

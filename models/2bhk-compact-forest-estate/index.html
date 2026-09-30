@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2BHK Compact Forest Estate · Reserva Verde Goa</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-forest: #1A2F25;
+            --color-forest-deep: #10291F;
+            --color-ivory: #FBF8F1;
+            --color-beige: #F4EDDD;
+            --color-beige-warm: #E8DFC4;
+            --color-gold: #B08A3E;
+            --color-gold-light: #D4B66A;
+            --color-charcoal: #2A2A2A;
+            --color-line: rgba(176, 138, 62, 0.25);
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', sans-serif;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--color-ivory);
+            color: var(--color-charcoal);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Helpers & Grid */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+        .rv-eyebrow {
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            font-weight: 600;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .rv-eyebrow::before {
+            content: ''; width: 24px; height: 1px; background: var(--color-gold);
+        }
+        .rv-title {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--color-forest-deep);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .rv-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(42,42,42,0.8);
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Buttons */
+        .rv-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem 2.2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        .rv-btn-primary {
+            background-color: var(--color-gold);
+            color: #fff;
+            border: 1px solid var(--color-gold);
+            box-shadow: 0 8px 24px rgba(176, 138, 62, 0.25);
+        }
+        .rv-btn-primary:hover {
+            background-color: var(--color-gold-light);
+            border-color: var(--color-gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(176, 138, 62, 0.35);
+        }
+        .rv-btn-secondary {
+            background-color: transparent;
+            color: var(--color-forest-deep);
+            border: 1px solid var(--color-gold);
+        }
+        .rv-btn-secondary:hover {
+            background-color: rgba(176, 138, 62, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Header Navigation */
+        .rv-header {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(176, 138, 62, 0.12);
+            background: rgba(251, 248, 241, 0.85);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--color-forest-deep);
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        .logo span { color: var(--color-gold); }
+
+        /* Premium Hero */
+        .hero-section {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, var(--color-beige) 0%, var(--color-ivory) 100%);
+            border-bottom: 1px solid var(--color-line);
+            position: relative;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+        .hero-badge {
+            background: rgba(26, 47, 37, 0.05);
+            border: 1px solid rgba(176, 138, 62, 0.3);
+            color: var(--color-forest-deep);
+            padding: 0.5rem 1.1rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            font-weight: 500;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Overview Section */
+        .overview-section {
+            padding: 10rem 0;
+            border-bottom: 1px solid var(--color-line);
+            background: #fff;
+        }
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 6rem;
+        }
+        .overview-narrative {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--color-forest-deep);
+            line-height: 1.5;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+        .overview-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+        .overview-block h4 {
+            font-family: var(--font-serif);
+            font-size: 1.45rem;
+            color: var(--color-forest-deep);
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+        }
+        .overview-block p {
+            font-size: 0.95rem;
+            color: rgba(42, 42, 42, 0.75);
+            font-weight: 300;
+        }
+
+        /* 2D Plan Explorer */
+        .explorer-section {
+            padding: 10rem 0;
+            background: var(--color-beige);
+            border-bottom: 1px solid var(--color-line);
+        }
+        .explorer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        .explorer-visual {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 30px 60px rgba(26,47,37,0.06);
+            position: relative;
+        }
+        .explorer-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+        .explorer-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .explorer-tab {
+            background: #fff;
+            border: 1px solid rgba(176,138,62,0.18);
+            border-radius: 6px;
+            padding: 1.6rem 2.2rem;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .explorer-tab:hover, .explorer-tab.active {
+            border-color: var(--color-gold);
+            box-shadow: 0 10px 30px rgba(176,138,62,0.12);
+        }
+        .explorer-tab.active {
+            background: var(--color-forest-deep);
+            color: var(--color-ivory);
+            border-color: var(--color-forest-deep);
+        }
+        .explorer-tab h4 {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+        .explorer-tab p {
+            font-size: 0.82rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* 3D Render Gallery */
+        .gallery-section {
+            padding: 10rem 0;
+            background: #fff;
+            border-bottom: 1px solid var(--color-line);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2.5rem;
+            margin-top: 3.5rem;
+        }
+        .gallery-main {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-line);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            height: 480px;
+            position: relative;
+        }
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-thumbs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .gallery-thumb {
+            background: var(--color-forest-deep);
+            border: 1px solid rgba(176,138,62,0.25);
+            border-radius: 6px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.4);
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            min-height: 228px;
+        }
+        .gallery-thumb:hover, .gallery-thumb.active {
+            border-color: var(--color-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(176,138,62,0.15), inset 0 0 40px rgba(0,0,0,0.2);
+        }
+        .gallery-thumb-title {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--color-gold-light);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .gallery-thumb-desc {
+            font-size: 0.72rem;
+            color: #b0c9bb;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Room Schedule Breakdown */
+        .schedule-section {
+            padding: 10rem 0;
+            background: var(--color-beige);
+            border-bottom: 1px solid var(--color-line);
+        }
+        .schedule-wrap {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: 8px;
+            padding: 4rem;
+            box-shadow: 0 30px 60px rgba(26,47,37,0.05);
+            margin-top: 3rem;
+        }
+        .rv-table-wrapper {
+            overflow-x: auto;
+        }
+        .rv-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .rv-table th {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-gold);
+            padding: 1.2rem 1.5rem;
+            border-bottom: 2px solid var(--color-line);
+        }
+        .rv-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(169, 165, 156, 0.15);
+            font-size: 0.92rem;
+        }
+        .rv-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .rv-table tbody tr:hover {
+            background: rgba(176,138,62,0.02);
+        }
+
+        /* Land-Use & Plantation Section */
+        .plantation-section {
+            padding: 10rem 0;
+            background: #fff;
+            border-bottom: 1px solid var(--color-line);
+        }
+        .plantation-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        .plantation-visual-bar {
+            width: 100%;
+            height: 48px;
+            border-radius: 50px;
+            overflow: hidden;
+            display: flex;
+            margin-top: 2.5rem;
+            border: 1px solid rgba(169,165,156,0.3);
+            box-shadow: 0 10px 30px rgba(26,47,37,0.05);
+        }
+        .bar-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            font-family: var(--font-sans);
+        }
+        .bar-built { background: var(--color-gold); width: 6%; }
+        .bar-deck { background: var(--color-beige-warm); width: 9%; color: var(--color-forest-deep); }
+        .bar-plant { background: var(--color-forest); width: 63%; }
+        .bar-path { background: #E2E0D9; width: 12%; color: var(--color-charcoal); }
+        .bar-utility { background: #A9A59C; width: 10%; }
+
+        .plantation-legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .legend-color {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Side-by-Side Investment & Lifestyle */
+        .lifestyle-investment-section {
+            padding: 10rem 0;
+            background: var(--color-beige);
+            border-bottom: 1px solid var(--color-line);
+        }
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .split-col {
+            background: #fff;
+            border: 1px solid var(--color-line);
+            border-radius: 8px;
+            padding: 4rem;
+            box-shadow: 0 30px 60px rgba(26,47,37,0.04);
+        }
+        .split-col h3 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--color-forest-deep);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-line);
+            padding-bottom: 1rem;
+            font-weight: 500;
+        }
+        .split-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .split-list li {
+            position: relative;
+            padding-left: 28px;
+            font-size: 0.95rem;
+            color: rgba(42, 42, 42, 0.8);
+        }
+        .split-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--color-gold);
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        /* Specifications Matrix */
+        .specs-section {
+            padding: 10rem 0;
+            background: #fff;
+            border-bottom: 1px solid var(--color-line);
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+        .spec-card {
+            border: 1px solid rgba(169,165,156,0.2);
+            border-radius: 6px;
+            padding: 2.5rem;
+            background: var(--color-ivory);
+            transition: var(--transition-smooth);
+        }
+        .spec-card:hover {
+            border-color: var(--color-gold);
+            background: #fff;
+            box-shadow: 0 20px 40px rgba(176,138,62,0.08);
+        }
+        .spec-card-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.6rem;
+        }
+        .spec-card-value {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--color-forest-deep);
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        /* Comparison Strip */
+        .compare-strip-section {
+            padding: 8rem 0;
+            background: var(--color-forest-deep);
+            color: var(--color-ivory);
+            border-bottom: 1px solid rgba(176,138,62,0.2);
+        }
+        .compare-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .compare-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(176,138,62,0.25);
+            border-radius: 6px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+            min-height: 240px;
+        }
+        .compare-card:hover {
+            border-color: var(--color-gold);
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+        }
+        .compare-name {
+            font-family: var(--font-serif);
+            font-size: 1.45rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .compare-size {
+            font-size: 0.75rem;
+            color: var(--color-gold-light);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .compare-btn {
+            color: var(--color-gold-light);
+            text-decoration: none;
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+        .compare-btn:hover {
+            color: #fff;
+        }
+
+        /* Lead CTA Section */
+        .lead-section {
+            padding: 12rem 0;
+            background: linear-gradient(180deg, var(--color-ivory) 0%, var(--color-beige) 100%);
+            text-align: center;
+            position: relative;
+        }
+        .lead-box {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .lead-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3.5rem;
+            flex-wrap: wrap;
+        }
+        .lead-link {
+            color: var(--color-forest-deep);
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-bottom: 1px solid var(--color-gold);
+            padding-bottom: 4px;
+            transition: var(--transition-smooth);
+        }
+        .lead-link:hover {
+            color: var(--color-gold);
+            border-color: transparent;
+        }
+
+        /* Compliance Disclaimer Footer */
+        .footer-disclaimer {
+            background: #0f1c16;
+            color: rgba(221,232,216,0.65);
+            padding: 4rem 0;
+            font-size: 0.72rem;
+            line-height: 1.8;
+            border-top: 1px solid rgba(176,138,62,0.15);
+            text-align: center;
+            font-family: var(--font-sans);
+            font-weight: 300;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .hero-grid, .overview-grid, .explorer-grid, .plantation-grid, .split-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-main {
+                height: 320px;
+            }
+            .overview-grid {
+                gap: 3rem;
+            }
+            .rv-title {
+                font-size: 2.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-ctas {
+                flex-direction: column;
+            }
+            .rv-btn {
+                width: 100%;
+            }
+            .split-col, .schedule-wrap {
+                padding: 2rem;
+            }
+            .lead-links {
+                flex-direction: column;
+                gap: 1.2rem;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="rv-header">
+        <div class="container header-wrap">
+            <a href="../../index.html" class="logo">Reserva<span>Verde</span></a>
+            <a href="../../index.html#estate-models" class="rv-btn rv-btn-secondary" style="padding: 0.6rem 1.4rem; font-size: 0.65rem;">Back to Estates</a>
+        </div>
+    </header>
+
+    <!-- Premium Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-grid">
+            <div>
+                <div class="rv-eyebrow">Reserva Verde Goa · Private Estate Collection</div>
+                <h1 class="rv-title">2BHK Compact Forest Estate</h1>
+                <div class="hero-badges">
+                    <span class="hero-badge">2,500 Sq.Ft Built-up</span>
+                    <span class="hero-badge">1-Acre Private Land</span>
+                    <span class="hero-badge">2 Bed · 2.5 Bath</span>
+                    <span class="hero-badge">Managed Agroforestry</span>
+                    <span class="hero-badge">Ground-Level Only</span>
+                </div>
+                <p class="rv-subtitle">
+                    An architectural tropical pavilion engineered from sustainable modular assemblies, framed within a 1-acre private orchard of cashew, mango, and spice crops. Designed for weekend living and low-maintenance biophilic prestige in Goa.
+                </p>
+                <div class="hero-ctas">
+                    <a href="../../index.html#proposal" class="rv-btn rv-btn-primary">Request Private Cost Sheet</a>
+                    <a href="../../index.html#proposal" class="rv-btn rv-btn-secondary">Schedule Private Site Visit</a>
+                </div>
+            </div>
+            <div>
+                <!-- Stylized mini visual card -->
+                <div style="background: var(--color-forest-deep); border: 1px solid var(--color-gold); border-radius: 8px; padding: 2.5rem; color: #fff; box-shadow: 0 30px 60px rgba(0,0,0,0.18); position: relative; overflow: hidden; text-align: center;">
+                    <div style="font-family: var(--font-serif); font-size: 1.8rem; color: var(--color-gold-light); margin-bottom: 0.5rem;">Entry Luxury Asset</div>
+                    <div style="font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #b0c9bb; margin-bottom: 2rem;">Investment & Lifestyle Bracket</div>
+                    <div style="border-top: 1px solid rgba(176,138,62,0.2); border-bottom: 1px solid rgba(176,138,62,0.2); padding: 1.5rem 0; margin-bottom: 2rem;">
+                        <span style="font-size: 0.88rem; display: block; opacity: 0.7; margin-bottom: 0.5rem;">Starting Package</span>
+                        <span style="font-family: var(--font-serif); font-size: 2.8rem; color: #fff; font-weight: 500; line-height: 1;">₹1.95 Cr</span>
+                        <span style="font-size: 0.75rem; display: block; opacity: 0.6; margin-top: 0.4rem;">Inclusive of 1-Acre private land</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #b0c9bb; font-style: italic; line-height: 1.6;">
+                         “Managed farm-stay operations ready with zero maintenance hassle.”
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Overview Section -->
+    <section class="overview-section">
+        <div class="container overview-grid">
+            <div class="overview-narrative">
+                “Designed as an elegant single-storey forest pavilion, the 2BHK Compact Forest Estate balances structural modular efficiency with deep immersion into the jungle canopy. Strictly ground-level, U-shaped around a biophilic courtyard.”
+            </div>
+            <div class="overview-details">
+                <div class="overview-block">
+                    <h4>Who It Is For</h4>
+                    <p>Designed for couples, NRIs, and young HNI families seeking an intimate forest escape that requires zero daily management. A stunning low-footprint tropical home for active rejuvenation.</p>
+                </div>
+                <div class="overview-block">
+                    <h4>Forest Living & Biophilic Courtyard</h4>
+                    <p>Features a central open-to-sky courtyard wrapped with structural glass panels, cooling the rooms through high-efficiency stack ventilative airflow and bringing filtered sun rays deep into the living spaces.</p>
+                </div>
+                <div class="overview-block">
+                    <h4>Plantation Integration</h4>
+                    <p>Sits inside an active cashew and spice crop agricultural matrix. Your land is fully managed by our in-house agroforestry division, harvesting premium crops while preserving local forest fauna.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2D Plan Explorer Section -->
+    <section class="explorer-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 5rem;">
+                <div class="rv-eyebrow">Layout & Spatial Zoning</div>
+                <h2 class="rv-title" style="margin-bottom: 0.5rem;">Interactive 2D Site Plan Explorer</h2>
+                <p style="font-size: 0.95rem; color: rgba(42,42,42,0.7); max-width: 600px; margin: 0 auto;">Select specific functional zones below to inspect architectural planning layouts and physical estate land-use allocations.</p>
+            </div>
+            
+            <div class="explorer-grid">
+                <div class="explorer-visual">
+                    <img src="../../images/estates/site-plan-2bhk.svg" alt="2BHK Site Plan Drawing" id="explorerPlanImage" />
+                </div>
+                <div class="explorer-tabs">
+                    <div class="explorer-tab active" data-zone="residence">
+                        <h4>📐 Residence Footprint</h4>
+                        <p>Compact ground-level U-shaped modular structural frame occupying ~6% of the 1-acre plot, preserving local topography.</p>
+                    </div>
+                    <div class="explorer-tab" data-zone="deck">
+                        <h4>🌳 Verandah & Outdoor Living</h4>
+                        <p>Composite timber forest deck wrapping around the biophilic courtyard and living wing, perfect for canopy-view breakfasts.</p>
+                    </div>
+                    <div class="explorer-tab" data-zone="plantation">
+                        <h4>🍃 Managed Cashew & Spice Zone</h4>
+                        <p>Agroforestry zone accounting for ~63% of the plot, planted with cash crops generating managed yield profiles.</p>
+                    </div>
+                    <div class="explorer-tab" data-zone="path">
+                        <h4>🚗 Foyer & Entry Driveway</h4>
+                        <p>Low-impact laterite driveway connecting the gateway to the entry foyer, avoiding any mature tree root damage.</p>
+                    </div>
+                    <div class="explorer-tab" data-zone="utility">
+                        <h4>☀️ Solar & Water Utilities</h4>
+                        <p>High-performance utility zone featuring 15,000L rain sumps, graywater bio-septics, and off-grid solar-battery frames.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cinematic 3D Render Gallery -->
+    <section class="gallery-section">
+        <div class="container">
+            <div style="max-width: 700px;">
+                <div class="rv-eyebrow">Cinematic Visualization</div>
+                <h2 class="rv-title">Lumion 3D Render Gallery</h2>
+                <p style="font-size: 0.95rem; color: rgba(42,42,42,0.7);">Explore photorealistic 3D visualization concepts framing the contemporary tropical container architecture amidst South Goa’s lush jungle valleys.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-main">
+                    <img src="../../images/renders/2bhk/exterior-arrival.jpg" alt="2BHK Exterior Render" id="mainGalleryImage" />
+                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem; background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%); color: #fff;">
+                        <h4 style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-gold-light);" id="mainGalleryTitle">Exterior Arrival</h4>
+                        <p style="font-size: 0.82rem; opacity: 0.8;" id="mainGalleryDesc">Photorealistic arrival view of the compact forest pavilion framed by laterite path, timber façade, and dense South Goa canopy.</p>
+                    </div>
+                </div>
+                <div class="gallery-thumbs">
+                    <div class="gallery-thumb active" onclick="swapGallery('2bhk_ext', 'Exterior Arrival', 'Photorealistic arrival view of the compact forest pavilion framed by laterite path, timber façade, and dense South Goa canopy.', '../../images/renders/2bhk/exterior-arrival.jpg', this)" style="background-image: linear-gradient(rgba(26, 47, 37, 0.25) 0%, rgba(16, 29, 22, 0.85) 90%), url('../../images/renders/2bhk/exterior-arrival.jpg'); background-size: cover; background-position: center;">
+                        <div class="gallery-thumb-title">1. Exterior Arrival</div>
+                        <div class="gallery-thumb-desc">Lumion Render</div>
+                    </div>
+                    <div class="gallery-thumb" onclick="swapGallery('2bhk_deck', 'Pool & Deck View', 'Private deck and water-edge retreat designed for low-impact weekend living within the plantation edge.', '../../images/renders/2bhk/deck-view.jpg', this)" style="background-image: linear-gradient(rgba(26, 47, 37, 0.25) 0%, rgba(16, 29, 22, 0.85) 90%), url('../../images/renders/2bhk/deck-view.jpg'); background-size: cover; background-position: center;">
+                        <div class="gallery-thumb-title">2. Pool & Deck View</div>
+                        <div class="gallery-thumb-desc">Lumion Render</div>
+                    </div>
+                    <div class="gallery-thumb" onclick="swapGallery('2bhk_living', 'Living Forest View', 'Forest-facing living lounge with warm timber, glazed openings, and biophilic interior calm.', '../../images/renders/2bhk/living-room.jpg', this)" style="background-image: linear-gradient(rgba(26, 47, 37, 0.25) 0%, rgba(16, 29, 22, 0.85) 90%), url('../../images/renders/2bhk/living-room.jpg'); background-size: cover; background-position: center;">
+                        <div class="gallery-thumb-title">3. Living Forest View</div>
+                        <div class="gallery-thumb-desc">Lumion Render</div>
+                    </div>
+                    <div class="gallery-thumb" onclick="swapGallery('2bhk_bed', 'Master Bedroom', 'Compact luxury master suite opening toward the plantation canopy with soft warm light and natural finishes.', '../../images/renders/2bhk/bedroom-view.jpg', this)" style="background-image: linear-gradient(rgba(26, 47, 37, 0.25) 0%, rgba(16, 29, 22, 0.85) 90%), url('../../images/renders/2bhk/bedroom-view.jpg'); background-size: cover; background-position: center;">
+                        <div class="gallery-thumb-title">4. Master Bedroom</div>
+                        <div class="gallery-thumb-desc">Lumion Render</div>
+                    </div>
+                    <div class="gallery-thumb" onclick="swapGallery('2bhk_bath', 'Master Bathroom', 'Eco-wetroom with laterite, stone, teak, privacy planting, and resort-level compact luxury.', '../../images/renders/2bhk/bathroom-view.jpg', this)" style="background-image: linear-gradient(rgba(26, 47, 37, 0.25) 0%, rgba(16, 29, 22, 0.85) 90%), url('../../images/renders/2bhk/bathroom-view.jpg'); background-size: cover; background-position: center;">
+                        <div class="gallery-thumb-title">5. Master Bathroom</div>
+                        <div class="gallery-thumb-desc">Lumion Render</div>
+                    </div>
+                    <div class="gallery-thumb" onclick="swapGallery('2bhk_kitchen', 'Kitchen & Dining', 'Premium compact kitchen and dining zone with timber cabinetry, stone counters, and forest-side natural light.', '../../images/renders/2bhk/kitchen-dining.jpg', this)" style="background-image: linear-gradient(rgba(26, 47, 37, 0.25) 0%, rgba(16, 29, 22, 0.85) 90%), url('../../images/renders/2bhk/kitchen-dining.jpg'); background-size: cover; background-position: center;">
+                        <div class="gallery-thumb-title">6. Kitchen & Dining</div>
+                        <div class="gallery-thumb-desc">Lumion Render</div>
+                    </div>
+                    <div class="gallery-thumb" onclick="swapGallery('2bhk_night', 'Night Lighting View', 'Warm low-glow night composition highlighting privacy, stilted form, and calm forest atmosphere.', '../../images/renders/2bhk/night-view.jpg', this)" style="background-image: linear-gradient(rgba(26, 47, 37, 0.25) 0%, rgba(16, 29, 22, 0.85) 90%), url('../../images/renders/2bhk/night-view.jpg'); background-size: cover; background-position: center;">
+                        <div class="gallery-thumb-title">7. Night Lighting View</div>
+                        <div class="gallery-thumb-desc">Lumion Render</div>
+                    </div>
+                    <div class="gallery-thumb" onclick="swapGallery('2bhk_aerial', 'Aerial Masterplot', 'Aerial estate view showing villa footprint, deck, access path, utility zone, and 1-acre agroforestry setting.', '../../images/renders/2bhk/aerial-estate.jpg', this)" style="background-image: linear-gradient(rgba(26, 47, 37, 0.25) 0%, rgba(16, 29, 22, 0.85) 90%), url('../../images/renders/2bhk/aerial-estate.jpg'); background-size: cover; background-position: center;">
+                        <div class="gallery-thumb-title">8. Aerial Masterplot</div>
+                        <div class="gallery-thumb-desc">SketchUp / Lumion</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Production Status Card -->
+            <div style="margin-top: 5rem; background: var(--color-beige); border: 1px solid var(--color-line); border-radius: 8px; padding: 3rem; box-shadow: 0 20px 40px rgba(26,47,37,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; border-bottom: 1px solid var(--color-line); padding-bottom: 1.5rem; margin-bottom: 2rem;">
+                    <div>
+                        <span class="rv-eyebrow" style="margin-bottom: 0.5rem; display: inline-flex;">Asset Pipeline</span>
+                        <h3 style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-forest-deep); font-weight: 500;">Visual Production Status</h3>
+                    </div>
+                    <span style="background: rgba(176,138,62,0.1); border: 1px solid var(--color-gold); color: var(--color-forest-deep); font-size: 0.72rem; letter-spacing: 0.08em; font-weight: 600; padding: 0.5rem 1.2rem; border-radius: 4px; text-transform: uppercase;">Phase 2D-B Release Active</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <!-- AutoCAD Floor Plan -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">AutoCAD Floor Plan</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Vector Asset Synced</span>
+                    </div>
+                    <!-- Exterior Arrival -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Exterior Arrival Render</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Render Mapped</span>
+                    </div>
+                    <!-- Deck View -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Deck View Render</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Render Mapped</span>
+                    </div>
+                    <!-- Living Room -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Living Room Render</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Render Mapped</span>
+                    </div>
+                    <!-- Night View -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Night View Render</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Render Mapped</span>
+                    </div>
+                    <!-- Bedroom View -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Bedroom View Render</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Render Mapped</span>
+                    </div>
+                    <!-- Bathroom View -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Bathroom View Render</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Render Mapped</span>
+                    </div>
+                    <!-- Kitchen/Dining -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Kitchen/Dining Render</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Render Mapped</span>
+                    </div>
+                    <!-- Aerial Estate -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Aerial Estate Render</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Render Mapped</span>
+                    </div>
+                    <!-- Google Earth Terrain -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">Google Earth Terrain</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● Geospatial Synced</span>
+                    </div>
+                    <!-- 2BHK Walkthrough Video -->
+                    <div style="background: #fff; border: 1px solid rgba(169,165,156,0.2); border-radius: 6px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                        <span style="font-size: 0.68rem; font-weight: 600; color: var(--color-gold); text-transform: uppercase; letter-spacing: 0.1em;">2BHK Walkthrough Video</span>
+                        <span style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-forest-deep); margin: 0.5rem 0; font-weight: 500;">Ready</span>
+                        <span style="font-size: 0.75rem; color: #2A7B4C; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">● MP4 File Synced</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cinematic Walkthrough Section -->
+    <section style="padding: 10rem 0; background: var(--color-forest-deep); color: var(--color-ivory); border-bottom: 1px solid var(--color-line);">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto 5rem;">
+                <div class="rv-eyebrow" style="color: var(--color-gold-light);">Cinematic Experience</div>
+                <h2 class="rv-title" style="color: #fff; margin-bottom: 1rem;">Cinematic Walkthrough Slot</h2>
+                <p style="font-size: 0.95rem; opacity: 0.8; font-weight: 300;">Experience a virtual walkthrough of the stilted modular canopy architecture. Powered by raw video streams and high-end Lumion/D5 flythrough animations.</p>
+            </div>
+            
+            <div style="max-width: 1000px; margin: 0 auto; background: rgba(255,255,255,0.03); border: 1px solid var(--color-line); border-radius: 8px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.3); position: relative;">
+                <!-- HTML5 Video Component -->
+                <video id="walkthroughVideo" controls style="width: 100%; display: block; background: #000; aspect-ratio: 16/9;">
+                    <source src="../../videos/2bhk-walkthrough.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <!-- Cinematic Poster / Placeholder Overlay -->
+                <div id="videoPlaceholderOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #10291F; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 3rem; text-align: center; transition: var(--transition-smooth); pointer-events: none;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--color-gold); display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; cursor: pointer; pointer-events: auto;" onclick="document.getElementById('videoPlaceholderOverlay').style.opacity = '0'; document.getElementById('walkthroughVideo').play();">
+                        <span style="color: var(--color-gold); font-size: 2rem; margin-left: 6px;">▶</span>
+                    </div>
+                    <h3 style="font-family: var(--font-serif); font-size: 2.2rem; color: var(--color-gold-light); margin-bottom: 0.8rem; font-weight: 500;">Interactive Virtual Walkthrough</h3>
+                    <p style="font-size: 0.92rem; opacity: 0.7; max-width: 600px; margin-bottom: 1.5rem;">Video File: <strong>/videos/2bhk-walkthrough.mp4</strong></p>
+                    <span style="background: rgba(176,138,62,0.15); border: 1px solid var(--color-gold); color: var(--color-gold-light); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1.2rem; border-radius: 3px; font-weight: 600;">Production Slot Ready — Replace with final MP4 output</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Room Area Schedule Breakdown -->
+    <section class="schedule-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <div class="rv-eyebrow">Institutional Space Planning</div>
+                <h2 class="rv-title">Room & Space Area Schedules</h2>
+            </div>
+            
+            <div class="schedule-wrap">
+                <div class="rv-table-wrapper">
+                    <table class="rv-table">
+                        <thead>
+                            <tr>
+                                <th>Space / Chamber</th>
+                                <th>Gross Area</th>
+                                <th>Structural Module</th>
+                                <th>Biophilic & Technical Design Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Entrance Foyer</strong></td>
+                                <td>80 sq.ft</td>
+                                <td>Glass Vestibule Link</td>
+                                <td>Pivot teak-wood entry, slate tile plinth, sliding mesh screens.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Living Pavilion</strong></td>
+                                <td>300 sq.ft</td>
+                                <td>C-1 (40' HC Container)</td>
+                                <td>Double-side thermal glazing, bamboo flooring, courtyard vistas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lounge & Day Snug</strong></td>
+                                <td>220 sq.ft</td>
+                                <td>C-2 (40' HC Container)</td>
+                                <td>Integrated modular low seating, organic crop fabrics, verandah access.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Open Kitchen & Dining</strong></td>
+                                <td>360 sq.ft</td>
+                                <td>C-3 (40' HC Container)</td>
+                                <td>Granite countertops, breakfast counter island, Low-E courtyard glass windows.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Utility & Solar Hub</strong></td>
+                                <td>80 sq.ft</td>
+                                <td>C-4 Part A (20' Module)</td>
+                                <td>Heat-pump washer stack, inverter control manifold, battery cabinets.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Powder Bathroom</strong></td>
+                                <td>40 sq.ft</td>
+                                <td>C-4 Part B (20' Module)</td>
+                                <td>Greywater-fed dual-flush toilet, sand-blasted terracotta wall tiles.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Master Bed Chamber</strong></td>
+                                <td>280 sq.ft</td>
+                                <td>C-5 (40' HC Container)</td>
+                                <td>South-east framing panorama windows, separate walk-in closet corridor.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Master Bathroom Wetroom</strong></td>
+                                <td>160 sq.ft</td>
+                                <td>C-6 (20' Module)</td>
+                                <td>Rain-shower ceiling mount, custom teak vanity, slate flooring.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Guest Bed Suite (BR2)</strong></td>
+                                <td>280 sq.ft</td>
+                                <td>C-7 (40' HC Container)</td>
+                                <td>North-east windows framingCashew crop, modular office alcove.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Guest Ensuite Bath</strong></td>
+                                <td>160 sq.ft</td>
+                                <td>C-8 (20' Module)</td>
+                                <td>Wet zone and secondary utility box with acoustic insulation.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Central Biophilic Court</strong></td>
+                                <td>260 sq.ft</td>
+                                <td>Open-to-sky Deck</td>
+                                <td>Laterite stone border, native fern garden, natural stone drainage.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plantation Integration & Land-Use Matrix -->
+    <section class="plantation-section">
+        <div class="container plantation-grid">
+            <div>
+                <div class="rv-eyebrow">Plantation Engineering</div>
+                <h2 class="rv-title">1-Acre Land-Use Conceptual Allocation</h2>
+                <p style="font-size: 0.95rem; color: rgba(42,42,42,0.75); margin-bottom: 2rem;">
+                    Reserva Verde Goa is planned under strict eco-sensitive guardrails. Each 1-acre allotment (~43,560 sq.ft) minimizes structural masonry footprint, dedicating the vast majority to cash-yielding managed agroforestry crops.
+                </p>
+                <div class="plantation-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--color-gold);"></div>
+                        <div style="font-size: 0.88rem;"><strong>6%</strong> Residence Footprint (2,500 sq.ft)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--color-beige-warm);"></div>
+                        <div style="font-size: 0.88rem;"><strong>9%</strong> Decks & Courtyards</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--color-forest);"></div>
+                        <div style="font-size: 0.88rem;"><strong>63%</strong> Managed Agro Plantation</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #E2E0D9;"></div>
+                        <div style="font-size: 0.88rem;"><strong>12%</strong> Laterite Foyer Paths</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #A9A59C;"></div>
+                        <div style="font-size: 0.88rem;"><strong>10%</strong> Off-Grid Utilities & Buffer</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="background: var(--color-beige); border: 1px solid var(--color-line); border-radius: 8px; padding: 3rem; box-shadow: 0 30px 60px rgba(26,47,37,0.05);">
+                    <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-forest-deep); margin-bottom: 1rem;">Managed Plantation Harvest Focus</h3>
+                    <p style="font-size: 0.88rem; color: rgba(42,42,42,0.8); line-height: 1.6; margin-bottom: 1.5rem;">
+                        The managed plantation is structured with high-yield **Cashew trees and Black Pepper spices** utilizing local agroforestry practices. The plantation is maintained by Bluechip Global Agro's agricultural team under managed service contracts.
+                    </p>
+                    <div style="border-top: 1px solid rgba(176,138,62,0.15); padding-top: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><span style="color: var(--color-gold); font-weight: 600;">Managed Crop:</span><span>Local Cashew varieties & Piper Nigrum</span></div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><span style="color: var(--color-gold); font-weight: 600;">Zoning Standard:</span><span>Drip-irrigated organic grid</span></div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><span style="color: var(--color-gold); font-weight: 600;">Preservation Level:</span><span>100% native jungle trees protected</span></div>
+                    </div>
+                </div>
+                
+                <div class="plantation-visual-bar">
+                    <div class="bar-built" title="Built footprint: 6%"></div>
+                    <div class="bar-deck" title="Decks: 9%"></div>
+                    <div class="bar-plant" title="Plantation: 63%"></div>
+                    <div class="bar-path" title="Driveway: 12%"></div>
+                    <div class="bar-utility" title="Solar/Buffer: 10%"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--color-gold); margin-top: 0.6rem; letter-spacing: 0.08em; font-weight: 500; text-transform: uppercase;">
+                    <span>GATEWAY</span>
+                    <span>1 ACRE BIO-SHIELD PLOT</span>
+                    <span>JUNGLE VALLEY</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estate Terrain & Valley Context Section -->
+    <section style="padding: 10rem 0; background: var(--color-beige); border-bottom: 1px solid var(--color-line);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 6rem; align-items: center;">
+                <div>
+                    <div class="rv-eyebrow">Geospatial Context</div>
+                    <h2 class="rv-title">Estate Terrain &amp; Valley Context</h2>
+                    <p style="font-size: 0.95rem; color: rgba(42,42,42,0.85); line-height: 1.7; margin-bottom: 1.8rem; font-weight: 300;">
+                        Reserva Verde Goa is situated in a high-comfort biophilic forest valley in South Goa’s pristine Netravali region. Designed around the natural topography, all structures are raised on stilted screw-piles to preserve surface hydrology, native tree systems, and local contour runs.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <span style="color: var(--color-gold); font-size: 1.2rem; line-height: 1;">✦</span>
+                            <div>
+                                <h4 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-forest-deep); font-weight: 500; margin-bottom: 0.2rem;">Natural Forest Valley Orientation</h4>
+                                <p style="font-size: 0.88rem; color: rgba(42,42,42,0.75); font-weight: 300;">Bounded strictly by high ridge cashews and valley bamboo groves, creating absolute visual and acoustic shields from outside zones.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <span style="color: var(--color-gold); font-size: 1.2rem; line-height: 1;">✦</span>
+                            <div>
+                                <h4 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-forest-deep); font-weight: 500; margin-bottom: 0.2rem;">Low-Impact Access Roads</h4>
+                                <p style="font-size: 0.88rem; color: rgba(42,42,42,0.75); font-weight: 300;">Road networks follow natural animal and harvesting pathways, utilizing water-permeable local laterite stones to prevent soil damage.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <span style="color: var(--color-gold); font-size: 1.2rem; line-height: 1;">✦</span>
+                            <div>
+                                <h4 style="font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-forest-deep); font-weight: 500; margin-bottom: 0.2rem;">Terrain-Sensitive Layout Planning</h4>
+                                <p style="font-size: 0.88rem; color: rgba(42,42,42,0.75); font-weight: 300;">Helical stilt placement strictly avoids mature tree root zones. Conceptual boundaries are subject to physical survey verification and statutory approvals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                    <!-- Site context image -->
+                    <div style="background: #fff; border: 1px solid var(--color-line); border-radius: 8px; padding: 1.2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.04);">
+                        <img src="../../images/terrain/google-earth-site-context.jpg" alt="Google Earth Site Context Map" style="width: 100%; border-radius: 4px; display: block;" />
+                        <span style="display: block; font-size: 0.72rem; color: var(--color-gold); text-align: center; margin-top: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;">Figure 1: Google Earth Site Context</span>
+                    </div>
+                    <!-- Two small cards in row -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div style="background: #fff; border: 1px solid var(--color-line); border-radius: 8px; padding: 1rem; box-shadow: 0 20px 40px rgba(0,0,0,0.03);">
+                            <img src="../../images/terrain/google-earth-access-road.jpg" alt="Google Earth Access Road" style="width: 100%; border-radius: 4px; display: block;" />
+                            <span style="display: block; font-size: 0.65rem; color: var(--color-forest-deep); text-align: center; margin-top: 0.6rem; font-weight: 500;">Access Road Mapping</span>
+                        </div>
+                        <div style="background: #fff; border: 1px solid var(--color-line); border-radius: 8px; padding: 1rem; box-shadow: 0 20px 40px rgba(0,0,0,0.03);">
+                            <img src="../../images/terrain/survey-boundary-overlay.jpg" alt="Survey Boundary Overlay" style="width: 100%; border-radius: 4px; display: block;" />
+                            <span style="display: block; font-size: 0.65rem; color: var(--color-forest-deep); text-align: center; margin-top: 0.6rem; font-weight: 500;">Boundary Survey Overlay</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Side-by-Side Investment & Lifestyle -->
+    <section class="lifestyle-investment-section">
+        <div class="container split-grid">
+            <div class="split-col">
+                <h3>A. Luxury Lifestyle Value</h3>
+                <ul class="split-list">
+                    <li>**Intimate Forest Escape**: A peaceful weekend retreat nestled inside deep forest valley silence, away from tourist congestion.</li>
+                    <li>**Biophilic Rejuvenation**: Active natural ventilation, native gardens, and outdoor decks planned for daily sensory mindfulness.</li>
+                    <li>**Monsoon Canopy Views**: Insulated double-glazing frames spectacular tropical forest rains in high-comfort thermal conditions.</li>
+                    <li>**Zero Maintenance Stress**: Fully managed estate services handle landscape pruning, gate security, and housekeeping.</li>
+                </ul>
+            </div>
+            <div class="split-col">
+                <h3>B. Long-Term Investment Value</h3>
+                <ul class="split-list">
+                    <li>**1-Acre Land-Backed Asset**: Secure ownership of premium land within a private, gated eco-sensitive enclave.</li>
+                    <li>**Eco Farm-Stay Rental potential**: Structured to participate in premium eco-resort rental programs yielding high premium ADRs.</li>
+                    <li>**Cashew Orchard crop yield**: Planned agroforestry managed by Bluechip Global Agro's crop divisions, requiring zero personal labor.</li>
+                    <li>**Limited Asset Allocation**: Bounded supply inside a gated, premium masterplanned jungle housing project in South Goa.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section class="specs-section">
+        <div class="container">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto 5rem;">
+                <div class="rv-eyebrow">Engineering Guardrails</div>
+                <h2 class="rv-title">Technical Specifications Matrix</h2>
+            </div>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <div class="spec-card-label">Built-up Footprint</div>
+                    <div class="spec-card-value">2,500 sq.ft Gross</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Land Allotment</div>
+                    <div class="spec-card-value">1 Acre Private Plot</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Structural Envelope</div>
+                    <div class="spec-card-value">Stilted Screw-Pile & Corten steel</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Bedrooms & Baths</div>
+                    <div class="spec-card-value">2 Bed · 2.5 Bath</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Insulation & Walls</div>
+                    <div class="spec-card-value">50mm PIR Panel + Air cavity</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Monsoon Glazing</div>
+                    <div class="spec-card-value">Low-E Double DGU (Argon-filled)</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Water Stewardship</div>
+                    <div class="spec-card-value">15,000L rain sump + gray reed-beds</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Solar Off-grid Scope</div>
+                    <div class="spec-card-value">6-8 kWp PV solar ready</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Waste Management</div>
+                    <div class="spec-card-value">Anaerobic bio-septic system</div>
+                </div>
+                <div class="spec-card">
+                    <div class="spec-card-label">Agroforestry Profile</div>
+                    <div class="spec-card-value">Cashew & spice matrix</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Comparison Strip -->
+    <section class="compare-strip-section">
+        <div class="container">
+            <h3 style="font-family: var(--font-serif); font-size: 2.2rem; color: #fff; font-weight: 500; text-align: center;">Explore Other Estate Models</h3>
+            <div class="compare-grid">
+                <!-- 3BHK -->
+                <div class="compare-card">
+                    <div>
+                        <div class="compare-name">3BHK Premium Agro Estate</div>
+                        <div class="compare-size">3,500 sq.ft · 1 Acre</div>
+                        <p style="font-size: 0.88rem; opacity: 0.75; line-height: 1.5; margin-bottom: 1.5rem;">L-shaped forest pavilion with expanded double decks and active managed agroforestry.</p>
+                    </div>
+                    <a href="../3bhk-premium-forest-estate/index.html" class="compare-btn">View Brochure Page →</a>
+                </div>
+                <!-- 4BHK -->
+                <div class="compare-card">
+                    <div>
+                        <div class="compare-name">4BHK Signature Forest Estate</div>
+                        <div class="compare-size">4,500 sq.ft · 1 Acre</div>
+                        <p style="font-size: 0.88rem; opacity: 0.75; line-height: 1.5; margin-bottom: 1.5rem;">Flagship multi-wing luxury retreat around a courtyard pool and wellness garden.</p>
+                    </div>
+                    <a href="../4bhk-signature-forest-estate/index.html" class="compare-btn">View Brochure Page →</a>
+                </div>
+                <!-- Customisable -->
+                <div class="compare-card">
+                    <div>
+                        <div class="compare-name">Customisable Founder Estate</div>
+                        <div class="compare-size">Bespoke Area · 1 Acre</div>
+                        <p style="font-size: 0.88rem; opacity: 0.75; line-height: 1.5; margin-bottom: 1.5rem;">Fully bespoke ground-level modular layouts tailored inside strict eco boundaries.</p>
+                    </div>
+                    <a href="../customisable-founder-estate/index.html" class="compare-btn">View Brochure Page →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead CTA Section -->
+    <section class="lead-section">
+        <div class="container lead-box">
+            <div class="rv-eyebrow">Request Private Access</div>
+            <h2 class="rv-title" style="margin-bottom: 2rem;">Acquire Your Private 1-Acre Forest Estate</h2>
+            <p style="font-size: 1.05rem; font-weight: 300; color: rgba(42,42,42,0.8); max-width: 700px; margin: 0 auto 3rem; line-height: 1.7;">
+                All units are offered on a structured invite-only booking framework. Connect with our client managers to request detailed costing folders, customization scopes, and scheduled site visits.
+            </p>
+            <a href="../../index.html#proposal" class="rv-btn rv-btn-primary" style="padding: 1.2rem 3rem;">Request Private Cost Sheet & Dossier</a>
+            
+            <div class="lead-links">
+                <a href="../../index.html" class="lead-link">Return to Homepage</a>
+                <a href="../../reserva-verde/pricing/index.html" class="lead-link">View Pricing & Installments</a>
+                <a href="../../wellness.html" class="lead-link">Explore Wellness Valley</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Disclaimer Footer -->
+    <footer class="footer-disclaimer">
+        <div class="container" style="max-width: 900px;">
+            <p><strong>RESERVA VERDE GOA COMPLIANCE & LEGAL NOTICE:</strong></p>
+            <p style="margin-top: 1rem; opacity: 0.75;">
+                All layouts, built-up areas, plantation layouts, render visualizations, and tech specifications are indicative concepts and subject to final environmental, zoning, TCP, RERA, and statutory approvals. Bluechip Global Agro and its partners make no yield, harvest return, appreciation, or rental income guarantees. The estate development is subject to the guidelines of the masterplan layout covenants.
+            </p>
+            <p style="margin-top: 1.5rem; color: var(--color-gold); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;">
+                © 2026 Bluechip Global Agro · All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Interactive Explorer JavaScript -->
+    <script>
+        // Tab highlight triggers
+        const tabs = document.querySelectorAll('.explorer-tab');
+        const planImg = document.getElementById('explorerPlanImage');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active to current
+                tab.classList.add('active');
+                
+                // Apply slight visual hover animation to the plan
+                planImg.style.opacity = '0.3';
+                setTimeout(() => {
+                    planImg.style.opacity = '1';
+                }, 300);
+            });
+        });
+
+        // 3D Render Gallery swap function
+        function swapGallery(id, title, desc, imgSrc, element) {
+            const mainImg = document.getElementById('mainGalleryImage');
+            const mainTitle = document.getElementById('mainGalleryTitle');
+            const mainDesc = document.getElementById('mainGalleryDesc');
+            
+            // Fade out
+            mainImg.style.opacity = '0.4';
+            
+            setTimeout(() => {
+                mainImg.src = imgSrc;
+                mainTitle.innerText = title;
+                mainDesc.innerText = desc;
+                mainImg.style.opacity = '1';
+            }, 300);
+
+            if (element) {
+                const thumbs = document.querySelectorAll('.gallery-thumb');
+                thumbs.forEach(t => t.classList.remove('active'));
+                element.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
