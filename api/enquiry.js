@@ -87,8 +87,8 @@ module.exports = async function handler(req, res) {
     const email = sanitize(body.email, 120).toLowerCase();
     const phone = sanitize(body.phone, 30);
     const buyerType = sanitize(body.buyerType || body.buyer_type, 100);
-    const estateModel = sanitize(body.estateModel || body.estate_model || body.villa_model, 100);
-    const budgetRange = sanitize(body.budgetRange || body.budget_range || body.budget, 100);
+    const estateModel = sanitize(body.estateModel || body.estate_model || body.villa_model || body.plotInterest || body.plot_interest, 100);
+    const budgetRange = sanitize(body.budgetRange || body.budget_range || body.budget || body.investmentHorizon, 100);
     const cityCountry = sanitize(body.cityCountry || body.city_country || body.location, 150);
     const message = sanitize(body.message, 1500);
 
