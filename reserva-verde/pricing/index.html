@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva Verde Goa — Pricing, Costing & Installment Portfolio</title>
+    <title>Reserva Varde Goa — Pricing, Costing & Installment Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1541,7 +1541,7 @@
     <section class="hero">
         <div class="container">
             <span class="eyebrow">Villa Collection & Investment Planning</span>
-            <h1>Reserva Verde Goa<br><span>Villa Collection Pricing</span></h1>
+            <h1>Reserva Varde Goa<br><span>Villa Collection Pricing</span></h1>
             <p>Premium ground-level eco forest estates from ₹1.95 Cr to ₹2.99 Cr base package. View model-wise pricing, customized milestone installment schedules, and optional upgrades.</p>
             <div class="hero-ctas">
                 <a href="#public-pricing" class="btn btn-primary">View Pricing Matrix</a>
@@ -1866,7 +1866,7 @@
                             </td>
                             <td class="td-price-cell">
                                 <span class="cell-price">₹2.99 Cr</span>
-                                <span class="badge-cap">🛡 Premium Cap</span>
+                                <span class="badge-cap"> Premium Cap</span>
                                 <button class="table-cell-btn" onclick="selectForInstallments(2.99)">Model in Installments</button>
                                 <a href="/#proposal" class="table-cell-btn" style="color: var(--rv-stone-light); text-decoration: underline; font-size: 0.55rem; margin-top: 0.3rem;">Request Cost Sheet</a>
                             </td>
@@ -2020,7 +2020,7 @@
                     <div class="form-consent">
                         <label class="checkbox-container">
                             <input type="checkbox" id="leadConsent" required>
-                            <span class="consent-text">I agree to be contacted by Reserva Verde Goa / project advisors regarding villa pricing, site visit, and project consultation.</span>
+                            <span class="consent-text">I agree to be contacted by Reserva Varde Goa / project advisors regarding villa pricing, site visit, and project consultation.</span>
                         </label>
                     </div>
                     
@@ -2351,7 +2351,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>© 2026 Reserva Verde Goa by Bluechip Global Agro. All rights reserved. Preliminary investor-only presentation documents.</p>
+            <p>© 2026 Reserva Varde Goa by Bluechip Global Agro. All rights reserved. Preliminary investor-only presentation documents.</p>
         </div>
     </footer>
 
@@ -2360,7 +2360,7 @@
         const RESERVA_VERDE_CONTACT = {
             whatsappNumber: "", 
             email: "sales@bluechipagro.com",
-            leadSource: "Reserva Verde Pricing Page"
+            leadSource: "Reserva Varde Pricing Page"
         };
         const INSTALLMENT_STAGES = [
             { stageNumber: 1, name: "Booking Amount", percentage: 5 },
@@ -2580,11 +2580,11 @@
             let fallbackType = "none";
 
             if (RESERVA_VERDE_CONTACT.whatsappNumber) {
-                const waText = `Hello, I am interested in Reserva Verde Goa.
+                const waText = `Hello, I am interested in Reserva Varde Goa.
 
 Please send me the detailed villa cost sheet and installment options.
 
-Project: Reserva Verde Goa
+Project: Reserva Varde Goa
 Lead Type: Cost Sheet Request
 Name: ${name}
 Mobile: ${mobile}
@@ -2606,9 +2606,9 @@ Page URL: ${window.location.href}`;
                 openMethod = "whatsapp";
                 fallbackType = "whatsapp";
             } else if (RESERVA_VERDE_CONTACT.email) {
-                const mailText = `Project: Reserva Verde Goa
+                const mailText = `Project: Reserva Varde Goa
 Lead Type: Cost Sheet Request
-Source: Reserva Verde Pricing Page
+Source: Reserva Varde Pricing Page
 Full Name: ${name}
 Mobile: ${mobile}
 WhatsApp: ${whatsapp}
@@ -2626,7 +2626,7 @@ Page URL: ${window.location.href}
 Selected Anchor: ${window.location.hash || ""}
 Created At: ${new Date().toISOString()}`;
 
-                triggerUrl = `mailto:${RESERVA_VERDE_CONTACT.email}?subject=${encodeURIComponent("Reserva Verde Goa — Cost Sheet Request")}&body=${encodeURIComponent(mailText)}`;
+                triggerUrl = `mailto:${RESERVA_VERDE_CONTACT.email}?subject=${encodeURIComponent("Reserva Varde Goa — Cost Sheet Request")}&body=${encodeURIComponent(mailText)}`;
                 successMsg = "Your cost sheet request is ready. Please send the email now so our project advisor can share the detailed villa cost sheet and site visit options.";
                 openMethod = "email";
                 fallbackType = "email";
@@ -2665,7 +2665,7 @@ Created At: ${new Date().toISOString()}`;
             const budget = document.getElementById("leadBudget").value || "";
             const city = document.getElementById("leadCity").value.trim() || "";
 
-            const text = `Hello, I am interested in Reserva Verde Goa. Please send me the detailed villa cost sheet and installment options.
+            const text = `Hello, I am interested in Reserva Varde Goa. Please send me the detailed villa cost sheet and installment options.
 
 Preferred model: ${model}
 Preferred budget: ${budget}
