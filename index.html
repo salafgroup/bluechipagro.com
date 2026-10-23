@@ -3612,6 +3612,7 @@
 <link rel="stylesheet" href="/villa-visuals.css">
 <script src="/villa-visuals.js" defer></script>
 <link rel="stylesheet" href="/whatsapp-enquiry.css">
+<link rel="stylesheet" href="/masterplan-experience.css">
 </head>
 <body>
 <!-- Mobile Menu -->
@@ -3940,123 +3941,49 @@
 </div>
 </section>
 <!-- Section 5: Masterplan / Map Section -->
-<section class="loc-intel-section" id="masterplan" style="padding: var(--spacing-section) 0;">
-<div class="loc-intel-container masterplan-carousel-wrapper">
-<div class="section-header" style="margin-bottom: 3.5rem;">
-<span class="section-eyebrow" style="color: var(--color-muted-gold);">[ Masterplan ]</span>
-<h2 class="section-title" style="color: #FBF8F1;">Private Estate Masterplan</h2>
-<p class="section-desc" style="color: rgba(251, 248, 241, 0.8);">
-                    Explore the conceptual valley layout, access routes, and estate cluster zoning. Select tabs below to inspect topography, boundaries, road connectivity, and wellness zones.
-                </p>
-</div>
-<div class="viewer-card reveal">
-<!-- Left Tabs Panel -->
-<div class="viewer-tabs-panel" role="tablist">
-<button aria-selected="true" class="survey109-tab-button viewer-tab-btn active" data-tab="satellite" role="tab">
-                        Terrain Context <span>→</span>
-</button>
-<button aria-selected="false" class="survey109-tab-button viewer-tab-btn" data-tab="boundary" role="tab">
-                        Project Boundary <span>→</span>
-</button>
-<button aria-selected="false" class="survey109-tab-button viewer-tab-btn" data-tab="access" role="tab">
-                        Access Reference <span>→</span>
-</button>
-<button aria-selected="false" class="survey109-tab-button viewer-tab-btn" data-tab="clusters" role="tab">
-                        Estate Clusters <span>→</span>
-</button>
-<button aria-selected="false" class="survey109-tab-button viewer-tab-btn" data-tab="elevation" role="tab">
-                        Plantation Belts <span>→</span>
-</button>
-<button aria-selected="false" class="survey109-tab-button viewer-tab-btn" data-tab="waterfall" role="tab">
-                        Wellness Zones <span>→</span>
-</button>
-</div>
-<!-- Right Display Viewport -->
-<div class="viewer-display-panel" style="background: rgba(16, 41, 31, 0.08); border-radius: 0 16px 16px 0;">
-<!-- Mode Toggle Buttons -->
-<div class="map-mode-selector" style="display: flex; gap: 0.5rem; margin-bottom: 0.8rem; font-family: var(--font-sans);">
-<button class="survey109-mode-button viewer-tab-btn active" data-mode="gis" id="btn-mode-gis" style="padding: 0.5rem 1rem; font-size: 0.65rem; border: 1px solid rgba(176,138,62,0.3); background: rgba(16, 41, 31, 0.6); color: #D4B66A; cursor: pointer; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: flex; align-items: center; gap: 0.3rem;">
-<span style="display:inline-block; width:4px; height:4px; background:#D4B66A; border-radius:50%;"></span>
-                            Map View
-                        </button>
-<button class="survey109-mode-button viewer-tab-btn" data-mode="presentation" id="btn-mode-3d" style="padding: 0.5rem 1rem; font-size: 0.65rem; border: 1px solid rgba(176,138,62,0.15); background: rgba(5, 11, 8, 0.4); color: rgba(251,248,241,0.6); cursor: pointer; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; display: flex; align-items: center; gap: 0.3rem;">
-<span>3D Terrain View</span>
-</button>
-</div>
-<!-- Map container wrapper -->
-<div class="viewer-media-wrapper" style="position: relative; overflow: hidden; background: #050b08; border: 1.5px solid rgba(176,138,62,0.25); border-radius: 16px; height: 560px; box-shadow: inset 0 0 40px rgba(0,0,0,0.85);">
-<span class="viewer-preliminary-label" style="z-index: 1000; pointer-events: none; border-color: rgba(176,138,62,0.4); background: rgba(5, 11, 8, 0.9); font-size: 0.55rem;">Preliminary reference only. Final verification required.</span>
-<!-- Fullscreen Toggle Button -->
-<button class="fullscreen-btn" id="survey109-fullscreen-button" style="position: absolute; top: 12px; right: 12px; z-index: 1010; background: rgba(16, 41, 31, 0.95); border: 1px solid #D4B66A; color: #D4B66A; padding: 0.4rem 0.8rem; font-size: 0.62rem; font-weight: 600; border-radius: 4px; cursor: pointer; font-family: var(--font-sans); letter-spacing: 0.05em; text-transform: uppercase; display: flex; align-items: center; gap: 0.3rem; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
-<svg style="width: 12px; height: 12px; fill: currentColor;" viewbox="0 0 24 24">
-<path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path>
-</svg>
-<span>Fullscreen Map</span>
-</button>
-<!-- Strict GIS Live Map container -->
-<div id="survey109-live-map" style="width: 100%; height: 100%; min-height: 100%; position: relative; z-index: 1; background: #06130d;"></div>
-<!-- 3D Presentation Container -->
-<div id="viewer-3d-mount" style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; background-size: cover; background-position: center; background-image: url('images/location/google-earth-3d-satellite-terrain.png'); transition: background-image 0.5s ease;">
-<!-- Dark cinematic overlay -->
-<div style="position: absolute; inset: 0; background: rgba(5,11,8,0.25);"></div>
-<!-- Premium Layer Overlay -->
-<div style="position: absolute; top: 20px; left: 20px; right: 20px; background: rgba(5, 11, 8, 0.88); border: 1.5px solid rgba(176, 138, 62, 0.4); border-radius: 8px; padding: 1.2rem; font-family: var(--font-sans); backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-<div style="font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: #D4B66A; font-weight: 600; margin-bottom: 0.3rem;">3D Cinematic Presentation</div>
-<h5 style="font-family: var(--font-serif); font-size: 1.35rem; color: #FBF8F1; margin: 0 0 0.5rem 0; font-weight: 400;">Terrain Context</h5>
-<p style="margin: 0; font-size: 0.72rem; line-height: 1.5; color: rgba(251, 248, 241, 0.85); font-weight: 300;">
-                                    High-resolution satellite topography showing the dense forest-valley setting, ridgelines, and natural landscape character of South Goa.
-                                </p>
-</div>
-</div>
-</div>
-<!-- Pending note / provisional status banner container -->
-<div id="survey109-pending-note" style="display: none; margin-top: 1rem; transition: all 0.3s ease;"></div>
-<!-- Split Dynamic Layout: Left Details, Right Layer Intelligence -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 1.5rem; border-top: 1px solid rgba(176,138,62,0.15); padding-top: 1.5rem;">
-<!-- Left Details Area -->
-<div class="viewer-text-box" style="margin-top: 0; padding-top: 0; border: none;">
-<h4 class="viewer-view-title" id="viewer-title-mount" style="margin-bottom: 0.3rem; color: var(--rv2-ivory);">Terrain Context</h4>
-<p class="viewer-view-desc" id="viewer-desc-mount" style="margin-top: 0.5rem; font-size: 0.95rem; line-height: 1.65; font-weight: 300; color: rgba(251, 248, 241, 0.85);">High-resolution satellite topography showing the dense forest-valley setting, ridgelines, and natural landscape character of South Goa.</p>
-<!-- Dynamic Legend Container -->
-<div id="viewer-legend-container" style="margin-top: 1rem; background: rgba(5,11,8,0.25); border: 1.5px solid rgba(176,138,62,0.15); border-radius: 8px; padding: 0.8rem 1rem;">
-<div style="font-size: 0.65rem; text-transform: uppercase; font-weight: 600; color: #D4B66A; letter-spacing: 0.08em; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(176,138,62,0.1); padding-bottom: 0.25rem;">Layer Legend</div>
-<div id="viewer-legend-content" style="display: flex; flex-direction: column; gap: 0.45rem;">
-<!-- Populated dynamically via JS -->
-</div>
-</div>
-</div>
-<!-- Right Dynamic Layer Intelligence Card -->
-<div id="survey109-layer-intelligence" style="background: rgba(16, 41, 31, 0.2); border: 1.5px solid rgba(176,138,62,0.22); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3); display: flex; flex-direction: column; gap: 1rem;">
-<div style="font-weight: 600; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.15em; color: #D4B66A; border-bottom: 1px solid rgba(176,138,62,0.2); padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
-<span> MASTERPLAN NOTES</span>
-<span id="intel-status-badge" style="font-size: 0.55rem; background: rgba(176,138,62,0.18); border: 1px solid rgba(176,138,62,0.35); padding: 0.1rem 0.4rem; border-radius: 3px; color: #D4B66A; font-weight: 600;">SELECTED VIEW</span>
-</div>
-<div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.75rem; font-family: var(--font-sans); line-height: 1.55;">
-<div>
-<strong style="color: rgba(251, 248, 241, 0.4); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.6rem; display: block; margin-bottom: 0.15rem;">Core Purpose:</strong>
-<span id="intel-purpose" style="color: #f8f6f0; font-weight: 300;">Understand topography, forest cover density, canopy integrity, and global valley context.</span>
-</div>
-<div>
-<strong style="color: rgba(251, 248, 241, 0.4); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.6rem; display: block; margin-bottom: 0.15rem;">Investor Value:</strong>
-<span id="intel-value" style="color: var(--rv2-gold-light); font-weight: 500;">reinforces the secluded forest-valley character of the estate.</span>
-</div>
-<div>
-<strong style="color: rgba(251, 248, 241, 0.4); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.6rem; display: block; margin-bottom: 0.15rem;">Planning Note:</strong>
-<span id="intel-note" style="color: #ffa726; font-weight: 300;">Subject to certified forest department review and ESZ zone buffers.</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Compliance disclaimer note at bottom of map section -->
-<div style="margin-top: 1.5rem; text-align: center;">
-<span style="font-family: var(--font-sans); font-size: 0.72rem; color: rgba(251, 248, 241, 0.5); font-style: italic;">
-                            Preliminary visual reference. Final boundaries, approvals, zoning, access and development permissions are subject to certified verification.
-                        </span>
-<br/>
-</div>
-</div>
-</div>
-</div>
+<section id="masterplan" class="mp-estate" aria-labelledby="mp-heading">
+  <div class="mp-shell">
+    <div class="mp-intro">
+      <div><p class="mp-eyebrow">THE ESTATE, IN PERSPECTIVE</p><h2 id="mp-heading">Private Estate<br><em>Masterplan</em></h2></div>
+      <div class="mp-intro-copy"><p>Explore the landscape behind the vision. Discover the terrain, boundary references and proposed spaces for estate living, planting and wellbeing.</p><span class="mp-status"><span aria-hidden="true"></span> Preliminary planning reference</span></div>
+    </div>
+    <div class="mp-explorer">
+      <div class="mp-explorer-top"><span>EXPLORE THE ESTATE</span><span class="mp-count">Six perspectives. One landscape.</span></div>
+      <div class="mp-workspace">
+        <div class="mp-sidebar">
+          <div class="mp-view-tabs" role="tablist" aria-label="Masterplan perspectives" aria-orientation="vertical">
+            <button type="button" id="mp-tab-satellite" class="survey109-tab-button mp-view-tab active" data-tab="satellite" role="tab" aria-selected="true" aria-controls="mp-panel" tabindex="0"><span class="mp-num">01</span><span><strong>Terrain Context</strong><small>The wider landscape</small></span><span class="mp-tab-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" id="mp-tab-boundary" class="survey109-tab-button mp-view-tab" data-tab="boundary" role="tab" aria-selected="false" aria-controls="mp-panel" tabindex="-1"><span class="mp-num">02</span><span><strong>Project Boundary</strong><small>Preliminary survey reference</small></span><span class="mp-tab-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" id="mp-tab-access" class="survey109-tab-button mp-view-tab" data-tab="access" role="tab" aria-selected="false" aria-controls="mp-panel" tabindex="-1"><span class="mp-num">03</span><span><strong>Access Reference</strong><small>The approach to the estate</small></span><span class="mp-tab-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" id="mp-tab-clusters" class="survey109-tab-button mp-view-tab" data-tab="clusters" role="tab" aria-selected="false" aria-controls="mp-panel" tabindex="-1"><span class="mp-num">04</span><span><strong>Estate Clusters</strong><small>Conceptual living pockets</small></span><span class="mp-tab-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" id="mp-tab-elevation" class="survey109-tab-button mp-view-tab" data-tab="elevation" role="tab" aria-selected="false" aria-controls="mp-panel" tabindex="-1"><span class="mp-num">05</span><span><strong>Plantation Belts</strong><small>Terrain &amp; planting context</small></span><span class="mp-tab-arrow" aria-hidden="true">↗</span></button>
+            <button type="button" id="mp-tab-waterfall" class="survey109-tab-button mp-view-tab" data-tab="waterfall" role="tab" aria-selected="false" aria-controls="mp-panel" tabindex="-1"><span class="mp-num">06</span><span><strong>Wellness Zones</strong><small>Nature-led retreat concepts</small></span><span class="mp-tab-arrow" aria-hidden="true">↗</span></button>
+          </div>
+          <p class="mp-sidebar-note">A landscape-led vision.<br>Explore each view to understand the proposed estate.</p>
+        </div>
+        <div id="mp-panel" class="mp-main" role="tabpanel" aria-labelledby="mp-tab-satellite" tabindex="0">
+          <div class="mp-toolbar">
+            <div class="mp-mode-group" role="group" aria-label="Masterplan display mode"><button type="button" id="btn-mode-gis" class="survey109-mode-button mp-mode active" data-mode="gis" aria-pressed="true">Map view</button><button type="button" id="btn-mode-3d" class="survey109-mode-button mp-mode" data-mode="presentation" aria-pressed="false">Concept view</button></div>
+            <span class="mp-display-note" id="mp-display-note">Interactive map · preliminary references</span>
+          </div>
+          <div class="viewer-media-wrapper mp-stage" id="mp-stage" aria-label="Estate masterplan viewer">
+            <div class="mp-stage-actions"><button type="button" id="mp-reset" class="mp-stage-button" aria-label="Reset map to estate boundary">Reset view</button><button type="button" id="survey109-fullscreen-button" class="fullscreen-btn mp-stage-button" aria-expanded="false" aria-label="Expand masterplan view"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 4H4v5M15 4h5v5M4 15v5h5M20 15v5h-5"/></svg><span>Expand view</span></button></div>
+            <div id="survey109-live-map" aria-label="Interactive estate reference map"></div>
+            <div id="viewer-3d-mount" role="img" aria-label="Conceptual terrain illustration, not a certified survey" style="display:none;background-image:url('images/location/google-earth-3d-satellite-terrain.png')"></div>
+            <span class="mp-image-label" id="mp-image-label">Preliminary map reference · subject to verification</span>
+          </div>
+          <div id="survey109-pending-note" class="mp-pending" role="status" style="display:none"></div>
+          <div class="mp-view-summary">
+            <div><p class="mp-micro">ABOUT THIS VIEW</p><h3 id="viewer-title-mount">Terrain Context</h3><p id="viewer-desc-mount">Explore the forest-valley setting, ridgelines and landscape context of the proposed estate.</p></div>
+            <aside class="mp-planning-note"><p class="mp-micro">PLANNING NOTE</p><p id="intel-note">Final planning is subject to survey, environmental review and applicable permissions.</p></aside>
+          </div>
+          <details id="viewer-legend-container" class="mp-legend"><summary>Map key</summary><div id="viewer-legend-content"></div></details>
+        </div>
+      </div>
+    </div>
+    <div class="mp-bottom"><p>Understand the landscape.<br><span>Then explore your private estate.</span></p><div class="mp-bottom-actions"><a class="mp-primary-cta" href="https://wa.me/919686111408?text=Hello%2C%20I%20would%20like%20a%20private%20masterplan%20walkthrough%20of%20Reserva%20Varde%20Goa.%20Please%20share%20the%20planning%20references%20and%20estate%20options." target="_blank" rel="noopener noreferrer">Request a masterplan walkthrough <span aria-hidden="true">↗</span></a><a class="mp-secondary-cta" href="#estate-models">Explore the villas <span aria-hidden="true">→</span></a></div></div>
+    <p class="mp-disclaimer">Preliminary visual reference. Final boundaries, approvals, zoning, access and development permissions are subject to certified verification. Concept illustrations do not establish plot availability, ownership or approved layouts.</p>
+  </div>
 </section>
 <!-- Section 6: Wellness & Lifestyle Section -->
 <section class="rv-section" id="wellness" style="background-color: var(--color-ivory); padding: var(--spacing-section) 0; border-bottom: 1px solid rgba(16, 41, 31, 0.08);">
@@ -4549,10 +4476,10 @@
         const mapLayers = {
           satellite: {
             title: "Terrain Context",
-            description: "High-resolution satellite topography showing the dense forest-valley setting, ridgelines, and natural landscape character of South Goa.",
+            description: "Explore the forest-valley setting, ridgelines and landscape context of the proposed estate.",
             purpose: "Understand topography, forest cover density, canopy integrity, and global valley context.",
             value: "reinforces the secluded forest-valley character of the estate.",
-            note: "Subject to certified forest department review and ESZ zone buffers.",
+            note: "Final planning is subject to survey, environmental review and applicable permissions.",
             legend: [
               { color: "#B08A3E", label: "Survey 109 Boundary (Gold Outline)" },
               { symbol: "★", color: "#D4B66A", bg: "#10291F", label: "GOA 3400 Property Reference (Center)" },
@@ -4561,22 +4488,22 @@
           },
           boundary: {
             title: "Project Boundary",
-            description: "Preliminary boundary overlay of the private forest estate vision. Subject to final certified government surveys.",
+            description: "View the supplied boundary reference in its landscape setting. Final extent and demarcation require certified verification.",
             purpose: "Visualize the georeferenced survey boundary limits of Plot 109/0 in Neturlim valley.",
             value: "Provides clear physical boundaries of the 1000-acre valley masterplan layout, securing spatial allocation.",
             note: "Cadastral government survey demarcation and physical field survey are required for official registration.",
             legend: [
-              { color: "#ff4d5a", label: "Verified Project Boundary (Red Highlight)" },
+              { color: "#ff4d5a", label: "Boundary reference (red outline)" },
               { symbol: "★", color: "#D4B66A", bg: "#10291F", label: "GOA 3400 Property Reference (Center)" },
               { symbol: "•", color: "#FBF8F1", bg: "#B08A3E", label: "Neturlim Village Reference" }
             ]
           },
           elevation: {
             title: "Plantation Belts",
-            description: "Agroforestry zoning highlighting cashews, coconut palms, and organic spice plantations integrated with the natural slopes.",
+            description: "Explore terrain and elevation references that inform the proposed plantation layout. This is not a confirmed planting or zoning plan.",
             purpose: "Identify high points for cashew zones and valley gradients for water-sensitive plantation layout.",
             value: "Supports agricultural utility and managed cashew plantation layout on contoured terrains.",
-            note: "Cashew agricultural plans are provisional. topographical slope analysis required.",
+            note: "Planting plans are provisional and require topographical study and applicable permissions.",
             legend: [
               { color: "#4a90e2", label: "Contour-Guided Survey Boundary (Blue-Grey Line)" },
               { symbol: "★", color: "#D4B66A", bg: "#10291F", label: "GOA 3400 Property Reference (Center)" }
@@ -4584,7 +4511,7 @@
           },
           waterfall: {
             title: "Wellness Zones",
-            description: "Envisioned healing sanctuaries, forest meditation decks, and walking pathways nestled within the natural valley buffer.",
+            description: "Explore the nature and landscape context for proposed wellness spaces, meditation decks and walking paths.",
             purpose: "Trace natural stream buffers and locate yoga decks adjacent to freshwater flows.",
             value: "Restores local wellness value without structural encroachment into riparian ecology.",
             note: "Exact coordinates of wellness spots require licensed surveyor verification.",
@@ -4595,10 +4522,10 @@
           },
           access: {
             title: "Access Reference",
-            description: "Ingress roadway reference showing approach connectivity from Sanguem roads down to local estate paths.",
+            description: "Explore the approach and surrounding road references. Final access routes and permissions remain subject to verification.",
             purpose: "Understand ingress alignments from Sanguem highways down to local village roads.",
             value: "Secures infrastructure feasibility and evaluates organic approach quality for premium tourist ingress.",
-            note: "Provisional access roads. official roadway permissions and local TCP approvals are required.",
+            note: "Access is provisional; official road permissions and planning review are required.",
             legend: [
               { color: "#B08A3E", label: "Survey 109 Boundary (Gold Outline)" },
               { symbol: "•", color: "#FBF8F1", bg: "#B08A3E", label: "Neturlim Village Reference" }
@@ -4606,7 +4533,7 @@
           },
           clusters: {
             title: "Estate Clusters",
-            description: "Conceptual zoning for private one-acre estate pockets, planned to maintain canopy integrity and forest buffers.",
+            description: "Explore the concept for private estate pockets, with landscape buffers and ground-level villa planning.",
             purpose: "Plan cluster layouts that preserve over 90% of forest canopy while providing 1-acre private holdings.",
             value: "Supports asset scarcity and protects physical masterplan integrity with a cap on housing density.",
             note: "Zoning remains conceptual. Subdivisions require certified government survey records, TCP clearance, and environmental review.",
@@ -4623,18 +4550,9 @@
 
         // Safe parser error reporter (catches rather than crashing)
         function showParserError(msg) {
-          console.error("Map System Notice:", msg);
-          const presentationBtn = document.getElementById("btn-mode-3d");
-          if (presentationBtn) {
-            presentationBtn.click();
-          }
-          const pendingNote = document.getElementById("survey109-pending-note");
-          if (pendingNote) {
-            pendingNote.style.display = "block";
-            pendingNote.innerHTML = `<div style="background: rgba(16, 41, 31, 0.7); border: 1px solid rgba(176,138,62,0.3); padding: 0.8rem 1.2rem; border-radius: 8px; font-family: var(--font-sans); color: #EFE6D2; font-size: 0.72rem; line-height: 1.5;">
-              <strong>Note:</strong> Interactive GIS layers are loading. Currently displaying cinematic 3D valley map context.
-            </div>`;
-          }
+          document.getElementById("btn-mode-3d")?.click();
+          const note = document.getElementById("survey109-pending-note");
+          if (note) { note.style.display = "block"; note.textContent = "The interactive map is unavailable. You can still explore the conceptual views; final boundaries require certified verification."; }
         }
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -4662,11 +4580,13 @@
           // Test if Leaflet CSS exists in head
           const cssLoaded = !!document.querySelector('link[href*="leaflet.css"]');
 
+          let leafletAttempts = 0;
           function startGisApp() {
             const leafletLoaded = typeof L !== "undefined";
 
             if (!leafletLoaded) {
-              setTimeout(startGisApp, 50);
+              if (++leafletAttempts < 100) setTimeout(startGisApp, 50);
+              else showParserError("Map library unavailable");
               return;
             }
 
@@ -4700,12 +4620,6 @@
 
               activeTileLayer.on("load", () => {
               });
-
-              // Add a base map loaded reference marker (Step 3 test)
-              const baseMarker = L.marker([15.0812, 74.2378]).addTo(kmlMarkersGroup)
-                .bindPopup("<strong>Base map loaded.</strong><br>Ready for georeferenced boundary overlays.")
-                .openPopup();
-
 
               // Load KML data after base map is fully visible (Step 3/4 sequence)
               setTimeout(() => {
@@ -4973,20 +4887,10 @@
 
           // Renders the provisional warning block cleanly (Task 7 / 12)
           function showGisPendingNotice(msg) {
-            const pendingNote = document.getElementById("survey109-pending-note");
-            if (pendingNote) {
-              pendingNote.style.display = "block";
-              pendingNote.innerHTML = `<div style="background: rgba(16, 41, 31, 0.9); border: 1px solid rgba(176, 138, 62, 0.35); border-radius: 8px; padding: 0.8rem 1.2rem; color: #f8f6f0; font-family: var(--font-sans); box-shadow: 0 4px 15px rgba(0,0,0,0.5); margin-bottom: 1rem;">
-                <div style="display: flex; gap: 0.6rem; align-items: flex-start;">
-                  <svg style="width: 18px; height: 18px; fill: #ffa726; flex-shrink: 0; margin-top: 1px;" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                  </svg>
-                  <div>
-                    <h6 style="margin: 0 0 0.2rem 0; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; color: #D4B66A; letter-spacing: 0.05em;">Provisional Mapping Status</h6>
-                    <p style="margin: 0; font-size: 0.65rem; line-height: 1.45; color: rgba(248, 246, 240, 0.85); font-weight: 300;">${msg}</p>
-                  </div>
-                </div>
-              </div>`;
+            const note = document.getElementById("survey109-pending-note");
+            if (note) {
+              note.style.display = "block";
+              note.textContent = "This view is a planning reference. Detailed layer mapping is pending verification; the supplied boundary remains visible. Choose Concept view for an illustrated reference.";
             }
           }
 
@@ -5100,8 +5004,6 @@
             const layerData = mapLayers[tabKey];
             if (!layerData) return;
 
-            console.log("[Survey109] tab clicked:", tabKey);
-
             // Update viewer text fields dynamically
             if (viewerTitle) viewerTitle.textContent = layerData.title;
             if (viewerDesc) viewerDesc.textContent = layerData.description;
@@ -5196,8 +5098,7 @@
 
           // GIS / 3D Presentation mode switcher (Task 10)
           window.setMapMode = function (mode) {
-            console.log("[Survey109] mode clicked:", mode);
-            
+
             const gisBtn = document.getElementById("btn-mode-gis");
             const btn3d = document.getElementById("btn-mode-3d");
             const mapMount = document.getElementById("survey109-live-map");
@@ -5252,16 +5153,22 @@
             });
           });
 
+          window.resetEstateMap = function () {
+            if (!viewerMap) return;
+            viewerMap.closePopup();
+            if (kmlBoundaryLayer) viewerMap.fitBounds(kmlBoundaryLayer.getBounds(), { padding: [40, 40], animate: !window.matchMedia('(prefers-reduced-motion: reduce)').matches });
+            else viewerMap.setView([15.0812, 74.2378], 13);
+          };
+
           // Fullscreen Toggle (Task 9)
           window.toggleMapFullscreen = function () {
-            console.log("[Survey109] fullscreen clicked");
-            
+
             const wrapper = document.querySelector(".viewer-media-wrapper");
             const btnText = document.querySelector("#survey109-fullscreen-button span");
             if (wrapper) {
               const isFullscreen = wrapper.classList.toggle("fullscreen");
               if (btnText) {
-                btnText.textContent = isFullscreen ? "Close Fullscreen" : "Fullscreen Map";
+                btnText.textContent = isFullscreen ? "Close view" : "Expand view";
               }
               setTimeout(() => {
                 if (viewerMap) {
@@ -6939,5 +6846,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <a class="bc-wa-float" href="https://wa.me/919686111408?text=Hello%2C%20I%20am%20interested%20in%20Reserva%20Varde%20Goa.%20Please%20share%20the%20brochure%2C%20pricing%20and%20private%20site%20preview%20details." target="_blank" rel="noopener noreferrer" aria-label="Enquire on WhatsApp at +91 9686111408 (opens in a new tab)">WhatsApp enquiry</a>
+<script src="/masterplan-experience.js" defer></script>
 </body>
 </html>
