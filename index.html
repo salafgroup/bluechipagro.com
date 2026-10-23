@@ -3609,6 +3609,8 @@
 }
 </style>
     <link rel="stylesheet" href="/responsive-polish.css">
+<link rel="stylesheet" href="/villa-visuals.css">
+<script src="/villa-visuals.js" defer></script>
 </head>
 <body>
 <!-- Mobile Menu -->
@@ -5468,10 +5470,10 @@
             ];
 
             const thumbnails = {
-              "2bhk": `<img loading="lazy" decoding="async" src="images/ai-renders/rv-05-2bhk-exterior.png" class="estate-render" alt="2BHK Forest Estate — artist's impression"><div class="rv-card-media-gradient"></div>`,
-              "3bhk": `<img loading="lazy" decoding="async" src="images/ai-renders/rv-06-3bhk-exterior.png" class="estate-render" alt="3BHK Premium Estate — artist's impression"><div class="rv-card-media-gradient"></div>`,
-              "4bhk": `<img loading="lazy" decoding="async" src="images/ai-renders/rv-07-4bhk-exterior.png" class="estate-render" alt="4BHK Signature Estate — artist's impression"><div class="rv-card-media-gradient"></div>`,
-              "custom": `<img loading="lazy" decoding="async" src="images/ai-renders/rv-08-custom-founder-estate.png" class="estate-render" alt="Custom Founder Estate — artist's impression"><div class="rv-card-media-gradient"></div>`
+              "2bhk": `<img loading="lazy" decoding="async" src="/images/villa-concepts-20261023/2bhk-exterior.webp" class="estate-render" alt="2BHK Forest Estate — artist's impression"><div class="rv-card-media-gradient"></div>`,
+              "3bhk": `<img loading="lazy" decoding="async" src="/images/villa-concepts-20261023/3bhk-exterior.webp" class="estate-render" alt="3BHK Premium Estate — artist's impression"><div class="rv-card-media-gradient"></div>`,
+              "4bhk": `<img loading="lazy" decoding="async" src="/images/villa-concepts-20261023/4bhk-exterior.webp" class="estate-render" alt="4BHK Signature Estate — artist's impression"><div class="rv-card-media-gradient"></div>`,
+              "custom": `<img loading="lazy" decoding="async" src="/images/villa-concepts-20261023/custom-exterior.webp" class="estate-render" alt="Custom Founder Estate — artist's impression"><div class="rv-card-media-gradient"></div>`
             };
 
             function cardEl(model) {
@@ -5501,7 +5503,7 @@
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 0.8rem; padding: 0 1.5rem 1.5rem;">
                       <button class="rv-btn rv-btn-primary premium-btn" data-action="view" data-id="${model.id}" style="width: 100%; text-align: center; background: var(--color-muted-gold); border: 1px solid var(--color-muted-gold); color: var(--color-forest-dark); padding: 1rem 0; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 4px; cursor: pointer; transition: all 0.3s ease;">Request Design Catalogue</button>
-                      <button class="rv-btn rv-btn-secondary" data-action="explore" data-id="${model.id}" style="width: 100%; text-align: center; border: 1px solid rgba(169, 165, 156, 0.35); background: transparent; color: var(--color-forest-green); padding: 0.9rem 0; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 4px; cursor: pointer;">Explore Architecture Specs</button>
+                      <button class="rv-btn rv-btn-secondary" data-action="explore" data-id="${model.id}" style="width: 100%; text-align: center; border: 1px solid rgba(169, 165, 156, 0.35); background: transparent; color: var(--color-forest-green); padding: 0.9rem 0; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 4px; cursor: pointer;">View Villa Design</button>
                     </div>
                   </div>
                 </div>
@@ -6296,11 +6298,18 @@ Bespoke architectural rendering of a custom-designed eco-luxury ground-level mod
                 const svgImg = document.getElementById("rvModalSvg");
                 if (renderImg) {
                     let renderSrc = "";
-                    if (id === "2bhk") renderSrc = "images/ai-renders/rv-05-2bhk-exterior.png";
-                    else if (id === "3bhk") renderSrc = "images/ai-renders/rv-06-3bhk-exterior.png";
-                    else if (id === "4bhk") renderSrc = "images/ai-renders/rv-07-4bhk-exterior.png";
-                    else renderSrc = "images/ai-renders/rv-08-custom-founder-estate.png";
+                    if (id === "2bhk") renderSrc = "/images/villa-concepts-20261023/2bhk-exterior.webp";
+                    else if (id === "3bhk") renderSrc = "/images/villa-concepts-20261023/3bhk-exterior.webp";
+                    else if (id === "4bhk") renderSrc = "/images/villa-concepts-20261023/4bhk-exterior.webp";
+                    else renderSrc = "/images/villa-concepts-20261023/custom-exterior.webp";
                     renderImg.src = renderSrc;
+                    renderImg.srcset = renderSrc.replace('.webp', '-720.webp') + ' 720w, ' + renderSrc + ' 1448w';
+                    renderImg.sizes = '(max-width: 767px) 90vw, 560px';
+                    renderImg.alt = model.title + ' exterior — artist’s impression';
+                    document.getElementById('rvArchModal').dataset.model = id;
+                    const planRef = document.getElementById('rvPlanReference');
+                    if (planRef) planRef.open = false;
+                    document.querySelectorAll('#rvArchModal .rv-m-body, #rvArchModal .rv-m-left, #rvArchModal .rv-m-right').forEach(el => { el.scrollTop = 0; });
                 }
                 if (svgImg) {
                     let svgSrc = "";
@@ -6363,9 +6372,9 @@ Bespoke architectural rendering of a custom-designed eco-luxury ground-level mod
                 `;
 
                 // Render Developer CAD Codes
-                document.getElementById("rvCodeAutocad").innerText = spec.prompts.autocad;
-                document.getElementById("rvCodeSketchup").innerText = spec.prompts.sketchup;
-                document.getElementById("rvCodeRender").innerText = spec.prompts.rendering;
+
+
+
 
                 // Setup Active Tab to first tab (layout)
                 document.querySelectorAll(".rv-m-tab").forEach(t => t.classList.remove("active"));
@@ -6641,28 +6650,29 @@ Bespoke architectural rendering of a custom-designed eco-luxury ground-level mod
 
     </script>
 <!-- Dynamic Architectural Spec Modal -->
-<div class="rv-modal-overlay" id="rvArchModal">
+<div class="rv-modal-overlay" id="rvArchModal" role="dialog" aria-modal="true" aria-labelledby="rvModalTitle">
 <div class="rv-modal-window">
 <div class="rv-m-header">
 <div class="rv-m-title-box">
 <h3 class="rv-m-title" id="rvModalTitle">Model Name</h3>
-<div class="rv-m-subtitle" id="rvModalSubtitle">Reserva Varde Goa — Architectural Blueprint Dossier</div>
+<div class="rv-m-subtitle" id="rvModalSubtitle">Reserva Varde Goa — Villa Design Preview</div>
 </div>
-<button class="rv-m-close" id="rvModalClose">×</button>
+<button class="rv-m-close" id="rvModalClose" type="button" aria-label="Close villa preview">×</button>
 </div>
 <div class="rv-m-navigation">
-<button class="rv-m-tab active" data-tab="layout"> Blueprint &amp; Space Layout</button>
+<button class="rv-m-tab active" data-tab="layout"> Villa Preview</button>
 <button class="rv-m-tab" data-tab="schedules"> Area &amp; Module Schedules</button>
 <button class="rv-m-tab" data-tab="specs"> Eco-Sensitive Specs</button>
-<button class="rv-m-tab" data-tab="cad"> CAD &amp; Developer Prompts</button>
+
 </div>
 <div class="rv-m-body">
 <div class="rv-m-left" style="display: flex; flex-direction: column; gap: 2rem; width: 100%; overflow-y: auto;">
 <!-- 3D Cinematic Render Visual -->
 <div id="rvModalRenderContainer" style="width: 100%; max-width: 580px; display: flex; flex-direction: column; gap: 0.5rem; flex-shrink: 0;">
-<img alt="3D Cinematic Visual" decoding="async" id="rvModalRender" loading="lazy" src="" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(176,138,62,0.3); transition: opacity 0.3s ease;"/>
-<div style="font-size: 0.72rem; color: var(--rv-gold); text-align: center; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;">3D Cinematic Lumion Visualization</div>
+<img alt="Villa exterior — artist’s impression" decoding="async" id="rvModalRender" loading="eager" width="1448" height="1086" src="" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(176,138,62,0.3); transition: opacity 0.3s ease;"/>
+<div style="font-size: 0.72rem; color: var(--rv-gold); text-align: center; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;">Artist’s impression · Conceptual visual reference</div>
 </div>
+<details class="rv-plan-reference" id="rvPlanReference"><summary>View preliminary layout reference</summary><p class="rv-plan-note">Concept render above is illustrative, not a certified reproduction of the layout. Plans, dimensions, finishes and any pool shown remain subject to final design and package specification.</p>
 <!-- 2D Architectural Layout -->
 <div id="rvModalSvgContainer" style="width: 100%; max-width: 580px; display: flex; flex-direction: column; gap: 0.5rem; flex-shrink: 0;">
 <img alt="2D Masterplot Plan" decoding="async" id="rvModalSvg" loading="lazy" src="" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(176,138,62,0.3); background: #fbf8f1; padding: 10px; transition: opacity 0.3s ease;"/>
@@ -6673,12 +6683,13 @@ Bespoke architectural rendering of a custom-designed eco-luxury ground-level mod
 <div class="rv-ascii-box" id="rvModalAscii" style="margin-bottom: 0;">ASCII Drawing Loading...</div>
 <div style="font-size: 0.72rem; color: var(--rv-gold); text-align: center; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase;">Technical Modular Layout Schematics</div>
 </div>
+</details>
 </div>
 <div class="rv-m-right">
 <div class="rv-m-panel active" id="panel-layout">
-<h4 class="rv-m-section-title">Design Concept &amp; 2D Layout</h4>
+<h4 class="rv-m-section-title">Design Concept</h4>
 <p class="rv-m-text" id="rvModalConcept">Concept Loading...</p>
-<h4 class="rv-m-section-title">Spatial &amp; Circulation Flow</h4>
+<h4 class="rv-m-section-title">Layout &amp; Living Spaces</h4>
 <p class="rv-m-text" id="rvModalExplanation">Explanation Loading...</p>
 </div>
 <div class="rv-m-panel" id="panel-schedules">
@@ -6733,26 +6744,7 @@ Bespoke architectural rendering of a custom-designed eco-luxury ground-level mod
 <a class="rv-btn rv-btn-primary" download="" href="/downloads/Reserva_Verde_Goa_Concept.docx" style="padding: 0.8rem 1.6rem; font-size: 0.68rem; text-decoration: none; display: inline-block; border: none; letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase;">Download Dossier (DOCX)</a>
 </div>
 </div>
-<div class="rv-m-panel" id="panel-cad">
-<h4 class="rv-m-section-title">AutoCAD Drafting Layer Setup</h4>
-<p class="rv-m-text">Professional layers and line weights standard for architect review and executive construction drafting.</p>
-<div class="rv-m-code-box">
-<button class="rv-m-code-copy" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); showToast('AutoCAD code copied to clipboard!', 'success');">Copy</button>
-<code id="rvCodeAutocad">CAD code loading...</code>
-</div>
-<h4 class="rv-m-section-title">SketchUp component 3D Modeling Prompt</h4>
-<p class="rv-m-text">Structured directives for modeling modular component geometry, materials, and double-roof canopy systems.</p>
-<div class="rv-m-code-box">
-<button class="rv-m-code-copy" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); showToast('SketchUp prompt copied to clipboard!', 'success');">Copy</button>
-<code id="rvCodeSketchup">SketchUp prompt loading...</code>
-</div>
-<h4 class="rv-m-section-title">Photorealistic 3D Render Prompt</h4>
-<p class="rv-m-text">Pre-engineered hyper-detailed prompt for generating professional architectural visualization brochures.</p>
-<div class="rv-m-code-box">
-<button class="rv-m-code-copy" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); showToast('3D Render prompt copied to clipboard!', 'success');">Copy</button>
-<code id="rvCodeRender">Render prompt loading...</code>
-</div>
-</div>
+
 </div>
 </div>
 <div class="rv-m-footer">

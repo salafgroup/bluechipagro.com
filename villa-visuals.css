@@ -1,0 +1,64 @@
+/* Approved exterior concepts: cards and accessible, responsive villa previews. */
+.rv-approved-villa { margin:0 0 24px; border-radius:8px; overflow:hidden; background:#10291f; }
+.rv-approved-villa img { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; }
+.rv-approved-villa figcaption { padding:12px 16px; color:#eee8d8; font:400 12px/1.6 Arial,sans-serif; letter-spacing:.01em; }
+.card-media.rv-photo-media { display:block!important; position:relative; width:100%; height:auto!important; padding:0!important; margin:0 0 22px; background:#10291f; overflow:hidden; }
+.card-media.rv-photo-media img { display:block; width:100%!important; height:auto!important; aspect-ratio:4/3; object-fit:cover!important; padding:0!important; }
+.card-media.rv-photo-media figcaption { padding:10px 12px; color:#ddd8c9; font:400 11px/1.4 Arial,sans-serif; letter-spacing:.06em; text-transform:uppercase; }
+.rv-concept-note { max-width:960px; margin:0 auto 24px; color:#c2c9bf; font:400 13px/1.7 Arial,sans-serif; text-align:center; }
+#rvArchModal { padding:16px!important; }
+#rvArchModal .rv-modal-window { width:min(1180px,100%)!important; max-width:1180px!important; max-height:calc(100vh - 32px)!important; max-height:calc(100dvh - 32px)!important; display:flex; flex-direction:column; overflow:hidden; }
+#rvArchModal .rv-m-header { flex-shrink:0; padding:24px 28px; }
+#rvArchModal .rv-m-title-box { min-width:0; }
+#rvArchModal .rv-m-title { overflow-wrap:break-word; }
+#rvArchModal .rv-m-navigation { flex-shrink:0; display:flex; flex-wrap:wrap; }
+#rvArchModal .rv-m-tab { min-height:44px; white-space:normal; }
+#rvArchModal .rv-m-body { display:grid!important; grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)!important; flex:1 1 auto; min-height:0; overflow-y:auto!important; overflow-x:hidden; align-items:start; }
+#rvArchModal .rv-m-left { width:auto!important; min-width:0; height:auto!important; max-height:none!important; overflow:visible!important; display:flex!important; flex-direction:column; align-items:stretch; gap:18px!important; padding:24px!important; }
+#rvArchModal .rv-m-right { min-width:0; height:auto!important; max-height:none!important; overflow:visible!important; padding:24px!important; }
+#rvModalRenderContainer { width:100%!important; max-width:none!important; margin:0!important; display:flex!important; visibility:visible!important; opacity:1!important; }
+#rvModalRender { display:block!important; width:100%!important; height:auto!important; aspect-ratio:4/3; object-fit:contain; background:#10291f; }
+#rvModalRenderContainer > div { font-size:11px!important; line-height:1.6; color:#eee8d8!important; letter-spacing:.04em!important; }
+#rvArchModal .rv-plan-reference { border:1px solid rgba(200,174,120,.35); border-radius:6px; padding:0 14px; color:#eee8d8; }
+#rvArchModal .rv-plan-reference summary { cursor:pointer; padding:15px 0; font:500 13px/1.5 Arial,sans-serif; }
+#rvArchModal .rv-plan-note { font:400 12px/1.6 Arial,sans-serif; color:#ddd8c9; margin:0 0 18px; }
+#rvPlanReference > div { margin-bottom:18px; }
+#rvModalAsciiContainer { display:none!important; }
+#rvModalSvg { display:block; width:100%; height:auto; }
+#rvArchModal .rv-m-footer { flex-shrink:0; display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; padding:18px 28px; }
+#rvArchModal .rv-m-footer > * { min-width:0; max-width:100%; }
+#rvArchModal .rv-m-close { min-width:44px; min-height:44px; flex-shrink:0; }
+#rvArchModal button:focus-visible, #rvArchModal summary:focus-visible { outline:2px solid #b08a3e; outline-offset:3px; }
+@media(max-width:767px){
+ #rvArchModal { padding:8px!important; }
+ #rvArchModal .rv-modal-window { max-height:calc(100vh - 16px)!important; max-height:calc(100dvh - 16px)!important; border-radius:8px; }
+ #rvArchModal .rv-m-body { grid-template-columns:minmax(0,1fr)!important; }
+ #rvArchModal .rv-m-header { padding:16px; gap:8px; }
+ #rvArchModal .rv-m-title { font-size:clamp(21px,6vw,28px)!important; }
+ #rvArchModal .rv-m-subtitle { font-size:10px!important; letter-spacing:.08em!important; }
+ #rvArchModal .rv-m-tab { flex:1; padding:12px 8px!important; font-size:10px!important; letter-spacing:.04em!important; }
+ #rvArchModal .rv-m-left, #rvArchModal .rv-m-right { padding:16px!important; }
+ #rvArchModal .rv-m-footer { padding:12px 16px; }
+ #rvArchModal .rv-m-footer > * { flex-basis:100%; }
+ #rvArchModal #rvModalApply { width:100%; min-height:44px; }
+ #rvArchModal #rvModalEcoSpecs > div { grid-template-columns:minmax(0,1fr)!important; }
+ #rvArchModal .rv-m-table { font-size:12px; }
+ #rvArchModal .rv-m-table th,#rvArchModal .rv-m-table td { overflow-wrap:anywhere; padding:8px; }
+}
+/* Let the villa photographs fill the pricing cards, rather than sit inside plan padding. */
+.cards-grid > .rv-card:has(.rv-photo-media) { padding:0!important; overflow:hidden; }
+.cards-grid .rv-photo-media { margin:0!important; }
+.cards-grid > .rv-card:has(.rv-photo-media) > .card-header { padding:24px; }
+.cards-grid > .rv-card:has(.rv-photo-media) > .card-footer { padding:0 24px 24px; margin-top:auto; }
+.cards-grid > .rv-card:has(.rv-photo-media) h3 { min-height:2.5em; }
+@media(max-width:767px){ .cards-grid > .rv-card:has(.rv-photo-media) h3 { min-height:0; } }
+/* Repair the existing minimum-content overflow exposed by the device checks. */
+[data-villa-visual-page="pricing"] .installment-split { grid-template-columns:minmax(0,1fr); }
+[data-villa-visual-page="pricing"] .installment-split > * { min-width:0; max-width:100%; }
+[data-villa-visual-page="pricing"] .inst-breakdown-panel { overflow-x:auto; }
+[data-villa-visual-page="pricing"] .preset-btn { white-space:normal; flex-wrap:wrap; gap:8px; }
+.rv-terrain-layout, .rv-terrain-layout > div { min-width:0; }
+@media(min-width:992px){[data-villa-visual-page="pricing"] .installment-split {grid-template-columns:minmax(0,4fr) minmax(0,8fr);}}
+@media(min-width:769px) and (max-width:1199px){[data-villa-visual-page="pricing"] .nav-links {min-width:0; flex-wrap:wrap; gap:12px; justify-content:flex-end;}}
+@media(max-width:991px){.rv-terrain-layout {grid-template-columns:minmax(0,1fr)!important; gap:32px!important;}}
+@media(max-width:600px){[data-villa-visual-page="pricing"] .inst-preset-box,[data-villa-visual-page="pricing"] .inst-breakdown-panel {padding:20px;}}
