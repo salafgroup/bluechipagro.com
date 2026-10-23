@@ -1,0 +1,8 @@
+/* Client enquiry links; no third-party scripts, cookies or auto-messages. */
+.bc-wa-float { position:fixed; right:max(16px,env(safe-area-inset-right)); bottom:max(16px,env(safe-area-inset-bottom)); z-index:800; display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:13px 20px; max-width:calc(100vw - 32px); border:1px solid #b08a3e; border-radius:28px; background:#123c2e; color:#fff!important; font:600 14px/1.4 Arial,sans-serif; letter-spacing:.02em; text-decoration:none!important; box-shadow:0 4px 18px rgba(0,0,0,.18); }
+.bc-wa-float:hover { background:#1b523f; }
+.bc-wa-float:focus-visible,.bc-wa-link:focus-visible { outline:3px solid #b08a3e; outline-offset:4px; }
+.bc-wa-link { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:8px 18px; margin:8px 0 0; border:1px solid currentColor; border-radius:4px; color:inherit; text-decoration:none!important; font:500 13px/1.5 Arial,sans-serif; }
+body:has(#rvArchModal.active) .bc-wa-float,body:has(dialog[open]) .bc-wa-float { visibility:hidden; pointer-events:none; }
+@media(max-width:767px){.bc-wa-float{padding:12px 16px;font-size:13px;} body:has(input:focus,textarea:focus,select:focus) .bc-wa-float{visibility:hidden;pointer-events:none;} }
+@media print{.bc-wa-float{display:none!important;}}
