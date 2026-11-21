@@ -6,6 +6,7 @@
 
 const crypto = require('crypto');
 const db = require('../lib/db');
+const catalog = require('../brochure/catalog');
 
 // Helper to get client IP from request
 function getClientIp(req) {
@@ -87,7 +88,7 @@ module.exports = async function handler(req, res) {
     const email = sanitize(body.email, 120).toLowerCase();
     const phone = sanitize(body.phone, 30);
     const buyerType = sanitize(body.buyerType || body.buyer_type, 100);
-    const estateModel = sanitize(body.estateModel || body.estate_model || body.villa_model || body.plotInterest || body.plot_interest, 100);
+    let estateModel = sanitize(body.estateModel || body.estate_model || body.villa_model || body.plotInterest || body.plot_interest, 100);
     const budgetRange = sanitize(body.budgetRange || body.budget_range || body.budget || body.investmentHorizon, 100);
     const cityCountry = sanitize(body.cityCountry || body.city_country || body.location, 150);
     const message = sanitize(body.message, 1500);
@@ -95,15 +96,31 @@ module.exports = async function handler(req, res) {
     if (!fullName || fullName.length < 2) {
       return res.status(400).json({ success: false, error: 'Please provide your full name.' });
     }
-    if (!email || !isValidEmail(email)) {
+    const brochure = body.source === 'estate_brochure' || body.estateId !== undefined || body.packageId !== undefined;
+    let selection;
+    if (brochure) {
+      const model = catalog.models.find(model => model.id === body.estateId);
+      const pkg = model && model.packages.find(pkg => pkg.id === body.packageId);
+      if (!pkg) return res.status(400).json({ success: false, error: 'Choose an estate and package from the comparison.' });
+      if (!['email', 'phone', 'whatsapp'].includes(body.contactMethod) || body.consent !== true) {
+        return res.status(400).json({ success: false, error: 'Choose how we should contact you and confirm your consent.' });
+      }
+      if (body.displayedPrice !== undefined && body.displayedPrice !== pkg.price) {
+        return res.status(409).json({ success: false, error: 'The indicative price has changed. Refresh the comparison before requesting a cost sheet.' });
+      }
+      estateModel = model.name;
+      selection = { estateId: model.id, estateName: model.name, packageId: pkg.id, packageName: pkg.name, indicativePriceCr: pkg.price, contactMethod: body.contactMethod, consent: true };
+    }
+    if ((!brochure || body.contactMethod === 'email' || email) && !isValidEmail(email)) {
       return res.status(400).json({ success: false, error: 'Please provide a valid email address.' });
     }
-    if (!phone || !isValidPhone(phone)) {
+    if ((!brochure || body.contactMethod !== 'email' || phone) && !isValidPhone(phone)) {
       return res.status(400).json({ success: false, error: 'Please provide a valid phone number with country/area code.' });
     }
 
     // 4. Concurrency-Safe Deduplication & Single-Transaction Storage
-    const duplicateHash = db.computeDuplicateHash(email, phone, estateModel);
+    const duplicateHash = db.computeDuplicateHash(email, phone, selection
+      ? [selection.estateId, selection.packageId, selection.indicativePriceCr, selection.contactMethod].join('|') : estateModel);
     const enquiryId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex');
     const referenceId = db.generateReferenceId();
     const nowIso = new Date().toISOString();
@@ -111,7 +128,8 @@ module.exports = async function handler(req, res) {
       ip: clientIp,
       userAgent: req.headers['user-agent'] || 'Unknown',
       referrer: req.headers['referer'] || 'Direct',
-      submittedAt: nowIso
+      submittedAt: nowIso,
+      ...(selection ? { brochure: { ...selection, consentAt: nowIso } } : {})
     });
 
     const notificationId = crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString('hex');
@@ -126,6 +144,7 @@ module.exports = async function handler(req, res) {
       budgetRange,
       cityCountry,
       message,
+      ...(selection ? { brochure: selection } : {}),
       submittedAt: nowIso
     });
 
@@ -143,6 +162,7 @@ module.exports = async function handler(req, res) {
         message,
         duplicateHash,
         metadata,
+        source: brochure ? 'estate_brochure' : 'website_contact_form',
         nowIso
       },
       {
@@ -164,13 +184,13 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    console.log(`[Enquiry Queued] Ref: ${referenceId} from ${fullName} <${email}>. Stored in DB with notification queue.`);
+    console.log(`[Enquiry Queued] Ref: ${referenceId}.`);
 
     // 5. Confirmed Success Response
     return res.status(200).json({
       success: true,
       referenceId,
-      message: 'Thank you for your private enquiry. Our estate director has received your request and will reach out shortly with project documentation.'
+      message: 'Your enquiry has been saved. Our estate team will contact you using the details provided.'
     });
 
   } catch (error) {
