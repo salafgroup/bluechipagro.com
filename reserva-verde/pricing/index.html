@@ -13,53 +13,63 @@
 #costs [hidden]{display:none!important}
 .pc-wrap{width:min(1200px,calc(100% - 8vw));margin-inline:auto}
 #costs section{scroll-margin-top:6rem}
-.pc-label{display:block;font-size:.76rem;font-weight:650;letter-spacing:.12em;text-transform:uppercase;color:var(--p-gold);line-height:1.5;margin:0 0 .65rem}
-#costs h1,#costs h2,#costs h3{font-family:var(--p-display);color:inherit;font-weight:400;letter-spacing:-.037em;line-height:1.07;text-transform:none}
-.pc-top{padding:clamp(2.9rem,5.4vw,6.1rem) 0 1.9rem}
-.pc-top .pc-wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(15rem,.8fr);align-items:end;gap:2rem}
-#costs h1{font-size:clamp(3.3rem,6.9vw,6.9rem);margin:0}
-.pc-deck{font-size:clamp(1rem,1.4vw,1.2rem);line-height:1.6;max-width:35ch;color:var(--p-body);margin:0 0 .25rem}
-.pc-compare{padding:0 0 clamp(3rem,7vw,6.75rem)}
-.pc-model-nav{border-block:1px solid var(--p-rule);display:flex;align-items:center;gap:1.2rem;padding:.75rem 0;margin:0 0 clamp(1.4rem,3vw,2.75rem)}
-.pc-model-nav .pc-label{margin:0;flex-shrink:0}
+#costs h1,#costs h2,#costs h3{font-family:var(--serif,Georgia,serif);color:inherit;font-weight:400;letter-spacing:-.045em;line-height:1.04;text-transform:none}
+.pc-cover{background:#12382b;color:#fffdf5}
+.pc-cover-layout{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);max-width:1800px;margin-inline:auto}
+.pc-cover-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(2rem,4.5vw,4.5rem) clamp(1.75rem,4vw,4.2rem) clamp(2.5rem,4.5vw,4.5rem) max(4vw,calc((100vw - 1200px)/2));min-width:0}
+.pc-place{font-size:.9rem;color:#ded4b6;line-height:1.4;margin:0 0 1.1rem;letter-spacing:.025em}
+.pc-place span{margin-inline:.36rem;color:#a5b19c}
+#costs h1{font-size:clamp(3.35rem,6.4vw,6.65rem);margin:0;line-height:.98}
+.pc-deck{font-size:clamp(1.02rem,1.23vw,1.2rem);line-height:1.62;max-width:38ch;color:#e6eadf;margin:1.05rem 0 0}
+.pc-cover-image{position:relative;min-height:clamp(280px,23vw,390px);margin:0;isolation:isolate;overflow:hidden}
+.pc-cover-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
+.pc-cover-image figcaption{position:absolute;bottom:12px;right:14px;background:rgba(16,37,28,.88);color:#fbf7e9;padding:.25rem .55rem;font-size:.79rem;line-height:1.4}
+.pc-compare{padding:0 0 clamp(3rem,5.5vw,6rem)}
+.pc-model-nav{border-bottom:1px solid var(--p-rule);display:flex;align-items:center;justify-content:space-between;gap:1.4rem;padding:1.1rem 0;margin-bottom:clamp(2rem,3.25vw,3.4rem)}
+#model-label{font:normal clamp(1.35rem,2.2vw,2.05rem)/1.2 var(--serif,Georgia,serif);letter-spacing:-.035em}
 #costs fieldset{border:0;padding:0;min-width:0;margin:0}
-.pc-models{display:flex;flex:1;gap:.35rem;flex-wrap:wrap}
+.pc-models{display:flex;gap:.35rem;flex-wrap:wrap}
 .pc-pill,.pc-pick{position:relative;cursor:pointer}
 .pc-pill input,.pc-pick input{position:absolute;inline-size:1px;block-size:1px;margin:0;opacity:0}
-.pc-pill span{display:block;padding:.72rem 1.25rem;min-height:44px;text-align:center;color:var(--p-body);font-size:.93rem}
+.pc-pill span{display:block;padding:.7rem 1.12rem;min-height:44px;text-align:center;color:var(--p-body);font-size:.92rem;border-radius:3px}
+.pc-pill:hover span{background:#eaece3}
 .pc-pill input:checked+span{background:var(--p-ink);color:white}
 .pc-pill input:focus-visible+span,.pc-pick input:focus-visible+span{outline:3px solid #936924;outline-offset:2px}
-.pc-config{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(0,.9fr);gap:clamp(1.75rem,5vw,5rem);align-items:start}
-.pc-gallery{margin:0}
-.pc-gallery img{display:block;width:100%;height:auto;aspect-ratio:1.32;object-fit:cover;background:#e9e7da}
-.pc-gallery figcaption{display:flex;justify-content:space-between;align-items:start;gap:.8rem;flex-wrap:wrap;font-size:.83rem;color:#536459;padding:.75rem 0}
-.pc-gallery a,#costs .pc-inline{color:var(--p-ink);text-decoration:underline;text-underline-offset:4px}
-#costs h2{font-size:clamp(2.15rem,3.5vw,3.8rem);margin:0 0 .55rem}
-#costs h3{font-size:clamp(1.5rem,2.4vw,2rem);margin:0 0 .6rem}
-.pc-model-meta{color:var(--p-body);font-size:1rem;margin:0 0 1.2rem}
-.pc-package-head{margin:0 0 .45rem;font-size:.77rem;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;color:var(--p-gold)}
+.pc-config{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(2rem,6.5vw,6.5rem);align-items:start}
+.pc-model-profile{padding-top:.35rem}
+.pc-section-label{font-size:.93rem;color:#556752;margin:0 0 .5rem}
+#costs h2{font-size:clamp(2.35rem,3.7vw,4rem);margin:0 0 .75rem;line-height:1.06}#costs h3{font-size:clamp(1.5rem,2.4vw,2rem);margin:0 0 .6rem}
+#costs .pc-inline{color:var(--p-ink);text-decoration:underline;text-underline-offset:4px}
+.pc-model-meta{color:var(--p-body);font-size:1.05rem;max-width:38ch;margin:0 0 1.5rem}
+.pc-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-block:1px solid var(--p-rule);padding:1rem 0;margin:0 0 1.15rem}
+.pc-facts div+div{padding-left:1rem;border-left:1px solid var(--p-rule)}
+.pc-facts dt{color:#516455;font-size:.85rem;line-height:1.4}
+.pc-facts dd{font:normal clamp(1.25rem,2.1vw,1.85rem)/1.22 var(--serif,Georgia,serif);color:var(--p-ink);letter-spacing:-.025em;margin:.3rem 0 0}
+.pc-package-head{font:normal clamp(1.5rem,2.25vw,2.1rem)/1.2 var(--serif,Georgia,serif);letter-spacing:-.035em;color:var(--p-ink);padding:0;margin:0 0 .8rem}
 .pc-options{display:grid;border-top:1px solid var(--p-rule)}
-.pc-pick>span{display:grid;grid-template-columns:1.05rem minmax(0,1fr) auto;align-items:center;gap:.6rem;padding:.77rem .65rem;border-bottom:1px solid var(--p-rule);line-height:1.35;min-height:48px;font-size:1rem}
-.pc-pick>span::before{content:"";width:.94rem;height:.94rem;border:1px solid #718074;border-radius:50%}
-.pc-pick input:checked+span{background:#e9eee4}
-.pc-pick input:checked+span::before{border:4px solid var(--p-ink);background:var(--p-paper)}
-.pc-pick small{display:block;margin-top:.17rem;color:#536459;font-size:.83rem;line-height:1.35}.pc-pick strong{font-weight:600;font-variant-numeric:tabular-nums;text-align:right;font-size:.92rem}
+.pc-pick>span{display:grid;grid-template-columns:1rem minmax(0,1fr) auto;align-items:center;gap:.8rem;padding:.85rem .85rem;border-bottom:1px solid var(--p-rule);line-height:1.35;min-height:54px;font-size:1.02rem}
+.pc-pick:hover>span{background:#f1f1e6}
+.pc-pick>span::before{content:"";width:1rem;height:1rem;border:1px solid #778575;border-radius:50%}
+.pc-pick input:checked+span{background:#e3ebde;box-shadow:inset 3px 0 #3f654c}
+.pc-pick input:checked+span::before{border:5px solid #32573e;background:white}
+.pc-pick small{display:block;margin-top:.18rem;color:#536459;font-size:.86rem;line-height:1.4}
+.pc-pick strong{font:normal clamp(1.1rem,1.65vw,1.42rem)/1.2 var(--serif,Georgia,serif);letter-spacing:-.026em;font-variant-numeric:tabular-nums;text-align:right}
 .pc-note{color:#536459;font-size:.9rem;line-height:1.55;margin:1rem 0}
 .pc-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.25rem 0 0}
 #costs .pc-button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.72rem 1.12rem;border:1px solid var(--p-ink);background:var(--p-ink);color:#fff;font:600 .9rem/1.4 Arial,sans-serif;text-transform:none;letter-spacing:.01em;text-decoration:none;cursor:pointer;border-radius:0}
 #costs .pc-button.secondary{background:transparent;color:var(--p-ink)}
 #costs .pc-button:hover{filter:brightness(1.18)}
 #costs .pc-button[disabled]{opacity:.5;cursor:wait}
-.pc-schedule{background:#edece2;border-block:1px solid var(--p-rule);padding:clamp(2.75rem,6vw,6rem) 0}
+.pc-schedule{background:#e9eee5;border-block:1px solid var(--p-rule);padding:clamp(2.75rem,6vw,6rem) 0}
 .pc-lower-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,7vw,7rem);align-items:start}
 .pc-copy{color:var(--p-body);max-width:42ch}
-.pc-summary{margin:1.25rem 0;font-size:1.03rem;color:var(--p-ink);font-weight:600;line-height:1.55}
+.pc-summary{margin:1.25rem 0;font-size:1.03rem;color:var(--p-ink);font-weight:600;line-height:1.55;border-left:2px solid #9aab91;padding-left:.8rem}
 .pc-schedule table{width:100%;border-collapse:collapse;color:var(--p-ink);font-size:.95rem;table-layout:auto}
 .pc-schedule td,.pc-schedule th{text-align:left;padding:.7rem .4rem;border-bottom:1px solid var(--p-rule);line-height:1.35}
 .pc-schedule td:first-child,.pc-schedule th:first-child{padding-left:0}
 .pc-schedule th{color:#4e6051;font-size:.81rem}
 .pc-schedule td:not(:first-child),.pc-schedule th:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
-.pc-schedule tfoot td{font-weight:bold;border:0}
+.pc-schedule tfoot td{font-weight:bold;border-bottom:2px solid #596e5c;padding-block:.95rem}.pc-schedule thead th{border-bottom:1px solid #829280}.pc-schedule td:last-child{font-weight:600}.pc-schedule tbody tr:nth-child(even){background:rgba(255,255,255,.25)}.pc-schedule th:first-child,.pc-schedule td:first-child{padding-left:.55rem}.pc-schedule th:last-child,.pc-schedule td:last-child{padding-right:.55rem}
 #costs details{margin-top:1.2rem;padding:1rem 0;border-block:1px solid var(--p-rule)}
 #costs summary{cursor:pointer;font-size:1rem;font-weight:600;color:var(--p-ink)}
 .pc-upgrades{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 1rem;margin:1rem 0}
@@ -67,7 +77,7 @@
 .pc-extra input{margin:.28rem 0 0;accent-color:var(--p-ink)}
 .pc-extra small{display:block;color:#516255;font-size:.81rem}
 .pc-enquiry{padding:clamp(2.75rem,6vw,6rem) 0}
-.pc-request{padding:clamp(1.3rem,3vw,2.5rem);border:1px solid var(--p-rule);background:#fffdf7;color:var(--p-ink)}
+.pc-request{padding:clamp(1.3rem,3vw,2.5rem);border:1px solid #cdd2c4;border-top:3px solid #546a51;background:#fffdf7;color:var(--p-ink)}
 .pc-formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
 .pc-field{display:block;font-weight:600;font-size:.93rem;line-height:1.4}
 .pc-field input,.pc-field select,.pc-field textarea{color:var(--p-ink);background:#fffefb;width:100%;min-height:46px;margin-top:.35rem;border:1px solid #8a9687;border-radius:0;padding:.65rem .7rem;font:1rem/1.35 Arial,sans-serif;letter-spacing:normal}
@@ -81,36 +91,46 @@
 .pc-terms{border-top:1px solid var(--p-rule);padding:1.75rem 0 2.25rem;max-width:92ch;font-size:.86rem;line-height:1.65;color:#536459}
 .pc-visually-hidden{position:absolute;clip-path:inset(50%);height:1px;width:1px;overflow:hidden;white-space:nowrap}
 .pc-trap{display:none}
-@media(max-width:850px){.pc-wrap{width:92%}.pc-top .pc-wrap{grid-template-columns:1fr;gap:.7rem}.pc-deck{max-width:60ch}.pc-config{gap:1.25rem}.pc-lower-grid{gap:1.6rem}.pc-pill span{padding:.66rem .8rem}}
-@media(max-width:680px){.pc-top{padding:2.7rem 0 1.1rem}.pc-model-nav{display:block}.pc-model-nav .pc-label{margin-bottom:.5rem}.pc-models{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.2rem}.pc-pill span{border:1px solid var(--p-rule);padding:.62rem .3rem;font-size:.89rem}.pc-config,.pc-lower-grid{grid-template-columns:1fr}.pc-gallery img{aspect-ratio:1.75}.pc-config{gap:1rem}.pc-request{padding:1rem}.pc-formgrid{grid-template-columns:1fr}.pc-upgrades{grid-template-columns:1fr}.pc-pick>span{font-size:.94rem}.pc-actions .pc-button{flex:1 1 9rem}.pc-schedule table{font-size:.88rem}.pc-schedule th,.pc-schedule td{padding:.6rem .25rem}}
+@media(max-width:850px){.pc-wrap{width:92%}.pc-cover-image{min-height:270px}.pc-config{gap:1.5rem}.pc-lower-grid{gap:1.7rem}.pc-pill span{padding:.68rem .75rem}.pc-model-nav{gap:.7rem}.pc-cover-copy{padding-right:1.4rem}}
+@media(max-width:680px){
+.pc-cover-layout{position:relative;display:block;isolation:isolate}.pc-cover-image{position:absolute;inset:0;z-index:-2;min-height:0}.pc-cover-image img{object-position:55% 45%}
+.pc-cover-image::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,29,20,.95) 0%,rgba(8,29,20,.66) 48%,rgba(8,29,20,.1) 100%)}.pc-cover-image figcaption{z-index:1;bottom:auto;top:.7rem;right:4%;font-size:.75rem}
+.pc-cover-copy{min-height:clamp(265px,65vw,340px);padding:5rem 4% 1.7rem;justify-content:flex-end}.pc-place{margin:0 0 .55rem;font-size:.84rem}.pc-deck{font-size:.97rem;line-height:1.45;max-width:36ch;margin-top:.6rem}
+.pc-model-nav{display:block;padding:1.25rem 0 1.1rem;margin-bottom:1.55rem}#model-label{display:block;margin-bottom:.55rem}
+.pc-models{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.3rem}.pc-pill span{border:1px solid var(--p-rule);padding:.61rem .35rem;font-size:.91rem}
+.pc-config,.pc-lower-grid{grid-template-columns:1fr}.pc-config{gap:1.7rem}.pc-facts{max-width:34rem;padding:.75rem 0;margin:.9rem 0}.pc-model-meta{margin-bottom:.7rem}.pc-model-profile{padding:0}.pc-section-label{margin-bottom:.3rem}.pc-model-profile h2{margin-bottom:.45rem}
+.pc-pick>span{gap:.6rem;padding:.7rem .6rem}.pc-pick small{font-size:.81rem}.pc-request{padding:1.1rem}.pc-formgrid{grid-template-columns:1fr}.pc-upgrades{grid-template-columns:1fr}.pc-actions .pc-button{flex:1 1 9rem}
+.pc-schedule table{font-size:.92rem}.pc-schedule th,.pc-schedule td{padding:.65rem .25rem}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}#costs *,#costs *::before,#costs *::after{animation:none!important;transition:none!important}}
-@media print{[data-site-header],[data-site-footer],.pc-model-nav,.pc-gallery,.pc-enquiry,.pc-actions,.pc-schedule button,.pc-upgrades,.pc-options,.pc-section-link{display:none!important}#costs,.pc-schedule{background:#fff!important;color:#111!important}.pc-wrap{width:100%}.pc-top,.pc-schedule,.pc-compare{padding:1rem 0}.pc-config,.pc-lower-grid{display:block}#costs h1{font-size:30pt}#costs h2{font-size:20pt}.pc-terms{font-size:9pt}.pc-schedule table{break-inside:avoid}}
+@media print{[data-site-header],[data-site-footer],.pc-model-nav,.pc-cover-image,.pc-enquiry,.pc-actions,.pc-schedule button,.pc-upgrades,.pc-options,.pc-section-link{display:none!important}#costs,.pc-schedule{background:#fff!important;color:#111!important}.pc-wrap{width:100%}.pc-cover,.pc-cover-copy{background:white!important;color:#111!important;padding:.5rem 0;min-height:0}.pc-cover-layout{display:block}.pc-place,.pc-deck{color:#333!important}.pc-schedule,.pc-compare{padding:1rem 0}.pc-config,.pc-lower-grid{display:block}#costs h1{font-size:30pt}#costs h2{font-size:20pt}.pc-terms{font-size:9pt}.pc-schedule table{break-inside:avoid}}
 </style>
 <script src="/brochure/catalog.js" defer></script><script src="/brochure/shell.js" defer></script><script src="/brochure/pricing.js" defer></script>
 </head>
 <body>
 <header data-site-header></header>
 <main id="costs" tabindex="-1">
-<section class="pc-top" id="compare">
-<div class="pc-wrap"><div><p class="pc-label">Reserva Varde Goa / Estate collection</p><h1>Villa pricing</h1></div>
-<p class="pc-deck">Choose an estate, compare its packages and see how the indicative cost is spread across the build.</p></div>
-</section>
+<section class="pc-cover" aria-labelledby="pricing-title">
+<div class="pc-cover-layout"><div class="pc-cover-copy"><p class="pc-place">South Goa <span aria-hidden="true">/</span> The estate collection</p><h1 id="pricing-title">Villa pricing</h1>
+<p class="pc-deck">Four estate formats. Compare the villa packages, explore the payment plan, and request an itemised cost sheet.</p></div>
+<figure class="pc-cover-image"><img id="pc-villa-img" src="/images/villa-concepts-20261023/2bhk-exterior.webp" alt="Concept rendering of a forest villa" width="960" height="640" fetchpriority="high"><figcaption>Artist’s impression</figcaption></figure>
+</div></section>
 <noscript><p class="pc-wrap">Enable JavaScript to compare packages, or <a href="mailto:md.bluechipintl@gmail.com">email the estate team</a> for the current cost sheet.</p></noscript>
-<section class="pc-compare" aria-label="Compare estate models and packages">
+<section class="pc-compare" id="compare" aria-label="Compare estate models and packages">
 <div class="pc-wrap">
-<div class="pc-model-nav"><span class="pc-label" id="model-label">Choose an estate</span><fieldset aria-labelledby="model-label"><div class="pc-models" id="pc-models"></div></fieldset></div>
-<div class="pc-config">
-<figure class="pc-gallery"><img id="pc-villa-img" src="/images/villa-concepts-20261023/2bhk-exterior.webp" alt="Concept rendering of a forest villa" width="960" height="720" fetchpriority="high"><figcaption><span>Artist’s impression · Concept exterior</span><a id="pc-estate-link" href="/#estate-models">View estate</a></figcaption></figure>
-<div><p class="pc-label">Selected estate</p><h2 id="pc-model-title">Villa packages</h2><p id="pc-model-meta" class="pc-model-meta"></p>
-<fieldset><legend class="pc-package-head">Compare indicative base packages</legend><div class="pc-options" id="pc-packages"></div></fieldset>
-<p class="pc-note" id="pc-coverage">Base pricing is for the selected villa configuration. The cost sheet confirms land and works included, finishes, taxes, registration and optional additions.</p>
-<div class="pc-actions"><a class="pc-button secondary" href="#payment-plan">View payment plan</a><a class="pc-button" href="#enquiry">Request this cost sheet</a></div></div>
+<div class="pc-model-nav"><span id="model-label">Choose your estate</span><fieldset aria-labelledby="model-label"><div class="pc-models" id="pc-models"></div></fieldset></div>
+<div class="pc-config"><div class="pc-model-profile"><p class="pc-section-label">Your villa</p><h2 id="pc-model-title">Villa packages</h2><p id="pc-model-meta" class="pc-model-meta"></p>
+<dl class="pc-facts"><div><dt>Built-up area</dt><dd id="pc-area">See estate details</dd></div><div><dt>Selected base price</dt><dd id="pc-selected-price">See package</dd></div></dl>
+<a class="pc-inline" id="pc-estate-link" href="/#estate-models">View estate and floor plan</a></div>
+<div class="pc-package-panel"><fieldset><legend class="pc-package-head">Choose a package</legend><div class="pc-options" id="pc-packages"></div></fieldset>
+<p class="pc-note" id="pc-coverage">Indicative base price for this configuration. The cost sheet confirms scope and optional additions.</p>
+<div class="pc-actions"><a class="pc-button" href="#enquiry">Request this cost sheet</a><a class="pc-button secondary" href="#payment-plan">View payment plan</a></div></div>
 </div></div></section>
-<section class="pc-schedule" id="payment-plan"><div class="pc-wrap pc-lower-grid"><div><p class="pc-label">Milestones</p><h2>Payment plan</h2><p class="pc-copy">Eight stages, from booking to handover. These amounts illustrate the selected base package; the signed agreement sets the final terms.</p><p class="pc-summary" id="pc-plan-summary"></p><button class="pc-button secondary" type="button" id="pc-print">Print payment plan</button></div>
+<section class="pc-schedule" id="payment-plan"><div class="pc-wrap pc-lower-grid"><div><h2>Payment plan</h2><p class="pc-copy">The indicative base price is divided across these eight milestones. Your signed agreement sets the final terms.</p><p class="pc-summary" id="pc-plan-summary"></p><button class="pc-button secondary" type="button" id="pc-print">Print payment plan</button></div>
 <div><table><caption class="pc-visually-hidden">Indicative milestone payments for the selected estate and package</caption><thead><tr><th scope="col">Milestone</th><th scope="col">Share</th><th scope="col">Amount</th></tr></thead><tbody id="pc-schedule"></tbody><tfoot><tr><td>Total</td><td>100%</td><td id="pc-total">—</td></tr></tfoot></table>
 <details id="pc-extras-panel"><summary>Explore optional upgrades</summary><p class="pc-note">Indicative additions are separate from the base package and milestone figures. Select any you would like quoted.</p><div class="pc-upgrades" id="pc-upgrades"></div><p class="pc-note" id="pc-addon-summary" aria-live="polite"></p></details></div>
 </div></section>
-<section class="pc-enquiry" id="enquiry"><div class="pc-wrap pc-lower-grid"><div><p class="pc-label">Private enquiry</p><h2>Your cost sheet</h2><p class="pc-copy">Request the specifications, scope and itemised pricing for your chosen villa. The estate team will respond using the contact method you select.</p><p class="pc-summary" id="pc-request-summary"></p><a class="pc-inline pc-section-link" href="#compare">Change estate or package</a></div>
+<section class="pc-enquiry" id="enquiry"><div class="pc-wrap pc-lower-grid"><div><h2>Your cost sheet</h2><p class="pc-copy">The estate team will send the scope, specifications and itemised pricing using your preferred contact method.</p><p class="pc-summary" id="pc-request-summary"></p><a class="pc-inline pc-section-link" href="#compare">Change estate or package</a></div>
 <div class="pc-request"><form id="pc-form" method="post" action="/api/enquiry">
 <div class="pc-formgrid">
 <label class="pc-field pc-wide">Full name<input type="text" name="fullName" required minlength="2" maxlength="120" autocomplete="name"></label>

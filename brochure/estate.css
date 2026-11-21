@@ -4,3 +4,22 @@
 [data-site-header]{display:block;position:relative;z-index:15;background:#f8f5eb;color:#17392b;border-bottom:1px solid var(--line)}.rvg-mast{width:min(1340px,92%);margin:auto;display:flex;align-items:center;gap:2rem;justify-content:space-between;min-height:74px}.rvg-brand{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:#1d3b2c;white-space:nowrap}.rvg-mark{width:32px;height:40px;color:#75633f}.rvg-brand b{font:normal clamp(1.2rem,2vw,1.58rem)/1 var(--serif);letter-spacing:-.025em;display:block}.rvg-brand small{display:block;margin:.32rem 0 0;font:600 .66rem/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase}.rvg-nav{display:flex;gap:clamp(1rem,2.4vw,2.4rem);align-items:center}.rvg-nav a{font:500 .92rem/1.3 var(--sans);text-decoration:none;padding:.7rem 0}.rvg-nav a:hover,.rvg-nav a[aria-current=page]{text-decoration:underline;text-underline-offset:.4rem}.rvg-nav a.rvg-contact{padding:.8rem 1.1rem;background:var(--forest);color:white;border-radius:2px}.rvg-menu{display:none}.rvg-skip{position:absolute;left:1rem;top:-8rem;background:white;padding:.6rem;z-index:100}.rvg-skip:focus{top:.4rem}
 [data-site-footer]{display:block;background:#102c23;color:#f8f5eb}.rvg-foot{width:min(1200px,92%);margin:auto;padding:clamp(2rem,5vw,4.5rem) 0}.rvg-foot-main{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap}.rvg-foot h2{font:normal 2rem/1.2 var(--serif);margin:0}.rvg-foot p{font-size:.92rem;max-width:62ch;margin:.7rem 0;color:#d2d9cb}.rvg-foot nav{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}.rvg-foot a{display:inline-block;color:#f8f5eb;text-underline-offset:.2rem}.rvg-foot-end{margin-top:2rem;border-top:1px solid #5c6f5f;padding-top:1rem}
 @media(max-width:800px){.rvg-mast{min-height:65px;gap:.6rem}.rvg-menu{display:block;background:transparent;border:1px solid #a8b3a4;color:var(--forest);padding:.5rem .9rem;min-height:44px;border-radius:2px}.rvg-nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--ivory);padding:1rem 4% 1.4rem;box-shadow:0 7px 10px #0c312219;border-bottom:1px solid var(--line)}.rvg-nav.is-open{display:grid;gap:.2rem}.rvg-nav a{display:block;padding:.65rem .4rem}.rvg-nav a.rvg-contact{margin-top:.4rem;text-align:center}.wrap{width:92%}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}@media print{[data-site-header],[data-site-footer]{display:none!important}}
+
+/* A locally served editorial face, paired with the original sans for controls. */
+@font-face{font-family:"Estate Newsreader";font-style:normal;font-weight:400;font-display:swap;src:url("/brochure/fonts/newsreader.woff") format("woff")}
+@font-face{font-family:"Estate Newsreader";font-style:italic;font-weight:400;font-display:swap;src:url("/brochure/fonts/newsreader-italic.woff") format("woff")}
+:root{--serif:"Estate Newsreader",Georgia,"Times New Roman",serif}
+::selection{background:#cbd5bd;color:#173728}
+[data-site-header]{background:#fbf8ef;border-bottom-color:#c6c8b8}
+.rvg-mast{width:min(1380px,92%);min-height:80px}
+.rvg-brand{gap:.7rem}.rvg-brand .rvg-mark{width:38px;height:38px;flex:none}
+.rvg-brand b{font-size:clamp(1.45rem,2.1vw,1.85rem);line-height:1.05}
+.rvg-brand small{font-weight:600;font-size:.64rem;letter-spacing:.175em;margin-top:.2rem;color:#4f6456}
+.rvg-nav a{font-size:.94rem}.rvg-nav a.rvg-contact{border:1px solid #244437;border-radius:3px;padding:.72rem 1.12rem}
+.rvg-nav a.rvg-contact:hover{background:#315043;text-decoration:none}
+.rvg-menu{align-items:center;gap:.55rem}.rvg-menu svg{width:16px;height:16px}
+.rvg-foot{padding-block:clamp(2.5rem,6vw,5.5rem);width:min(1260px,92%)}.rvg-foot-main{align-items:flex-end}
+.rvg-foot h2{font-size:clamp(2.65rem,5vw,4.5rem);letter-spacing:-.04em}.rvg-foot nav{gap:1.3rem}.rvg-foot nav a{text-decoration-color:#8d9d88}
+.rvg-foot-end{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:2rem;border-color:#526657}.rvg-foot-end p{margin-bottom:0}
+.rvg-foot-end p:last-child{max-width:45ch;justify-self:end}
+@media(max-width:800px){.rvg-mast{min-height:66px}.rvg-brand .rvg-mark{width:32px;height:32px}.rvg-menu{display:inline-flex;padding:.4rem .75rem}.rvg-foot-end{display:block}.rvg-foot-end p:last-child{margin-top:1.4rem}.rvg-foot nav{gap:.8rem 1.2rem}}

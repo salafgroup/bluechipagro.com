@@ -2,3 +2,39 @@
 #model-zoom{width:min(94vw,90rem);max-width:none;max-height:95dvh;padding:0;background:#faf8f0;color:#1c382a;border:0;overflow:hidden}#model-zoom::backdrop{background:rgba(12,24,18,.85)}.model-zoom-head{padding:.65rem 1rem;border-bottom:1px solid #c7cbbc;display:flex;align-items:center;justify-content:space-between;gap:.65rem;flex-wrap:wrap}.model-page dialog h2{margin:0;font-size:clamp(1.25rem,2.2vw,1.8rem)}.model-zoom-head>div{display:flex;gap:.5rem}.model-zoom-head button{cursor:pointer;border:1px solid #657565;background:#faf8f0;color:#1c382a;min-height:44px;padding:.4rem .7rem;font:inherit}.model-zoom-body{overflow:auto;height:min(76dvh,68rem);overscroll-behavior:contain}.model-zoom-body img{display:block;width:100%;height:100%;object-fit:contain}.model-zoom-body.is-actual img{width:var(--drawing-width,1700px);height:auto;max-width:none}.model-page:has(#model-zoom[open]){overflow:hidden}
 @media(max-width:800px){.model-crumb{font-size:.81rem;padding:.85rem 0}.model-intro{grid-template-columns:1fr;gap:1.15rem}.model-exterior{order:2}.model-intro-copy{order:1}.model-facts div:last-child{grid-column:auto}.model-page dl.model-facts{grid-template-columns:repeat(3,minmax(0,1fr));margin:1rem 0}.model-spec{grid-template-columns:1fr}.model-wrap{width:min(100% - 2.5rem,45rem)}}
 @media(max-width:380px){.model-wrap{width:calc(100% - 2rem)}.model-facts dd{font-size:.95rem}}
+
+/* A villa spread: a full architectural plate beside the short estate brief. */
+.model-page{background:var(--ivory,#f8f5eb)}
+.model-intro{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.98fr);grid-template-areas:"plate identity" "plate brief";column-gap:clamp(2.5rem,5.8vw,6.2rem);row-gap:0;align-items:start}
+.model-identity{grid-area:identity;align-self:end}
+.model-intro-copy{grid-area:brief;align-self:start;padding-bottom:.75rem}
+.model-exterior{grid-area:plate;align-self:center;background:var(--pine)}
+.model-intro .model-kicker,.model-spec .model-kicker,.model-drawings .model-kicker{display:flex;align-items:center;column-gap:.8rem}
+.model-intro .model-kicker::before,.model-spec .model-kicker::before,.model-drawings .model-kicker::before{content:"";display:block;width:2rem;height:1px;background:#9b8456;flex:none}
+.model-intro h1{font-size:clamp(3.1rem,5.35vw,5.3rem);line-height:1.01;letter-spacing:-.045em;max-width:13ch;margin-bottom:.35rem}
+.model-description{max-width:44ch;font-size:clamp(1rem,1.3vw,1.16rem);line-height:1.65;margin-top:.5rem}
+.model-exterior figcaption{display:flex;align-items:center;justify-content:space-between;gap:.45rem 1rem;flex-wrap:wrap;padding:.68rem clamp(1rem,1.5vw,1.6rem);background:var(--pine);color:#d9dfd5}
+.model-exterior figcaption strong,.model-interior figcaption strong{font-size:.8rem;font-weight:600;letter-spacing:.015em}
+.model-exterior figcaption span{font-family:var(--serif);font-size:.88rem;font-style:italic;color:#e4d6b6}
+.model-facts dt{color:#536053}.model-facts dd{font-variant-numeric:tabular-nums}
+.model-page dl.model-facts{padding:1rem 0 1.15rem;row-gap:.9rem;border-color:#afbaa9}
+.model-facts div:last-child dd{font-family:var(--serif);font-size:clamp(1.35rem,1.8vw,1.7rem);color:var(--forest)}
+.model-wrap.model-opening{width:min(100% - 8vw,89rem);padding-bottom:clamp(3.5rem,6.4vw,7rem)}
+.model-crumb{padding-block:clamp(1.1rem,2.1vw,2rem)}
+.model-drawings{background:#edece2}.model-drawings>.model-wrap{max-width:74rem}
+.model-drawings .model-lead{margin-bottom:1.7rem}
+.model-drawing{border:1px solid #bebfaf;padding:clamp(.5rem,2vw,1.75rem) clamp(.5rem,2vw,1.75rem) 0;background:#f9f8f1}
+.model-drawing>img{width:100%;height:auto;max-height:min(73vh,53rem);object-fit:contain;margin-inline:auto}
+.model-drawing figcaption{padding:1rem .35rem;gap:1rem;background:#f9f8f1;align-items:center}
+.model-drawing figcaption .model-secondary{border:1px solid #879484;border-radius:2px;text-decoration:none;padding:.55rem .9rem;font-size:.9rem}
+.model-drawing figcaption .model-secondary:hover{color:white;background:var(--forest);border-color:var(--forest)}
+.model-details summary{padding:1rem .15rem}
+.model-spec-list dt{font-size:.85rem}.model-spec-list dd{line-height:1.5}
+.model-interior{margin-top:1.6rem!important;max-width:30rem}.model-interior img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.model-interior figcaption{padding-top:.65rem;color:#445548;display:grid;gap:.1rem}.model-interior figcaption span{font-size:.88rem}
+.model-end{border-top:3px solid #b6a075}
+.model-zoom-head [data-size][aria-pressed=true]{background:var(--forest);color:white}
+@media(max-width:1000px) and (min-width:801px){.model-intro{grid-template-columns:1.2fr 1fr;column-gap:2rem}.model-intro h1{font-size:3.2rem}.model-page dl.model-facts{margin:.7rem 0}}
+@media(max-width:800px){.model-wrap.model-opening{width:min(100% - 2.5rem,45rem)}.model-intro{grid-template-columns:minmax(0,1fr);grid-template-areas:"identity" "plate" "brief";row-gap:1rem}.model-intro h1{font-size:clamp(2.7rem,7.8vw,4.3rem);max-width:17ch;margin:0}.model-intro .model-kicker{margin-bottom:.5rem}.model-exterior,.model-intro-copy{order:0}.model-intro-copy{padding:0}.model-description{margin:0;max-width:60ch}.model-exterior img{max-height:23rem;object-fit:cover}.model-facts div:last-child dd{font-size:1.05rem}.model-page dl.model-facts{grid-template-columns:1fr 1fr 1.12fr;margin:1rem 0}.model-drawing figcaption{gap:.5rem;padding:.7rem .15rem}.model-drawing figcaption>div{flex:1 1 13rem}.model-interior{max-width:none}.model-spec{gap:1.7rem}}
+@media(max-width:500px){.model-crumb{padding:.75rem 0 .95rem}.model-exterior figcaption{padding:.5rem .65rem;line-height:1.4}.model-exterior figcaption span{font-size:.78rem}.model-exterior figcaption strong{font-size:.78rem}.model-drawing>img{max-height:none}.model-spec-list{column-gap:.9rem}.model-spec-list dd{font-size:1rem}.model-zoom-head{padding:.65rem}.model-zoom-head>div{margin-left:auto}.model-zoom-body{height:69dvh}}
+@media print{.model-crumb,.model-actions,.model-zoom-head,.model-end,.model-drawing figcaption a,.model-interior{display:none}.model-intro{display:block}.model-drawings,.model-opening,.model-spec{padding:1rem 0}.model-drawing{break-inside:avoid}}

@@ -86,7 +86,9 @@
   }
   function sync(updateUrl){
     $('pc-model-title').textContent = estate.name;
-    $('pc-model-meta').textContent = [estate.area,estate.feature].filter(Boolean).join(' · ');
+    $('pc-model-meta').textContent = estate.feature;
+    $('pc-area').textContent=estate.area;
+    $('pc-selected-price').textContent=showPrice(pkg);
     $('pc-villa-img').src = estate.image;
     $('pc-villa-img').alt = estate.name + ', concept exterior';
     const detailUrl = new URL(estate.url,location.href);
