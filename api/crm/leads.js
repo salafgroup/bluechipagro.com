@@ -13,12 +13,19 @@ function sanitize(str, maxLen = 1000) {
   return str.trim().slice(0, maxLen);
 }
 
+// Keep the indicative package as quoted at submission, even if the public
+// catalogue changes later. Existing enquiries do not have a brochure snapshot.
+function brochureDetails(metadata) {
+  try { return JSON.parse(metadata || '{}').brochure || null; } catch { return null; }
+}
+
 // Convert leads to CSV format
 function toCsv(rows) {
   const headers = [
     'Reference ID', 'Date', 'Full Name', 'Email', 'Phone',
     'Estate Model', 'Buyer Type', 'Budget', 'City/Country',
-    'Status', 'Assigned To', 'Follow-up Date', 'Notes Count'
+    'Status', 'Assigned To', 'Follow-up Date', 'Notes Count',
+    'Selected Package', 'Indicative Base (INR crore)', 'Preferred Contact', 'Consent Recorded At'
   ];
 
   const escapeCsv = (val) => {
@@ -42,7 +49,11 @@ function toCsv(rows) {
       escapeCsv(r.status),
       escapeCsv(r.assigned_staff_name || 'Unassigned'),
       escapeCsv(r.follow_up_date || 'None'),
-      escapeCsv(r.note_count || 0)
+      escapeCsv(r.note_count || 0),
+      escapeCsv(r.brochure?.packageName),
+      escapeCsv(r.brochure ? (r.brochure.indicativePriceCr ?? 'To be confirmed') : ''),
+      escapeCsv(r.brochure?.contactMethod),
+      escapeCsv(r.brochure?.consentAt)
     ].join(','));
   }
 
@@ -106,7 +117,7 @@ module.exports = async function handler(req, res) {
           [lead.id]
         );
 
-        return res.status(200).json({ success: true, lead, notes });
+        return res.status(200).json({ success: true, lead: { ...lead, brochure: brochureDetails(lead.metadata_json) }, notes });
       }
 
       // Compute Live Database KPIs
@@ -152,7 +163,7 @@ module.exports = async function handler(req, res) {
 
       const querySql = `
         SELECT e.id, e.reference_id, e.full_name, e.email, e.phone, e.buyer_type,
-               e.estate_model, e.budget_range, e.city_country, e.message, e.status,
+               e.estate_model, e.budget_range, e.city_country, e.message, e.status, e.metadata_json,
                e.assigned_staff_id, e.follow_up_date, e.created_at, e.updated_at,
                u.full_name as assigned_staff_name,
                (SELECT COUNT(*) FROM enquiry_notes WHERE enquiry_id = e.id) as note_count
@@ -163,7 +174,8 @@ module.exports = async function handler(req, res) {
         ${isExport ? '' : 'LIMIT 200'}
       `;
 
-      const leads = await db.query(querySql, params);
+      const rows = await db.query(querySql, params);
+      const leads = rows.map(({ metadata_json, ...row }) => ({ ...row, brochure: brochureDetails(metadata_json) }));
 
       if (isExport) {
         const csv = toCsv(leads);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-    <title>Reserva Varde Goa | Secure Staff Command Center</title>
+    <title>Staff sign-in | Reserva Varde Goa</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -731,7 +731,7 @@
     <div id="authGate">
         <div class="auth-card">
             <div class="auth-brand">Reserva Varde Goa</div>
-            <div class="auth-tagline">Staff Command Center</div>
+            <div class="auth-tagline">Staff sign-in</div>
             
             <div id="authError" class="auth-error"></div>
 
@@ -744,10 +744,10 @@
                     <label for="loginPassword">Password</label>
                     <input type="password" id="loginPassword" placeholder="••••••••••••" required autocomplete="current-password">
                 </div>
-                <button type="submit" id="loginSubmitBtn" class="auth-btn">Sign In to Command Center</button>
+                <button type="submit" id="loginSubmitBtn" class="auth-btn">Sign in</button>
             </form>
             <p style="margin-top: 1.5rem; font-size: 0.68rem; color: var(--text-muted);">
-                Authorized personnel only. Sessions are monitored and authenticated via secure tokens.
+                For authorised estate team members.
             </p>
         </div>
     </div>
@@ -763,11 +763,11 @@
             <li><a href="#kpiSection">Executive Overview</a></li>
             <li><a href="#legalSection">Legal Due Diligence</a></li>
             <li><a href="/downloads/Reserva_Verde_Goa_Schedules.xlsx" download>Specification Schedules</a></li>
-            <li><a href="/" target="_blank">View Live Website ↗</a></li>
+            <li><a href="/" target="_blank">View website</a></li>
         </ul>
         <div class="sidebar-footer">
-            <p><strong>Database:</strong> Connected</p>
-            <p style="margin-top: 0.4rem; opacity: 0.6;">Production API v2.0</p>
+            <p>Reserva Varde Goa</p>
+            <p style="margin-top: 0.4rem; opacity: 0.6;">Staff workspace</p>
         </div>
     </aside>
 
@@ -778,7 +778,7 @@
         <header class="header">
             <div>
                 <p style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 0.3rem;">Estate CRM & Due Diligence</p>
-                <h1>Executive Command Center</h1>
+                <h1>Estate enquiries</h1>
             </div>
             <div class="user-profile">
                 <div class="user-meta">
@@ -790,10 +790,10 @@
         </header>
 
         <!-- Live KPI Overview -->
-        <div class="section-title" id="kpiSection">Live Database Intelligence</div>
+        <div class="section-title" id="kpiSection">Enquiry overview</div>
         <div class="kpi-grid">
             <div class="card">
-                <div class="kpi-label">Total Real Enquiries</div>
+                <div class="kpi-label">Total enquiries</div>
                 <div class="kpi-value gold" id="kpiTotal">0</div>
             </div>
             <div class="card">
@@ -835,7 +835,7 @@
                 </select>
             </div>
             <div class="toolbar-group">
-                <button id="exportCsvBtn" class="export-btn">📥 Export CSV</button>
+                <button id="exportCsvBtn" class="export-btn">Export CSV</button>
             </div>
         </div>
 
@@ -896,6 +896,14 @@
                     <div class="detail-item">
                         <span>Interested Model</span>
                         <strong id="modalModel" style="color: var(--accent-gold);">-</strong>
+                    </div>
+                    <div class="detail-item" id="modalSelectionDetail" hidden>
+                        <span>Selected package / indicative base</span>
+                        <strong id="modalSelection"></strong>
+                    </div>
+                    <div class="detail-item" id="modalContactDetail" hidden>
+                        <span>Requested contact method</span>
+                        <strong id="modalContactPreference"></strong>
                     </div>
                     <div class="detail-item">
                         <span>Buyer Profile</span>
@@ -1063,7 +1071,7 @@
                 authError.innerText = 'Network error contacting authentication server.';
                 authError.style.display = 'block';
             } finally {
-                loginSubmitBtn.innerText = 'Sign In to Command Center';
+                loginSubmitBtn.innerText = 'Sign in';
                 loginSubmitBtn.disabled = false;
             }
         });
@@ -1165,8 +1173,18 @@
                 activeLead = data.lead;
                 document.getElementById('modalRefId').innerText = activeLead.reference_id;
                 document.getElementById('modalLeadName').innerText = activeLead.full_name;
-                document.getElementById('modalEmail').innerText = activeLead.email;
-                document.getElementById('modalPhone').innerText = activeLead.phone;
+                document.getElementById('modalEmail').innerText = activeLead.email || 'Not provided';
+                document.getElementById('modalPhone').innerText = activeLead.phone || 'Not provided';
+                const selection = activeLead.brochure;
+                document.getElementById('modalSelectionDetail').style.display = selection ? '' : 'none';
+                document.getElementById('modalContactDetail').style.display = selection ? '' : 'none';
+                document.getElementById('modalSelectionDetail').hidden = !selection;
+                document.getElementById('modalContactDetail').hidden = !selection;
+                document.getElementById('modalSelection').textContent = selection
+                    ? selection.packageName + ' · ' + (Number.isFinite(selection.indicativePriceCr)
+                        ? '₹' + selection.indicativePriceCr.toFixed(2) + ' crore' : 'Price to be confirmed') : '';
+                document.getElementById('modalContactPreference').textContent = selection
+                    ? ({ email: 'Email', phone: 'Phone', whatsapp: 'WhatsApp' })[selection.contactMethod] || '' : '';
                 document.getElementById('modalModel').innerText = activeLead.estate_model || 'None';
                 document.getElementById('modalBuyerType').innerText = activeLead.buyer_type || 'General';
                 document.getElementById('modalLocation').innerText = activeLead.city_country || 'Not Specified';
